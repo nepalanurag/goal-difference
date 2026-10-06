@@ -1,0 +1,14 @@
+# Keep the image lean and keep secrets out of it.
+.git
+.dvc/tmp
+__pycache__
+*.pyc
+.pytest_cache
+*.env
+.env
+fanart.key
+*.keystore
+*.key
+docs/
+data/lake/
+data/raw/

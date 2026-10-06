@@ -1,3 +1,9 @@
+# Phase 9.5 reproducibility: DVC pipeline stages mirroring etl/refresh.py.
+# Each stage lists code deps and data outputs, so `dvc repro` can detect
+# stale stages. No remote is configured on purpose: add one later
+# (e.g. `dvc remote add -d storage s3://...`) when off-machine backups are
+# wanted; until then data lives in git / on disk and only .dvc + dvc.yaml
+# are tracked here.
 stages:
   extract:
     cmd: python -m etl.extract
@@ -16,6 +22,7 @@ stages:
     cmd: python -m etl.validate
     deps:
       - etl/validate.py
+      - etl/config.py
       - data/fixtures_pl.csv
       - data/fixtures_laliga.csv
       - data/fixtures_bundesliga.csv
@@ -28,6 +35,7 @@ stages:
     deps:
       - etl/features.py
       - etl/h2h.py
+      - etl/config.py
       - data/validation_report.json
     outs:
       - data/features_pl.csv
@@ -35,3 +43,45 @@ stages:
       - data/features_bundesliga.csv
       - data/features_seriea.csv
       - data/features_ligue1.csv
+  fit:
+    cmd: python -m etl.fit
+    deps:
+      - etl/fit.py
+      - etl/simulate.py
+      - etl/config.py
+      - data/features_pl.csv
+      - data/features_laliga.csv
+      - data/features_bundesliga.csv
+      - data/features_seriea.csv
+      - data/features_ligue1.csv
+    outs:
+      - data/params_pl.json
+      - data/params_laliga.json
+      - data/params_bundesliga.json
+      - data/params_seriea.json
+      - data/params_ligue1.json
+      - data/calibration_pl.json
+      - data/calibration_laliga.json
+      - data/calibration_bundesliga.json
+      - data/calibration_seriea.json
+      - data/calibration_ligue1.json
+      - data/predictions_ledger_pl.csv
+      - data/predictions_ledger_laliga.csv
+      - data/predictions_ledger_bundesliga.csv
+      - data/predictions_ledger_seriea.csv
+      - data/predictions_ledger_ligue1.csv
+      - data/models/:
+          persist: true
+  build_site:
+    cmd: python -m etl.build_site
+    deps:
+      - etl/build_site.py
+      - etl/scorer_probs.py
+      - etl/config.py
+      - data/params_pl.json
+      - data/params_laliga.json
+      - data/params_bundesliga.json
+      - data/params_seriea.json
+      - data/params_ligue1.json
+    outs:
+      - docs/

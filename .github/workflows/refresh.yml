@@ -7,9 +7,18 @@ on:
     - cron: "0 14 * * *"
   workflow_dispatch:
 
+# Phase 9.4 hardened scheduling: never run two refreshes at once. A queued
+# run waits for the current one instead of piling up (cancel-in-progress is
+# false on purpose: dropping a refresh would silently skip a matchday).
+concurrency:
+  group: goal-difference-refresh
+  cancel-in-progress: false
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    # Bound the runtime so one stuck step cannot block the next day's run.
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -23,6 +32,30 @@ jobs:
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
         run: python -m etl.refresh
+      - name: Heartbeat (success)
+        # Dead-man's-switch: pings a Healthchecks-style check so a silent
+        # stall or missed scheduled run gets noticed. Setup: create a check
+        # (e.g. at healthchecks.io) and store its UUID as the repo secret
+        # HEALTHCHECKS_UUID. Missing secret = no-op; the step never fails
+        # the build (continue-on-error).
+        if: success()
+        continue-on-error: true
+        env:
+          HC_UUID: ${{ secrets.HEALTHCHECKS_UUID }}
+        run: |
+          [ -z "$HC_UUID" ] || curl -m 10 --retry 3 "https://hc-ping.com/$HC_UUID"
+      - name: Heartbeat (failure)
+        # Step-level failure alert: the /fail ping marks this run red in
+        # Healthchecks, which fires the configured alert (email, Slack,
+        # PagerDuty). This is the alerting path for the scheduled run:
+        # failure of any earlier step lands here. On success this step is
+        # skipped, so a clean run is never marked failed.
+        if: failure()
+        continue-on-error: true
+        env:
+          HC_UUID: ${{ secrets.HEALTHCHECKS_UUID }}
+        run: |
+          [ -z "$HC_UUID" ] || curl -m 10 --retry 3 "https://hc-ping.com/$HC_UUID/fail"
       - name: Commit updated data and site
         run: |
           git config user.name "goal-difference-bot"
