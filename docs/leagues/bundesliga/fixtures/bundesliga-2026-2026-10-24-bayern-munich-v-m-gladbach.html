@@ -9,8 +9,8 @@
 </head><body>
 <div class="topbar"><div class="wrap">
 <div class="brand">Goal <b>Difference</b></div>
-<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a></nav></div></div>
-<div class="wrap"><div class="hero"><p class="cond muted">Bundesliga
+<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a><a href="/goal-difference/methodology.html">Methodology</a><a href="/goal-difference/model-insights.html">Model insights</a></nav></div></div>
+<div class="wrap"><p class="data-updated">Data updated 2026-10-06</p><div class="hero"><p class="cond muted">Bundesliga
 &middot; <span class="mono">2026-10-24</span></p>
 <h1>Bayern Munich <span class="faint">v</span> M&#x27;gladbach</h1></div>
 <h2>How they're playing</h2>
@@ -48,20 +48,28 @@
 
 <h2>Head to head</h2><div class="card"><div class='kpi'>6<small>W</small> 0<small>D</small> 0<small>L</small></div><p class='small muted'>All-time, Bayern Munich perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-03-06</span> Bayern Munich 4-1 M&#x27;gladbach</div><div class='small'><span class='mono faint'>2025-10-25</span> M&#x27;gladbach 0-3 Bayern Munich</div><div class='small'><span class='mono faint'>2025-05-10</span> Bayern Munich 2-0 M&#x27;gladbach</div><div class='small'><span class='mono faint'>2025-01-11</span> M&#x27;gladbach 0-1 Bayern Munich</div><div class='small'><span class='mono faint'>2024-02-03</span> Bayern Munich 3-1 M&#x27;gladbach</div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: bundesliga official Firebase</p></div>
-<h2>Prediction</h2><div class="grid g2"><div class="card"><h3>Model probabilities</h3>
+<h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
-<tr><td>Poisson</td><td class="num">97%</td>
-<td class="num">2%</td><td class="num">1%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">89%</td>
-<td class="num">8%</td><td class="num">3%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>93%</b></td>
-<td class="num"><b>5%</b></td><td class="num"><b>2%</b></td></tr>
-</table><div class="probbar"><span class="seg home" style="width:93.0%">93%</span><span class="seg draw" style="width:5.1%">5%</span><span class="seg away" style="width:1.8%">2%</span></div>
+<tr><td>Poisson</td><td class="num">89%</td>
+<td class="num">7%</td><td class="num">3%</td></tr>
+<tr><td>Gradient boosting</td><td class="num">66%</td>
+<td class="num">24%</td><td class="num">10%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>75%</b></td>
+<td class="num"><b>17%</b></td><td class="num"><b>7%</b></td></tr>
+</table>
+<div class="probview" data-view="poisson" hidden>
+<div class="probbar"><span class="seg home" style="width:89.4%">89%</span><span class="seg draw" style="width:7.1%">7%</span><span class="seg away" style="width:3.4%">3%</span></div>
+<p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
+<div class="probview" data-view="ml" hidden>
+<div class="probbar"><span class="seg home" style="width:66.0%">66%</span><span class="seg draw" style="width:24.0%">24%</span><span class="seg away" style="width:10.0%">10%</span></div>
+<p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
+<div class="probview" data-view="ensemble">
+<div class="probbar"><span class="seg home" style="width:75.4%">75%</span><span class="seg draw" style="width:17.2%">17%</span><span class="seg away" style="width:7.4%">7%</span></div>
 <div class="legend"><span class="sw home"></span>Bayern Munich <span class="sw draw"></span>Draw <span class="sw away"></span>M&#x27;gladbach</div>
-<p class="small muted">Expected goals: <span class="mono">5.59 - 0.74</span>.
-Each row sums to 100%.</p></div><div class="card"><h3>What to expect</h3><table class="small">
+<p class="small muted">Expected goals: <span class="mono">3.82 - 0.75</span>.
+Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Bayern Munich</b>
-<span class="muted">favored at</span> <b>93%</b>
+<span class="muted">favored at</span> <b>75%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Bayern Munich score
 <span class="mono">2.60</span>/game lately; M&#x27;gladbach concede
@@ -84,5 +92,6 @@ leagues show absences detected from lineups, labeled "reason unconfirmed",
 or state plainly when no data is published.</div>
 <div class="footer">Goal Difference &middot; weekly model-driven matchday
 analysis for Europe's top 5 leagues &middot; Poisson + gradient-boosted
-models, refit weekly &middot; updated 2026-10-06</div>
-</div></body></html>
+models, refit weekly &middot; updated 2026-10-06 &middot;
+<a href="/goal-difference/methodology.html">How the models work</a></div>
+</div><script src="/goal-difference/app.js" defer></script></body></html>
