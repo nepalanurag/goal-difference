@@ -6,8 +6,9 @@ Sources, in priority order:
   2026/27 (live)     FPL API for the Premier League (CSV backup);
                      football-data.co.uk current-season CSVs for the rest
 
-European fixtures: api-football /fixtures?league={2,3,848}&date={recent},
-accumulated into data/european_fixtures.jsonl (deduped by fixture id).
+European fixtures: ESPN's hidden scoreboard API (free, no key),
+accumulated into data/european_fixtures.jsonl (deduped by fixture id;
+scheduled rows are upgraded in place once finished).
 
 Every raw response is cached under data/raw/ before parsing. Output:
 data/fixtures_{league}.csv with the contract in etl/README.md.
@@ -41,7 +42,6 @@ log = get_logger(__name__)
 
 CSV_BASE = "https://www.football-data.co.uk/mmz4281"
 CSV_SEASON_CODE = {"2023": "2324", "2024": "2425", "2025": "2526", "2026": "2627"}
-EUROPEAN_LEAGUES = {2: "ucl", 3: "uel", 848: "uecl"}
 
 # Extra stat columns carried through from the CSVs (nullable for API rows).
 STAT_COLS = ["hs", "as_", "hst", "ast", "hf", "af", "hy", "ay", "hr", "ar"]
@@ -244,49 +244,51 @@ def extract_league(league: str, seasons: list[str], prefer_csv: bool) -> pd.Data
 
 
 # ---------------------------------------------------------------- European
-def fetch_european(dates: list[str]) -> list[dict]:
-    """Accumulate recent European fixtures via api-football date queries."""
-    rows: list[dict] = []
-    for dt in dates:
-        for api_id, comp in EUROPEAN_LEAGUES.items():
-            try:
-                data = api_get("/fixtures", {"league": api_id, "date": dt})
-            except Exception as exc:
-                log.warning("european_query_failed", league=api_id, date=dt,
-                            error=str(exc)[:160])
-                continue
-            for fx in data.get("response", []):
-                rows.append({
-                    "fixture_id": fx["fixture"]["id"],
-                    "date": fx["fixture"]["date"][:10],
-                    "competition": comp,
-                    "home": fx["teams"]["home"]["name"],
-                    "away": fx["teams"]["away"]["name"],
-                    "home_goals": fx["goals"]["home"],
-                    "away_goals": fx["goals"]["away"],
-                    "status": fx["fixture"]["status"]["short"],
-                })
-    log.info("european_fixtures_fetched", n=len(rows))
-    return rows
-
-
 def accumulate_european(dates: list[str]) -> Path:
+    """Accumulate UEFA fixtures via ESPN's scoreboard API (free, no key).
+
+    Fetches the full date range spanned by `dates` and appends new rows to
+    data/european_fixtures.jsonl, deduplicated by fixture_id. Rows first
+    seen as scheduled are upgraded in place once the finished result lands,
+    so stale scheduled rows never linger.
+    """
+    from .uefa import fetch_espn_uefa
     out = settings.data_dir / "european_fixtures.jsonl"
-    seen: set[int] = set()
+    lines: list[str] = []
+    index: dict[str, int] = {}
     if out.exists():
         with open(out) as f:
             for line in f:
+                line = line.strip()
+                if not line:
+                    continue
                 try:
-                    seen.add(json.loads(line)["fixture_id"])
+                    fx = json.loads(line)
+                    index[fx["fixture_id"]] = len(lines)
+                    lines.append(line)
                 except (json.JSONDecodeError, KeyError):
                     continue
-    new = [r for r in fetch_european(dates) if r["fixture_id"] not in seen]
-    if new:
-        with open(out, "a") as f:
-            for r in new:
-                f.write(json.dumps(r) + "\n")
-    log.info("european_accumulated", new=len(new), total=len(seen) + len(new),
-             path=str(out))
+    new = 0
+    upgraded = 0
+    if dates:
+        rows = fetch_espn_uefa(min(dates), max(dates))
+        for r in rows:
+            fid = r["fixture_id"]
+            if fid not in index:
+                index[fid] = len(lines)
+                lines.append(json.dumps(r))
+                new += 1
+            else:
+                old = json.loads(lines[index[fid]])
+                if old.get("status") != "finished" and r["status"] == "finished":
+                    lines[index[fid]] = json.dumps(r)
+                    upgraded += 1
+    if new or upgraded:
+        with open(out, "w") as f:
+            for line in lines:
+                f.write(line + "\n")
+    log.info("european_accumulated", new=new, upgraded=upgraded,
+             total=len(lines), path=str(out))
     return out
 
 

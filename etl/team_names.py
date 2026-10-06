@@ -127,6 +127,56 @@ FPL_ALIASES: dict[str, str] = {
     "Man Utd": "Man United", "Spurs": "Tottenham",
 }
 
+# ESPN scoreboard display name -> canonical (built from actual ESPN
+# responses, 2026-10-06; ESPN fixtures are cross-league). Non-top-5 clubs
+# keep their ESPN name: they never match a league team, which is fine.
+ESPN_ALIASES: dict[str, dict[str, str]] = {
+    "pl": {
+        "Manchester City": "Man City", "Manchester United": "Man United",
+        "Newcastle United": "Newcastle", "Nottingham Forest": "Nott'm Forest",
+        "West Ham United": "West Ham", "Wolverhampton Wanderers": "Wolves",
+        "Brighton & Hove Albion": "Brighton", "Tottenham Hotspur": "Tottenham",
+        "Leeds United": "Leeds", "Leicester City": "Leicester",
+        "AFC Bournemouth": "Bournemouth", "Ipswich Town": "Ipswich Town",
+        "Luton Town": "Luton",
+    },
+    "laliga": {
+        "Athletic Club": "Ath Bilbao", "Atlético Madrid": "Ath Madrid",
+        "Atletico Madrid": "Ath Madrid", "Celta Vigo": "Celta",
+        "Real Betis": "Betis", "Deportivo Alavés": "Alaves",
+        "Deportivo Alaves": "Alaves",
+    },
+    "bundesliga": {
+        "Borussia Dortmund": "Dortmund", "Bayer Leverkusen": "Leverkusen",
+        "Eintracht Frankfurt": "Ein Frankfurt", "VfB Stuttgart": "Stuttgart",
+        "Borussia Mönchengladbach": "M'gladbach",
+        "Borussia Monchengladbach": "M'gladbach",
+        "TSG Hoffenheim": "Hoffenheim", "1899 Hoffenheim": "Hoffenheim",
+        "SC Freiburg": "Freiburg", "FSV Mainz 05": "Mainz",
+        "FC Augsburg": "Augsburg", "VfL Wolfsburg": "Wolfsburg",
+        "FC Heidenheim": "Heidenheim", "1. FC Heidenheim": "Heidenheim",
+        "1. FC Köln": "FC Koln", "St. Pauli": "St Pauli",
+        "Hamburger SV": "Hamburg", "Bayern München": "Bayern Munich",
+    },
+    "seriea": {
+        "AC Milan": "Milan", "AS Roma": "Roma", "Hellas Verona": "Verona",
+        "Inter Milan": "Inter", "Internazionale": "Inter",
+        "US Sassuolo": "Sassuolo", "Como 1907": "Como",
+    },
+    "ligue1": {
+        "Paris Saint-Germain": "Paris SG",
+        "Olympique de Marseille": "Marseille", "Olympique Lyonnais": "Lyon",
+        "AS Monaco": "Monaco", "LOSC Lille": "Lille", "RC Lens": "Lens",
+        "OGC Nice": "Nice", "Stade Rennais": "Rennes",
+        "RC Strasbourg": "Strasbourg", "RC Strasbourg Alsace": "Strasbourg",
+        "AJ Auxerre": "Auxerre", "FC Nantes": "Nantes",
+        "Toulouse FC": "Toulouse", "Stade Brestois 29": "Brest",
+        "Le Havre AC": "Le Havre", "AS Saint-Étienne": "St Etienne",
+        "AS Saint-Etienne": "St Etienne", "Montpellier HSC": "Montpellier",
+        "FC Lorient": "Lorient", "Stade de Reims": "Reims",
+    },
+}
+
 
 def canonicalize(name: str, league: str, source: str = "api") -> str:
     """Map a source-specific team name to the canonical name."""
@@ -138,9 +188,11 @@ def canonicalize(name: str, league: str, source: str = "api") -> str:
         alias_dicts = [FPL_ALIASES]
     elif source == "csv":
         alias_dicts = [CSV_ALIASES.get(league, {})]
+    elif source == "espn":
+        alias_dicts = [ESPN_ALIASES.get(league, {})]
     elif source == "any":
         alias_dicts = [CSV_ALIASES.get(league, {}), API_ALIASES.get(league, {}),
-                       FPL_ALIASES]
+                       ESPN_ALIASES.get(league, {}), FPL_ALIASES]
     else:
         alias_dicts = [API_ALIASES.get(league, {})]
     for aliases in alias_dicts:
@@ -152,4 +204,27 @@ def canonicalize(name: str, league: str, source: str = "api") -> str:
                     matched=matches[0])
         return matches[0]
     log.error("unmapped_team_name", raw=name, league=league, source=source)
+    return name
+
+
+def canonicalize_espn(name: str) -> str:
+    """Map an ESPN scoreboard display name to the canonical team name.
+
+    ESPN fixtures are cross-league, so every league's canonical set and
+    ESPN aliases are tried. Names that match nothing (non-top-5 clubs)
+    are returned unchanged; they simply never join against a league team.
+    """
+    name = (name or "").strip()
+    for known in CANONICAL.values():
+        if name in known:
+            return name
+    for aliases in ESPN_ALIASES.values():
+        if name in aliases:
+            return aliases[name]
+    pool = sorted({t for known in CANONICAL.values() for t in known})
+    matches = difflib.get_close_matches(name, pool, n=1, cutoff=0.82)
+    if matches:
+        log.warning("fuzzy_espn_match", raw=name, matched=matches[0])
+        return matches[0]
+    log.info("espn_non_league_team", raw=name)
     return name
