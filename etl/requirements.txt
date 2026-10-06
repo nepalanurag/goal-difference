@@ -1,0 +1,18 @@
+# Pinned runtime + dev dependencies for the goal-difference ETL.
+# Regenerate pins with: .venv/bin/pip freeze > etl/requirements.txt  (then prune to direct deps)
+pandas==2.2.3
+numpy==2.2.4
+scipy==1.15.2
+scikit-learn==1.6.1
+xgboost==2.1.4
+lightgbm==4.5.0
+pandera==0.23.1
+pydantic==2.11.7
+pydantic-settings==2.8.1
+structlog==25.4.0
+pytest==8.3.5
+jinja2==3.1.6
+joblib==1.4.2
+requests==2.32.3
+dvc==3.59.0
+pyyaml==6.0.2

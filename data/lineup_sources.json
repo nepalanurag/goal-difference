@@ -1,0 +1,27 @@
+{
+ "bundesliga": {
+  "source": "bundesliga official Firebase (matchdays/matches nodes)",
+  "lineups_available": false,
+  "note": "Verified 2026-10-06: match nodes carry only timestamps and team ids; no lineup/player data. Absence detection not feasible."
+ },
+ "pl": {
+  "source": "FPL API (injuries, chance_of_playing, news)",
+  "lineups_available": false,
+  "note": "PL availability comes from FPL injury/news flags, not lineups."
+ },
+ "laliga": {
+  "source": "LaLiga apim public-service API",
+  "lineups_available": false,
+  "note": "No lineup endpoint found; player stats only."
+ },
+ "seriea": {
+  "source": "Serie A api-sdp (Deltatre)",
+  "lineups_available": false,
+  "note": "Match detail carries no lineups; no lineup sub-endpoint."
+ },
+ "ligue1": {
+  "source": "Ligue 1 ma-api",
+  "lineups_available": false,
+  "note": "No match/lineup endpoint found; statuses feed empty."
+ }
+}

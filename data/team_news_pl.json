@@ -1,0 +1,2003 @@
+{
+ "league": "pl",
+ "source": "FPL API (unofficial)",
+ "season_label": "2026/27",
+ "fetched_at": "2026-10-06T17:29:58.291082+00:00",
+ "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season.",
+ "teams": {
+  "Arsenal": {
+   "out": [
+    {
+     "player": "William Saliba",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Back injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Gabriel Martinelli Silva",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Al Hilal permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Ethan Nwaneri",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Borussia Dortmund on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Fábio Ferreira Vieira",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Hamburger SV permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Reiss Nelson",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "has departed the club as a free agent.",
+     "regular_starter": false
+    },
+    {
+     "player": "Gabriel Fernando de Jesus",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined FC Barcelona permanently",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Benjamin White",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Groin injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Declan Rice",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Max Dowman",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": false
+    },
+    {
+     "player": "Kai Havertz",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Ezri Konsa Ngoyo",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Christos Tzolis",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": true
+    }
+   ],
+   "key_absences": 5
+  },
+  "Aston Villa": {
+   "out": [
+    {
+     "player": "Marco Bizot",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Back injury - Expected back 10 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Lucas Digne",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Paris Saint-Germain permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Pau Torres",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Expected back 10 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Ian Maatsen",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Ankle injury - Unknown return date",
+     "regular_starter": true
+    },
+    {
+     "player": "Kosta Nedeljkovic",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Rangers on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Leon Bailey",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Olympiakos permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Amadou Onana",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Samuel Iling-Junior",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Bolton Wanderers on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Ollie Watkins",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Al Hilal permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Brian Madjo",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Luka Lynch",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Oxford United on loan until January",
+     "regular_starter": false
+    },
+    {
+     "player": "Leon Goretzka",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Expected back 10 Oct",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Alysson Edward Franco da Rocha dos Santos",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": false
+    }
+   ],
+   "key_absences": 1
+  },
+  "Bournemouth": {
+   "out": [
+    {
+     "player": "Will Dennis",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined MK Dons permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Veljko Milosavljevic",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Thigh injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Julián Araujo Zúñiga",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Thigh injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Justin Kluivert",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Unknown return date",
+     "regular_starter": true
+    },
+    {
+     "player": "Amine Adli",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Calf injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Junior Kroupi",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Foot injury - Expected back 7 Nov",
+     "regular_starter": false
+    },
+    {
+     "player": "Enes Ünal",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Getafe permanently",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Alex Scott",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 50,
+     "news": "Thigh injury - 50% chance of playing",
+     "regular_starter": true
+    }
+   ],
+   "key_absences": 2
+  },
+  "Brentford": {
+   "out": [
+    {
+     "player": "Nathan Collins",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Calf injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Sepp van den Berg",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Groin injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Mathias Jensen",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Expected back 10 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Antoni Milambo",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Josh Dasilva",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Expected back 10 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Kaye Furo",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Unknown return date",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Mikkel Damsgaard",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true
+    }
+   ],
+   "key_absences": 1
+  },
+  "Brighton": {
+   "out": [
+    {
+     "player": "Igor Julio dos Santos de Paulo",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Burnley permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Mitoma Kaoru",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Expected back 10 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Yankuba Minteh",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Leg injury - Expected back 28 Nov",
+     "regular_starter": false
+    },
+    {
+     "player": "Jack Hinshelwood",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Ankle injury - Expected back 10 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Facundo Buonanotte",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Elche on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Mats Wieffer",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Harry Howell",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Leicester City on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Tom Watson",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Leicester City on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Zadok Yohanna",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Expected back 10 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Stefanos Tzimas",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Evan Ferguson",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Ankle injury - Expected back 10 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Amario Cozier-Duberry",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Middlesbrough on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Femi Azeez",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Expected back 10 Oct",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Lewis Dunk",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Neck injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Pascal Struijk",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": false
+    }
+   ],
+   "key_absences": 1
+  },
+  "Chelsea": {
+   "out": [
+    {
+     "player": "Robert Lynch Sánchez",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Como on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Filip Jörgensen",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined RC Strasbourg on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Trevoh Chalobah",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Como permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Benoît Badiashile Mukinayi",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Napoli on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Mamadou Sarr",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Real Sociedad on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Dário Luís Essugo",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined RC Strasbourg on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Marc Guiu Paz",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined RB Leipzig permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Emmanuel Emegha",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Expected back 10 Oct",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Jordan Henderson",
+     "status": "a",
+     "chance_this_round": 50,
+     "chance_next_round": 100,
+     "news": "",
+     "regular_starter": false
+    },
+    {
+     "player": "Reece James",
+     "status": "d",
+     "chance_this_round": 75,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Marco Palestra",
+     "status": "d",
+     "chance_this_round": 50,
+     "chance_next_round": 50,
+     "news": "Thigh injury - 50% chance of playing",
+     "regular_starter": false
+    },
+    {
+     "player": "Cole Palmer",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Muscular injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Jamie Bynoe-Gittens",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Ankle injury - 75% chance of playing",
+     "regular_starter": false
+    },
+    {
+     "player": "Moisés Caicedo Corozo",
+     "status": "d",
+     "chance_this_round": 50,
+     "chance_next_round": 50,
+     "news": "Calf injury - 50% chance of playing",
+     "regular_starter": false
+    },
+    {
+     "player": "João Pedro Junqueira de Jesus",
+     "status": "d",
+     "chance_this_round": 75,
+     "chance_next_round": 75,
+     "news": "Knee injury - 75% chance of playing",
+     "regular_starter": true
+    }
+   ],
+   "key_absences": 3
+  },
+  "Coventry City": {
+   "out": [
+    {
+     "player": "Oliver Dovin",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Leyton Orient on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Liam Kitching",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Sheffield United on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Kaine Kesler-Hayden",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Luke Woolfenden",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Miguel Brau",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Academico de Viseu on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Aurèle Amenda",
+     "status": "i",
+     "chance_this_round": 25,
+     "chance_next_round": 0,
+     "news": "Calf injury - Unknown return date",
+     "regular_starter": true
+    },
+    {
+     "player": "Josh Eccles",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Expected back 12 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Raphael Borges Rodrigues",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Burton Albion on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Kai Andrews",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Oxford United on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Haji Wright",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Thigh injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Jahnoah Markelo",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Shabab Al-Ahli Dubai permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Norman Bassette",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined KVC Westerlo on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Taiwo Awoniyi",
+     "status": "s",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Suspended until 19 Oct",
+     "regular_starter": true
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Milan van Ewijk",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": true
+    }
+   ],
+   "key_absences": 3
+  },
+  "Crystal Palace": {
+   "out": [
+    {
+     "player": "Axel Disasi",
+     "status": "s",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Suspended until 25 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Dean Henderson",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Foot injury - Expected back 11 Oct",
+     "regular_starter": true
+    },
+    {
+     "player": "Borna Sosa",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined FC Cologne on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Chadi Riad Dnanou",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Justin Devenny",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Stoke City permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Romain Esse",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Millwall on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Matheus França de Oliveira",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Alverca on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Jesurun Rak-Sakyi",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "has joined  Kasimpasa on loan for the rest of the seaon.",
+     "regular_starter": false
+    },
+    {
+     "player": "Rio Cardines",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Bristol City on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Jean-Philippe Mateta",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Expected back 11 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Christantus Uche",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "has returned to Getafe CF",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Takehiro Tomiyasu",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Calf injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Anan Khalaili",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": true
+    }
+   ],
+   "key_absences": 3
+  },
+  "Everton": {
+   "out": [
+    {
+     "player": "Christian Nørgaard",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Groin injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Nathan Patterson",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Torino permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Adam Aznou",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Malaga on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Merlin Röhl",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Expected back 11 Oct",
+     "regular_starter": true
+    },
+    {
+     "player": "Norberto Bercique Gomes Betuncal",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Fiorentina permanently",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Vitalii Mykolenko",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Leg injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Harrison Armstrong",
+     "status": "a",
+     "chance_this_round": 75,
+     "chance_next_round": 100,
+     "news": "",
+     "regular_starter": true
+    }
+   ],
+   "key_absences": 3
+  },
+  "Fulham": {
+   "out": [
+    {
+     "player": "Alfie McNally",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined York City on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Kenny Tete",
+     "status": "a",
+     "chance_this_round": 0,
+     "chance_next_round": 100,
+     "news": "",
+     "regular_starter": false
+    },
+    {
+     "player": "Tom Cairney",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Expected back 10 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Luc De Fougerolles",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "has joined  Real Salt Lake on loan for the rest of the seaon.",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Ryan Sessegnon",
+     "status": "a",
+     "chance_this_round": 75,
+     "chance_next_round": 100,
+     "news": "",
+     "regular_starter": false
+    }
+   ],
+   "key_absences": 0
+  },
+  "Hull City": {
+   "out": [
+    {
+     "player": "Jack Butland",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Arm injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Harvey Cartwright",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Grimsby Town on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Thimothée Lo-Tutala",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Colchester United on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Charlie Hughes",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Groin injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Cody Drameh",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Genoa permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Matty Jacob",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Newport County on loan until January",
+     "regular_starter": false
+    },
+    {
+     "player": "Liam Millar",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Birmingham on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Eliot Matazo",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Abu Kamara",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Portsmouth permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "David Akintola",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Omonoia FC permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Darko Gyabi",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Thigh injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Enis Destan",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Konyaspor permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Mason Burstow",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Sheffield Wednesday on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Hidemasa Morita",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Calf injury - Expected back 11 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Nobel Mendy",
+     "status": "a",
+     "chance_this_round": 0,
+     "chance_next_round": 100,
+     "news": "",
+     "regular_starter": true
+    },
+    {
+     "player": "Ilyas Ansah",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Back injury - Unknown return date",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Matt Targett",
+     "status": "d",
+     "chance_this_round": 75,
+     "chance_next_round": 75,
+     "news": "Ankle injury - 75% chance of playing",
+     "regular_starter": false
+    },
+    {
+     "player": "Brooke Norton-Cuffy",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": false
+    }
+   ],
+   "key_absences": 1
+  },
+  "Ipswich Town": {
+   "out": [
+    {
+     "player": "Ben Johnson",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Stoke City on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Wes Burns",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Leicester City permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Jack Taylor",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Chiedozie Ogbene",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Lincoln City on loan until January",
+     "regular_starter": false
+    },
+    {
+     "player": "Abdul Fatawu",
+     "status": "s",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Suspended until 17 Oct",
+     "regular_starter": true
+    },
+    {
+     "player": "George Hirst",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Stoke City permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Sam Szmodics",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Derby County on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Ali Al-Hamadi",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Sheffield Wednesday on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Kayne van Oevelen",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Valencia on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Cameron Humphreys",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Huddersfield Town on loan for the rest of the season",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [],
+   "key_absences": 1
+  },
+  "Leeds": {
+   "out": [
+    {
+     "player": "Harry Wilson",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Thigh injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Lucas Estella Perri",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Torino on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Joe Rodon",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Expected back 21 Nov",
+     "regular_starter": false
+    },
+    {
+     "player": "Sebastiaan Bornauw",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Hamburg SV on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Wilfried Gnonto",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined ACF Fiorentina on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Jack Harrison",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined New England Revolution permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Joël Piroe",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined West Ham United on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Mateo Joseph Fernández-Regatillo",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [],
+   "key_absences": 0
+  },
+  "Liverpool": {
+   "out": [
+    {
+     "player": "Armin Pecsi",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined TSV Hartberg on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Vitezslav Jaros",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Conor Bradley",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Giovanni Leoni",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Calvin Ramsay",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined St Mirren on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Federico Chiesa",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Back injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Curtis Jones",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Internazionale permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Stefan Bajčetić Maquieira",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Celta Vigo permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Hugo Ekitiké",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Achilles injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Harvey Elliott",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Valencia on loan for the rest of the season",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Jeremy Jacquet",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Cody Gakpo",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Ankle injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Alexander Isak",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Thigh injury - 75% chance of playing",
+     "regular_starter": true
+    }
+   ],
+   "key_absences": 3
+  },
+  "Man City": {
+   "out": [
+    {
+     "player": "Max Alleyne",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Burnley on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Phil Foden",
+     "status": "s",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Suspended until 17 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Rodrigo 'Rodri' Hernandez Cascante",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Barcelona permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Tijjani Reijnders",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Al Qadsiah permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Claudio Echeverri",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Benfica on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Kalvin Phillips",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Sheffield United on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Divine Mukasa",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "has joined West Ham on loan for the rest of the seaon.",
+     "regular_starter": false
+    },
+    {
+     "player": "Jeremy Monga",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Swansea City on loan for the rest of the season",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Nico O'Reilly",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": false
+    },
+    {
+     "player": "Antoine Semenyo",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Ankle injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Jérémy Doku",
+     "status": "a",
+     "chance_this_round": 75,
+     "chance_next_round": 100,
+     "news": "",
+     "regular_starter": false
+    }
+   ],
+   "key_absences": 1
+  },
+  "Man United": {
+   "out": [
+    {
+     "player": "Altay Bayındır",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Celta Vigo on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Tom Heaton",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Matthijs de Ligt",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Back injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Tyler Fredricson",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Lausanne-Sport permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Amad Diallo",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Manuel Ugarte Ribeiro",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Toby Collyer",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined West Brom permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Chido Obi",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Willem II on loan for the rest of the season",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Carlos Baleba",
+     "status": "a",
+     "chance_this_round": 50,
+     "chance_next_round": 100,
+     "news": "",
+     "regular_starter": false
+    },
+    {
+     "player": "Karl Darlow",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": false
+    },
+    {
+     "player": "Patrick Dorgu",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": false
+    },
+    {
+     "player": "Noussair Mazraoui",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Back injury - 75% chance of playing",
+     "regular_starter": false
+    },
+    {
+     "player": "Luke Shaw",
+     "status": "a",
+     "chance_this_round": 50,
+     "chance_next_round": 100,
+     "news": "",
+     "regular_starter": true
+    },
+    {
+     "player": "Marcus Rashford",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Kobbie Mainoo",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Benjamin Sesko",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Shin injury - 75% chance of playing",
+     "regular_starter": false
+    }
+   ],
+   "key_absences": 3
+  },
+  "Newcastle": {
+   "out": [
+    {
+     "player": "Nico González Iglesias",
+     "status": "a",
+     "chance_this_round": 0,
+     "chance_next_round": 100,
+     "news": "",
+     "regular_starter": false
+    },
+    {
+     "player": "Dan Burn",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Ankle injury - Expected back 12 Oct",
+     "regular_starter": false
+    },
+    {
+     "player": "Alex Murphy",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined FC Kaiserslautern on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Anthony Elanga",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Unknown return date",
+     "regular_starter": true
+    },
+    {
+     "player": "Jacob Ramsey",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Thigh injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Joelinton Cássio Apolinário de Lira",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Nick Woltemade",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Juventus on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "William Osula",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Foot injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Sean Neave",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Wolves on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Amar Dedic",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Unknown return date",
+     "regular_starter": true
+    },
+    {
+     "player": "Leo Shahar",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "has joined Arouca on loan for the rest of the seaon.",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Ewen Jaouen",
+     "status": "d",
+     "chance_this_round": 50,
+     "chance_next_round": 50,
+     "news": "Ankle injury - 50% chance of playing",
+     "regular_starter": false
+    },
+    {
+     "player": "Tino Livramento",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": false
+    },
+    {
+     "player": "Lewis Miley",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true
+    }
+   ],
+   "key_absences": 3
+  },
+  "Nott'm Forest": {
+   "out": [
+    {
+     "player": "Felipe Rodrigues da Silva",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined West Ham on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Nikola Milenković",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Expected back 11 Oct",
+     "regular_starter": true
+    },
+    {
+     "player": "Nicolò Savona",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Zach Abbott",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Southampton on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Tyler Bindon",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Charlton Athletic on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Omari Hutchinson",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined AC Milan on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Dilane Bakwa",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Lille on loan for the rest of the season",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Jair Paula da Cunha Filho",
+     "status": "a",
+     "chance_this_round": 75,
+     "chance_next_round": 100,
+     "news": "",
+     "regular_starter": true
+    }
+   ],
+   "key_absences": 2
+  },
+  "Sunderland": {
+   "out": [
+    {
+     "player": "Anthony Patterson",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Wrexham permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Reinildo Mandava",
+     "status": "a",
+     "chance_this_round": 0,
+     "chance_next_round": 100,
+     "news": "",
+     "regular_starter": true
+    },
+    {
+     "player": "Jenson Seelt",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Swansea City on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Leo Fuhr Hjelde",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined KV Mechelen on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Arthur Masuaku",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Konyaspor permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Habib Diarra",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Simon Adingra",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Ajax on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Romaine Mundle",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Daniel Ballard",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Brian Brobbey",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": true
+    }
+   ],
+   "key_absences": 3
+  },
+  "Tottenham": {
+   "out": [
+    {
+     "player": "Guglielmo Vicario",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Juventus on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Cristian Romero",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Atletico Madrid permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Djed Spence",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Internazionale permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Ashley Phillips",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Middlesbrough permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "João Victor de Souza Menezes",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined FC Porto on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Xavi Simons",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Wilson Odobert",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Pape Matar Sarr",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Juventus on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Dejan Kulusevski",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Mikey Moore",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined FC Köln on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Richarlison de Andrade",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "not included in squad.",
+     "regular_starter": false
+    },
+    {
+     "player": "Dane Scarlett",
+     "status": "u",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Has joined Leyton Orient permanently",
+     "regular_starter": false
+    },
+    {
+     "player": "Mykhailo Mudryk",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Ankle injury - Unknown return date",
+     "regular_starter": false
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Jan Paul van Hecke",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Foot injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Pedro Porro Sauceda",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": false
+    }
+   ],
+   "key_absences": 1
+  }
+ }
+}

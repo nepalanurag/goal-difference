@@ -1,0 +1,114 @@
+{
+ "league": "pl",
+ "model_version": "v2026-10-06",
+ "fit_date": "2026-10-06T17:04:19.022576+00:00",
+ "data_hash": "80088b52a315",
+ "feature_logic_version": "3e13aedb7638",
+ "n_train_rows": 1190,
+ "feature_cols": [
+  "h2h_edge",
+  "h_travel_km",
+  "a_travel_km",
+  "h_rest_days",
+  "a_rest_days",
+  "h_euro_days_since",
+  "h_euro_midweek",
+  "h_euro_ppg",
+  "h_euro_gd",
+  "a_euro_days_since",
+  "a_euro_midweek",
+  "a_euro_ppg",
+  "a_euro_gd",
+  "h_key_absences",
+  "a_key_absences",
+  "h_w5",
+  "h_d5",
+  "h_l5",
+  "h_gf5",
+  "h_ga5",
+  "h_ppg_l5",
+  "h_ppg",
+  "h_gf_pg",
+  "h_ga_pg",
+  "h_gf_pg_l5",
+  "h_ga_pg_l5",
+  "h_home_ppg",
+  "h_away_ppg",
+  "h_home_gf_pg",
+  "h_home_ga_pg",
+  "h_away_gf_pg",
+  "h_away_ga_pg",
+  "h_cs_rate",
+  "h_fts_rate",
+  "h_momentum",
+  "h_shots_pg",
+  "h_shots_conc_pg",
+  "h_sot_pg",
+  "h_fouls_pg",
+  "h_cards_pg",
+  "h_shot_diff_pg",
+  "a_w5",
+  "a_d5",
+  "a_l5",
+  "a_gf5",
+  "a_ga5",
+  "a_ppg_l5",
+  "a_ppg",
+  "a_gf_pg",
+  "a_ga_pg",
+  "a_gf_pg_l5",
+  "a_ga_pg_l5",
+  "a_home_ppg",
+  "a_away_ppg",
+  "a_home_gf_pg",
+  "a_home_ga_pg",
+  "a_away_gf_pg",
+  "a_away_ga_pg",
+  "a_cs_rate",
+  "a_fts_rate",
+  "a_momentum",
+  "a_shots_pg",
+  "a_shots_conc_pg",
+  "a_sot_pg",
+  "a_fouls_pg",
+  "a_cards_pg",
+  "a_shot_diff_pg"
+ ],
+ "chosen_ml": "xgb_tiny",
+ "walkforward": {
+  "poisson": {
+   "logloss": 0.9316487574871782,
+   "accuracy": 0.5585858585858586
+  },
+  "xgb_tiny": {
+   "logloss": 0.943643136114171,
+   "accuracy": 0.5717171717171717
+  },
+  "xgb_reg": {
+   "logloss": 0.9458990928983304,
+   "accuracy": 0.5646464646464647
+  },
+  "xgb_base": {
+   "logloss": 1.0851057905734707,
+   "accuracy": 0.5555555555555556
+  },
+  "lgbm_a": {
+   "logloss": 0.9788784556742085,
+   "accuracy": 0.5454545454545454
+  },
+  "lgbm_b": {
+   "logloss": 1.0455156052532115,
+   "accuracy": 0.5272727272727272
+  },
+  "ensemble": {
+   "logloss": 0.9157411408238338,
+   "accuracy": 0.5757575757575758
+  },
+  "baseline": {
+   "logloss": 1.08485545772298,
+   "accuracy": 0.41818181818181815
+  },
+  "always_home_accuracy": 0.42857142857142855,
+  "chosen_ml": "xgb_tiny"
+ }
+}

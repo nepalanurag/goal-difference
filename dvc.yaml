@@ -1,0 +1,37 @@
+stages:
+  extract:
+    cmd: python -m etl.extract
+    deps:
+      - etl/extract.py
+      - etl/config.py
+      - etl/logging_setup.py
+    outs:
+      - data/fixtures_pl.csv
+      - data/fixtures_laliga.csv
+      - data/fixtures_bundesliga.csv
+      - data/fixtures_seriea.csv
+      - data/fixtures_ligue1.csv
+      - data/european_fixtures.jsonl
+  validate:
+    cmd: python -m etl.validate
+    deps:
+      - etl/validate.py
+      - data/fixtures_pl.csv
+      - data/fixtures_laliga.csv
+      - data/fixtures_bundesliga.csv
+      - data/fixtures_seriea.csv
+      - data/fixtures_ligue1.csv
+    outs:
+      - data/validation_report.json
+  features:
+    cmd: python -m etl.features
+    deps:
+      - etl/features.py
+      - etl/h2h.py
+      - data/validation_report.json
+    outs:
+      - data/features_pl.csv
+      - data/features_laliga.csv
+      - data/features_bundesliga.csv
+      - data/features_seriea.csv
+      - data/features_ligue1.csv

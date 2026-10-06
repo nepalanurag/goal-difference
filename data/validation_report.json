@@ -1,0 +1,152 @@
+{
+  "pl": {
+    "ok": true,
+    "checks": {
+      "schema": {
+        "ok": true,
+        "detail": "pandera schema passed"
+      },
+      "finished_count": {
+        "ok": true,
+        "detail": "2023: 380 finished, ok; 2024: 380 finished, ok"
+      },
+      "duplicate_ids": {
+        "ok": true,
+        "detail": "0 duplicate fixture_id rows"
+      },
+      "goals_iff_finished": {
+        "ok": true,
+        "detail": "0 rows where goals do not match status"
+      },
+      "teams_in_set": {
+        "ok": true,
+        "detail": "0 rows with a team outside the canonical set"
+      },
+      "dates_non_decreasing": {
+        "ok": true,
+        "detail": "0 rows where the date steps backwards"
+      }
+    },
+    "quarantined": 0
+  },
+  "laliga": {
+    "ok": true,
+    "checks": {
+      "schema": {
+        "ok": true,
+        "detail": "pandera schema passed"
+      },
+      "finished_count": {
+        "ok": true,
+        "detail": "2023: 380 finished, ok; 2024: 380 finished, ok"
+      },
+      "duplicate_ids": {
+        "ok": true,
+        "detail": "0 duplicate fixture_id rows"
+      },
+      "goals_iff_finished": {
+        "ok": true,
+        "detail": "0 rows where goals do not match status"
+      },
+      "teams_in_set": {
+        "ok": true,
+        "detail": "0 rows with a team outside the canonical set"
+      },
+      "dates_non_decreasing": {
+        "ok": true,
+        "detail": "0 rows where the date steps backwards"
+      }
+    },
+    "quarantined": 0
+  },
+  "bundesliga": {
+    "ok": true,
+    "checks": {
+      "schema": {
+        "ok": true,
+        "detail": "pandera schema passed"
+      },
+      "finished_count": {
+        "ok": true,
+        "detail": "2023: 306 finished, ok; 2024: 306 finished, ok"
+      },
+      "duplicate_ids": {
+        "ok": true,
+        "detail": "0 duplicate fixture_id rows"
+      },
+      "goals_iff_finished": {
+        "ok": true,
+        "detail": "0 rows where goals do not match status"
+      },
+      "teams_in_set": {
+        "ok": true,
+        "detail": "0 rows with a team outside the canonical set"
+      },
+      "dates_non_decreasing": {
+        "ok": true,
+        "detail": "0 rows where the date steps backwards"
+      }
+    },
+    "quarantined": 0
+  },
+  "seriea": {
+    "ok": true,
+    "checks": {
+      "schema": {
+        "ok": true,
+        "detail": "pandera schema passed"
+      },
+      "finished_count": {
+        "ok": true,
+        "detail": "2023: 380 finished, ok; 2024: 380 finished, ok"
+      },
+      "duplicate_ids": {
+        "ok": true,
+        "detail": "0 duplicate fixture_id rows"
+      },
+      "goals_iff_finished": {
+        "ok": true,
+        "detail": "0 rows where goals do not match status"
+      },
+      "teams_in_set": {
+        "ok": true,
+        "detail": "0 rows with a team outside the canonical set"
+      },
+      "dates_non_decreasing": {
+        "ok": true,
+        "detail": "0 rows where the date steps backwards"
+      }
+    },
+    "quarantined": 0
+  },
+  "ligue1": {
+    "ok": true,
+    "checks": {
+      "schema": {
+        "ok": true,
+        "detail": "pandera schema passed"
+      },
+      "finished_count": {
+        "ok": true,
+        "detail": "2023: 306 finished, ok; 2024: 306 finished, ok"
+      },
+      "duplicate_ids": {
+        "ok": true,
+        "detail": "0 duplicate fixture_id rows"
+      },
+      "goals_iff_finished": {
+        "ok": true,
+        "detail": "0 rows where goals do not match status"
+      },
+      "teams_in_set": {
+        "ok": true,
+        "detail": "0 rows with a team outside the canonical set"
+      },
+      "dates_non_decreasing": {
+        "ok": true,
+        "detail": "0 rows where the date steps backwards"
+      }
+    },
+    "quarantined": 0
+  }
+}

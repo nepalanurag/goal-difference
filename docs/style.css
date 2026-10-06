@@ -1,0 +1,75 @@
+
+:root{
+  --bg:#0a0d12; --panel:#11151d; --panel2:#161c26; --line:#232c3b;
+  --text:#e9edf3; --muted:#8d97a8; --faint:#5b6474;
+  --home:#4da3ff; --draw:#8d97a8; --away:#ff5d5d;
+  --up:#3ddc84; --down:#ff5d5d;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);margin:0;
+  font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  font-size:15px;line-height:1.5}
+h1,h2,h3,.cond{font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+  text-transform:uppercase;letter-spacing:.04em;margin:0 0 .5em;font-weight:600}
+h1{font-size:2.6em} h2{font-size:1.7em;border-bottom:1px solid var(--line);
+  padding-bottom:.25em;margin-top:1.6em} h3{font-size:1.25em;color:var(--muted)}
+a{color:var(--home);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
+.topbar{border-bottom:1px solid var(--line);background:#0d1117;
+  position:sticky;top:0;z-index:10}
+.topbar .wrap{display:flex;align-items:center;gap:22px;padding-top:14px;padding-bottom:14px}
+.brand{font-family:'Barlow Condensed',sans-serif;font-size:1.5em;font-weight:700;
+  text-transform:uppercase;letter-spacing:.06em;color:var(--text)}
+.brand b{color:#ffd23f}
+.nav{display:flex;gap:16px;flex-wrap:wrap;font-size:.92em}
+.nav a{color:var(--muted)} .nav a:hover{color:var(--text)}
+.hero{padding:44px 0 10px}
+.hero p.lede{color:var(--muted);font-size:1.1em;max-width:640px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+  padding:16px 18px}
+.card h3{margin-top:0}
+.kpi{font-family:var(--mono);font-size:1.9em;font-weight:700}
+.kpi small{font-size:.45em;color:var(--muted);font-weight:400}
+table{width:100%;border-collapse:collapse;font-size:.93em}
+th{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--muted);font-weight:600;text-align:left;
+  padding:8px 10px;border-bottom:1px solid var(--line);font-size:.95em}
+td{padding:7px 10px;border-bottom:1px solid #1a212d}
+tr:hover td{background:#141a24}
+.num{font-family:var(--mono);text-align:right;white-space:nowrap}
+.probbar{display:flex;height:26px;border-radius:4px;overflow:hidden;
+  background:var(--panel2);border:1px solid var(--line);min-width:120px}
+.seg{display:flex;align-items:center;justify-content:center;font-size:.75em;
+  font-family:var(--mono);color:#0a0d12;font-weight:700;white-space:nowrap;
+  overflow:hidden}
+.seg.home{background:var(--home)} .seg.draw{background:var(--draw)}
+.seg.away{background:var(--away)}
+.legend{font-size:.8em;color:var(--muted);margin-top:4px}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 10px}
+.sw.home{background:var(--home)} .sw.draw{background:var(--draw)}
+.sw.away{background:var(--away)}
+.tag{display:inline-block;font-size:.72em;font-family:var(--mono);
+  background:var(--panel2);border:1px solid var(--line);border-radius:4px;
+  padding:2px 8px;color:var(--muted);margin:2px 4px 2px 0}
+.formline{display:flex;gap:6px;margin:6px 0}
+.badge{width:26px;height:26px;border-radius:4px;display:inline-flex;
+  align-items:center;justify-content:center;font-weight:700;font-size:.8em;
+  font-family:var(--mono);color:#0a0d12}
+.badge.W{background:var(--up)} .badge.D{background:var(--draw)}
+.badge.L{background:var(--down)}
+.muted{color:var(--muted)} .faint{color:var(--faint)}
+.small{font-size:.85em}
+.mono{font-family:var(--mono)}
+.positive{color:var(--up)} .negative{color:var(--down)}
+.limit{border:1px dashed #3a4557;border-radius:8px;padding:14px 18px;
+  color:var(--muted);font-size:.88em;margin-top:2.5em;background:#0d1117}
+.limit b{color:var(--text)}
+.footer{border-top:1px solid var(--line);margin-top:50px;padding:22px 0;
+  color:var(--faint);font-size:.85em}
+.fixlink{color:var(--text)} .fixlink:hover{color:var(--home)}
+.scoreline{font-family:var(--mono);font-weight:700}
+@media(max-width:640px){h1{font-size:1.9em}.wrap{padding:0 12px 40px}}
