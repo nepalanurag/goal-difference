@@ -661,7 +661,8 @@ def build_team(league: str, ld: LeagueData, team: str,
         xi = players_pl.get("in_form_xi", {})
         xi_html = "".join(
             f"<div class='small'><span class='muted'>{pos_}:</span> "
-            + ", ".join(esc(p) for p in picks[:4]) + "</div>"
+            + ", ".join(esc(p.get("name", p) if isinstance(p, dict) else p)
+                        for p in picks[:4]) + "</div>"
             for pos_, picks in xi.items() if picks)
         squad = (f"<h2>Squad watch</h2><div class='card'><h3>In-form XI</h3>{xi_html}"
                  f"<p class='small faint'>From FPL form (unofficial).</p></div>")
