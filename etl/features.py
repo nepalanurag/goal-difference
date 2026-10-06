@@ -30,7 +30,8 @@ import pandas as pd
 
 from .config import settings
 from .logging_setup import get_logger
-from .storage import features_lake_path, write_parquet
+from .storage import (features_lake_path, features_lake_versioned_path,
+                      write_parquet)
 from .team_names import CANONICAL
 
 log = get_logger(__name__)
@@ -469,8 +470,12 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     for league in args.leagues:
         feats_df, meta = build_features(league)
+        version8 = meta["feature_logic_version"][:8]
         out = settings.data_dir / f"features_{league}.csv"
         feats_df.to_csv(out, index=False)
+        # Versioned snapshot (immutable, addressable by feature code version)
+        # plus the unversioned pointer that existing consumers read.
+        write_parquet(feats_df, features_lake_versioned_path(league, version8))
         write_parquet(feats_df, features_lake_path(league))
         (settings.data_dir / f"features_{league}.meta.json").write_text(
             json.dumps(meta, indent=1))

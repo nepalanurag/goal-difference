@@ -33,6 +33,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 from datetime import date, datetime, timezone
 
 import joblib
@@ -46,6 +47,7 @@ from sklearn.metrics import accuracy_score, log_loss
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.preprocessing import StandardScaler
 
+from . import storage
 from .config import settings
 from .features import feature_columns, feature_logic_version
 from .logging_setup import get_logger
@@ -517,11 +519,80 @@ def build_calibration_table(y_true: list[int], p_pred: list[list[float]],
     return buckets
 
 
+def _git_sha() -> str | None:
+    """Current commit SHA, or None outside a git repo."""
+    try:
+        r = subprocess.run(["git", "rev-parse", "HEAD"],
+                           cwd=settings.repo_root,
+                           capture_output=True, text=True, timeout=10)
+        return r.stdout.strip() if r.returncode == 0 else None
+    except Exception:
+        return None
+
+
+def _log_walkforward_evals(league: str, df: pd.DataFrame, wf: dict,
+                           run_id: str, model_version: str) -> None:
+    """Write every walk-forward metric for every model to evaluations.
+
+    metric_name is "model:metric" (e.g. "ensemble:logloss") since the
+    table's protocol column already fixes the evaluation design."""
+    if not wf:
+        return
+    dates = pd.to_datetime(df["date"])
+    wstart = dates.min().date().isoformat()
+    wend = dates.max().date().isoformat()
+    for model, metrics in wf.items():
+        if not isinstance(metrics, dict):
+            continue
+        for m in METRICS:
+            v = metrics.get(m)
+            if v is None:
+                continue
+            storage.log_evaluation(run_id, model_version, league,
+                                   "walkforward-expanding-5fold",
+                                   wstart, wend, f"{model}:{m}", float(v))
+    log.info("evaluations_logged", league=league, run_id=run_id,
+             protocol="walkforward-expanding-5fold")
 def fit_league(league: str, skip_walkforward: bool = False) -> dict:
     check_feature_version(league)
     feats_path = settings.data_dir / f"features_{league}.csv"
     df = pd.read_csv(feats_path, parse_dates=["date"])
     feature_cols = feature_columns(df)
+    meta = json.loads((settings.data_dir / f"features_{league}.meta.json").read_text())
+    feature_set_version = meta["feature_logic_version"][:8]
+
+    storage.init_ops_db()  # apply pending migrations (idempotent)
+    run_id = storage.start_run(
+        league=league,
+        params={
+            "seed": settings.simulation_seed,
+            "skip_walkforward": skip_walkforward,
+            "ensemble_weights": {"ml": ENSEMBLE_W_ML, "dc": ENSEMBLE_W_DC},
+            "ml_configs": list(ML_CONFIGS),
+            "walkforward_splits": settings.walkforward_splits,
+            "recency_half_life_days": settings.recency_half_life_days,
+            "dc_xi_candidates": list(DC_XI_CANDIDATES),
+            "n_feature_cols": len(feature_cols),
+        },
+        seed=settings.simulation_seed,
+        data_hash=meta["data_hash"],
+        feature_set_version=feature_set_version,
+        git_sha=_git_sha(),
+    )
+    try:
+        params = _fit_league_body(league, df, feature_cols, meta,
+                                  feature_set_version, run_id,
+                                  skip_walkforward)
+    except Exception:
+        storage.finish_run(run_id, "failed")
+        raise
+    storage.finish_run(run_id, "finished")
+    return params
+
+
+def _fit_league_body(league: str, df: pd.DataFrame, feature_cols: list[str],
+                     meta: dict, feature_set_version: str, run_id: str,
+                     skip_walkforward: bool) -> dict:
     X = df[feature_cols]
     y = df["result"].to_numpy()
 
@@ -561,13 +632,13 @@ def fit_league(league: str, skip_walkforward: bool = False) -> dict:
     joblib.dump(feature_cols, models_dir / f"{league}_features.joblib")
 
     model_version = f"v{date.today().isoformat()}"
-    meta = json.loads((settings.data_dir / f"features_{league}.meta.json").read_text())
     params = {
         "league": league,
         "model_version": model_version,
         "fit_date": datetime.now(timezone.utc).isoformat(),
         "data_hash": meta["data_hash"],
         "feature_logic_version": meta["feature_logic_version"],
+        "feature_set_version": feature_set_version,
         "n_train_rows": len(df),
         "feature_cols": feature_cols,
         "chosen_ml": chosen_ml,
@@ -590,8 +661,24 @@ def fit_league(league: str, skip_walkforward: bool = False) -> dict:
         (settings.data_dir / f"calibration_{league}.json").write_text(
             json.dumps(calibration, indent=1))
 
+    # Experiment tracking: walk-forward metrics per model, then the
+    # registry row (staging by default; promotion is manual).
+    _log_walkforward_evals(league, df, wf, run_id, model_version)
+    storage.upsert_model_registry(
+        model_version, league, _git_sha(), feature_set_version,
+        meta["data_hash"], stage="staging")
+    if wf and isinstance(wf.get("ensemble"), dict):
+        log.info("walkforward_compare", league=league,
+                 ensemble_logloss=round(wf["ensemble"]["logloss"] or 0, 4),
+                 baseline_logloss=round(wf["baseline"]["logloss"] or 0, 4),
+                 odds_logloss=(round(wf["odds"]["logloss"], 4)
+                               if wf.get("odds", {}).get("logloss") else None),
+                 note="staging only; promote with storage.promote_model"
+                      " after comparing")
+
     log.info("fit_done", league=league, chosen_ml=chosen_ml, rows=len(df),
-             dc_converged=not poisson_fallback, version=model_version)
+             dc_converged=not poisson_fallback, version=model_version,
+             run_id=run_id)
     return params
 
 
