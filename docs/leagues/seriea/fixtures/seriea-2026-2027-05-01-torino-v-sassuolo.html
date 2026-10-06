@@ -9,8 +9,8 @@
 </head><body>
 <div class="topbar"><div class="wrap">
 <div class="brand">Goal <b>Difference</b></div>
-<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a></nav></div></div>
-<div class="wrap"><div class="hero"><p class="cond muted">Serie A
+<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a><a href="/goal-difference/methodology.html">Methodology</a><a href="/goal-difference/model-insights.html">Model insights</a></nav></div></div>
+<div class="wrap"><p class="data-updated">Data updated 2026-10-06</p><div class="hero"><p class="cond muted">Serie A
 &middot; <span class="mono">2027-05-01</span></p>
 <h1>Torino <span class="faint">v</span> Sassuolo</h1></div>
 <h2>How they're playing</h2>
@@ -48,20 +48,28 @@
 
 <h2>Head to head</h2><div class="card"><div class='kpi'>3<small>W</small> 1<small>D</small> 1<small>L</small></div><p class='small muted'>All-time, Torino perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-08-29</span> Sassuolo 2-1 Torino</div><div class='small'><span class='mono faint'>2026-05-08</span> Torino 2-1 Sassuolo</div><div class='small'><span class='mono faint'>2025-12-21</span> Sassuolo 0-1 Torino</div><div class='small'><span class='mono faint'>2024-02-10</span> Sassuolo 1-1 Torino</div><div class='small'><span class='mono faint'>2023-11-06</span> Torino 2-1 Sassuolo</div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: Serie A api-sdp (Deltatre) stats feed (unofficial)</p></div>
-<h2>Prediction</h2><div class="grid g2"><div class="card"><h3>Model probabilities</h3>
+<h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
-<tr><td>Poisson</td><td class="num">49%</td>
-<td class="num">31%</td><td class="num">20%</td></tr>
+<tr><td>Poisson</td><td class="num">41%</td>
+<td class="num">23%</td><td class="num">36%</td></tr>
 <tr><td>Gradient boosting</td><td class="num">62%</td>
-<td class="num">28%</td><td class="num">10%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>55%</b></td>
-<td class="num"><b>29%</b></td><td class="num"><b>15%</b></td></tr>
-</table><div class="probbar"><span class="seg home" style="width:55.5%">55%</span><span class="seg draw" style="width:29.5%">29%</span><span class="seg away" style="width:15.1%">15%</span></div>
+<td class="num">30%</td><td class="num">9%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>53%</b></td>
+<td class="num"><b>27%</b></td><td class="num"><b>19%</b></td></tr>
+</table>
+<div class="probview" data-view="poisson" hidden>
+<div class="probbar"><span class="seg home" style="width:41.1%">41%</span><span class="seg draw" style="width:23.0%">23%</span><span class="seg away" style="width:36.0%">36%</span></div>
+<p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
+<div class="probview" data-view="ml" hidden>
+<div class="probbar"><span class="seg home" style="width:61.7%">62%</span><span class="seg draw" style="width:29.7%">30%</span><span class="seg away" style="width:8.5%">9%</span></div>
+<p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
+<div class="probview" data-view="ensemble">
+<div class="probbar"><span class="seg home" style="width:53.5%">53%</span><span class="seg draw" style="width:27.0%">27%</span><span class="seg away" style="width:19.5%">19%</span></div>
 <div class="legend"><span class="sw home"></span>Torino <span class="sw draw"></span>Draw <span class="sw away"></span>Sassuolo</div>
-<p class="small muted">Expected goals: <span class="mono">1.16 - 0.63</span>.
-Each row sums to 100%.</p></div><div class="card"><h3>What to expect</h3><table class="small">
+<p class="small muted">Expected goals: <span class="mono">1.37 - 1.27</span>.
+Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Torino</b>
-<span class="muted">favored at</span> <b>55%</b>
+<span class="muted">favored at</span> <b>53%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Torino score
 <span class="mono">1.20</span>/game lately; Sassuolo concede
@@ -84,5 +92,6 @@ leagues show absences detected from lineups, labeled "reason unconfirmed",
 or state plainly when no data is published.</div>
 <div class="footer">Goal Difference &middot; weekly model-driven matchday
 analysis for Europe's top 5 leagues &middot; Poisson + gradient-boosted
-models, refit weekly &middot; updated 2026-10-06</div>
-</div></body></html>
+models, refit weekly &middot; updated 2026-10-06 &middot;
+<a href="/goal-difference/methodology.html">How the models work</a></div>
+</div><script src="/goal-difference/app.js" defer></script></body></html>

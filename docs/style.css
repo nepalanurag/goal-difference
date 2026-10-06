@@ -83,3 +83,20 @@ tr:hover td{background:#141a24}
 .fixlink{color:var(--text)} .fixlink:hover{color:var(--home)}
 .scoreline{font-family:var(--mono);font-weight:700}
 @media(max-width:640px){h1{font-size:1.9em}.wrap{padding:0 12px 40px}}
+.data-updated{color:var(--faint);font-size:.82em;margin:12px 0 0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
+.tabbtn{background:var(--panel2);border:1px solid var(--line);color:var(--muted);
+  border-radius:6px;padding:6px 14px;cursor:pointer;font-size:.9em;
+  font-family:inherit}
+.tabbtn:hover{color:var(--text);border-color:var(--muted)}
+.tabbtn.active{background:#ffd23f;border-color:#ffd23f;color:#0a0d12;
+  font-weight:700}
+th.sortable{cursor:pointer;user-select:none}
+th.sortable:hover{color:var(--text)}
+th.sortable .arrow{font-size:.75em;color:var(--faint)}
+.toggle-row{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.tgl{background:var(--panel2);border:1px solid var(--line);color:var(--muted);
+  border-radius:6px;padding:5px 12px;cursor:pointer;font-size:.85em;
+  font-family:inherit}
+.tgl:hover{color:var(--text)}
+.tgl.active{background:#4da3ff;border-color:#4da3ff;color:#0a0d12;font-weight:700}
