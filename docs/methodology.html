@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Methodology | Goal Difference</title>
+<link rel="stylesheet" href="/goal-difference/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>.brand b{color:#ffd23f} a{color:#ffd23f}</style>
+</head><body>
+<div class="topbar"><div class="wrap">
+<div class="brand">Goal <b>Difference</b></div>
+<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a><a href="/goal-difference/methodology.html">Methodology</a><a href="/goal-difference/model-insights.html">Model insights</a></nav></div></div>
+<div class="wrap"><p class="data-updated">Data updated 2026-10-06</p><div class="hero"><h1>Methodology</h1>
+<p class="lede">How the predictions are made, what goes in, how they score,
+and where they fall short.</p></div>
+
+<h2>The model</h2>
+<div class="card"><p style="margin-top:0">Each league is fitted separately.
+Two models run side by side and are blended into one headline probability:</p>
+<ul>
+<li><b>Dixon-Coles Poisson.</b> A per-league Poisson goal model with a time
+decay parameter (recent matches weigh more), an estimated home advantage,
+and a rho term adjusting for correlated low scores. Fitted by maximum
+likelihood on the finished fixtures.</li>
+<li><b>Gradient boosting.</b> Trained on the selected feature set from
+permutation-assisted selection (PAM), which keeps only feature groups that
+beat shuffled decoy copies. Config per league: Premier League: xgb_tiny, LaLiga: xgb_reg, Bundesliga: xgb_tiny, Serie A: xgb_reg, Ligue 1: xgb_reg.</li>
+<li><b>Ensemble.</b> The headline probability is 0.6 x ML plus
+0.4 x Dixon-Coles. The weights are fixed, not tuned per matchday.</li>
+</ul></div>
+
+<h2>Inputs</h2>
+<div class="card"><ul style="margin:0"><li>Elo ratings</li><li>Market odds</li><li>Recent form</li><li>Venue splits</li><li>Attack / defense</li><li>Shot dominance</li><li>Discipline</li><li>Head-to-head edge</li><li>Rest and travel</li><li>European congestion</li><li>Key absences</li></ul>
+<p class="small muted" style="margin-bottom:0">Team news: full injury data for
+the PL via FPL; other leagues use absences detected from lineups, labeled
+"reason unconfirmed". Forecasts freeze before kickoff; ledgers keep the
+misses.</p></div>
+
+<h2>Dixon-Coles parameters</h2>
+<table><tr><th>League</th><th class='num'>Time decay (xi)</th><th class='num'>Home advantage</th><th class='num'>Rho</th><th class='num'>Matches fitted</th></tr><tr><td>Premier League</td><td class='num'>0.0005</td><td class='num'>0.335</td><td class='num'>+0.010</td><td class='num muted'>1,190</td></tr><tr><td>LaLiga</td><td class='num'>0.0030</td><td class='num'>0.378</td><td class='num'>+0.071</td><td class='num muted'>1,209</td></tr><tr><td>Bundesliga</td><td class='num'>0.0005</td><td class='num'>0.428</td><td class='num'>-0.022</td><td class='num muted'>954</td></tr><tr><td>Serie A</td><td class='num'>0.0030</td><td class='num'>0.222</td><td class='num'>+0.127</td><td class='num muted'>1,190</td></tr><tr><td>Ligue 1</td><td class='num'>0.0010</td><td class='num'>0.400</td><td class='num'>+0.046</td><td class='num muted'>963</td></tr></table>
+<p class="small muted">Xi is the per-day time decay; home advantage and rho
+are on the goal scale. Fitted on all finished fixtures in the data window.</p>
+
+<h2>Evaluation</h2>
+<table><tr><th>League</th><th class='num'>Ensemble log-loss</th><th class='num'>Brier</th><th class='num'>RPS</th><th class='num'>Accuracy</th><th class='num'>Market log-loss</th><th class='num'>Market RPS</th></tr><tr><td>Premier League</td><td class='num'>0.9396</td><td class='num'>0.5562</td><td class='num'>0.1812</td><td class='num'>57%</td><td class='num'>1.0071</td><td class='num'>0.2056</td></tr><tr><td>LaLiga</td><td class='num'>0.9368</td><td class='num'>0.5542</td><td class='num'>0.1835</td><td class='num'>56%</td><td class='num'>0.9641</td><td class='num'>0.1946</td></tr><tr><td>Bundesliga</td><td class='num'>0.9347</td><td class='num'>0.5516</td><td class='num'>0.1811</td><td class='num'>55%</td><td class='num'>0.9503</td><td class='num'>0.1946</td></tr><tr><td>Serie A</td><td class='num'>0.9514</td><td class='num'>0.5664</td><td class='num'>0.1805</td><td class='num'>56%</td><td class='num'>0.9843</td><td class='num'>0.1993</td></tr><tr><td>Ligue 1</td><td class='num'>0.9457</td><td class='num'>0.5576</td><td class='num'>0.1875</td><td class='num'>58%</td><td class='num'>0.9272</td><td class='num'>0.1942</td></tr></table>
+<p class="small muted">Walk-forward (time-series split) on all finished
+fixtures. Lower is better for log-loss, Brier and RPS. The market benchmark
+is de-vigged closing odds: the raw home/draw/away odds with the bookmaker
+margin removed, scored on the same walk-forward splits. See the
+<a href="/goal-difference/track-record.html">track record</a> page for per-model
+tables and calibration by confidence bucket.</p>
+
+<h2>Honest limitations</h2>
+<div class="limit"><ul style="margin:0">
+<li><b>The market is a hard benchmark.</b>
+In Ligue 1 the de-vigged market odds beat the ensemble on walk-forward log-loss (0.9272 vs 0.9457).
+Odds compilers see team sheets, weather and late money; this model does not.</li>
+<li><b>Feature selection is unstable.</b> PAM selection run on two halves of
+the data agrees on a Jaccard similarity of 0.0 for every league. The selected
+set still beat the full set walk-forward for most leagues, but treat the
+"kept" groups as one draw, not the truth.</li>
+<li><b>Probabilities are estimates.</b> A 70% probability means the model
+expects that outcome 7 times in 10, not that it knows which. These numbers
+are not betting advice.</li>
+</ul></div>
+<div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not
+betting advice. Live scores for non-PL leagues come from CSVs updated about a
+day after matches. The FPL API and the official league JSON backends are
+unofficial feeds with no SLA. Player coverage: Premier League from FPL;
+other leagues from official league backends, with 2024/25 topscorers as the
+labeled baseline. Team news: full injury data for the PL via FPL; other
+leagues show absences detected from lineups, labeled "reason unconfirmed",
+or state plainly when no data is published.</div>
+<div class="footer">Goal Difference &middot; weekly model-driven matchday
+analysis for Europe's top 5 leagues &middot; Poisson + gradient-boosted
+models, refit weekly &middot; updated 2026-10-06 &middot;
+<a href="/goal-difference/methodology.html">How the models work</a></div>
+</div><script src="/goal-difference/app.js" defer></script></body></html>
