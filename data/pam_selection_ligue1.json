@@ -1,0 +1,173 @@
+{
+ "method": "permutation-assisted group selection; thesis method adapted: K row-permuted decoy copies per group, xgb_tiny gain importance, pi threshold",
+ "K": 5,
+ "B": 20,
+ "pi": 0.6,
+ "seed": 42,
+ "n_rows": 963,
+ "computed_at": "2026-10-06T22:45:32.191886+00:00",
+ "groups": {
+  "elo": [
+   "h_elo",
+   "a_elo",
+   "elo_diff"
+  ],
+  "odds": [
+   "odds_p_home",
+   "odds_p_draw",
+   "odds_p_away",
+   "odds_available"
+  ],
+  "form": [
+   "h_w5",
+   "h_d5",
+   "h_l5",
+   "h_ppg_l5",
+   "h_momentum",
+   "a_w5",
+   "a_d5",
+   "a_l5",
+   "a_ppg_l5",
+   "a_momentum"
+  ],
+  "venue": [
+   "h_ppg",
+   "h_home_ppg",
+   "h_away_ppg",
+   "h_home_gf_pg",
+   "h_home_ga_pg",
+   "h_away_gf_pg",
+   "h_away_ga_pg",
+   "a_ppg",
+   "a_home_ppg",
+   "a_away_ppg",
+   "a_home_gf_pg",
+   "a_home_ga_pg",
+   "a_away_gf_pg",
+   "a_away_ga_pg"
+  ],
+  "attack_defense": [
+   "h_gf5",
+   "h_ga5",
+   "h_gf_pg",
+   "h_ga_pg",
+   "h_gf_pg_l5",
+   "h_ga_pg_l5",
+   "h_cs_rate",
+   "h_fts_rate",
+   "a_gf5",
+   "a_ga5",
+   "a_gf_pg",
+   "a_ga_pg",
+   "a_gf_pg_l5",
+   "a_ga_pg_l5",
+   "a_cs_rate",
+   "a_fts_rate"
+  ],
+  "shots": [
+   "h_shots_pg",
+   "h_shots_conc_pg",
+   "h_sot_pg",
+   "h_shot_diff_pg",
+   "a_shots_pg",
+   "a_shots_conc_pg",
+   "a_sot_pg",
+   "a_shot_diff_pg"
+  ],
+  "discipline": [
+   "h_fouls_pg",
+   "h_cards_pg",
+   "a_fouls_pg",
+   "a_cards_pg"
+  ],
+  "h2h": [
+   "h2h_edge"
+  ],
+  "rest_travel": [
+   "h_travel_km",
+   "a_travel_km",
+   "h_rest_days",
+   "a_rest_days"
+  ],
+  "european": [
+   "h_euro_days_since",
+   "h_euro_midweek",
+   "h_euro_ppg",
+   "h_euro_gd",
+   "a_euro_days_since",
+   "a_euro_midweek",
+   "a_euro_ppg",
+   "a_euro_gd"
+  ],
+  "absences": [
+   "h_key_absences",
+   "a_key_absences"
+  ]
+ },
+ "selection_frequency": {
+  "elo": 1.0,
+  "odds": 0.8,
+  "form": 0.95,
+  "venue": 0.5,
+  "attack_defense": 0.0,
+  "shots": 1.0,
+  "discipline": 1.0,
+  "h2h": 1.0,
+  "rest_travel": 0.25,
+  "european": 0.0,
+  "absences": 0.0
+ },
+ "selected_groups": [
+  "elo",
+  "odds",
+  "form",
+  "shots",
+  "discipline",
+  "h2h"
+ ],
+ "selected_features": [
+  "h_elo",
+  "a_elo",
+  "elo_diff",
+  "odds_p_home",
+  "odds_p_draw",
+  "odds_p_away",
+  "odds_available",
+  "h_w5",
+  "h_d5",
+  "h_l5",
+  "h_ppg_l5",
+  "h_momentum",
+  "a_w5",
+  "a_d5",
+  "a_l5",
+  "a_ppg_l5",
+  "a_momentum",
+  "h_shots_pg",
+  "h_shots_conc_pg",
+  "h_sot_pg",
+  "h_shot_diff_pg",
+  "a_shots_pg",
+  "a_shots_conc_pg",
+  "a_sot_pg",
+  "a_shot_diff_pg",
+  "h_fouls_pg",
+  "h_cards_pg",
+  "a_fouls_pg",
+  "a_cards_pg",
+  "h2h_edge"
+ ],
+ "jaccard_stability": 0.0,
+ "stability_halves": {
+  "first": [],
+  "second": [
+   "elo",
+   "form",
+   "venue",
+   "shots",
+   "h2h"
+  ]
+ },
+ "ml_model": "xgb_tiny",
+ "league": "ligue1"
+}

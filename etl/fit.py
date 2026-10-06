@@ -418,7 +418,8 @@ def _score(probs: np.ndarray, yte: np.ndarray) -> dict[str, float]:
 
 
 def walkforward(league: str, df: pd.DataFrame,
-                feature_cols: list[str], xi: float = 0.0018
+                feature_cols: list[str], xi: float = 0.0018,
+                pam_cols: list[str] | None = None
                 ) -> tuple[dict, dict]:
     """Expanding-window walk-forward. Returns (summary, calibration-data).
 
@@ -426,7 +427,9 @@ def walkforward(league: str, df: pd.DataFrame,
     per league by select_dc_xi); when the DC optimizer fails on a fold it
     falls back to the PoissonRegressor GLM and logs a warning. "odds" is
     the de-vigged market benchmark, scored only on test rows that actually
-    have closing odds."""
+    have closing odds. When pam_cols is given, xgb_tiny is also scored on
+    the PAM-selected features each fold, and summary["pam_compare"] reports
+    the honest PAM-vs-full log-loss comparison."""
     X = df[feature_cols]
     y = df["result"].to_numpy()
     yh, ya = df["home_goals"].to_numpy(), df["away_goals"].to_numpy()
@@ -434,6 +437,8 @@ def walkforward(league: str, df: pd.DataFrame,
     names = ["poisson", *ML_CONFIGS, "ensemble", "baseline", "odds"]
     agg: dict[str, dict[str, list[float]]] = {
         k: {m: [] for m in METRICS} for k in names}
+    pam_ll: list[float] = []
+    use_pam_compare = bool(pam_cols) and set(pam_cols) < set(feature_cols)
     odds_rows = 0
     cal_y: list[np.ndarray] = []
     cal_p: list[np.ndarray] = []
@@ -455,6 +460,12 @@ def walkforward(league: str, df: pd.DataFrame,
             clf = make_ml(kind)
             clf.fit(Xtr, y[tr], sample_weight=w)
             p_ml[kind] = np.clip(clf.predict_proba(Xte), EPS, 1 - EPS)
+
+        if use_pam_compare:
+            clf_pam = make_ml("xgb_tiny")
+            clf_pam.fit(Xtr[pam_cols], y[tr], sample_weight=w)
+            p_pam = np.clip(clf_pam.predict_proba(Xte[pam_cols]), EPS, 1 - EPS)
+            pam_ll.append(float(log_loss(yte, p_pam, labels=LABELS)))
 
         rates = np.bincount(y[tr], minlength=3) / len(tr)
         p_base = np.tile(rates, (len(te), 1))
@@ -488,6 +499,19 @@ def walkforward(league: str, df: pd.DataFrame,
     summary["always_home_accuracy"] = float(np.mean(y == 2))
     ml_best = min(ML_CONFIGS, key=lambda k: summary[k]["logloss"])
     summary["chosen_ml"] = ml_best
+    if use_pam_compare:
+        full_ll = float(np.mean([v for v in agg["xgb_tiny"]["logloss"]]))
+        pam_mean = float(np.mean(pam_ll))
+        summary["pam_compare"] = {
+            "pam_logloss": pam_mean,
+            "full_logloss": full_ll,
+            "pam_wins": pam_mean < full_ll,
+            "n_pam_features": len(pam_cols),
+            "n_full_features": len(feature_cols),
+        }
+        log.info("pam_compare", league=league,
+                 pam_logloss=round(pam_mean, 4), full_logloss=round(full_ll, 4),
+                 pam_wins=pam_mean < full_ll)
     log.info("walkforward", league=league, **{k: round(v["logloss"], 4)
                for k, v in summary.items() if isinstance(v, dict)
                and v.get("logloss") is not None})
@@ -593,15 +617,32 @@ def fit_league(league: str, skip_walkforward: bool = False) -> dict:
 def _fit_league_body(league: str, df: pd.DataFrame, feature_cols: list[str],
                      meta: dict, feature_set_version: str, run_id: str,
                      skip_walkforward: bool) -> dict:
-    X = df[feature_cols]
-    y = df["result"].to_numpy()
+    # PAM feature selection: run `python -m etl.pam_select` first; if the
+    # selection file is missing or empty, the full set is used (warning).
+    from .pam_select import load_pam_selection
+    pam = load_pam_selection(league, feature_cols)
+    pam_cols = pam["selected_features"] if pam else None
 
     if skip_walkforward:
         xi, wf, calib = 0.0018, {}, None
     else:
         xi = select_dc_xi(df)
-        wf, calib = walkforward(league, df, feature_cols, xi=xi)
+        wf, calib = walkforward(league, df, feature_cols, xi=xi,
+                                pam_cols=pam_cols)
     chosen_ml = wf.get("chosen_ml", "xgb_tiny") if wf else "xgb_tiny"
+
+    # Honest call: PAM features train the final model only if they beat the
+    # full set walk-forward (xgb_tiny log-loss). Otherwise the full set
+    # stays and the comparison is recorded in params.
+    pam_compare = wf.get("pam_compare") if wf else None
+    use_pam = bool(pam_compare and pam_compare["pam_wins"])
+    if pam_cols and not use_pam:
+        log.warning("pam_not_better_fallback_full", league=league,
+                    **({k: round(v, 4) for k, v in pam_compare.items()
+                        if isinstance(v, float)} if pam_compare else {}))
+    final_feature_cols = pam_cols if use_pam else feature_cols
+    X = df[final_feature_cols]
+    y = df["result"].to_numpy()
 
     w = recency_weights(df["date"])
     dc = DixonColesModel()
@@ -629,7 +670,7 @@ def _fit_league_body(league: str, df: pd.DataFrame, feature_cols: list[str],
                      "reg_a": poisson_model.reg_a},
                     models_dir / f"{league}_poisson.joblib")
     joblib.dump(ml_model, models_dir / f"{league}_{chosen_ml}.joblib")
-    joblib.dump(feature_cols, models_dir / f"{league}_features.joblib")
+    joblib.dump(final_feature_cols, models_dir / f"{league}_features.joblib")
 
     model_version = f"v{date.today().isoformat()}"
     params = {
@@ -640,8 +681,15 @@ def _fit_league_body(league: str, df: pd.DataFrame, feature_cols: list[str],
         "feature_logic_version": meta["feature_logic_version"],
         "feature_set_version": feature_set_version,
         "n_train_rows": len(df),
-        "feature_cols": feature_cols,
+        "feature_cols": final_feature_cols,
         "chosen_ml": chosen_ml,
+        "feature_mask": {
+            "source": "pam" if use_pam else "full",
+            "n_full_features": len(feature_cols),
+            "pam_selected_groups": pam["selected_groups"] if pam else None,
+            "pam_jaccard_stability": pam.get("jaccard_stability") if pam else None,
+            "pam_compare": pam_compare,
+        },
         "dc": dc_params,
         "poisson_fallback": poisson_fallback,
         "ensemble_weights": {"ml": ENSEMBLE_W_ML, "dc": ENSEMBLE_W_DC},
