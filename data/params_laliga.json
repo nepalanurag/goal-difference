@@ -1,9 +1,9 @@
 {
  "league": "laliga",
  "model_version": "v2026-10-06",
- "fit_date": "2026-10-06T17:04:49.248201+00:00",
- "data_hash": "5582a05b14e5",
- "feature_logic_version": "3e13aedb7638",
+ "fit_date": "2026-10-06T22:13:45.184701+00:00",
+ "data_hash": "6d1ee36a79fd",
+ "feature_logic_version": "1c12851db835",
  "n_train_rows": 1209,
  "feature_cols": [
   "h2h_edge",
@@ -21,6 +21,13 @@
   "a_euro_gd",
   "h_key_absences",
   "a_key_absences",
+  "h_elo",
+  "a_elo",
+  "elo_diff",
+  "odds_p_home",
+  "odds_p_draw",
+  "odds_p_away",
+  "odds_available",
   "h_w5",
   "h_d5",
   "h_l5",
@@ -75,39 +82,167 @@
   "a_shot_diff_pg"
  ],
  "chosen_ml": "xgb_reg",
+ "dc": {
+  "teams": [
+   "Alaves",
+   "Almeria",
+   "Ath Bilbao",
+   "Ath Madrid",
+   "Barcelona",
+   "Betis",
+   "Cadiz",
+   "Celta",
+   "Elche",
+   "Espanyol",
+   "Getafe",
+   "Girona",
+   "Granada",
+   "La Coruna",
+   "Las Palmas",
+   "Leganes",
+   "Levante",
+   "Malaga",
+   "Mallorca",
+   "Osasuna",
+   "Oviedo",
+   "Rayo Vallecano",
+   "Real Madrid",
+   "Real Sociedad",
+   "Santander",
+   "Sevilla",
+   "Valencia",
+   "Valladolid",
+   "Villarreal"
+  ],
+  "attack": {
+   "Alaves": 0.016690048269789308,
+   "Almeria": 0.00829419373229593,
+   "Ath Bilbao": 0.032455334789555874,
+   "Ath Madrid": 0.41396533334496666,
+   "Barcelona": 0.839862173047963,
+   "Betis": 0.24254793120769366,
+   "Cadiz": -0.5922181222515956,
+   "Celta": 0.12057013955423126,
+   "Elche": 0.1618439920528796,
+   "Espanyol": -0.027754538141534293,
+   "Getafe": -0.4101978705961164,
+   "Girona": -0.023508927168763627,
+   "Granada": -0.2145433202115229,
+   "La Coruna": 0.135333180697631,
+   "Las Palmas": -0.21771062309944728,
+   "Leganes": -0.10937262015477804,
+   "Levante": 0.10235096983348987,
+   "Malaga": -0.9499615534613375,
+   "Mallorca": -0.02186128397724068,
+   "Osasuna": -0.03382784852368624,
+   "Oviedo": -0.4971220302471834,
+   "Rayo Vallecano": -0.019977358716333285,
+   "Real Madrid": 0.5853273877311957,
+   "Real Sociedad": 0.18845687745745968,
+   "Santander": 0.33854762693793905,
+   "Sevilla": 0.04732474763370455,
+   "Valencia": -0.05192231400234582,
+   "Valladolid": -0.5148316944430783,
+   "Villarreal": 0.4512401687041685
+  },
+  "defense": {
+   "Alaves": 0.09474298684696038,
+   "Almeria": -0.2664371394523014,
+   "Ath Bilbao": 0.1732874040904147,
+   "Ath Madrid": 0.2607025362262934,
+   "Barcelona": 0.3563079860040491,
+   "Betis": 0.18779768593500235,
+   "Cadiz": -0.013368559615399928,
+   "Celta": 0.13327957310059027,
+   "Elche": -0.13316748494593383,
+   "Espanyol": 0.03342134426390305,
+   "Getafe": 0.34211087224786185,
+   "Girona": 0.04403779200954863,
+   "Granada": -0.37983197196561186,
+   "La Coruna": 0.0677504818005982,
+   "Las Palmas": -0.060331134693036345,
+   "Leganes": -0.009416086908886567,
+   "Levante": -0.10026931329400689,
+   "Malaga": -0.0404126466193865,
+   "Mallorca": 0.05506853522349724,
+   "Osasuna": -0.018922610701780668,
+   "Oviedo": -0.045194630512963116,
+   "Rayo Vallecano": 0.09861321109873805,
+   "Real Madrid": 0.3746564605382304,
+   "Real Sociedad": -0.06802646847016693,
+   "Santander": -0.6184851105749737,
+   "Sevilla": 0.004436081695645355,
+   "Valencia": 0.006781120315689865,
+   "Valladolid": -0.5137542003848671,
+   "Villarreal": 0.03462328674229197
+  },
+  "home_adv": 0.3777021607003875,
+  "rho": 0.07057089470348193,
+  "xi": 0.003,
+  "neg_loglik": 912.6030424738582,
+  "n_matches": 1209
+ },
+ "poisson_fallback": false,
+ "ensemble_weights": {
+  "ml": 0.6,
+  "dc": 0.4
+ },
  "walkforward": {
   "poisson": {
-   "logloss": 0.8946861941302654,
-   "accuracy": 0.5791044776119403
+   "logloss": 1.030817711359005,
+   "brier": 0.6061232167638979,
+   "rps": 0.20961783644456006,
+   "accuracy": 0.5084577114427862
   },
   "xgb_tiny": {
-   "logloss": 0.9446006003615139,
-   "accuracy": 0.5512437810945274
+   "logloss": 0.944779424005141,
+   "brier": 0.5610368132591248,
+   "rps": 0.18208298087120056,
+   "accuracy": 0.5492537313432837
   },
   "xgb_reg": {
-   "logloss": 0.9315347609979752,
-   "accuracy": 0.5582089552238806
+   "logloss": 0.9364279535696071,
+   "brier": 0.5530343174934387,
+   "rps": 0.18014101982116698,
+   "accuracy": 0.5462686567164179
   },
   "xgb_base": {
-   "logloss": 1.0445938540974677,
-   "accuracy": 0.5492537313432836
+   "logloss": 1.0488281492537288,
+   "brier": 0.5961786031723022,
+   "rps": 0.19297740757465362,
+   "accuracy": 0.5472636815920398
   },
   "lgbm_a": {
-   "logloss": 0.9631247907170628,
-   "accuracy": 0.5363184079601989
+   "logloss": 0.9617393375516065,
+   "brier": 0.5688156474479326,
+   "rps": 0.18473427439072287,
+   "accuracy": 0.5432835820895523
   },
   "lgbm_b": {
-   "logloss": 1.0652689202221814,
-   "accuracy": 0.5303482587064676
+   "logloss": 1.065798940607751,
+   "brier": 0.6133690922515115,
+   "rps": 0.19874876333978964,
+   "accuracy": 0.5293532338308458
   },
   "ensemble": {
-   "logloss": 0.8962442690269337,
-   "accuracy": 0.5751243781094527
+   "logloss": 0.9368446720290841,
+   "brier": 0.5542216067062415,
+   "rps": 0.18346559465622986,
+   "accuracy": 0.5572139303482587
   },
   "baseline": {
    "logloss": 1.066115692814643,
+   "brier": 0.6438307475191678,
+   "rps": 0.22742611851793226,
    "accuracy": 0.45870646766169154
   },
+  "odds": {
+   "logloss": 0.9640832139125924,
+   "brier": 0.5716806707924591,
+   "rps": 0.1946433717962663,
+   "accuracy": 0.5333968455594369
+  },
+  "odds_rows": 449,
   "always_home_accuracy": 0.4574028122415219,
   "chosen_ml": "xgb_reg"
  }

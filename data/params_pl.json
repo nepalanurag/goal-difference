@@ -1,9 +1,9 @@
 {
  "league": "pl",
  "model_version": "v2026-10-06",
- "fit_date": "2026-10-06T17:04:19.022576+00:00",
+ "fit_date": "2026-10-06T22:12:44.076527+00:00",
  "data_hash": "80088b52a315",
- "feature_logic_version": "3e13aedb7638",
+ "feature_logic_version": "1c12851db835",
  "n_train_rows": 1190,
  "feature_cols": [
   "h2h_edge",
@@ -21,6 +21,13 @@
   "a_euro_gd",
   "h_key_absences",
   "a_key_absences",
+  "h_elo",
+  "a_elo",
+  "elo_diff",
+  "odds_p_home",
+  "odds_p_draw",
+  "odds_p_away",
+  "odds_available",
   "h_w5",
   "h_d5",
   "h_l5",
@@ -75,39 +82,161 @@
   "a_shot_diff_pg"
  ],
  "chosen_ml": "xgb_tiny",
+ "dc": {
+  "teams": [
+   "Arsenal",
+   "Aston Villa",
+   "Bournemouth",
+   "Brentford",
+   "Brighton",
+   "Burnley",
+   "Chelsea",
+   "Coventry City",
+   "Crystal Palace",
+   "Everton",
+   "Fulham",
+   "Hull City",
+   "Ipswich Town",
+   "Leeds",
+   "Leicester",
+   "Liverpool",
+   "Luton",
+   "Man City",
+   "Man United",
+   "Newcastle",
+   "Nott'm Forest",
+   "Sheffield United",
+   "Southampton",
+   "Sunderland",
+   "Tottenham",
+   "West Ham",
+   "Wolves"
+  ],
+  "attack": {
+   "Arsenal": 0.4231317879783311,
+   "Aston Villa": 0.23780819783214263,
+   "Bournemouth": 0.1615666211129532,
+   "Brentford": 0.21770744015494198,
+   "Brighton": 0.2364873436908299,
+   "Burnley": -0.1753911800986221,
+   "Chelsea": 0.32103680838729265,
+   "Coventry City": -1.524532397039383,
+   "Crystal Palace": 0.016308010798760833,
+   "Everton": -0.11085865257629735,
+   "Fulham": 0.0549210852895805,
+   "Hull City": -0.04921051011258712,
+   "Ipswich Town": -0.20172209896747817,
+   "Leeds": 0.06679479855453305,
+   "Leicester": -0.3904605884385936,
+   "Liverpool": 0.44006427867688896,
+   "Luton": 0.07524130163957063,
+   "Man City": 0.5134254363487003,
+   "Man United": 0.18812562988693976,
+   "Newcastle": 0.3385761508427853,
+   "Nott'm Forest": 0.048766980035853176,
+   "Sheffield United": -0.306731604825377,
+   "Southampton": -0.6130792393549119,
+   "Sunderland": -0.07532863527687125,
+   "Tottenham": 0.18492882291278526,
+   "West Ham": 0.045072063526524715,
+   "Wolves": -0.1226478509792929
+  },
+  "defense": {
+   "Arsenal": 0.6321361543568581,
+   "Aston Villa": 0.06204629373324114,
+   "Bournemouth": 0.052484549997922805,
+   "Brentford": 0.028837348659156756,
+   "Brighton": 0.057767087916398424,
+   "Burnley": -0.2569899401740283,
+   "Chelsea": 0.04966604841029314,
+   "Coventry City": -0.15770768675705737,
+   "Crystal Palace": 0.05217950507915345,
+   "Everton": 0.21249435506183814,
+   "Fulham": 0.04945210837241511,
+   "Hull City": 0.5770901503152793,
+   "Ipswich Town": -0.3733946235235812,
+   "Leeds": 0.12991757765431025,
+   "Leicester": -0.32918419970236784,
+   "Liverpool": 0.2221366652214749,
+   "Luton": -0.38792510958193915,
+   "Man City": 0.3913005328759957,
+   "Man United": 0.05840718649282624,
+   "Newcastle": 0.029159436474828854,
+   "Nott'm Forest": 0.08403176283083433,
+   "Sheffield United": -0.5722247628104529,
+   "Southampton": -0.3985373903817524,
+   "Sunderland": 0.13483357000140916,
+   "Tottenham": -0.06506534809299003,
+   "West Ham": -0.1379696156245323,
+   "Wolves": -0.14494165680553517
+  },
+  "home_adv": 0.33506514582318614,
+  "rho": 0.009929650147382932,
+  "xi": 0.0005,
+  "neg_loglik": 2613.895245512473,
+  "n_matches": 1190
+ },
+ "poisson_fallback": false,
+ "ensemble_weights": {
+  "ml": 0.6,
+  "dc": 0.4
+ },
  "walkforward": {
   "poisson": {
-   "logloss": 0.9316487574871782,
-   "accuracy": 0.5585858585858586
+   "logloss": 1.0117956769664371,
+   "brier": 0.6056022670548248,
+   "rps": 0.20658296406577384,
+   "accuracy": 0.49393939393939396
   },
   "xgb_tiny": {
-   "logloss": 0.943643136114171,
-   "accuracy": 0.5717171717171717
+   "logloss": 0.943004589249461,
+   "brier": 0.5583820819854737,
+   "rps": 0.17923390865325928,
+   "accuracy": 0.5656565656565655
   },
   "xgb_reg": {
-   "logloss": 0.9458990928983304,
-   "accuracy": 0.5646464646464647
-  },
-  "xgb_base": {
-   "logloss": 1.0851057905734707,
+   "logloss": 0.9483573181963164,
+   "brier": 0.5626336574554444,
+   "rps": 0.18040212094783784,
    "accuracy": 0.5555555555555556
   },
+  "xgb_base": {
+   "logloss": 1.0849407453360356,
+   "brier": 0.6158441185951233,
+   "rps": 0.19874627888202667,
+   "accuracy": 0.5505050505050505
+  },
   "lgbm_a": {
-   "logloss": 0.9788784556742085,
-   "accuracy": 0.5454545454545454
+   "logloss": 0.9864637159863564,
+   "brier": 0.5854440362964434,
+   "rps": 0.18800177128449116,
+   "accuracy": 0.5414141414141415
   },
   "lgbm_b": {
-   "logloss": 1.0455156052532115,
-   "accuracy": 0.5272727272727272
+   "logloss": 1.0465120674257617,
+   "brier": 0.6091829347808516,
+   "rps": 0.1953081185802919,
+   "accuracy": 0.5323232323232323
   },
   "ensemble": {
-   "logloss": 0.9157411408238338,
-   "accuracy": 0.5757575757575758
+   "logloss": 0.9396457064478108,
+   "brier": 0.5562467172511216,
+   "rps": 0.1812442121254051,
+   "accuracy": 0.5676767676767677
   },
   "baseline": {
    "logloss": 1.08485545772298,
+   "brier": 0.656930807304858,
+   "rps": 0.23153519385046817,
    "accuracy": 0.41818181818181815
   },
+  "odds": {
+   "logloss": 1.007118847038244,
+   "brier": 0.6035315149982171,
+   "rps": 0.2055710244058844,
+   "accuracy": 0.49267449267449276
+  },
+  "odds_rows": 380,
   "always_home_accuracy": 0.42857142857142855,
   "chosen_ml": "xgb_tiny"
  }

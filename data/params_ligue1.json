@@ -1,9 +1,9 @@
 {
  "league": "ligue1",
  "model_version": "v2026-10-06",
- "fit_date": "2026-10-06T17:06:11.019681+00:00",
- "data_hash": "f6520a3957c1",
- "feature_logic_version": "3e13aedb7638",
+ "fit_date": "2026-10-06T22:15:12.905802+00:00",
+ "data_hash": "4f1525c645b3",
+ "feature_logic_version": "1c12851db835",
  "n_train_rows": 963,
  "feature_cols": [
   "h2h_edge",
@@ -21,6 +21,13 @@
   "a_euro_gd",
   "h_key_absences",
   "a_key_absences",
+  "h_elo",
+  "a_elo",
+  "elo_diff",
+  "odds_p_home",
+  "odds_p_draw",
+  "odds_p_away",
+  "odds_available",
   "h_w5",
   "h_d5",
   "h_l5",
@@ -75,39 +82,152 @@
   "a_shot_diff_pg"
  ],
  "chosen_ml": "xgb_reg",
+ "dc": {
+  "teams": [
+   "Angers",
+   "Auxerre",
+   "Brest",
+   "Clermont",
+   "Le Havre",
+   "Le Mans",
+   "Lens",
+   "Lille",
+   "Lorient",
+   "Lyon",
+   "Marseille",
+   "Metz",
+   "Monaco",
+   "Montpellier",
+   "Nantes",
+   "Nice",
+   "Paris FC",
+   "Paris SG",
+   "Reims",
+   "Rennes",
+   "St Etienne",
+   "Strasbourg",
+   "Toulouse",
+   "Troyes"
+  ],
+  "attack": {
+   "Angers": -0.35334973976646306,
+   "Auxerre": -0.06471269024809798,
+   "Brest": 0.09108911158641908,
+   "Clermont": -0.5338080327562995,
+   "Le Havre": -0.23870141876632106,
+   "Le Mans": 0.3118254532464207,
+   "Lens": 0.20358745928604874,
+   "Lille": 0.14795292546463107,
+   "Lorient": 0.019321515237085564,
+   "Lyon": 0.25974187830697204,
+   "Marseille": 0.35169185558431976,
+   "Metz": -0.26615635882782007,
+   "Monaco": 0.3492483924350309,
+   "Montpellier": -0.3578332279293931,
+   "Nantes": -0.3156446494138469,
+   "Nice": 0.006628835737223775,
+   "Paris FC": 0.08429091476677397,
+   "Paris SG": 0.5783016752486985,
+   "Reims": -0.2291375973907657,
+   "Rennes": 0.234803748349914,
+   "St Etienne": -0.0734036368577085,
+   "Strasbourg": 0.20539000718297726,
+   "Toulouse": 0.02562745387152828,
+   "Troyes": -0.4367538743473277
+  },
+  "defense": {
+   "Angers": 0.04254588052434054,
+   "Auxerre": 0.025038434692773587,
+   "Brest": -0.021797685104533504,
+   "Clermont": -0.17502552025462567,
+   "Le Havre": -0.025167289670533832,
+   "Le Mans": -0.18148193755957528,
+   "Lens": 0.2599582983923914,
+   "Lille": 0.3581414419619262,
+   "Lorient": -0.05220684419039642,
+   "Lyon": 0.15104612021606278,
+   "Marseille": 0.0894755967880564,
+   "Metz": -0.30749596999351103,
+   "Monaco": 0.1161564630646075,
+   "Montpellier": -0.2644694224074039,
+   "Nantes": -0.01725897515658739,
+   "Nice": 0.0875609126480592,
+   "Paris FC": 0.15050864106759834,
+   "Paris SG": 0.4009617392960637,
+   "Reims": 0.07835007892772286,
+   "Rennes": 0.010637400581309603,
+   "St Etienne": -0.42374632359656816,
+   "Strasbourg": 0.04329562121370574,
+   "Toulouse": 0.08240041675693444,
+   "Troyes": -0.42742707819781667
+  },
+  "home_adv": 0.4004399755639063,
+  "rho": 0.046393389792609596,
+  "xi": 0.001,
+  "neg_loglik": 1647.5441778377417,
+  "n_matches": 963
+ },
+ "poisson_fallback": false,
+ "ensemble_weights": {
+  "ml": 0.6,
+  "dc": 0.4
+ },
  "walkforward": {
   "poisson": {
-   "logloss": 0.9212081617938137,
-   "accuracy": 0.5962500000000001
+   "logloss": 1.0765926790207154,
+   "brier": 0.6241545232762895,
+   "rps": 0.2218004831455213,
+   "accuracy": 0.52625
   },
   "xgb_tiny": {
-   "logloss": 0.9428668097785321,
-   "accuracy": 0.5675
+   "logloss": 0.9395863677131062,
+   "brier": 0.5536351799964905,
+   "rps": 0.18247418701648713,
+   "accuracy": 0.575
   },
   "xgb_reg": {
-   "logloss": 0.9408528482369232,
-   "accuracy": 0.585
+   "logloss": 0.9303409669196181,
+   "brier": 0.5472089529037476,
+   "rps": 0.17964271903038026,
+   "accuracy": 0.59875
   },
   "xgb_base": {
-   "logloss": 1.0950792350061618,
-   "accuracy": 0.5675000000000001
+   "logloss": 1.1085344226201523,
+   "brier": 0.6087782859802247,
+   "rps": 0.198983234167099,
+   "accuracy": 0.57875
   },
   "lgbm_a": {
-   "logloss": 0.9704035065437491,
-   "accuracy": 0.5900000000000001
+   "logloss": 0.9717522935835821,
+   "brier": 0.5652018195207089,
+   "rps": 0.1859191812237,
+   "accuracy": 0.5975
   },
   "lgbm_b": {
-   "logloss": 1.0580365174307105,
-   "accuracy": 0.58
+   "logloss": 1.0910147451711878,
+   "brier": 0.5991893965218749,
+   "rps": 0.19575726459204248,
+   "accuracy": 0.5862499999999999
   },
   "ensemble": {
-   "logloss": 0.906207342498659,
-   "accuracy": 0.5925
+   "logloss": 0.9456803565881028,
+   "brier": 0.5575916161937217,
+   "rps": 0.18754785658921,
+   "accuracy": 0.5762499999999999
   },
   "baseline": {
-   "logloss": 1.0727618678165922,
+   "logloss": 1.072843938168036,
+   "brier": 0.6492784210246615,
+   "rps": 0.23520265861480372,
    "accuracy": 0.44125
   },
+  "odds": {
+   "logloss": 0.9272220144385934,
+   "brier": 0.5470385985469973,
+   "rps": 0.1941629924499296,
+   "accuracy": 0.5716397849462366
+  },
+  "odds_rows": 351,
   "always_home_accuracy": 0.43821391484942884,
   "chosen_ml": "xgb_reg"
  }

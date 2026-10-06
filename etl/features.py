@@ -9,7 +9,10 @@ Feature families: rolling 5-match form, venue-split expanding form, attack /
 defense ratings (season + last-5), shot dominance (labeled shot-based, never
 true xG), clean-sheet / failed-to-score rates, momentum, discipline, travel
 fatigue (stadium-city coords + rest days), H2H edge, European congestion and
-strength signals, and key absences (Premier League only).
+strength signals, key absences (Premier League only), ClubElo-style ratings
+(h_elo, a_elo, elo_diff; k=20, +100 home bonus, sqrt goal-margin weighting,
+computed chronologically), and de-vigged closing odds from the raw
+football-data.co.uk CSVs (odds_p_home/draw/away, odds_available flag).
 
 Usage: python -m etl.features [--leagues pl laliga ...]
 """
@@ -129,6 +132,82 @@ def haversine_km(a: tuple[float, float], b: tuple[float, float]) -> float:
 
 
 # ----------------------------------------------------------------------------
+# ClubElo-style ratings. k=20, +100 home bonus, goal-margin weighting
+# sqrt(margin) for decisive results (draws use 1.0). New teams start at 1500.
+# Ratings are updated chronologically as fixtures are processed, so a row's
+# h_elo/a_elo only ever reflect matches played before that fixture.
+# ----------------------------------------------------------------------------
+ELO_START = 1500.0
+ELO_K = 20.0
+ELO_HOME_BONUS = 100.0
+
+
+def elo_update(rh: float, ra: float, hg: int, ag: int) -> tuple[float, float]:
+    exp_h = 1.0 / (1.0 + 10.0 ** (-(rh + ELO_HOME_BONUS - ra) / 400.0))
+    res = 1.0 if hg > ag else (0.5 if hg == ag else 0.0)
+    g = 1.0 if hg == ag else math.sqrt(abs(hg - ag))
+    delta = ELO_K * g * (res - exp_h)
+    return rh + delta, ra - delta
+
+
+# ----------------------------------------------------------------------------
+# De-vigged market odds from the raw football-data.co.uk CSVs. Closing odds
+# (B365CH/CD/CA) preferred, opening odds (B365H/D/A) as fallback. De-vig:
+# p = (1/odds) / sum(1/odds). Keyed by (home, away, date) with canonical
+# team names; rows without odds get NaN (imputed later) and odds_available=0.
+# ----------------------------------------------------------------------------
+RAW_CSV_ALIASES: dict[str, dict[str, str]] = {
+    # The 2025/26 LaLiga CSV uses shortened spellings.
+    "laliga": {"Espanol": "Espanyol", "Sociedad": "Real Sociedad",
+               "Vallecano": "Rayo Vallecano"},
+}
+
+ODDS_COLS = ("B365CH", "B365CD", "B365CA", "B365H", "B365D", "B365A")
+
+
+def load_devigged_odds(league: str) -> dict[tuple[str, str, str], tuple[float, float, float]]:
+    """(home, away, date) -> de-vigged (p_home, p_draw, p_away)."""
+    aliases = RAW_CSV_ALIASES.get(league, {})
+    out: dict[tuple[str, str, str], tuple[float, float, float]] = {}
+    for path in sorted(settings.raw_dir.glob(f"csv_{league}_20*.csv")):
+        try:
+            raw = pd.read_csv(path, usecols=["Date", "HomeTeam", "AwayTeam",
+                                             *ODDS_COLS])
+        except (ValueError, FileNotFoundError):
+            continue
+        raw["datestr"] = pd.to_datetime(raw["Date"], dayfirst=True).dt.date.astype(str)
+        raw["home"] = raw["HomeTeam"].map(lambda t: aliases.get(t, t))
+        raw["away"] = raw["AwayTeam"].map(lambda t: aliases.get(t, t))
+        for _, r in raw.iterrows():
+            close = [r["B365CH"], r["B365CD"], r["B365CA"]]
+            open_ = [r["B365H"], r["B365D"], r["B365A"]]
+            trio = close if all(pd.notna(close)) else open_
+            if not all(pd.notna(trio)) or any(float(o) <= 1.0 for o in trio):
+                continue
+            inv = np.array([1.0 / float(o) for o in trio])
+            p = inv / inv.sum()
+            out[(r["home"], r["away"], r["datestr"])] = (
+                float(p[0]), float(p[1]), float(p[2]))
+    log.info("odds_loaded", league=league, n=len(out))
+    return out
+
+
+# Model feature columns: everything the GBM / GLM trains on.
+EXTRA_MODEL_COLS = ["h2h_edge", "elo_diff",
+                    "odds_p_home", "odds_p_draw", "odds_p_away", "odds_available"]
+
+# Neutral fill for columns where a column mean is meaningless.
+NEUTRAL_DEFAULTS = {"odds_p_home": 1.0 / 3.0, "odds_p_draw": 1.0 / 3.0,
+                    "odds_p_away": 1.0 / 3.0}
+
+
+def feature_columns(df: pd.DataFrame) -> list[str]:
+    return [c for c in df.columns
+            if (c.startswith(("h_", "a_")) and c != "h2h_edge")
+            or c in EXTRA_MODEL_COLS]
+
+
+# ----------------------------------------------------------------------------
 # Feature computation
 # ----------------------------------------------------------------------------
 class TeamHistory:
@@ -245,9 +324,11 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
     h2h = json.loads(h2h_path.read_text()) if h2h_path.exists() else {}
     euro = load_european()
     absences = load_key_absences() if league == "pl" else {}
+    odds_map = load_devigged_odds(league)
 
     histories: dict[str, TeamHistory] = {}
     last_date: dict[str, str] = {}
+    elo_ratings: dict[str, float] = {}
     rows: list[dict] = []
 
     def stats_for(is_home: bool, r) -> dict:
@@ -319,6 +400,22 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
                 row[f"{prefix}euro_gd"] = 0
         row["h_key_absences"] = absences.get(home, 0)
         row["a_key_absences"] = absences.get(away, 0)
+        # Elo: pre-match ratings only (chronological, no leakage).
+        rh = elo_ratings.get(home, ELO_START)
+        ra = elo_ratings.get(away, ELO_START)
+        row["h_elo"] = rh
+        row["a_elo"] = ra
+        row["elo_diff"] = rh - ra
+        # De-vigged market odds (closing odds, known pre-kickoff).
+        probs = odds_map.get((home, away, datestr))
+        if probs is not None:
+            row["odds_p_home"], row["odds_p_draw"], row["odds_p_away"] = probs
+            row["odds_available"] = 1
+        else:
+            row["odds_p_home"] = np.nan
+            row["odds_p_draw"] = np.nan
+            row["odds_p_away"] = np.nan
+            row["odds_available"] = 0
         return row
 
     for _, fx in df.iterrows():
@@ -335,18 +432,23 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
             datestr, "H", hg, ag, stats_for(True, fx), away)
         histories.setdefault(away, TeamHistory()).add(
             datestr, "A", ag, hg, stats_for(False, fx), home)
+        rh, ra = elo_update(elo_ratings.get(home, ELO_START),
+                            elo_ratings.get(away, ELO_START), hg, ag)
+        elo_ratings[home], elo_ratings[away] = rh, ra
         last_date[home] = datestr
         last_date[away] = datestr
 
     feats_df = pd.DataFrame(rows)
     # Neutral imputation for teams with no history yet (early rows): column
     # means. Shot/foul-based columns are labeled shot-based, never true xG.
-    feature_cols = [c for c in feats_df.columns
-                    if c.startswith(("h_", "a_")) and c not in ("h2h_edge",)]
-    for col in feature_cols:
+    # Odds columns with no data at all (predict mode) get 1/3 each.
+    for col in feature_columns(feats_df):
         if feats_df[col].isna().any():
-            mean = feats_df[col].mean()
-            feats_df[col] = feats_df[col].fillna(mean if pd.notna(mean) else 0.0)
+            default = NEUTRAL_DEFAULTS.get(col)
+            if default is None:
+                mean = feats_df[col].mean()
+                default = mean if pd.notna(mean) else 0.0
+            feats_df[col] = feats_df[col].fillna(default)
 
     data_hash = hashlib.sha1(
         pd.read_csv(fixtures_path, usecols=["fixture_id", "home_goals", "away_goals"])

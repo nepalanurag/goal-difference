@@ -1,9 +1,9 @@
 {
  "league": "bundesliga",
  "model_version": "v2026-10-06",
- "fit_date": "2026-10-06T17:05:16.170187+00:00",
- "data_hash": "38430eeb9a75",
- "feature_logic_version": "3e13aedb7638",
+ "fit_date": "2026-10-06T22:14:10.498205+00:00",
+ "data_hash": "c4a4d49149c9",
+ "feature_logic_version": "1c12851db835",
  "n_train_rows": 954,
  "feature_cols": [
   "h2h_edge",
@@ -21,6 +21,13 @@
   "a_euro_gd",
   "h_key_absences",
   "a_key_absences",
+  "h_elo",
+  "a_elo",
+  "elo_diff",
+  "odds_p_home",
+  "odds_p_draw",
+  "odds_p_away",
+  "odds_available",
   "h_w5",
   "h_d5",
   "h_l5",
@@ -74,41 +81,154 @@
   "a_cards_pg",
   "a_shot_diff_pg"
  ],
- "chosen_ml": "xgb_reg",
+ "chosen_ml": "xgb_tiny",
+ "dc": {
+  "teams": [
+   "Augsburg",
+   "Bayern Munich",
+   "Bochum",
+   "Darmstadt",
+   "Dortmund",
+   "Ein Frankfurt",
+   "Elversberg",
+   "FC Koln",
+   "Freiburg",
+   "Hamburg",
+   "Heidenheim",
+   "Hoffenheim",
+   "Holstein Kiel",
+   "Leverkusen",
+   "M'gladbach",
+   "Mainz",
+   "Paderborn",
+   "RB Leipzig",
+   "Schalke 04",
+   "St Pauli",
+   "Stuttgart",
+   "Union Berlin",
+   "Werder Bremen",
+   "Wolfsburg"
+  ],
+  "attack": {
+   "Augsburg": -0.05838001125373513,
+   "Bayern Munich": 0.7751084567098058,
+   "Bochum": -0.2832765838128457,
+   "Darmstadt": -0.4933191689532143,
+   "Dortmund": 0.3533717392997951,
+   "Ein Frankfurt": 0.2267753438958302,
+   "Elversberg": 0.610439264312791,
+   "FC Koln": -0.16362811130992627,
+   "Freiburg": 0.0521879982742135,
+   "Hamburg": -0.22399207786068234,
+   "Heidenheim": -0.13336424445662906,
+   "Hoffenheim": 0.20607946811646582,
+   "Holstein Kiel": 0.026112718831652407,
+   "Leverkusen": 0.42254787821370077,
+   "M'gladbach": 0.040275788446070104,
+   "Mainz": -0.010323987987607655,
+   "Paderborn": -0.5992066911738892,
+   "RB Leipzig": 0.2824833404103075,
+   "Schalke 04": -0.5555585941993648,
+   "St Pauli": -0.5327081401879054,
+   "Stuttgart": 0.35449716783340307,
+   "Union Berlin": -0.22717249869018646,
+   "Werder Bremen": -0.04248053844171766,
+   "Wolfsburg": -0.026468516016331697
+  },
+  "defense": {
+   "Augsburg": -0.05287764729838157,
+   "Bayern Munich": 0.33158801364976587,
+   "Bochum": -0.2565684098744704,
+   "Darmstadt": -0.4487929607078094,
+   "Dortmund": 0.2550641415449813,
+   "Ein Frankfurt": -0.0628130587636172,
+   "Elversberg": 0.01945545711312302,
+   "FC Koln": -0.15326687660177568,
+   "Freiburg": -0.023843826750696823,
+   "Hamburg": -0.10708012023366581,
+   "Heidenheim": -0.1712590537009882,
+   "Hoffenheim": -0.1634440782295622,
+   "Holstein Kiel": -0.3879408069560576,
+   "Leverkusen": 0.2882373978758499,
+   "M'gladbach": -0.13583021377562765,
+   "Mainz": 0.08676393036375428,
+   "Paderborn": 0.274636253133965,
+   "RB Leipzig": 0.15580883497958048,
+   "Schalke 04": 0.6549003697773245,
+   "St Pauli": 0.0706348092456596,
+   "Stuttgart": 0.08991837685168472,
+   "Union Berlin": -0.08366660255238964,
+   "Werder Bremen": -0.06879185247602165,
+   "Wolfsburg": -0.11083207661462496
+  },
+  "home_adv": 0.4280579027820598,
+  "rho": -0.02151543377751586,
+  "xi": 0.0005,
+  "neg_loglik": 2174.886877489006,
+  "n_matches": 954
+ },
+ "poisson_fallback": false,
+ "ensemble_weights": {
+  "ml": 0.6,
+  "dc": 0.4
+ },
  "walkforward": {
   "poisson": {
-   "logloss": 0.9305794271642827,
-   "accuracy": 0.5748427672955975
+   "logloss": 1.0662621219423514,
+   "brier": 0.6167210411039219,
+   "rps": 0.21397939614702186,
+   "accuracy": 0.49433962264150944
   },
   "xgb_tiny": {
-   "logloss": 0.933072007184682,
-   "accuracy": 0.5622641509433962
+   "logloss": 0.9255255713315131,
+   "brier": 0.5478713393211365,
+   "rps": 0.17521857917308808,
+   "accuracy": 0.559748427672956
   },
   "xgb_reg": {
-   "logloss": 0.9313578769758856,
-   "accuracy": 0.5710691823899371
+   "logloss": 0.9273296012392439,
+   "brier": 0.5491427540779114,
+   "rps": 0.17586690783500672,
+   "accuracy": 0.5572327044025157
   },
   "xgb_base": {
-   "logloss": 1.070269035946552,
-   "accuracy": 0.5484276729559749
+   "logloss": 1.0599799081083146,
+   "brier": 0.6074552416801453,
+   "rps": 0.19551913142204286,
+   "accuracy": 0.5408805031446541
   },
   "lgbm_a": {
-   "logloss": 0.9790540511673903,
-   "accuracy": 0.5509433962264152
+   "logloss": 0.9790647616772796,
+   "brier": 0.5781592348212546,
+   "rps": 0.18544300825984322,
+   "accuracy": 0.5433962264150943
   },
   "lgbm_b": {
-   "logloss": 1.05174573368597,
-   "accuracy": 0.5421383647798742
+   "logloss": 1.0377175750806311,
+   "brier": 0.5976573798517437,
+   "rps": 0.19155602883462589,
+   "accuracy": 0.5572327044025156
   },
   "ensemble": {
-   "logloss": 0.9002297938396456,
-   "accuracy": 0.5924528301886791
+   "logloss": 0.9346680352237104,
+   "brier": 0.551594969715094,
+   "rps": 0.1811061883197222,
+   "accuracy": 0.5509433962264151
   },
   "baseline": {
-   "logloss": 1.0825170960689214,
+   "logloss": 1.0824100073677192,
+   "brier": 0.6561809175973172,
+   "rps": 0.23346649438093608,
    "accuracy": 0.4176100628930818
   },
+  "odds": {
+   "logloss": 0.9503370519494162,
+   "brier": 0.5624170591382825,
+   "rps": 0.19457294206321998,
+   "accuracy": 0.5419287211740041
+  },
+  "odds_rows": 342,
   "always_home_accuracy": 0.42452830188679247,
-  "chosen_ml": "xgb_reg"
+  "chosen_ml": "xgb_tiny"
  }
 }
