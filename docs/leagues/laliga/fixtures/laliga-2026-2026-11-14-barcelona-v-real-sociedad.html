@@ -2,15 +2,15 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Barcelona v Real Sociedad | Goal Difference</title>
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/goal-difference/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <style>.brand b{color:#ff4b44} a{color:#ff4b44}</style>
 </head><body>
 <div class="topbar"><div class="wrap">
 <div class="brand">Goal <b>Difference</b></div>
-<nav class="nav"><a href="/">Home</a><a href="/leagues/pl/">Premier League</a><a href="/leagues/laliga/">LaLiga</a><a href="/leagues/bundesliga/">Bundesliga</a><a href="/leagues/seriea/">Serie A</a><a href="/leagues/ligue1/">Ligue 1</a><a href="/players.html">Players</a><a href="/track-record.html">Track record</a></nav></div></div>
-<div class="wrap"><div class="hero"><p class="cond muted">LaLiga
+<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a><a href="/goal-difference/methodology.html">Methodology</a><a href="/goal-difference/model-insights.html">Model insights</a></nav></div></div>
+<div class="wrap"><p class="data-updated">Data updated 2026-10-06</p><div class="hero"><p class="cond muted">LaLiga
 &middot; <span class="mono">2026-11-14</span></p>
 <h1>Barcelona <span class="faint">v</span> Real Sociedad</h1></div>
 <h2>How they're playing</h2>
@@ -48,20 +48,28 @@
 
 <h2>Head to head</h2><div class="card"><div class='kpi'>4<small>W</small> 0<small>D</small> 2<small>L</small></div><p class='small muted'>All-time, Barcelona perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-01-18</span> Real Sociedad 2-1 Barcelona</div><div class='small'><span class='mono faint'>2025-09-28</span> Barcelona 2-1 Real Sociedad</div><div class='small'><span class='mono faint'>2025-03-02</span> Barcelona 4-0 Real Sociedad</div><div class='small'><span class='mono faint'>2024-11-10</span> Real Sociedad 1-0 Barcelona</div><div class='small'><span class='mono faint'>2024-05-13</span> Barcelona 2-0 Real Sociedad</div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: LaLiga apim public-service API (unofficial)</p></div>
-<h2>Prediction</h2><div class="grid g2"><div class="card"><h3>Model probabilities</h3>
+<h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
-<tr><td>Poisson</td><td class="num">77%</td>
-<td class="num">14%</td><td class="num">9%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">88%</td>
-<td class="num">7%</td><td class="num">6%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>82%</b></td>
-<td class="num"><b>10%</b></td><td class="num"><b>7%</b></td></tr>
-</table><div class="probbar"><span class="seg home" style="width:82.2%">82%</span><span class="seg draw" style="width:10.5%">10%</span><span class="seg away" style="width:7.3%">7%</span></div>
+<tr><td>Poisson</td><td class="num">87%</td>
+<td class="num">8%</td><td class="num">5%</td></tr>
+<tr><td>Gradient boosting</td><td class="num">85%</td>
+<td class="num">9%</td><td class="num">6%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>86%</b></td>
+<td class="num"><b>8%</b></td><td class="num"><b>6%</b></td></tr>
+</table>
+<div class="probview" data-view="poisson" hidden>
+<div class="probbar"><span class="seg home" style="width:87.2%">87%</span><span class="seg draw" style="width:8.0%">8%</span><span class="seg away" style="width:4.8%">5%</span></div>
+<p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
+<div class="probview" data-view="ml" hidden>
+<div class="probbar"><span class="seg home" style="width:84.9%">85%</span><span class="seg draw" style="width:8.7%">9%</span><span class="seg away" style="width:6.4%">6%</span></div>
+<p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
+<div class="probview" data-view="ensemble">
+<div class="probbar"><span class="seg home" style="width:85.8%">86%</span><span class="seg draw" style="width:8.4%">8%</span><span class="seg away" style="width:5.8%">6%</span></div>
 <div class="legend"><span class="sw home"></span>Barcelona <span class="sw draw"></span>Draw <span class="sw away"></span>Real Sociedad</div>
-<p class="small muted">Expected goals: <span class="mono">2.68 - 0.82</span>.
-Each row sums to 100%.</p></div><div class="card"><h3>What to expect</h3><table class="small">
+<p class="small muted">Expected goals: <span class="mono">3.62 - 0.85</span>.
+Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Barcelona</b>
-<span class="muted">favored at</span> <b>82%</b>
+<span class="muted">favored at</span> <b>86%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Barcelona score
 <span class="mono">4.60</span>/game lately; Real Sociedad concede
@@ -84,5 +92,6 @@ leagues show absences detected from lineups, labeled "reason unconfirmed",
 or state plainly when no data is published.</div>
 <div class="footer">Goal Difference &middot; weekly model-driven matchday
 analysis for Europe's top 5 leagues &middot; Poisson + gradient-boosted
-models, refit weekly &middot; updated 2026-10-06</div>
-</div></body></html>
+models, refit weekly &middot; updated 2026-10-06 &middot;
+<a href="/goal-difference/methodology.html">How the models work</a></div>
+</div><script src="/goal-difference/app.js" defer></script></body></html>
