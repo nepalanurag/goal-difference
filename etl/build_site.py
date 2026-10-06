@@ -27,6 +27,11 @@ LEAGUE_NAMES = {"pl": "Premier League", "laliga": "LaLiga",
 LEAGUE_ACCENT = {"pl": "#e90052", "laliga": "#ff4b44", "bundesliga": "#d20515",
                  "seriea": "#008fd7", "ligue1": "#00a651"}
 
+# Base path the site is served from. GitHub Pages project sites live under
+# /<repo>/, so every internal link and the stylesheet must carry this prefix.
+# (Root-absolute "/" links 404 on project pages.)
+SITE_BASE = "/goal-difference"
+
 
 def slug(text: str) -> str:
     import re
@@ -154,17 +159,19 @@ tr:hover td{background:#141a24}
 
 def page_shell(title: str, body: str, league: str | None = None,
                updated: str = "") -> str:
-    nav = ('<a href="/">Home</a>' +
-           "".join(f'<a href="/leagues/{s}/">{LEAGUE_NAMES[s]}</a>'
+    nav = ('<a href="{BASE}/">Home</a>' +
+           "".join(f'<a href="{BASE}/leagues/{s}/">{LEAGUE_NAMES[s]}</a>'
                    for s in settings.league_order) +
-           '<a href="/players.html">Players</a>'
-           '<a href="/track-record.html">Track record</a>')
+           '<a href="{BASE}/players.html">Players</a>'
+           '<a href="{BASE}/track-record.html">Track record</a>')
     accent = LEAGUE_ACCENT.get(league or "", "#ffd23f")
+    nav = nav.replace("{BASE}", SITE_BASE)
+    body = body.replace("{BASE}", SITE_BASE)
     return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)} | Goal Difference</title>
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="{SITE_BASE}/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <style>.brand b{{color:{accent}}} a{{color:{accent}}}</style>
@@ -319,7 +326,7 @@ def build_index(datas: dict[str, LeagueData],
 <h3 style="color:{LEAGUE_ACCENT[league]}">{LEAGUE_NAMES[league]}</h3>
 <div class="kpi">{esc(leader.team)}<br><small>{leader.pts} pts after {leader.p}</small></div>
 <div class="small muted">Next: {n_up} fixtures to play{p_title}</div>
-<div style="margin-top:10px"><a href="/leagues/{league}/">League hub &rarr;</a></div>
+<div style="margin-top:10px"><a href="{BASE}/leagues/{league}/">League hub &rarr;</a></div>
 </div>""")
     league_cards = '<div class="grid g3">' + "".join(cards) + "</div>"
 
@@ -356,7 +363,7 @@ def build_index(datas: dict[str, LeagueData],
                 matchups.append(
                     f"""<div class="card"><div class="cond">{LEAGUE_NAMES[league]}
 <span class="faint mono small">{r.date}</span></div>
-<div style="font-size:1.2em"><a class="fixlink" href="/leagues/{league}/fixtures/{r.fixture_id}.html">
+<div style="font-size:1.2em"><a class="fixlink" href="{BASE}/leagues/{league}/fixtures/{r.fixture_id}.html">
 {esc(r.home)} v {esc(r.away)}</a></div>
 {prob_bar(r.p_home_ens, r.p_draw_ens, r.p_away_ens)}
 {prob_legend(r.home, r.away)}</div>""")
@@ -397,7 +404,7 @@ def build_league(league: str, ld: LeagueData, pred: pd.DataFrame,
                         f"<td class='num'>{pct(o.p_relegation)}</td>")
         rows.append(
             f"<tr><td class='num'>{pos}</td>"
-            f"<td><a href=\"/leagues/{league}/teams/{slug(r.team)}.html\">"
+            f"<td><a href=\"{BASE}/leagues/{league}/teams/{slug(r.team)}.html\">"
             f"{esc(r.team)}</a></td><td class='num'>{r.p}</td>"
             f"<td class='num'>{r.w}</td><td class='num'>{r.d}</td>"
             f"<td class='num'>{r.l}</td><td class='num'>{r.gd:+d}</td>"
@@ -420,7 +427,7 @@ def build_league(league: str, ld: LeagueData, pred: pd.DataFrame,
             cards.append(f"""<div class="card">
 <div class="cond"><span class="faint mono small">{r.date}</span></div>
 <div style="font-size:1.15em;margin-bottom:8px"><a class="fixlink"
-href="/leagues/{league}/fixtures/{r.fixture_id}.html">{esc(r.home)} v {esc(r.away)}</a></div>
+href="{BASE}/leagues/{league}/fixtures/{r.fixture_id}.html">{esc(r.home)} v {esc(r.away)}</a></div>
 {prob_bar(r.p_home_ens, r.p_draw_ens, r.p_away_ens)}
 {prob_legend(r.home, r.away)}
 <div class="small muted" style="margin-top:6px">xG {r.xg_home:.2f} - {r.xg_away:.2f}</div>
