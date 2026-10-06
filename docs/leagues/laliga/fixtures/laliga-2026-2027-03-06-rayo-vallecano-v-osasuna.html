@@ -9,8 +9,8 @@
 </head><body>
 <div class="topbar"><div class="wrap">
 <div class="brand">Goal <b>Difference</b></div>
-<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a></nav></div></div>
-<div class="wrap"><div class="hero"><p class="cond muted">LaLiga
+<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a><a href="/goal-difference/methodology.html">Methodology</a><a href="/goal-difference/model-insights.html">Model insights</a></nav></div></div>
+<div class="wrap"><p class="data-updated">Data updated 2026-10-06</p><div class="hero"><p class="cond muted">LaLiga
 &middot; <span class="mono">2027-03-06</span></p>
 <h1>Rayo Vallecano <span class="faint">v</span> Osasuna</h1></div>
 <h2>How they're playing</h2>
@@ -48,20 +48,28 @@
 
 <h2>Head to head</h2><div class="card"><div class='kpi'>2<small>W</small> 2<small>D</small> 3<small>L</small></div><p class='small muted'>All-time, Rayo Vallecano perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-09-19</span> Osasuna 1-1 Rayo Vallecano</div><div class='small'><span class='mono faint'>2026-01-24</span> Rayo Vallecano 1-3 Osasuna</div><div class='small'><span class='mono faint'>2025-09-14</span> Osasuna 2-0 Rayo Vallecano</div><div class='small'><span class='mono faint'>2025-01-19</span> Osasuna 1-1 Rayo Vallecano</div><div class='small'><span class='mono faint'>2024-09-16</span> Rayo Vallecano 3-1 Osasuna</div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: LaLiga apim public-service API (unofficial)</p></div>
-<h2>Prediction</h2><div class="grid g2"><div class="card"><h3>Model probabilities</h3>
+<h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
-<tr><td>Poisson</td><td class="num">40%</td>
-<td class="num">30%</td><td class="num">30%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">40%</td>
-<td class="num">41%</td><td class="num">20%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>40%</b></td>
-<td class="num"><b>35%</b></td><td class="num"><b>25%</b></td></tr>
-</table><div class="probbar"><span class="seg home" style="width:40.2%">40%</span><span class="seg draw" style="width:35.3%">35%</span><span class="seg away" style="width:24.5%">25%</span></div>
+<tr><td>Poisson</td><td class="num">52%</td>
+<td class="num">25%</td><td class="num">23%</td></tr>
+<tr><td>Gradient boosting</td><td class="num">43%</td>
+<td class="num">35%</td><td class="num">21%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>47%</b></td>
+<td class="num"><b>31%</b></td><td class="num"><b>22%</b></td></tr>
+</table>
+<div class="probview" data-view="poisson" hidden>
+<div class="probbar"><span class="seg home" style="width:52.1%">52%</span><span class="seg draw" style="width:24.8%">25%</span><span class="seg away" style="width:23.1%">23%</span></div>
+<p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
+<div class="probview" data-view="ml" hidden>
+<div class="probbar"><span class="seg home" style="width:43.2%">43%</span><span class="seg draw" style="width:35.4%">35%</span><span class="seg away" style="width:21.4%">21%</span></div>
+<p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
+<div class="probview" data-view="ensemble">
+<div class="probbar"><span class="seg home" style="width:46.8%">47%</span><span class="seg draw" style="width:31.2%">31%</span><span class="seg away" style="width:22.1%">22%</span></div>
 <div class="legend"><span class="sw home"></span>Rayo Vallecano <span class="sw draw"></span>Draw <span class="sw away"></span>Osasuna</div>
-<p class="small muted">Expected goals: <span class="mono">1.14 - 0.93</span>.
-Each row sums to 100%.</p></div><div class="card"><h3>What to expect</h3><table class="small">
+<p class="small muted">Expected goals: <span class="mono">1.46 - 0.88</span>.
+Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Rayo Vallecano</b>
-<span class="muted">favored at</span> <b>40%</b>
+<span class="muted">favored at</span> <b>47%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Rayo Vallecano score
 <span class="mono">1.80</span>/game lately; Osasuna concede
@@ -84,5 +92,6 @@ leagues show absences detected from lineups, labeled "reason unconfirmed",
 or state plainly when no data is published.</div>
 <div class="footer">Goal Difference &middot; weekly model-driven matchday
 analysis for Europe's top 5 leagues &middot; Poisson + gradient-boosted
-models, refit weekly &middot; updated 2026-10-06</div>
-</div></body></html>
+models, refit weekly &middot; updated 2026-10-06 &middot;
+<a href="/goal-difference/methodology.html">How the models work</a></div>
+</div><script src="/goal-difference/app.js" defer></script></body></html>
