@@ -9,8 +9,8 @@
 </head><body>
 <div class="topbar"><div class="wrap">
 <div class="brand">Goal <b>Difference</b></div>
-<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a></nav></div></div>
-<div class="wrap"><div class="hero"><p class="cond muted">Premier League
+<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a><a href="/goal-difference/methodology.html">Methodology</a><a href="/goal-difference/model-insights.html">Model insights</a></nav></div></div>
+<div class="wrap"><p class="data-updated">Data updated 2026-10-06</p><div class="hero"><p class="cond muted">Premier League
 &middot; <span class="mono">2026-11-23</span></p>
 <h1>Brentford <span class="faint">v</span> Everton</h1></div>
 <h2>How they're playing</h2>
@@ -48,20 +48,28 @@
 
 <h2>Head to head</h2><div class="card"><div class='kpi'>1<small>W</small> 3<small>D</small> 2<small>L</small></div><p class='small muted'>All-time, Brentford perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-04-11</span> Brentford 2-2 Everton</div><div class='small'><span class='mono faint'>2026-01-04</span> Everton 2-4 Brentford</div><div class='small'><span class='mono faint'>2025-02-26</span> Brentford 1-1 Everton</div><div class='small'><span class='mono faint'>2024-11-23</span> Everton 0-0 Brentford</div><div class='small'><span class='mono faint'>2024-04-27</span> Everton 1-0 Brentford</div></div>
 <h2>Team news</h2><div class='card'><div><h3>Brentford</h3><div class='small'><b>Nathan Collins</b> out <span class='muted'>&mdash; Calf injury - Unknown return date</span></div><div class='small'><b>Sepp van den Berg</b> out <span class='muted'>&mdash; Groin injury - Unknown return date</span></div><div class='small'><b>Mathias Jensen</b> out <span class='muted'>&mdash; Unspecified injury - Expected back 10 Oct</span></div><div class='small'><b>Antoni Milambo</b> out <span class='muted'>&mdash; Knee injury - Unknown return date</span></div><div class='small'><b>Josh Dasilva</b> out <span class='muted'>&mdash; Hamstring injury - Expected back 10 Oct</span></div><div class='small'><b>Kaye Furo</b> out <span class='muted'>&mdash; Unspecified injury - Unknown return date</span></div><div class='small'><b>Mikkel Damsgaard</b> doubtful</div></div><div><h3>Everton</h3><div class='small'><b>Christian Nørgaard</b> out <span class='muted'>&mdash; Groin injury - Unknown return date</span></div><div class='small'><b>Nathan Patterson</b> out <span class='muted'>&mdash; Has joined Torino permanently</span></div><div class='small'><b>Adam Aznou</b> out <span class='muted'>&mdash; Has joined Malaga on loan for the rest of the season</span></div><div class='small'><b>Merlin Röhl</b> out <span class='muted'>&mdash; Unspecified injury - Expected back 11 Oct</span></div><div class='small'><b>Norberto Bercique Gomes Betuncal</b> out <span class='muted'>&mdash; Has joined Fiorentina permanently</span></div><div class='small'><b>Vitalii Mykolenko</b> doubtful</div><div class='small'><b>Harrison Armstrong</b> doubtful</div></div><p class='small faint' style='margin-bottom:0'>Source: FPL API (unofficial)</p></div>
-<h2>Prediction</h2><div class="grid g2"><div class="card"><h3>Model probabilities</h3>
+<h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
-<tr><td>Poisson</td><td class="num">52%</td>
-<td class="num">27%</td><td class="num">21%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">34%</td>
-<td class="num">47%</td><td class="num">18%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>43%</b></td>
-<td class="num"><b>37%</b></td><td class="num"><b>20%</b></td></tr>
-</table><div class="probbar"><span class="seg home" style="width:43.0%">43%</span><span class="seg draw" style="width:37.1%">37%</span><span class="seg away" style="width:19.9%">20%</span></div>
+<tr><td>Poisson</td><td class="num">50%</td>
+<td class="num">27%</td><td class="num">23%</td></tr>
+<tr><td>Gradient boosting</td><td class="num">25%</td>
+<td class="num">43%</td><td class="num">32%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>35%</b></td>
+<td class="num"><b>37%</b></td><td class="num"><b>28%</b></td></tr>
+</table>
+<div class="probview" data-view="poisson" hidden>
+<div class="probbar"><span class="seg home" style="width:49.7%">50%</span><span class="seg draw" style="width:27.0%">27%</span><span class="seg away" style="width:23.3%">23%</span></div>
+<p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
+<div class="probview" data-view="ml" hidden>
+<div class="probbar"><span class="seg home" style="width:25.3%">25%</span><span class="seg draw" style="width:43.2%">43%</span><span class="seg away" style="width:31.6%">32%</span></div>
+<p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
+<div class="probview" data-view="ensemble">
+<div class="probbar"><span class="seg home" style="width:35.0%">35%</span><span class="seg draw" style="width:36.7%">37%</span><span class="seg away" style="width:28.3%">28%</span></div>
 <div class="legend"><span class="sw home"></span>Brentford <span class="sw draw"></span>Draw <span class="sw away"></span>Everton</div>
-<p class="small muted">Expected goals: <span class="mono">1.44 - 0.82</span>.
-Each row sums to 100%.</p></div><div class="card"><h3>What to expect</h3><table class="small">
+<p class="small muted">Expected goals: <span class="mono">1.41 - 0.87</span>.
+Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Brentford</b>
-<span class="muted">favored at</span> <b>43%</b>
+<span class="muted">favored at</span> <b>35%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Brentford score
 <span class="mono">1.60</span>/game lately; Everton concede
@@ -84,5 +92,6 @@ leagues show absences detected from lineups, labeled "reason unconfirmed",
 or state plainly when no data is published.</div>
 <div class="footer">Goal Difference &middot; weekly model-driven matchday
 analysis for Europe's top 5 leagues &middot; Poisson + gradient-boosted
-models, refit weekly &middot; updated 2026-10-06</div>
-</div></body></html>
+models, refit weekly &middot; updated 2026-10-06 &middot;
+<a href="/goal-difference/methodology.html">How the models work</a></div>
+</div><script src="/goal-difference/app.js" defer></script></body></html>
