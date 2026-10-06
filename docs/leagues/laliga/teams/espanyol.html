@@ -9,8 +9,8 @@
 </head><body>
 <div class="topbar"><div class="wrap">
 <div class="brand">Goal <b>Difference</b></div>
-<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a></nav></div></div>
-<div class="wrap"><div class="hero"><p class="cond muted">LaLiga</p>
+<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a><a href="/goal-difference/methodology.html">Methodology</a><a href="/goal-difference/model-insights.html">Model insights</a></nav></div></div>
+<div class="wrap"><p class="data-updated">Data updated 2026-10-06</p><div class="hero"><p class="cond muted">LaLiga</p>
 <h1>Espanyol</h1>
 <p class="lede">15th &middot; 7 points
 &middot; momentum: <span class="negative">fading</span></p></div>
@@ -22,19 +22,38 @@
 <tr><td class="muted">Home goals for/against</td><td class="num">1.20 / 1.15</td>
 <td class="muted">Away</td><td class="num">1.05 / 1.61</td></tr>
 </table></div>
-<div class="card"><h3>Attack / defense</h3><table class="small">
-<tr><td class="muted">Scored / game</td><td class="num">1.12</td>
-<td class="muted">last-5</td><td class="num">1.20</td></tr>
-<tr><td class="muted">Conceded / game</td><td class="num">1.38</td>
-<td class="muted">last-5</td><td class="num">1.40</td></tr>
-<tr><td class="muted">Shot dominance</td><td class="num">-1.0</td>
-<td class="muted">shots on target</td><td class="num">4.1</td></tr>
-<tr><td class="muted">Clean sheets</td><td class="num">24%</td>
-<td class="muted">Failed to score</td><td class="num">24%</td></tr>
-<tr><td class="muted">Discipline</td><td class="num">14.3 fouls/g</td>
-<td class="muted">cards</td><td class="num">2.8/g</td></tr>
+<div class="card stat-toggle"><h3>Attack / defense</h3><table class="small">
+<tr><td class="muted">Scored / game</td><td class="num" data-stat="season">1.12</td>
+<td class="muted" data-stat="last5">last-5</td><td class="num" data-stat="last5">1.20</td></tr>
+<tr><td class="muted">Conceded / game</td><td class="num" data-stat="season">1.38</td>
+<td class="muted" data-stat="last5">last-5</td><td class="num" data-stat="last5">1.40</td></tr>
+<tr><td class="muted">Shot dominance</td><td class="num" data-stat="season">-1.0</td>
+<td class="muted" data-stat="last5">shots on target</td><td class="num" data-stat="last5">4.1</td></tr>
+<tr><td class="muted">Clean sheets</td><td class="num" data-stat="season">24%</td>
+<td class="muted" data-stat="last5">Failed to score</td><td class="num" data-stat="last5">24%</td></tr>
+<tr><td class="muted">Discipline</td><td class="num" data-stat="season">14.3 fouls/g</td>
+<td class="muted" data-stat="last5">cards</td><td class="num" data-stat="last5">2.8/g</td></tr>
 </table></div></div>
 <div class="grid g2"><div class='card'><h3>Next: Alaves (away)</h3><p class='small'>2026-10-10 (all-time 2W 0D 2L) &mdash; <a href='/leagues/laliga/fixtures/laliga-2026-2026-10-10-alaves-v-espanyol.html'>preview &rarr;</a></p></div><div class='card'><h3>Next 5: Alaves, Ath Bilbao, Ath Madrid, Barcelona, Betis</h3><p class='small muted'>Opponents average <span class='mono'>14.4</span> points.</p></div></div>
+<h2>Depth check</h2><div class="grid g3">
+<div class="card"><h3>Opposition-adjusted form</h3><table class="small">
+<tr><td class="muted">Raw PPG</td><td class="num">1.00</td></tr>
+<tr><td class="muted">Adjusted PPG</td><td class="num"><b>0.84</b></td></tr>
+</table><p class="small faint" style="margin-bottom:0">Each game reweighted by
+opponent strength (final PPG as proxy): softer schedule so far.</p></div>
+<div class="card"><h3>Expected points</h3><table class="small"><tr><td class='muted'>Actual points</td><td class='num'><b>7</b></td></tr><tr><td class='muted'>Expected points</td><td class='num'>8.5</td></tr><tr><td class='muted'>Diff</td><td class='num'><span class='negative'>-1.5</span></td></tr></table>
+<p class="small faint" style="margin-bottom:0">Expected points from the fitted
+ensemble's pre-match 1X2 (in-sample).</p></div>
+<div class="card"><h3>Attack / defense trend</h3><table class="small">
+<tr><td class="muted">Scored / game</td><td class="num">1.12</td>
+<td class="muted">last-5</td><td class="num">1.20
+<span class="positive">↑</span></td></tr>
+<tr><td class="muted">Conceded / game</td><td class="num">1.38</td>
+<td class="muted">last-5</td><td class="num">1.40
+<span class="negative">↑</span></td></tr>
+</table><p class="small faint" style="margin-bottom:0">Arrow compares the last 5
+games to the season rate.</p></div>
+</div>
 <div class="grid g2"></div>
 
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not
@@ -47,5 +66,6 @@ leagues show absences detected from lineups, labeled "reason unconfirmed",
 or state plainly when no data is published.</div>
 <div class="footer">Goal Difference &middot; weekly model-driven matchday
 analysis for Europe's top 5 leagues &middot; Poisson + gradient-boosted
-models, refit weekly &middot; updated 2026-10-06</div>
-</div></body></html>
+models, refit weekly &middot; updated 2026-10-06 &middot;
+<a href="/goal-difference/methodology.html">How the models work</a></div>
+</div><script src="/goal-difference/app.js" defer></script></body></html>
