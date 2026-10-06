@@ -9,8 +9,8 @@
 </head><body>
 <div class="topbar"><div class="wrap">
 <div class="brand">Goal <b>Difference</b></div>
-<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a></nav></div></div>
-<div class="wrap"><div class="hero"><p class="cond muted">Bundesliga
+<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a><a href="/goal-difference/methodology.html">Methodology</a><a href="/goal-difference/model-insights.html">Model insights</a></nav></div></div>
+<div class="wrap"><p class="data-updated">Data updated 2026-10-06</p><div class="hero"><p class="cond muted">Bundesliga
 &middot; <span class="mono">2027-05-01</span></p>
 <h1>Werder Bremen <span class="faint">v</span> Union Berlin</h1></div>
 <h2>How they're playing</h2>
@@ -48,18 +48,26 @@
 
 <h2>Head to head</h2><div class="card"><div class='kpi'>4<small>W</small> 1<small>D</small> 1<small>L</small></div><p class='small muted'>All-time, Werder Bremen perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-03-08</span> Union Berlin 1-4 Werder Bremen</div><div class='small'><span class='mono faint'>2025-10-24</span> Werder Bremen 1-0 Union Berlin</div><div class='small'><span class='mono faint'>2025-05-03</span> Union Berlin 2-2 Werder Bremen</div><div class='small'><span class='mono faint'>2024-12-21</span> Werder Bremen 4-1 Union Berlin</div><div class='small'><span class='mono faint'>2024-03-16</span> Union Berlin 2-1 Werder Bremen</div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: bundesliga official Firebase</p></div>
-<h2>Prediction</h2><div class="grid g2"><div class="card"><h3>Model probabilities</h3>
+<h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
-<tr><td>Poisson</td><td class="num">70%</td>
-<td class="num">18%</td><td class="num">12%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">56%</td>
-<td class="num">32%</td><td class="num">12%</td></tr>
+<tr><td>Poisson</td><td class="num">55%</td>
+<td class="num">26%</td><td class="num">20%</td></tr>
+<tr><td>Gradient boosting</td><td class="num">69%</td>
+<td class="num">21%</td><td class="num">10%</td></tr>
 <tr><td><b>Ensemble</b></td><td class="num"><b>63%</b></td>
-<td class="num"><b>25%</b></td><td class="num"><b>12%</b></td></tr>
-</table><div class="probbar"><span class="seg home" style="width:62.8%">63%</span><span class="seg draw" style="width:24.9%">25%</span><span class="seg away" style="width:12.3%">12%</span></div>
+<td class="num"><b>23%</b></td><td class="num"><b>14%</b></td></tr>
+</table>
+<div class="probview" data-view="poisson" hidden>
+<div class="probbar"><span class="seg home" style="width:54.5%">55%</span><span class="seg draw" style="width:25.6%">26%</span><span class="seg away" style="width:19.9%">20%</span></div>
+<p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
+<div class="probview" data-view="ml" hidden>
+<div class="probbar"><span class="seg home" style="width:69.0%">69%</span><span class="seg draw" style="width:20.6%">21%</span><span class="seg away" style="width:10.4%">10%</span></div>
+<p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
+<div class="probview" data-view="ensemble">
+<div class="probbar"><span class="seg home" style="width:63.2%">63%</span><span class="seg draw" style="width:22.6%">23%</span><span class="seg away" style="width:14.2%">14%</span></div>
 <div class="legend"><span class="sw home"></span>Werder Bremen <span class="sw draw"></span>Draw <span class="sw away"></span>Union Berlin</div>
-<p class="small muted">Expected goals: <span class="mono">2.34 - 0.88</span>.
-Each row sums to 100%.</p></div><div class="card"><h3>What to expect</h3><table class="small">
+<p class="small muted">Expected goals: <span class="mono">1.60 - 0.85</span>.
+Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Werder Bremen</b>
 <span class="muted">favored at</span> <b>63%</b>
 <span class="muted">(ensemble)</span></td></tr>
@@ -84,5 +92,6 @@ leagues show absences detected from lineups, labeled "reason unconfirmed",
 or state plainly when no data is published.</div>
 <div class="footer">Goal Difference &middot; weekly model-driven matchday
 analysis for Europe's top 5 leagues &middot; Poisson + gradient-boosted
-models, refit weekly &middot; updated 2026-10-06</div>
-</div></body></html>
+models, refit weekly &middot; updated 2026-10-06 &middot;
+<a href="/goal-difference/methodology.html">How the models work</a></div>
+</div><script src="/goal-difference/app.js" defer></script></body></html>
