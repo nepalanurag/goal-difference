@@ -4,5 +4,7 @@ __pycache__/
 .env
 .pytest_cache/
 data/raw/
+data/lake/**/*.parquet
+data/ops.sqlite
 *.log
 .DS_Store

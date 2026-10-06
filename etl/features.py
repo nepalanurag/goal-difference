@@ -27,6 +27,7 @@ import pandas as pd
 
 from .config import settings
 from .logging_setup import get_logger
+from .storage import features_lake_path, write_parquet
 from .team_names import CANONICAL
 
 log = get_logger(__name__)
@@ -368,6 +369,7 @@ def main(argv: list[str] | None = None) -> int:
         feats_df, meta = build_features(league)
         out = settings.data_dir / f"features_{league}.csv"
         feats_df.to_csv(out, index=False)
+        write_parquet(feats_df, features_lake_path(league))
         (settings.data_dir / f"features_{league}.meta.json").write_text(
             json.dumps(meta, indent=1))
         log.info("features_written", league=league, rows=len(feats_df),

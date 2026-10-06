@@ -2,14 +2,16 @@
 from __future__ import annotations
 
 import json
+from datetime import date, timedelta
 from pathlib import Path
 
 import pandas as pd
 import pytest
 
 from etl import validate
+from etl.config import settings
 from etl.team_names import CANONICAL
-from tests.helpers import make_season_df, tiny_frame
+from tests.helpers import ALL_COLS, STAT_COLS, make_season_df, tiny_frame
 
 LEAGUE = "pl"
 
@@ -135,3 +137,108 @@ def test_dates_must_not_step_backwards(tmp_path):
     assert ok is False
     assert checks["dates_non_decreasing"]["ok"] is False
     assert list(offenders["fixture_id"]) == ["x-2"]
+
+
+# ---------------------------------------------------------------- new gates (9.1)
+
+def _live_frame(n_finished=4, last_played_offset=2, next_offset=7,
+                home_goals=2, away_goals=1, scheduled=True):
+    """Small live-season frame with dates relative to today (no rot)."""
+    season = settings.live_season
+    teams = sorted(CANONICAL[LEAGUE])[:4]
+    today = date.today()
+    rows = []
+    for i in range(n_finished):
+        d = today - timedelta(days=last_played_offset + (n_finished - 1 - i))
+        rows.append({
+            "fixture_id": f"live-f-{i}", "date": d.isoformat(),
+            "season": season, "league": LEAGUE,
+            "home": teams[0], "away": teams[1],
+            "home_goals": home_goals, "away_goals": away_goals,
+            "status": "finished", "provenance": "csv_cached",
+            "api_fixture_id": None,
+        })
+    if scheduled:
+        rows.append({
+            "fixture_id": "live-s-0",
+            "date": (today + timedelta(days=next_offset)).isoformat(),
+            "season": season, "league": LEAGUE,
+            "home": teams[2], "away": teams[3],
+            "home_goals": None, "away_goals": None,
+            "status": "scheduled", "provenance": "csv_cached",
+            "api_fixture_id": None,
+        })
+    for r in rows:
+        r.update({c: None for c in STAT_COLS})
+    return pd.DataFrame(rows, columns=ALL_COLS)
+
+
+def test_freshness_passes_when_live_season_covers_today(tmp_path):
+    df = _live_frame()
+    (ok, checks, _), _, _, _ = _run(df, tmp_path)
+    assert checks["freshness"]["ok"] is True
+    assert ok is True
+
+
+def test_freshness_tolerates_a_scheduled_break(tmp_path):
+    # Last played 16d ago (international break) but next fixture 4d ahead:
+    # the pipeline's view of the present is current.
+    df = _live_frame(last_played_offset=16, next_offset=4)
+    (ok, checks, _), _, _, _ = _run(df, tmp_path)
+    assert checks["freshness"]["ok"] is True
+    assert ok is True
+
+
+def test_freshness_fails_when_live_season_is_stale(tmp_path):
+    df = _live_frame(last_played_offset=60, scheduled=False)
+    (ok, checks, _), _, _, _ = _run(df, tmp_path)
+    assert ok is False
+    assert checks["freshness"]["ok"] is False
+
+
+def test_freshness_skipped_without_live_season(tmp_path):
+    df = make_season_df(LEAGUE, "2023")  # completed seasons only
+    (ok, checks, _), _, _, _ = _run(df, tmp_path)
+    assert checks["freshness"]["ok"] is True
+    assert "skipped" in checks["freshness"]["detail"]
+
+
+def test_row_count_band_passes_within_band(tmp_path):
+    df = _live_frame()
+    fx, qx, rx = _write(df, tmp_path)
+    (tmp_path / "validation_reference.json").write_text(
+        json.dumps({"pl": len(df)}))
+    ok, checks, _ = validate.validate_league(LEAGUE, fx, qx, rx)
+    assert checks["row_count_band"]["ok"] is True
+    assert ok is True
+
+
+def test_row_count_band_fails_outside_band(tmp_path):
+    df = _live_frame()
+    fx, qx, rx = _write(df, tmp_path)
+    (tmp_path / "validation_reference.json").write_text(
+        json.dumps({"pl": len(df) * 10}))
+    ok, checks, _ = validate.validate_league(LEAGUE, fx, qx, rx)
+    assert ok is False
+    assert checks["row_count_band"]["ok"] is False
+
+
+def test_row_count_band_skipped_without_reference(tmp_path):
+    df = _live_frame()
+    (ok, checks, _), _, _, _ = _run(df, tmp_path)
+    assert checks["row_count_band"]["ok"] is True
+    assert "skipped" in checks["row_count_band"]["detail"]
+
+
+def test_goal_distribution_passes_on_sane_means(tmp_path):
+    df = _live_frame()
+    (ok, checks, _), _, _, _ = _run(df, tmp_path)
+    assert checks["goal_distribution"]["ok"] is True
+    assert ok is True
+
+
+def test_goal_distribution_fails_on_absurd_means(tmp_path):
+    df = _live_frame(home_goals=5, away_goals=5)
+    (ok, checks, _), _, _, _ = _run(df, tmp_path)
+    assert ok is False
+    assert checks["goal_distribution"]["ok"] is False

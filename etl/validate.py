@@ -9,6 +9,15 @@ Checks, per league:
   goals_iff_finished        home_goals/away_goals present iff finished
   teams_in_set              home/away in the league's canonical team set
   dates_non_decreasing      dates never step backwards down the file
+  freshness                 the live season covers the present: its nearest
+                            fixture date (past or future) is within 10 days
+                            of today. Nearest rather than max, so scheduled
+                            international breaks do not trip the gate.
+  row_count_band            total rows within +/-20% of the reference in
+                            data/validation_reference.json (skipped when the
+                            file is absent)
+  goal_distribution         mean home/away goals over finished fixtures each
+                            within [0.5, 3.0]
 
 On failure the offending rows go to data/quarantine_{league}.csv, the
 per-league outcome lands in data/validation_report.json, the failure is
@@ -22,6 +31,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from datetime import date
 from pathlib import Path
 
 import pandas as pd
@@ -115,16 +125,84 @@ def _check_dates_non_decreasing(df: pd.DataFrame):
     return n == 0, f"{n} rows where the date steps backwards", df.index[bad]
 
 
+FRESHNESS_WINDOW_DAYS = 10
+ROW_COUNT_BAND = 0.20
+GOAL_MEAN_LO, GOAL_MEAN_HI = 0.5, 3.0
+
+
+def _check_freshness(df: pd.DataFrame, league: str):
+    """The live season must cover the present within the freshness window.
+
+    Nearest fixture date (played or scheduled) to today must be within
+    FRESHNESS_WINDOW_DAYS. Dataset-level check: no rows are quarantined.
+    """
+    live = df[df["season"] == settings.live_season]
+    if live.empty:
+        return True, "skipped: no live-season rows", pd.Index([])
+    today = date.today()
+    dates = pd.to_datetime(live["date"], errors="coerce").dt.date
+    past = dates[dates <= today]
+    future = dates[dates > today]
+    gap_past = (today - past.max()).days if len(past) else None
+    gap_future = (future.min() - today).days if len(future) else None
+    known = [g for g in (gap_past, gap_future) if g is not None]
+    nearest = min(known) if known else None
+    if nearest is not None and nearest <= FRESHNESS_WINDOW_DAYS:
+        side = "ago" if gap_past == nearest else "ahead"
+        return True, (f"nearest live fixture {nearest}d {side} of today, ok"), \
+            pd.Index([])
+    detail = (f"no live-season fixture within {FRESHNESS_WINDOW_DAYS}d of today")
+    if gap_past is not None:
+        detail += f"; last on/past date {gap_past}d ago"
+    if gap_future is not None:
+        detail += f"; next future date {gap_future}d ahead"
+    return False, detail, pd.Index([])
+
+
+def _check_row_count_band(df: pd.DataFrame, league: str,
+                          reference_path: Path | None):
+    """Total rows must sit within +/-ROW_COUNT_BAND of the reference file."""
+    if reference_path is None or not reference_path.exists():
+        return True, "skipped: no validation_reference.json", pd.Index([])
+    ref = {k: v for k, v in json.loads(reference_path.read_text()).items()
+           if not k.startswith("_")}
+    expected = ref.get(league)
+    if expected is None:
+        return True, f"skipped: no reference count for {league}", pd.Index([])
+    n = len(df)
+    lo, hi = expected * (1 - ROW_COUNT_BAND), expected * (1 + ROW_COUNT_BAND)
+    ok = lo <= n <= hi
+    detail = f"{n} rows vs reference {expected} (band {lo:.0f}-{hi:.0f})"
+    return ok, detail, pd.Index([])
+
+
+def _check_goal_distribution(df: pd.DataFrame):
+    """Mean home/away goals over finished fixtures must look sane."""
+    fin = df[df["status"] == "finished"]
+    if fin.empty:
+        return True, "skipped: no finished fixtures", pd.Index([])
+    means = {}
+    for col in ("home_goals", "away_goals"):
+        means[col] = float(fin[col].mean())
+    ok = all(GOAL_MEAN_LO <= m <= GOAL_MEAN_HI for m in means.values())
+    detail = (f"mean home_goals={means['home_goals']:.2f}, "
+              f"mean away_goals={means['away_goals']:.2f} "
+              f"(allowed {GOAL_MEAN_LO}-{GOAL_MEAN_HI})")
+    return ok, detail, pd.Index([])
+
+
 def validate_league(
     league: str,
     fixtures_path: Path | None = None,
     quarantine_path: Path | None = None,
     report_path: Path | None = None,
+    reference_path: Path | None = None,
 ) -> tuple[bool, dict, pd.DataFrame]:
     """Validate one league. Returns (ok, checks, offender_rows)."""
     fixtures_path = fixtures_path or settings.data_dir / f"fixtures_{league}.csv"
     quarantine_path = quarantine_path or settings.data_dir / f"quarantine_{league}.csv"
     report_path = report_path or settings.data_dir / "validation_report.json"
+    reference_path = reference_path or fixtures_path.parent / "validation_reference.json"
 
     if league not in settings.leagues:
         raise ValueError(f"unknown league: {league}")
@@ -158,13 +236,17 @@ def validate_league(
             ("goals_iff_finished", _check_goals_iff_finished),
             ("teams_in_set", _check_teams_in_set, league),
             ("dates_non_decreasing", _check_dates_non_decreasing),
+            ("freshness", _check_freshness, league),
+            ("row_count_band", _check_row_count_band, league, reference_path),
+            ("goal_distribution", _check_goal_distribution),
         ]:
             ok, detail, bad_idx = fn(df, *extra)
             checks[name] = {"ok": bool(ok), "detail": detail}
             offender_idx = offender_idx.union(bad_idx)
     else:
         for name in ("finished_count", "duplicate_ids", "goals_iff_finished",
-                     "teams_in_set", "dates_non_decreasing"):
+                     "teams_in_set", "dates_non_decreasing",
+                     "freshness", "row_count_band", "goal_distribution"):
             checks[name] = {"ok": False, "detail": "skipped: schema failed"}
 
     offenders = raw.loc[sorted(set(offender_idx))] if len(offender_idx) else raw.iloc[0:0]

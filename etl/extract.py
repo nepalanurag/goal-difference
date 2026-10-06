@@ -34,6 +34,7 @@ import pandas as pd
 from .api_football import api_get
 from .config import settings
 from .logging_setup import get_logger
+from .storage import raw_lake_path, write_parquet
 from .team_names import canonicalize
 
 log = get_logger(__name__)
@@ -460,6 +461,12 @@ def main(argv: list[str] | None = None) -> int:
     fetch_bundesliga_lineups()
     write_lineup_sources()
     append_reconstructed_schedules(args.leagues)
+
+    # Parquet lake mirror of the final fixtures CSVs (CSVs stay canonical).
+    for league in args.leagues:
+        src = settings.data_dir / f"fixtures_{league}.csv"
+        write_parquet(pd.read_csv(src, dtype={"season": str}),
+                      raw_lake_path(league))
     return 0
 
 

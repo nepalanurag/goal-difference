@@ -27,6 +27,7 @@ import pandas as pd
 
 from .config import settings
 from .logging_setup import get_logger
+from .storage import finish_ingest_run, init_ops_db, start_ingest_run
 
 log = get_logger(__name__)
 
@@ -68,12 +69,17 @@ def run_module(args: list[str]) -> None:
         raise RuntimeError(f"etl.{args[0]} failed (exit {proc.returncode})")
 
 
-def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Hash-gated daily refresh.")
-    parser.add_argument("--force", action="store_true",
-                        help="Rebuild even if the fixture hash is unchanged.")
-    args = parser.parse_args(argv)
+def _fixture_row_total() -> int:
+    total = 0
+    for league in settings.league_order:
+        path = settings.data_dir / f"fixtures_{league}.csv"
+        if path.exists():
+            total += sum(1 for _ in path.open()) - 1  # minus header
+    return total
 
+
+def _refresh(args: argparse.Namespace) -> tuple[int, str]:
+    """Run the pipeline body. Returns (exit_code, notes)."""
     # Steps 1-3: fresh pulls (extract handles FPL + CSVs + European + lineups;
     # players/team_news refresh their keyless sources).
     for mod in (["extract"], ["players"], ["team_news"]):
@@ -84,7 +90,7 @@ def main(argv: list[str] | None = None) -> int:
     old = json.loads(state_path.read_text()) if state_path.exists() else {}
     if not args.force and old.get("finished_hash") == new_hash:
         log.info("refresh_noop", finished_hash=new_hash)
-        return 0
+        return 0, "noop: finished-fixture hash unchanged"
 
     log.info("refresh_changed", old_hash=old.get("finished_hash"),
              new_hash=new_hash)
@@ -97,7 +103,27 @@ def main(argv: list[str] | None = None) -> int:
         "date": date.today().isoformat(),
     }, indent=1))
     log.info("refresh_done", finished_hash=new_hash)
-    return 0
+    return 0, f"rebuilt: finished_hash={new_hash}"
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Hash-gated daily refresh.")
+    parser.add_argument("--force", action="store_true",
+                        help="Rebuild even if the fixture hash is unchanged.")
+    args = parser.parse_args(argv)
+
+    init_ops_db()
+    run_id = start_ingest_run(notes=f"refresh argv={argv or []}")
+    rows_in = _fixture_row_total()
+    try:
+        code, notes = _refresh(args)
+    except Exception as exc:  # noqa: BLE001 - record then re-raise
+        finish_ingest_run(run_id, "failed", rows_in=rows_in,
+                          notes=f"{type(exc).__name__}: {exc}"[:500])
+        raise
+    finish_ingest_run(run_id, "finished", rows_in=rows_in,
+                      rows_out=_fixture_row_total(), notes=notes)
+    return code
 
 
 if __name__ == "__main__":

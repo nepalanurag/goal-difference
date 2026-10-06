@@ -25,6 +25,18 @@
       "dates_non_decreasing": {
         "ok": true,
         "detail": "0 rows where the date steps backwards"
+      },
+      "freshness": {
+        "ok": true,
+        "detail": "nearest live fixture 4d ahead of today, ok"
+      },
+      "row_count_band": {
+        "ok": true,
+        "detail": "1520 rows vs reference 1520 (band 1216-1824)"
+      },
+      "goal_distribution": {
+        "ok": true,
+        "detail": "mean home_goals=1.61, mean away_goals=1.37 (allowed 0.5-3.0)"
       }
     },
     "quarantined": 0
@@ -55,6 +67,18 @@
       "dates_non_decreasing": {
         "ok": true,
         "detail": "0 rows where the date steps backwards"
+      },
+      "freshness": {
+        "ok": true,
+        "detail": "nearest live fixture 4d ahead of today, ok"
+      },
+      "row_count_band": {
+        "ok": true,
+        "detail": "1520 rows vs reference 1520 (band 1216-1824)"
+      },
+      "goal_distribution": {
+        "ok": true,
+        "detail": "mean home_goals=1.52, mean away_goals=1.16 (allowed 0.5-3.0)"
       }
     },
     "quarantined": 0
@@ -85,6 +109,18 @@
       "dates_non_decreasing": {
         "ok": true,
         "detail": "0 rows where the date steps backwards"
+      },
+      "freshness": {
+        "ok": true,
+        "detail": "nearest live fixture 4d ahead of today, ok"
+      },
+      "row_count_band": {
+        "ok": true,
+        "detail": "1224 rows vs reference 1224 (band 979-1469)"
+      },
+      "goal_distribution": {
+        "ok": true,
+        "detail": "mean home_goals=1.76, mean away_goals=1.45 (allowed 0.5-3.0)"
       }
     },
     "quarantined": 0
@@ -115,6 +151,18 @@
       "dates_non_decreasing": {
         "ok": true,
         "detail": "0 rows where the date steps backwards"
+      },
+      "freshness": {
+        "ok": true,
+        "detail": "nearest live fixture 4d ahead of today, ok"
+      },
+      "row_count_band": {
+        "ok": true,
+        "detail": "1520 rows vs reference 1520 (band 1216-1824)"
+      },
+      "goal_distribution": {
+        "ok": true,
+        "detail": "mean home_goals=1.36, mean away_goals=1.19 (allowed 0.5-3.0)"
       }
     },
     "quarantined": 0
@@ -145,6 +193,18 @@
       "dates_non_decreasing": {
         "ok": true,
         "detail": "0 rows where the date steps backwards"
+      },
+      "freshness": {
+        "ok": true,
+        "detail": "nearest live fixture 4d ahead of today, ok"
+      },
+      "row_count_band": {
+        "ok": true,
+        "detail": "1224 rows vs reference 1224 (band 979-1469)"
+      },
+      "goal_distribution": {
+        "ok": true,
+        "detail": "mean home_goals=1.55, mean away_goals=1.29 (allowed 0.5-3.0)"
       }
     },
     "quarantined": 0
