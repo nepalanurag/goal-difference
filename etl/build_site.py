@@ -103,8 +103,18 @@ a{color:var(--home);text-decoration:none} a:hover{text-decoration:underline}
 .brand{font-family:'Barlow Condensed',sans-serif;font-size:1.5em;font-weight:700;
   text-transform:uppercase;letter-spacing:.06em;color:var(--text)}
 .brand b{color:#ffd23f}
-.nav{display:flex;gap:16px;flex-wrap:wrap;font-size:.92em}
+.nav{display:flex;gap:16px;flex-wrap:wrap;font-size:.92em;align-items:center}
 .nav a{color:var(--muted)} .nav a:hover{color:var(--text)}
+.dropdown{position:relative}
+.dropbtn{color:var(--muted);cursor:pointer}
+.dropbtn::after{content:" \25be";font-size:.8em}
+.dropdown:hover .dropbtn{color:var(--text)}
+.dropdown-content{display:none;position:absolute;top:calc(100% + 10px);left:0;
+  background:#0d1117;border:1px solid var(--line);border-radius:8px;
+  min-width:180px;padding:6px;z-index:30}
+.dropdown:hover .dropdown-content,.dropdown:focus-within .dropdown-content{display:block}
+.dropdown-content a{display:block;padding:8px 12px;border-radius:4px}
+.dropdown-content a:hover{background:#1a212d}
 .hero{padding:44px 0 10px}
 .hero p.lede{color:var(--muted);font-size:1.1em;max-width:640px}
 .grid{display:grid;gap:14px}
@@ -159,10 +169,15 @@ tr:hover td{background:#141a24}
 
 def page_shell(title: str, body: str, league: str | None = None,
                updated: str = "") -> str:
-    nav = ('<a href="{BASE}/">Home</a>' +
-           "".join(f'<a href="{SITE_BASE}/leagues/{s}/">{LEAGUE_NAMES[s]}</a>'
-                   for s in settings.league_order) +
-           '<a href="{BASE}/players.html">Players</a>'
+    league_links = "".join(
+        f'<a href="{SITE_BASE}/leagues/{s}/">{LEAGUE_NAMES[s]}</a>'
+        for s in settings.league_order)
+    league_links = "".join(
+        f'<a href="{SITE_BASE}/leagues/{s}/">{LEAGUE_NAMES[s]}</a>'
+        for s in settings.league_order)
+    nav = ('<a href="{BASE}/">Home</a>'
+           '<div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span>'
+           f'<div class="dropdown-content">{league_links}</div></div>'
            '<a href="{BASE}/track-record.html">Track record</a>')
     accent = LEAGUE_ACCENT.get(league or "", "#ffd23f")
     nav = nav.replace("{BASE}", SITE_BASE)
@@ -320,12 +335,12 @@ def build_index(datas: dict[str, LeagueData],
         if not ld.odds.empty:
             row = ld.odds[ld.odds.team == leader.team]
             if not row.empty:
-                p_title = f" &middot; title {pct(row.iloc[0].p_title)}"
+                p_title = f"Title: {pct(row.iloc[0].p_title)}"
         n_up = len(ld.upcoming)
         cards.append(f"""<div class="card">
 <h3 style="color:{LEAGUE_ACCENT[league]}">{LEAGUE_NAMES[league]}</h3>
 <div class="kpi">{esc(leader.team)}<br><small>{leader.pts} pts after {leader.p}</small></div>
-<div class="small muted">Next: {n_up} fixtures to play{p_title}</div>
+<div class="small muted">{p_title}</div>
 <div style="margin-top:10px"><a href="{SITE_BASE}/leagues/{league}/">League hub &rarr;</a></div>
 </div>""")
     league_cards = '<div class="grid g3">' + "".join(cards) + "</div>"
@@ -447,7 +462,8 @@ href="{SITE_BASE}/leagues/{league}/fixtures/{r.fixture_id}.html">{esc(r.home)} v
     body = f"""<div class="hero"><h1 style="color:{LEAGUE_ACCENT[league]}">
 {LEAGUE_NAMES[league]}</h1>
 <p class="lede">Live table, title odds from 10,000 Monte Carlo simulations,
-and this matchday's fixtures with ensemble probabilities.</p></div>
+and this matchday's fixtures with ensemble probabilities.</p>
+<p><a href="{SITE_BASE}/players.html#{league}">Players &rarr;</a></p></div>
 <h2>Table and odds</h2>{table}
 <p class="small faint">Odds: share of 10,000 season simulations (seed 42).</p>
 {fix_html}{results}"""
@@ -731,7 +747,7 @@ def build_players(datas: dict[str, LeagueData], updated: str) -> str:
             f"<div class='small'>{esc(r.get('name', ''))} "
             f"<span class='positive'>+{r.get('form_change', '')}</span></div>"
             for r in pl.get("risers", [])[:8])
-        sections.append(f"""<h2>Premier League &mdash; form watch</h2>
+        sections.append(f"""<h2 id="pl">Premier League &mdash; form watch</h2>
 <p class="small muted">Source: FPL API (unofficial). Form = average points over the last 30 days.</p>
 <div class="grid g2"><div class="card"><h3>In-form XI</h3>{xi_html or '<p class="muted">-</p>'}</div>
 <div class="card"><h3>Risers this week</h3>{risers or '<p class="muted">-</p>'}</div></div>
@@ -763,33 +779,14 @@ def build_players(datas: dict[str, LeagueData], updated: str) -> str:
             f"<td class='num'>{dash(x.get('assists'))}</td>"
             f"<td class='num'>{dash(x.get('appearances', x.get('minutes')))}</td></tr>"
             for x in players[:25])
-        sections.append(f"""<h2>{name} &mdash; current season</h2>
+        sections.append(f"""<h2 id="{league}">{name} &mdash; current season</h2>
 <p class="small muted">Source: {esc(source)} (unofficial feed, no SLA).</p>
 <table><tr><th>Player</th><th>Team</th><th class="num">Goals</th>
 <th class="num">Assists</th><th class="num">Apps/Min</th></tr>{rows}</table>""")
 
-    # 2024/25 topscorers baseline for all leagues.
-    ts_path = d / "topscorers_2425.json"
-    if ts_path.exists():
-        ts = json.loads(ts_path.read_text())
-        leagues_ts = ts.get("leagues", ts)
-        for league in settings.league_order:
-            entries = (leagues_ts.get(league) or [])[:20]
-            if not entries:
-                continue
-            rows = "".join(
-                f"<tr><td>{esc(e.get('player', ''))}</td>"
-                f"<td class='muted'>{esc(e.get('team', ''))}</td>"
-                f"<td class='num'>{dash(e.get('goals'))}</td>"
-                f"<td class='num'>{dash(e.get('assists'))}</td>"
-                f"<td class='num'>{dash(e.get('appearances'))}</td>"
-                f"<td class='num'>{dash(e.get('rating'))}</td></tr>"
-                for e in entries)
-            sections.append(f"""<h2>{LEAGUE_NAMES[league]} &mdash; 2024/25 top scorers</h2>
-<p class="small muted">Source: api-football topscorers, season 2024/25 (labeled baseline).</p>
-<table><tr><th>Player</th><th>Team</th><th class="num">Goals</th>
-<th class="num">Assists</th><th class="num">Apps</th><th class="num">Rating</th></tr>
-{rows}</table>""")
+    # Note: data/topscorers_2425.json (last season) is kept in the repo as a
+    # labeled baseline for modeling, but per Anurag's rule the site only ever
+    # shows current-season data, so it is not rendered here.
 
     body = ('<div class="hero"><h1>Players</h1><p class="lede">Who is in form, '
             'per league, each source labeled.</p></div>' + "".join(sections))
@@ -892,7 +889,8 @@ def main() -> int:
                 feats = fp.loc[r.fixture_id].to_dict()
             (ldir / "fixtures" / f"{r.fixture_id}.html").write_text(
                 build_fixture(league, ld, r, feats, updated))
-        for team in sorted(set(ld.fixtures.home) | set(ld.fixtures.away)):
+        live_teams = ld.fixtures[ld.fixtures.season == settings.live_season]
+        for team in sorted(set(live_teams.home) | set(live_teams.away)):
             (ldir / "teams" / f"{slug(team)}.html").write_text(
                 build_team(league, ld, team, players_pl, updated))
 
