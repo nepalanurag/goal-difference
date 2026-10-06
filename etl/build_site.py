@@ -655,17 +655,21 @@ def build_team(league: str, ld: LeagueData, team: str,
     except Exception:
         pass
 
-    # Squad panel (PL only, from FPL).
+    # Squad panel (PL only, from FPL): this team's in-form players.
     squad = ""
     if league == "pl" and players_pl:
-        xi = players_pl.get("in_form_xi", {})
-        xi_html = "".join(
-            f"<div class='small'><span class='muted'>{pos_}:</span> "
-            + ", ".join(esc(p.get("name", p) if isinstance(p, dict) else p)
-                        for p in picks[:4]) + "</div>"
-            for pos_, picks in xi.items() if picks)
-        squad = (f"<h2>Squad watch</h2><div class='card'><h3>In-form XI</h3>{xi_html}"
-                 f"<p class='small faint'>From FPL form (unofficial).</p></div>")
+        team_players = sorted(
+            [p for p in players_pl.get("players", [])
+             if p.get("team") == team and (p.get("minutes") or 0) >= 90],
+            key=lambda p: float(p.get("form") or 0), reverse=True)[:6]
+        if team_players:
+            rows = "".join(
+                f"<div class='small'>{esc(p.get('name', ''))} "
+                f"<span class='muted'>{esc(p.get('position', ''))}</span> "
+                f"<span class='num'><b>{p.get('form', '')}</b> form</span></div>"
+                for p in team_players)
+            squad = (f"<h2>Squad watch</h2><div class='card'><h3>{esc(team)} in form</h3>{rows}"
+                     f"<p class='small faint'>From FPL form (unofficial).</p></div>")
 
     tn = ld.team_news.get("teams", {}).get(team, {}) if ld.team_news else {}
     avail = ""
