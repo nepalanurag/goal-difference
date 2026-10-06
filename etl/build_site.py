@@ -160,7 +160,7 @@ tr:hover td{background:#141a24}
 def page_shell(title: str, body: str, league: str | None = None,
                updated: str = "") -> str:
     nav = ('<a href="{BASE}/">Home</a>' +
-           "".join(f'<a href="{BASE}/leagues/{s}/">{LEAGUE_NAMES[s]}</a>'
+           "".join(f'<a href="{SITE_BASE}/leagues/{s}/">{LEAGUE_NAMES[s]}</a>'
                    for s in settings.league_order) +
            '<a href="{BASE}/players.html">Players</a>'
            '<a href="{BASE}/track-record.html">Track record</a>')
@@ -326,7 +326,7 @@ def build_index(datas: dict[str, LeagueData],
 <h3 style="color:{LEAGUE_ACCENT[league]}">{LEAGUE_NAMES[league]}</h3>
 <div class="kpi">{esc(leader.team)}<br><small>{leader.pts} pts after {leader.p}</small></div>
 <div class="small muted">Next: {n_up} fixtures to play{p_title}</div>
-<div style="margin-top:10px"><a href="{BASE}/leagues/{league}/">League hub &rarr;</a></div>
+<div style="margin-top:10px"><a href="{SITE_BASE}/leagues/{league}/">League hub &rarr;</a></div>
 </div>""")
     league_cards = '<div class="grid g3">' + "".join(cards) + "</div>"
 
@@ -363,7 +363,7 @@ def build_index(datas: dict[str, LeagueData],
                 matchups.append(
                     f"""<div class="card"><div class="cond">{LEAGUE_NAMES[league]}
 <span class="faint mono small">{r.date}</span></div>
-<div style="font-size:1.2em"><a class="fixlink" href="{BASE}/leagues/{league}/fixtures/{r.fixture_id}.html">
+<div style="font-size:1.2em"><a class="fixlink" href="{SITE_BASE}/leagues/{league}/fixtures/{r.fixture_id}.html">
 {esc(r.home)} v {esc(r.away)}</a></div>
 {prob_bar(r.p_home_ens, r.p_draw_ens, r.p_away_ens)}
 {prob_legend(r.home, r.away)}</div>""")
@@ -404,7 +404,7 @@ def build_league(league: str, ld: LeagueData, pred: pd.DataFrame,
                         f"<td class='num'>{pct(o.p_relegation)}</td>")
         rows.append(
             f"<tr><td class='num'>{pos}</td>"
-            f"<td><a href=\"{BASE}/leagues/{league}/teams/{slug(r.team)}.html\">"
+            f"<td><a href=\"{SITE_BASE}/leagues/{league}/teams/{slug(r.team)}.html\">"
             f"{esc(r.team)}</a></td><td class='num'>{r.p}</td>"
             f"<td class='num'>{r.w}</td><td class='num'>{r.d}</td>"
             f"<td class='num'>{r.l}</td><td class='num'>{r.gd:+d}</td>"
@@ -427,7 +427,7 @@ def build_league(league: str, ld: LeagueData, pred: pd.DataFrame,
             cards.append(f"""<div class="card">
 <div class="cond"><span class="faint mono small">{r.date}</span></div>
 <div style="font-size:1.15em;margin-bottom:8px"><a class="fixlink"
-href="{BASE}/leagues/{league}/fixtures/{r.fixture_id}.html">{esc(r.home)} v {esc(r.away)}</a></div>
+href="{SITE_BASE}/leagues/{league}/fixtures/{r.fixture_id}.html">{esc(r.home)} v {esc(r.away)}</a></div>
 {prob_bar(r.p_home_ens, r.p_draw_ens, r.p_away_ens)}
 {prob_legend(r.home, r.away)}
 <div class="small muted" style="margin-top:6px">xG {r.xg_home:.2f} - {r.xg_away:.2f}</div>

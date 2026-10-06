@@ -44,7 +44,8 @@ def current_table(league: str) -> pd.DataFrame:
             ga[team] = ga.get(team, 0) + ga_v
             p = 3 if gf_v > ga_v else (1 if gf_v == ga_v else 0)
             pts[team] = pts.get(team, 0) + p
-    teams = sorted(set(df["home"]) | set(df["away"]))
+    live = df[df["season"] == settings.live_season]
+    teams = sorted(set(live["home"]) | set(live["away"]))
     table = pd.DataFrame([{
         "team": t, "played": played.get(t, 0), "points": pts.get(t, 0),
         "gf": gf.get(t, 0), "ga": ga.get(t, 0),
