@@ -9,8 +9,8 @@
 </head><body>
 <div class="topbar"><div class="wrap">
 <div class="brand">Goal <b>Difference</b></div>
-<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a></nav></div></div>
-<div class="wrap"><div class="hero"><p class="cond muted">Serie A
+<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a><a href="/goal-difference/methodology.html">Methodology</a><a href="/goal-difference/model-insights.html">Model insights</a></nav></div></div>
+<div class="wrap"><p class="data-updated">Data updated 2026-10-06</p><div class="hero"><p class="cond muted">Serie A
 &middot; <span class="mono">2027-01-09</span></p>
 <h1>Juventus <span class="faint">v</span> Frosinone</h1></div>
 <h2>How they're playing</h2>
@@ -48,20 +48,28 @@
 
 <h2>Head to head</h2><div class="card"><div class='kpi'>3<small>W</small> 0<small>D</small> 0<small>L</small></div><p class='small muted'>All-time, Juventus perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-08-23</span> Frosinone 0-1 Juventus</div><div class='small'><span class='mono faint'>2024-02-25</span> Juventus 3-2 Frosinone</div><div class='small'><span class='mono faint'>2023-12-23</span> Frosinone 1-2 Juventus</div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: Serie A api-sdp (Deltatre) stats feed (unofficial)</p></div>
-<h2>Prediction</h2><div class="grid g2"><div class="card"><h3>Model probabilities</h3>
+<h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
-<tr><td>Poisson</td><td class="num">86%</td>
-<td class="num">10%</td><td class="num">4%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">62%</td>
-<td class="num">32%</td><td class="num">6%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>74%</b></td>
-<td class="num"><b>21%</b></td><td class="num"><b>5%</b></td></tr>
-</table><div class="probbar"><span class="seg home" style="width:74.0%">74%</span><span class="seg draw" style="width:20.9%">21%</span><span class="seg away" style="width:5.1%">5%</span></div>
+<tr><td>Poisson</td><td class="num">52%</td>
+<td class="num">24%</td><td class="num">24%</td></tr>
+<tr><td>Gradient boosting</td><td class="num">70%</td>
+<td class="num">25%</td><td class="num">5%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>63%</b></td>
+<td class="num"><b>25%</b></td><td class="num"><b>12%</b></td></tr>
+</table>
+<div class="probview" data-view="poisson" hidden>
+<div class="probbar"><span class="seg home" style="width:52.0%">52%</span><span class="seg draw" style="width:23.6%">24%</span><span class="seg away" style="width:24.4%">24%</span></div>
+<p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
+<div class="probview" data-view="ml" hidden>
+<div class="probbar"><span class="seg home" style="width:70.0%">70%</span><span class="seg draw" style="width:25.4%">25%</span><span class="seg away" style="width:4.5%">5%</span></div>
+<p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
+<div class="probview" data-view="ensemble">
+<div class="probbar"><span class="seg home" style="width:62.8%">63%</span><span class="seg draw" style="width:24.7%">25%</span><span class="seg away" style="width:12.5%">12%</span></div>
 <div class="legend"><span class="sw home"></span>Juventus <span class="sw draw"></span>Draw <span class="sw away"></span>Frosinone</div>
-<p class="small muted">Expected goals: <span class="mono">3.00 - 0.53</span>.
-Each row sums to 100%.</p></div><div class="card"><h3>What to expect</h3><table class="small">
+<p class="small muted">Expected goals: <span class="mono">1.44 - 0.90</span>.
+Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Juventus</b>
-<span class="muted">favored at</span> <b>74%</b>
+<span class="muted">favored at</span> <b>63%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Juventus score
 <span class="mono">1.60</span>/game lately; Frosinone concede
@@ -84,5 +92,6 @@ leagues show absences detected from lineups, labeled "reason unconfirmed",
 or state plainly when no data is published.</div>
 <div class="footer">Goal Difference &middot; weekly model-driven matchday
 analysis for Europe's top 5 leagues &middot; Poisson + gradient-boosted
-models, refit weekly &middot; updated 2026-10-06</div>
-</div></body></html>
+models, refit weekly &middot; updated 2026-10-06 &middot;
+<a href="/goal-difference/methodology.html">How the models work</a></div>
+</div><script src="/goal-difference/app.js" defer></script></body></html>
