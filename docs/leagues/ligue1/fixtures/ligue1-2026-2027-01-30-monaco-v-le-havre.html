@@ -9,8 +9,8 @@
 </head><body>
 <div class="topbar"><div class="wrap">
 <div class="brand">Goal <b>Difference</b></div>
-<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a></nav></div></div>
-<div class="wrap"><div class="hero"><p class="cond muted">Ligue 1
+<nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a><a href="/goal-difference/methodology.html">Methodology</a><a href="/goal-difference/model-insights.html">Model insights</a></nav></div></div>
+<div class="wrap"><p class="data-updated">Data updated 2026-10-06</p><div class="hero"><p class="cond muted">Ligue 1
 &middot; <span class="mono">2027-01-30</span></p>
 <h1>Monaco <span class="faint">v</span> Le Havre</h1></div>
 <h2>How they're playing</h2>
@@ -48,20 +48,28 @@
 
 <h2>Head to head</h2><div class="card"><div class='kpi'>3<small>W</small> 4<small>D</small> 0<small>L</small></div><p class='small muted'>All-time, Monaco perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-08-23</span> Le Havre 0-1 Monaco</div><div class='small'><span class='mono faint'>2026-01-24</span> Le Havre 0-0 Monaco</div><div class='small'><span class='mono faint'>2025-08-16</span> Monaco 3-1 Le Havre</div><div class='small'><span class='mono faint'>2025-04-26</span> Le Havre 1-1 Monaco</div><div class='small'><span class='mono faint'>2024-09-22</span> Monaco 3-1 Le Havre</div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: Ligue 1 ma-api (unofficial)</p></div>
-<h2>Prediction</h2><div class="grid g2"><div class="card"><h3>Model probabilities</h3>
+<h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
-<tr><td>Poisson</td><td class="num">63%</td>
-<td class="num">20%</td><td class="num">17%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">79%</td>
-<td class="num">15%</td><td class="num">6%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>71%</b></td>
-<td class="num"><b>17%</b></td><td class="num"><b>11%</b></td></tr>
-</table><div class="probbar"><span class="seg home" style="width:71.2%">71%</span><span class="seg draw" style="width:17.3%">17%</span><span class="seg away" style="width:11.5%">11%</span></div>
+<tr><td>Poisson</td><td class="num">72%</td>
+<td class="num">17%</td><td class="num">11%</td></tr>
+<tr><td>Gradient boosting</td><td class="num">81%</td>
+<td class="num">15%</td><td class="num">4%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>77%</b></td>
+<td class="num"><b>16%</b></td><td class="num"><b>7%</b></td></tr>
+</table>
+<div class="probview" data-view="poisson" hidden>
+<div class="probbar"><span class="seg home" style="width:72.0%">72%</span><span class="seg draw" style="width:17.3%">17%</span><span class="seg away" style="width:10.7%">11%</span></div>
+<p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
+<div class="probview" data-view="ml" hidden>
+<div class="probbar"><span class="seg home" style="width:80.7%">81%</span><span class="seg draw" style="width:15.1%">15%</span><span class="seg away" style="width:4.1%">4%</span></div>
+<p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
+<div class="probview" data-view="ensemble">
+<div class="probbar"><span class="seg home" style="width:77.2%">77%</span><span class="seg draw" style="width:16.0%">16%</span><span class="seg away" style="width:6.8%">7%</span></div>
 <div class="legend"><span class="sw home"></span>Monaco <span class="sw draw"></span>Draw <span class="sw away"></span>Le Havre</div>
-<p class="small muted">Expected goals: <span class="mono">2.18 - 1.05</span>.
-Each row sums to 100%.</p></div><div class="card"><h3>What to expect</h3><table class="small">
+<p class="small muted">Expected goals: <span class="mono">2.17 - 0.70</span>.
+Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Monaco</b>
-<span class="muted">favored at</span> <b>71%</b>
+<span class="muted">favored at</span> <b>77%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Monaco score
 <span class="mono">2.00</span>/game lately; Le Havre concede
@@ -84,5 +92,6 @@ leagues show absences detected from lineups, labeled "reason unconfirmed",
 or state plainly when no data is published.</div>
 <div class="footer">Goal Difference &middot; weekly model-driven matchday
 analysis for Europe's top 5 leagues &middot; Poisson + gradient-boosted
-models, refit weekly &middot; updated 2026-10-06</div>
-</div></body></html>
+models, refit weekly &middot; updated 2026-10-06 &middot;
+<a href="/goal-difference/methodology.html">How the models work</a></div>
+</div><script src="/goal-difference/app.js" defer></script></body></html>
