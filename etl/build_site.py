@@ -1129,7 +1129,7 @@ def build_team(league: str, ld: LeagueData, team: str,
             h2h_txt = f" (all-time {at['w']}W {at['d']}D {at['l']}L)"
         next_opp = (f"<div class='card'><h3>Next: {esc(opp)} ({venue})</h3>"
                     f"<p class='small'>{esc(r0.date)}{h2h_txt} &mdash; "
-                    f"<a href='/leagues/{league}/fixtures/{r0.fixture_id}.html'>preview &rarr;</a></p></div>")
+                    f"<a href='{SITE_BASE}/leagues/{league}/fixtures/{r0.fixture_id}.html'>preview &rarr;</a></p></div>")
         opps = [(r.away if r.home == team else r.home) for _, r in up.head(5).iterrows()]
         avg_pts = sum(float(t[t.team == o].pts.iloc[0]) if o in t.team.values else 0
                       for o in opps) / max(len(opps), 1)
