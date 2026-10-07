@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-06T17:29:58.291082+00:00",
+ "fetched_at": "2026-10-07T01:42:45.213434+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season.",
  "teams": {
   "Arsenal": {
@@ -1606,6 +1606,14 @@
      "regular_starter": false
     },
     {
+     "player": "Ewen Jaouen",
+     "status": "i",
+     "chance_this_round": 50,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
      "player": "Dan Burn",
      "status": "i",
      "chance_this_round": 0,
@@ -1687,14 +1695,6 @@
     }
    ],
    "doubtful": [
-    {
-     "player": "Ewen Jaouen",
-     "status": "d",
-     "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Ankle injury - 50% chance of playing",
-     "regular_starter": false
-    },
     {
      "player": "Tino Livramento",
      "status": "d",

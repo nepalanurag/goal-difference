@@ -1,8 +1,8 @@
 {
  "bundesliga": {
-  "source": "bundesliga official Firebase (matchdays/matches nodes)",
-  "lineups_available": false,
-  "note": "Verified 2026-10-06: match nodes carry only timestamps and team ids; no lineup/player data. Absence detection not feasible."
+  "source": "bundesliga official Firebase (matchdays lineup nodes)",
+  "lineups_available": true,
+  "file": "lineups_bundesliga.json"
  },
  "pl": {
   "source": "FPL API (injuries, chance_of_playing, news)",

@@ -1,817 +1,816 @@
 {
+ "source": "api-football /players/topscorers",
  "season_label": "2024/25",
- "source": "api-football topscorers",
- "fetched_at": "2026-10-06",
- "leagues": {
-  "pl": [
-   {
-    "player": "Matheus Cunha",
-    "team": "Man United",
-    "goals": 30,
-    "assists": 12,
-    "appearances": 66,
-    "rating": "7.630303"
-   },
-   {
-    "player": "Mohamed Salah",
-    "team": "Liverpool",
-    "goals": 29,
-    "assists": 18,
-    "appearances": 38,
-    "rating": "7.792105"
-   },
-   {
-    "player": "A. Isak",
-    "team": "Newcastle",
-    "goals": 23,
-    "assists": 6,
-    "appearances": 34,
-    "rating": "7.279411"
-   },
-   {
-    "player": "E. Haaland",
-    "team": "Man City",
-    "goals": 22,
-    "assists": 3,
-    "appearances": 32,
-    "rating": "7.254838"
-   },
-   {
-    "player": "C. Wood",
-    "team": "Nott'm Forest",
-    "goals": 20,
-    "assists": 3,
-    "appearances": 36,
-    "rating": "6.986111"
-   },
-   {
-    "player": "B. Mbeumo",
-    "team": "Brentford",
-    "goals": 20,
-    "assists": 7,
-    "appearances": 38,
-    "rating": "7.450000"
-   },
-   {
-    "player": "Jo\u00e3o Pedro",
-    "team": "Chelsea",
-    "goals": 20,
-    "assists": 12,
-    "appearances": 54,
-    "rating": "7.170370"
-   },
-   {
-    "player": "Y. Wissa",
-    "team": "Brentford",
-    "goals": 19,
-    "assists": 4,
-    "appearances": 35,
-    "rating": "7.157142"
-   },
-   {
-    "player": "O. Watkins",
-    "team": "Aston Villa",
-    "goals": 16,
-    "assists": 8,
-    "appearances": 38,
-    "rating": "6.907894"
-   },
-   {
-    "player": "C. Palmer",
-    "team": "Chelsea",
-    "goals": 15,
-    "assists": 8,
-    "appearances": 37,
-    "rating": "7.656756"
-   },
-   {
-    "player": "D. Ouattara",
-    "team": "Brentford",
-    "goals": 14,
-    "assists": 8,
-    "appearances": 64,
-    "rating": "7.071875"
-   },
-   {
-    "player": "J. Strand Larsen",
-    "team": "Wolves",
-    "goals": 14,
-    "assists": 4,
-    "appearances": 35,
-    "rating": "6.888571"
-   },
-   {
-    "player": "J. Mateta",
-    "team": "Crystal Palace",
-    "goals": 14,
-    "assists": 2,
-    "appearances": 37,
-    "rating": "6.927027"
-   },
-   {
-    "player": "L. D\u00edaz",
-    "team": "Liverpool",
-    "goals": 13,
-    "assists": 5,
-    "appearances": 36,
-    "rating": "7.269444"
-   },
-   {
-    "player": "J. Bowen",
-    "team": "West Ham",
-    "goals": 13,
-    "assists": 8,
-    "appearances": 34,
-    "rating": "7.197058"
-   },
-   {
-    "player": "A. Elanga",
-    "team": "Newcastle",
-    "goals": 12,
-    "assists": 22,
-    "appearances": 76,
-    "rating": "7.018421"
-   },
-   {
-    "player": "A. Garnacho",
-    "team": "Chelsea",
-    "goals": 12,
-    "assists": 4,
-    "appearances": 72,
-    "rating": "6.797222"
-   },
-   {
-    "player": "L. Delap",
-    "team": "Ipswich",
-    "goals": 12,
-    "assists": 2,
-    "appearances": 37,
-    "rating": "6.878378"
-   },
-   {
-    "player": "R. Jim\u00e9nez",
-    "team": "Fulham",
-    "goals": 12,
-    "assists": 3,
-    "appearances": 38,
-    "rating": "7.013157"
-   },
-   {
-    "player": "J. Kluivert",
-    "team": "Bournemouth",
-    "goals": 12,
-    "assists": 6,
-    "appearances": 34,
-    "rating": "7.161764"
-   }
-  ],
-  "laliga": [
-   {
-    "player": "Kylian Mbapp\u00e9",
-    "team": "Real Madrid",
-    "goals": 31,
-    "assists": 3,
-    "appearances": 34,
-    "rating": "7.717647"
-   },
-   {
-    "player": "R. Lewandowski",
-    "team": "Barcelona",
-    "goals": 26,
-    "assists": 2,
-    "appearances": 35,
-    "rating": "7.284848"
-   },
-   {
-    "player": "A. Budimir",
-    "team": "Osasuna",
-    "goals": 21,
-    "assists": 4,
-    "appearances": 38,
-    "rating": "7.175675"
-   },
-   {
-    "player": "A. S\u00f8rloth",
-    "team": "Ath Madrid",
-    "goals": 20,
-    "assists": 4,
-    "appearances": 35,
-    "rating": "7.008571"
-   },
-   {
-    "player": "Ayoze P\u00e9rez",
-    "team": "Villarreal",
-    "goals": 19,
-    "assists": 4,
-    "appearances": 30,
-    "rating": "7.240000"
-   },
-   {
-    "player": "Raphinha",
-    "team": "Barcelona",
-    "goals": 18,
-    "assists": 9,
-    "appearances": 36,
-    "rating": "7.802777"
-   },
-   {
-    "player": "J. \u00c1lvarez",
-    "team": "Ath Madrid",
-    "goals": 17,
-    "assists": 4,
-    "appearances": 37,
-    "rating": "7.235135"
-   },
-   {
-    "player": "Oihan Sancet",
-    "team": "Ath Bilbao",
-    "goals": 15,
-    "assists": 1,
-    "appearances": 30,
-    "rating": "7.051724"
-   },
-   {
-    "player": "\u00c1lex Baena",
-    "team": "Ath Madrid",
-    "goals": 14,
-    "assists": 18,
-    "appearances": 64,
-    "rating": "7.500000"
-   },
-   {
-    "player": "Kike Garc\u00eda",
-    "team": "Alaves",
-    "goals": 13,
-    "assists": 0,
-    "appearances": 37,
-    "rating": "7.022857"
-   },
-   {
-    "player": "Javi Puado",
-    "team": "Espanyol",
-    "goals": 12,
-    "assists": 4,
-    "appearances": 35,
-    "rating": "6.865714"
-   },
-   {
-    "player": "Borja Iglesias",
-    "team": "Betis",
-    "goals": 11,
-    "assists": 6,
-    "appearances": 37,
-    "rating": "6.835135"
-   },
-   {
-    "player": "T. Barry",
-    "team": "Villarreal",
-    "goals": 11,
-    "assists": 4,
-    "appearances": 35,
-    "rating": "6.968571"
-   },
-   {
-    "player": "D. Lukebakio",
-    "team": "Sevilla",
-    "goals": 11,
-    "assists": 2,
-    "appearances": 38,
-    "rating": "7.065789"
-   },
-   {
-    "player": "Hugo Duro",
-    "team": "Valencia",
-    "goals": 11,
-    "assists": 2,
-    "appearances": 31,
-    "rating": "6.870967"
-   },
-   {
-    "player": "Vin\u00edcius J\u00fanior",
-    "team": "Real Madrid",
-    "goals": 11,
-    "assists": 8,
-    "appearances": 30,
-    "rating": "7.373333"
-   },
-   {
-    "player": "C. Stuani",
-    "team": "Girona",
-    "goals": 11,
-    "assists": 2,
-    "appearances": 38,
-    "rating": "6.815625"
-   },
-   {
-    "player": "Alfon Gonz\u00e1lez",
-    "team": "Sevilla",
-    "goals": 10,
-    "assists": 4,
-    "appearances": 61,
-    "rating": "6.900000"
-   },
-   {
-    "player": "F\u00e1bio Silva",
-    "team": "Las Palmas",
-    "goals": 10,
-    "assists": 3,
-    "appearances": 24,
-    "rating": "7.087500"
-   },
-   {
-    "player": "M. Arambarri",
-    "team": "Getafe",
-    "goals": 10,
-    "assists": 0,
-    "appearances": 35,
-    "rating": "6.908571"
-   }
-  ],
-  "bundesliga": [
-   {
-    "player": "H. Kane",
-    "team": "Bayern Munich",
-    "goals": 26,
-    "assists": 8,
-    "appearances": 31,
-    "rating": "7.696774"
-   },
-   {
-    "player": "S. Machino",
-    "team": "Borussia M\u00f6nchengladbach",
-    "goals": 22,
-    "assists": 4,
-    "appearances": 66,
-    "rating": "7.043750"
-   },
-   {
-    "player": "P. Schick",
-    "team": "Leverkusen",
-    "goals": 21,
-    "assists": 0,
-    "appearances": 33,
-    "rating": "7.183333"
-   },
-   {
-    "player": "S. Guirassy",
-    "team": "Dortmund",
-    "goals": 21,
-    "assists": 4,
-    "appearances": 30,
-    "rating": "7.253333"
-   },
-   {
-    "player": "R. D\u014dan",
-    "team": "Ein Frankfurt",
-    "goals": 20,
-    "assists": 14,
-    "appearances": 68,
-    "rating": "7.197058"
-   },
-   {
-    "player": "J. Burkardt",
-    "team": "Mainz",
-    "goals": 18,
-    "assists": 2,
-    "appearances": 29,
-    "rating": "7.185714"
-   },
-   {
-    "player": "T. Kleindienst",
-    "team": "Borussia M\u00f6nchengladbach",
-    "goals": 16,
-    "assists": 7,
-    "appearances": 31,
-    "rating": "7.312903"
-   },
-   {
-    "player": "E. Demirovi\u0107",
-    "team": "Stuttgart",
-    "goals": 15,
-    "assists": 2,
-    "appearances": 34,
-    "rating": "6.844117"
-   },
-   {
-    "player": "H. Ekitike",
-    "team": "Ein Frankfurt",
-    "goals": 15,
-    "assists": 8,
-    "appearances": 33,
-    "rating": "7.284848"
-   },
-   {
-    "player": "Omar Marmoush",
-    "team": "Ein Frankfurt",
-    "goals": 15,
-    "assists": 9,
-    "appearances": 17,
-    "rating": "8.258823"
-   },
-   {
-    "player": "B. \u0160e\u0161ko",
-    "team": "RB Leipzig",
-    "goals": 13,
-    "assists": 5,
-    "appearances": 33,
-    "rating": "6.948484"
-   },
-   {
-    "player": "M. Olise",
-    "team": "Bayern Munich",
-    "goals": 12,
-    "assists": 15,
-    "appearances": 34,
-    "rating": "7.923529"
-   },
-   {
-    "player": "J. Musiala",
-    "team": "Bayern Munich",
-    "goals": 12,
-    "assists": 2,
-    "appearances": 25,
-    "rating": "7.544000"
-   },
-   {
-    "player": "N. Woltemade",
-    "team": "Stuttgart",
-    "goals": 12,
-    "assists": 2,
-    "appearances": 28,
-    "rating": "6.925000"
-   },
-   {
-    "player": "L. San\u00e9",
-    "team": "Bayern Munich",
-    "goals": 11,
-    "assists": 5,
-    "appearances": 30,
-    "rating": "7.163333"
-   },
-   {
-    "player": "A. Pl\u00e9a",
-    "team": "Borussia M\u00f6nchengladbach",
-    "goals": 11,
-    "assists": 4,
-    "appearances": 30,
-    "rating": "7.106896"
-   },
-   {
-    "player": "A. Kramari\u0107",
-    "team": "Hoffenheim",
-    "goals": 11,
-    "assists": 8,
-    "appearances": 32,
-    "rating": "7.168750"
-   },
-   {
-    "player": "X. Simons",
-    "team": "RB Leipzig",
-    "goals": 10,
-    "assists": 6,
-    "appearances": 25,
-    "rating": "7.580000"
-   },
-   {
-    "player": "J. Stage",
-    "team": "Werder Bremen",
-    "goals": 10,
-    "assists": 5,
-    "appearances": 29,
-    "rating": "7.196428"
-   },
-   {
-    "player": "P. Nebel",
-    "team": "Mainz",
-    "goals": 10,
-    "assists": 4,
-    "appearances": 31,
-    "rating": "7.180645"
-   }
-  ],
-  "seriea": [
-   {
-    "player": "M. Retegui",
-    "team": "Genoa",
-    "goals": 25,
-    "assists": 16,
-    "appearances": 36,
-    "rating": "7.300000"
-   },
-   {
-    "player": "M. Kean",
-    "team": "Fiorentina",
-    "goals": 19,
-    "assists": 3,
-    "appearances": 32,
-    "rating": "6.987500"
-   },
-   {
-    "player": "S. Esposito",
-    "team": "Inter",
-    "goals": 16,
-    "assists": 0,
-    "appearances": 67,
-    "rating": "7.106060"
-   },
-   {
-    "player": "A. Lookman",
-    "team": "Atalanta",
-    "goals": 15,
-    "assists": 5,
-    "appearances": 33,
-    "rating": "7.341935"
-   },
-   {
-    "player": "R. Orsolini",
-    "team": "Bologna",
-    "goals": 15,
-    "assists": 4,
-    "appearances": 30,
-    "rating": "7.172413"
-   },
-   {
-    "player": "M. Thuram",
-    "team": "Inter",
-    "goals": 14,
-    "assists": 4,
-    "appearances": 35,
-    "rating": "7.309375"
-   },
-   {
-    "player": "R. Lukaku",
-    "team": "Napoli",
-    "goals": 14,
-    "assists": 10,
-    "appearances": 36,
-    "rating": "6.986111"
-   },
-   {
-    "player": "S. McTominay",
-    "team": "Napoli",
-    "goals": 12,
-    "assists": 4,
-    "appearances": 34,
-    "rating": "7.220588"
-   },
-   {
-    "player": "Lautaro Mart\u00ednez",
-    "team": "Inter",
-    "goals": 12,
-    "assists": 3,
-    "appearances": 32,
-    "rating": "7.222580"
-   },
-   {
-    "player": "L. Lucca",
-    "team": "Udinese",
-    "goals": 12,
-    "assists": 1,
-    "appearances": 33,
-    "rating": "6.936363"
-   },
-   {
-    "player": "L. Colombo",
-    "team": "Milan",
-    "goals": 12,
-    "assists": 4,
-    "appearances": 74,
-    "rating": "6.732432"
-   },
-   {
-    "player": "A. Dovbyk",
-    "team": "Roma",
-    "goals": 12,
-    "assists": 2,
-    "appearances": 35,
-    "rating": "6.878125"
-   },
-   {
-    "player": "N. Krstovi\u0107",
-    "team": "Lecce",
-    "goals": 11,
-    "assists": 5,
-    "appearances": 37,
-    "rating": "7.116216"
-   },
-   {
-    "player": "C. Puli\u0161i\u0107",
-    "team": "Milan",
-    "goals": 11,
-    "assists": 9,
-    "appearances": 34,
-    "rating": "7.244117"
-   },
-   {
-    "player": "T. Reijnders",
-    "team": "Milan",
-    "goals": 10,
-    "assists": 4,
-    "appearances": 37,
-    "rating": "7.270270"
-   },
-   {
-    "player": "A. Pinamonti",
-    "team": "Genoa",
-    "goals": 10,
-    "assists": 1,
-    "appearances": 36,
-    "rating": "6.916666"
-   },
-   {
-    "player": "R. Piccoli",
-    "team": "Cagliari",
-    "goals": 10,
-    "assists": 1,
-    "appearances": 37,
-    "rating": "6.683783"
-   },
-   {
-    "player": "V. Castellanos",
-    "team": "Lazio",
-    "goals": 10,
-    "assists": 3,
-    "appearances": 31,
-    "rating": "7.206896"
-   },
-   {
-    "player": "Pedro",
-    "team": "Lazio",
-    "goals": 10,
-    "assists": 1,
-    "appearances": 36,
-    "rating": "7.103448"
-   },
-   {
-    "player": "D. Vlahovi\u0107",
-    "team": "Juventus",
-    "goals": 10,
-    "assists": 4,
-    "appearances": 32,
-    "rating": "6.831034"
-   }
-  ],
-  "ligue1": [
-   {
-    "player": "M. Greenwood",
-    "team": "Marseille",
-    "goals": 22,
-    "assists": 5,
-    "appearances": 34,
-    "rating": "7.579411"
-   },
-   {
-    "player": "O. Demb\u00e9l\u00e9",
-    "team": "Paris SG",
-    "goals": 21,
-    "assists": 7,
-    "appearances": 30,
-    "rating": "7.724137"
-   },
-   {
-    "player": "A. Gouiri",
-    "team": "Rennes",
-    "goals": 20,
-    "assists": 6,
-    "appearances": 28,
-    "rating": "7.628571"
-   },
-   {
-    "player": "A. Kalimuendo",
-    "team": "Rennes",
-    "goals": 17,
-    "assists": 3,
-    "appearances": 33,
-    "rating": "7.024242"
-   },
-   {
-    "player": "J. David",
-    "team": "Lille",
-    "goals": 16,
-    "assists": 5,
-    "appearances": 32,
-    "rating": "7.153125"
-   },
-   {
-    "player": "A. Lacazette",
-    "team": "Lyon",
-    "goals": 15,
-    "assists": 2,
-    "appearances": 30,
-    "rating": "7.020000"
-   },
-   {
-    "player": "B. Barcola",
-    "team": "Paris SG",
-    "goals": 14,
-    "assists": 10,
-    "appearances": 34,
-    "rating": "7.229411"
-   },
-   {
-    "player": "E. Emegha",
-    "team": "Strasbourg",
-    "goals": 14,
-    "assists": 3,
-    "appearances": 27,
-    "rating": "6.955555"
-   },
-   {
-    "player": "L. Ajorque",
-    "team": "Brest",
-    "goals": 13,
-    "assists": 2,
-    "appearances": 31,
-    "rating": "7.112903"
-   },
-   {
-    "player": "M. Biereth",
-    "team": "Monaco",
-    "goals": 13,
-    "assists": 2,
-    "appearances": 17,
-    "rating": "7.387500"
-   },
-   {
-    "player": "E. Guessand",
-    "team": "Nice",
-    "goals": 12,
-    "assists": 8,
-    "appearances": 33,
-    "rating": "7.215151"
-   },
-   {
-    "player": "L. Stassin",
-    "team": "St Etienne",
-    "goals": 12,
-    "assists": 4,
-    "appearances": 28,
-    "rating": "7.125000"
-   },
-   {
-    "player": "Keito Nakamura",
-    "team": "Reims",
-    "goals": 11,
-    "assists": 2,
-    "appearances": 34,
-    "rating": "6.920588"
-   },
-   {
-    "player": "G. Mikautadze",
-    "team": "Lyon",
-    "goals": 11,
-    "assists": 6,
-    "appearances": 34,
-    "rating": "6.952941"
-   },
-   {
-    "player": "G. Laborde",
-    "team": "Nice",
-    "goals": 11,
-    "assists": 4,
-    "appearances": 28,
-    "rating": "7.200000"
-   },
-   {
-    "player": "G. Perrin",
-    "team": "Auxerre",
-    "goals": 10,
-    "assists": 11,
-    "appearances": 34,
-    "rating": "7.273529"
-   },
-   {
-    "player": "M. Camara",
-    "team": "Rennes",
-    "goals": 10,
-    "assists": 6,
-    "appearances": 68,
-    "rating": "7.082352"
-   },
-   {
-    "player": "Andrey Santos",
-    "team": "Strasbourg",
-    "goals": 10,
-    "assists": 3,
-    "appearances": 32,
-    "rating": "7.440625"
-   },
-   {
-    "player": "H. Traor\u00e8",
-    "team": "Auxerre",
-    "goals": 10,
-    "assists": 2,
-    "appearances": 26,
-    "rating": "7.076923"
-   },
-   {
-    "player": "Gon\u00e7alo Ramos",
-    "team": "Paris SG",
-    "goals": 10,
-    "assists": 3,
-    "appearances": 22,
-    "rating": "7.045454"
-   }
-  ]
- }
+ "fetched_at": "2026-10-07T01:42:02.154239+00:00",
+ "notes": "One-off historical pull. Every table on the site that uses this data is labeled with the season.",
+ "pl": [
+  {
+   "player": "Matheus Cunha",
+   "team": "Man United",
+   "goals": 30,
+   "assists": 12,
+   "appearances": 66,
+   "rating": 7.630303
+  },
+  {
+   "player": "Mohamed Salah",
+   "team": "Liverpool",
+   "goals": 29,
+   "assists": 18,
+   "appearances": 38,
+   "rating": 7.792105
+  },
+  {
+   "player": "A. Isak",
+   "team": "Newcastle",
+   "goals": 23,
+   "assists": 6,
+   "appearances": 34,
+   "rating": 7.279411
+  },
+  {
+   "player": "E. Haaland",
+   "team": "Man City",
+   "goals": 22,
+   "assists": 3,
+   "appearances": 32,
+   "rating": 7.254838
+  },
+  {
+   "player": "C. Wood",
+   "team": "Nott'm Forest",
+   "goals": 20,
+   "assists": 3,
+   "appearances": 36,
+   "rating": 6.986111
+  },
+  {
+   "player": "B. Mbeumo",
+   "team": "Brentford",
+   "goals": 20,
+   "assists": 7,
+   "appearances": 38,
+   "rating": 7.45
+  },
+  {
+   "player": "João Pedro",
+   "team": "Chelsea",
+   "goals": 20,
+   "assists": 12,
+   "appearances": 54,
+   "rating": 7.17037
+  },
+  {
+   "player": "Y. Wissa",
+   "team": "Brentford",
+   "goals": 19,
+   "assists": 4,
+   "appearances": 35,
+   "rating": 7.157142
+  },
+  {
+   "player": "O. Watkins",
+   "team": "Aston Villa",
+   "goals": 16,
+   "assists": 8,
+   "appearances": 38,
+   "rating": 6.907894
+  },
+  {
+   "player": "C. Palmer",
+   "team": "Chelsea",
+   "goals": 15,
+   "assists": 8,
+   "appearances": 37,
+   "rating": 7.656756
+  },
+  {
+   "player": "D. Ouattara",
+   "team": "Brentford",
+   "goals": 14,
+   "assists": 8,
+   "appearances": 64,
+   "rating": 7.071875
+  },
+  {
+   "player": "J. Strand Larsen",
+   "team": "Wolves",
+   "goals": 14,
+   "assists": 4,
+   "appearances": 35,
+   "rating": 6.888571
+  },
+  {
+   "player": "J. Mateta",
+   "team": "Crystal Palace",
+   "goals": 14,
+   "assists": 2,
+   "appearances": 37,
+   "rating": 6.927027
+  },
+  {
+   "player": "L. Díaz",
+   "team": "Liverpool",
+   "goals": 13,
+   "assists": 5,
+   "appearances": 36,
+   "rating": 7.269444
+  },
+  {
+   "player": "J. Bowen",
+   "team": "West Ham",
+   "goals": 13,
+   "assists": 8,
+   "appearances": 34,
+   "rating": 7.197058
+  },
+  {
+   "player": "A. Elanga",
+   "team": "Newcastle",
+   "goals": 12,
+   "assists": 22,
+   "appearances": 76,
+   "rating": 7.018421
+  },
+  {
+   "player": "A. Garnacho",
+   "team": "Chelsea",
+   "goals": 12,
+   "assists": 4,
+   "appearances": 72,
+   "rating": 6.797222
+  },
+  {
+   "player": "L. Delap",
+   "team": "Ipswich",
+   "goals": 12,
+   "assists": 2,
+   "appearances": 37,
+   "rating": 6.878378
+  },
+  {
+   "player": "R. Jiménez",
+   "team": "Fulham",
+   "goals": 12,
+   "assists": 3,
+   "appearances": 38,
+   "rating": 7.013157
+  },
+  {
+   "player": "J. Kluivert",
+   "team": "Bournemouth",
+   "goals": 12,
+   "assists": 6,
+   "appearances": 34,
+   "rating": 7.161764
+  }
+ ],
+ "laliga": [
+  {
+   "player": "Kylian Mbappé",
+   "team": "Real Madrid",
+   "goals": 31,
+   "assists": 3,
+   "appearances": 34,
+   "rating": 7.717647
+  },
+  {
+   "player": "R. Lewandowski",
+   "team": "Barcelona",
+   "goals": 26,
+   "assists": 2,
+   "appearances": 35,
+   "rating": 7.284848
+  },
+  {
+   "player": "A. Budimir",
+   "team": "Osasuna",
+   "goals": 21,
+   "assists": 4,
+   "appearances": 38,
+   "rating": 7.175675
+  },
+  {
+   "player": "A. Sørloth",
+   "team": "Ath Madrid",
+   "goals": 20,
+   "assists": 4,
+   "appearances": 35,
+   "rating": 7.008571
+  },
+  {
+   "player": "Ayoze Pérez",
+   "team": "Villarreal",
+   "goals": 19,
+   "assists": 4,
+   "appearances": 30,
+   "rating": 7.24
+  },
+  {
+   "player": "Raphinha",
+   "team": "Barcelona",
+   "goals": 18,
+   "assists": 9,
+   "appearances": 36,
+   "rating": 7.802777
+  },
+  {
+   "player": "J. Álvarez",
+   "team": "Ath Madrid",
+   "goals": 17,
+   "assists": 4,
+   "appearances": 37,
+   "rating": 7.235135
+  },
+  {
+   "player": "Oihan Sancet",
+   "team": "Ath Bilbao",
+   "goals": 15,
+   "assists": 1,
+   "appearances": 30,
+   "rating": 7.051724
+  },
+  {
+   "player": "Álex Baena",
+   "team": "Ath Madrid",
+   "goals": 14,
+   "assists": 18,
+   "appearances": 64,
+   "rating": 7.5
+  },
+  {
+   "player": "Kike García",
+   "team": "Alaves",
+   "goals": 13,
+   "assists": 0,
+   "appearances": 37,
+   "rating": 7.022857
+  },
+  {
+   "player": "Javi Puado",
+   "team": "Espanyol",
+   "goals": 12,
+   "assists": 4,
+   "appearances": 35,
+   "rating": 6.865714
+  },
+  {
+   "player": "Borja Iglesias",
+   "team": "Betis",
+   "goals": 11,
+   "assists": 6,
+   "appearances": 37,
+   "rating": 6.835135
+  },
+  {
+   "player": "T. Barry",
+   "team": "Villarreal",
+   "goals": 11,
+   "assists": 4,
+   "appearances": 35,
+   "rating": 6.968571
+  },
+  {
+   "player": "D. Lukebakio",
+   "team": "Sevilla",
+   "goals": 11,
+   "assists": 2,
+   "appearances": 38,
+   "rating": 7.065789
+  },
+  {
+   "player": "Hugo Duro",
+   "team": "Valencia",
+   "goals": 11,
+   "assists": 2,
+   "appearances": 31,
+   "rating": 6.870967
+  },
+  {
+   "player": "Vinícius Júnior",
+   "team": "Real Madrid",
+   "goals": 11,
+   "assists": 8,
+   "appearances": 30,
+   "rating": 7.373333
+  },
+  {
+   "player": "C. Stuani",
+   "team": "Girona",
+   "goals": 11,
+   "assists": 2,
+   "appearances": 38,
+   "rating": 6.815625
+  },
+  {
+   "player": "Alfon González",
+   "team": "Sevilla",
+   "goals": 10,
+   "assists": 4,
+   "appearances": 61,
+   "rating": 6.9
+  },
+  {
+   "player": "Fábio Silva",
+   "team": "Las Palmas",
+   "goals": 10,
+   "assists": 3,
+   "appearances": 24,
+   "rating": 7.0875
+  },
+  {
+   "player": "M. Arambarri",
+   "team": "Getafe",
+   "goals": 10,
+   "assists": 0,
+   "appearances": 35,
+   "rating": 6.908571
+  }
+ ],
+ "bundesliga": [
+  {
+   "player": "H. Kane",
+   "team": "Bayern Munich",
+   "goals": 26,
+   "assists": 8,
+   "appearances": 31,
+   "rating": 7.696774
+  },
+  {
+   "player": "S. Machino",
+   "team": "Borussia Mönchengladbach",
+   "goals": 22,
+   "assists": 4,
+   "appearances": 66,
+   "rating": 7.04375
+  },
+  {
+   "player": "P. Schick",
+   "team": "Leverkusen",
+   "goals": 21,
+   "assists": 0,
+   "appearances": 33,
+   "rating": 7.183333
+  },
+  {
+   "player": "S. Guirassy",
+   "team": "Dortmund",
+   "goals": 21,
+   "assists": 4,
+   "appearances": 30,
+   "rating": 7.253333
+  },
+  {
+   "player": "R. Dōan",
+   "team": "Ein Frankfurt",
+   "goals": 20,
+   "assists": 14,
+   "appearances": 68,
+   "rating": 7.197058
+  },
+  {
+   "player": "J. Burkardt",
+   "team": "Mainz",
+   "goals": 18,
+   "assists": 2,
+   "appearances": 29,
+   "rating": 7.185714
+  },
+  {
+   "player": "T. Kleindienst",
+   "team": "Borussia Mönchengladbach",
+   "goals": 16,
+   "assists": 7,
+   "appearances": 31,
+   "rating": 7.312903
+  },
+  {
+   "player": "E. Demirović",
+   "team": "Stuttgart",
+   "goals": 15,
+   "assists": 2,
+   "appearances": 34,
+   "rating": 6.844117
+  },
+  {
+   "player": "H. Ekitike",
+   "team": "Ein Frankfurt",
+   "goals": 15,
+   "assists": 8,
+   "appearances": 33,
+   "rating": 7.284848
+  },
+  {
+   "player": "Omar Marmoush",
+   "team": "Ein Frankfurt",
+   "goals": 15,
+   "assists": 9,
+   "appearances": 17,
+   "rating": 8.258823
+  },
+  {
+   "player": "B. Šeško",
+   "team": "RB Leipzig",
+   "goals": 13,
+   "assists": 5,
+   "appearances": 33,
+   "rating": 6.948484
+  },
+  {
+   "player": "M. Olise",
+   "team": "Bayern Munich",
+   "goals": 12,
+   "assists": 15,
+   "appearances": 34,
+   "rating": 7.923529
+  },
+  {
+   "player": "J. Musiala",
+   "team": "Bayern Munich",
+   "goals": 12,
+   "assists": 2,
+   "appearances": 25,
+   "rating": 7.544
+  },
+  {
+   "player": "N. Woltemade",
+   "team": "Stuttgart",
+   "goals": 12,
+   "assists": 2,
+   "appearances": 28,
+   "rating": 6.925
+  },
+  {
+   "player": "L. Sané",
+   "team": "Bayern Munich",
+   "goals": 11,
+   "assists": 5,
+   "appearances": 30,
+   "rating": 7.163333
+  },
+  {
+   "player": "A. Pléa",
+   "team": "Borussia Mönchengladbach",
+   "goals": 11,
+   "assists": 4,
+   "appearances": 30,
+   "rating": 7.106896
+  },
+  {
+   "player": "A. Kramarić",
+   "team": "Hoffenheim",
+   "goals": 11,
+   "assists": 8,
+   "appearances": 32,
+   "rating": 7.16875
+  },
+  {
+   "player": "X. Simons",
+   "team": "RB Leipzig",
+   "goals": 10,
+   "assists": 6,
+   "appearances": 25,
+   "rating": 7.58
+  },
+  {
+   "player": "J. Stage",
+   "team": "Werder Bremen",
+   "goals": 10,
+   "assists": 5,
+   "appearances": 29,
+   "rating": 7.196428
+  },
+  {
+   "player": "P. Nebel",
+   "team": "Mainz",
+   "goals": 10,
+   "assists": 4,
+   "appearances": 31,
+   "rating": 7.180645
+  }
+ ],
+ "seriea": [
+  {
+   "player": "M. Retegui",
+   "team": "Genoa",
+   "goals": 25,
+   "assists": 16,
+   "appearances": 36,
+   "rating": 7.3
+  },
+  {
+   "player": "M. Kean",
+   "team": "Fiorentina",
+   "goals": 19,
+   "assists": 3,
+   "appearances": 32,
+   "rating": 6.9875
+  },
+  {
+   "player": "S. Esposito",
+   "team": "Inter",
+   "goals": 16,
+   "assists": 0,
+   "appearances": 67,
+   "rating": 7.10606
+  },
+  {
+   "player": "A. Lookman",
+   "team": "Atalanta",
+   "goals": 15,
+   "assists": 5,
+   "appearances": 33,
+   "rating": 7.341935
+  },
+  {
+   "player": "R. Orsolini",
+   "team": "Bologna",
+   "goals": 15,
+   "assists": 4,
+   "appearances": 30,
+   "rating": 7.172413
+  },
+  {
+   "player": "M. Thuram",
+   "team": "Inter",
+   "goals": 14,
+   "assists": 4,
+   "appearances": 35,
+   "rating": 7.309375
+  },
+  {
+   "player": "R. Lukaku",
+   "team": "Napoli",
+   "goals": 14,
+   "assists": 10,
+   "appearances": 36,
+   "rating": 6.986111
+  },
+  {
+   "player": "S. McTominay",
+   "team": "Napoli",
+   "goals": 12,
+   "assists": 4,
+   "appearances": 34,
+   "rating": 7.220588
+  },
+  {
+   "player": "Lautaro Martínez",
+   "team": "Inter",
+   "goals": 12,
+   "assists": 3,
+   "appearances": 32,
+   "rating": 7.22258
+  },
+  {
+   "player": "L. Lucca",
+   "team": "Udinese",
+   "goals": 12,
+   "assists": 1,
+   "appearances": 33,
+   "rating": 6.936363
+  },
+  {
+   "player": "L. Colombo",
+   "team": "Milan",
+   "goals": 12,
+   "assists": 4,
+   "appearances": 74,
+   "rating": 6.732432
+  },
+  {
+   "player": "A. Dovbyk",
+   "team": "Roma",
+   "goals": 12,
+   "assists": 2,
+   "appearances": 35,
+   "rating": 6.878125
+  },
+  {
+   "player": "N. Krstović",
+   "team": "Lecce",
+   "goals": 11,
+   "assists": 5,
+   "appearances": 37,
+   "rating": 7.116216
+  },
+  {
+   "player": "C. Pulišić",
+   "team": "Milan",
+   "goals": 11,
+   "assists": 9,
+   "appearances": 34,
+   "rating": 7.244117
+  },
+  {
+   "player": "T. Reijnders",
+   "team": "Milan",
+   "goals": 10,
+   "assists": 4,
+   "appearances": 37,
+   "rating": 7.27027
+  },
+  {
+   "player": "A. Pinamonti",
+   "team": "Genoa",
+   "goals": 10,
+   "assists": 1,
+   "appearances": 36,
+   "rating": 6.916666
+  },
+  {
+   "player": "R. Piccoli",
+   "team": "Cagliari",
+   "goals": 10,
+   "assists": 1,
+   "appearances": 37,
+   "rating": 6.683783
+  },
+  {
+   "player": "V. Castellanos",
+   "team": "Lazio",
+   "goals": 10,
+   "assists": 3,
+   "appearances": 31,
+   "rating": 7.206896
+  },
+  {
+   "player": "Pedro",
+   "team": "Lazio",
+   "goals": 10,
+   "assists": 1,
+   "appearances": 36,
+   "rating": 7.103448
+  },
+  {
+   "player": "D. Vlahović",
+   "team": "Juventus",
+   "goals": 10,
+   "assists": 4,
+   "appearances": 32,
+   "rating": 6.831034
+  }
+ ],
+ "ligue1": [
+  {
+   "player": "M. Greenwood",
+   "team": "Marseille",
+   "goals": 22,
+   "assists": 5,
+   "appearances": 34,
+   "rating": 7.579411
+  },
+  {
+   "player": "O. Dembélé",
+   "team": "Paris SG",
+   "goals": 21,
+   "assists": 7,
+   "appearances": 30,
+   "rating": 7.724137
+  },
+  {
+   "player": "A. Gouiri",
+   "team": "Rennes",
+   "goals": 20,
+   "assists": 6,
+   "appearances": 28,
+   "rating": 7.628571
+  },
+  {
+   "player": "A. Kalimuendo",
+   "team": "Rennes",
+   "goals": 17,
+   "assists": 3,
+   "appearances": 33,
+   "rating": 7.024242
+  },
+  {
+   "player": "J. David",
+   "team": "Lille",
+   "goals": 16,
+   "assists": 5,
+   "appearances": 32,
+   "rating": 7.153125
+  },
+  {
+   "player": "A. Lacazette",
+   "team": "Lyon",
+   "goals": 15,
+   "assists": 2,
+   "appearances": 30,
+   "rating": 7.02
+  },
+  {
+   "player": "B. Barcola",
+   "team": "Paris SG",
+   "goals": 14,
+   "assists": 10,
+   "appearances": 34,
+   "rating": 7.229411
+  },
+  {
+   "player": "E. Emegha",
+   "team": "Strasbourg",
+   "goals": 14,
+   "assists": 3,
+   "appearances": 27,
+   "rating": 6.955555
+  },
+  {
+   "player": "L. Ajorque",
+   "team": "Brest",
+   "goals": 13,
+   "assists": 2,
+   "appearances": 31,
+   "rating": 7.112903
+  },
+  {
+   "player": "M. Biereth",
+   "team": "Monaco",
+   "goals": 13,
+   "assists": 2,
+   "appearances": 17,
+   "rating": 7.3875
+  },
+  {
+   "player": "E. Guessand",
+   "team": "Nice",
+   "goals": 12,
+   "assists": 8,
+   "appearances": 33,
+   "rating": 7.215151
+  },
+  {
+   "player": "L. Stassin",
+   "team": "St Etienne",
+   "goals": 12,
+   "assists": 4,
+   "appearances": 28,
+   "rating": 7.125
+  },
+  {
+   "player": "Keito Nakamura",
+   "team": "Reims",
+   "goals": 11,
+   "assists": 2,
+   "appearances": 34,
+   "rating": 6.920588
+  },
+  {
+   "player": "G. Mikautadze",
+   "team": "Lyon",
+   "goals": 11,
+   "assists": 6,
+   "appearances": 34,
+   "rating": 6.952941
+  },
+  {
+   "player": "G. Laborde",
+   "team": "Nice",
+   "goals": 11,
+   "assists": 4,
+   "appearances": 28,
+   "rating": 7.2
+  },
+  {
+   "player": "G. Perrin",
+   "team": "Auxerre",
+   "goals": 10,
+   "assists": 11,
+   "appearances": 34,
+   "rating": 7.273529
+  },
+  {
+   "player": "M. Camara",
+   "team": "Rennes",
+   "goals": 10,
+   "assists": 6,
+   "appearances": 68,
+   "rating": 7.082352
+  },
+  {
+   "player": "Andrey Santos",
+   "team": "Strasbourg",
+   "goals": 10,
+   "assists": 3,
+   "appearances": 32,
+   "rating": 7.440625
+  },
+  {
+   "player": "H. Traorè",
+   "team": "Auxerre",
+   "goals": 10,
+   "assists": 2,
+   "appearances": 26,
+   "rating": 7.076923
+  },
+  {
+   "player": "Gonçalo Ramos",
+   "team": "Paris SG",
+   "goals": 10,
+   "assists": 3,
+   "appearances": 22,
+   "rating": 7.045454
+  }
+ ]
 }
