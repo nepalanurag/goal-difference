@@ -41,6 +41,7 @@
   "tests/test_scorer_probs.py::test_scorer_prob_is_one_minus_exp",
   "tests/test_scorer_probs.py::test_scorer_prob_scales_with_team_xg",
   "tests/test_scorer_probs.py::test_shrunk_per90_regresses_to_prior",
+  "tests/test_seeds.py::test_simulation_seed_is_42",
   "tests/test_tracking.py::test_evaluations_roundtrip",
   "tests/test_tracking.py::test_migration_931_creates_tables",
   "tests/test_tracking.py::test_registry_upsert_and_promote",
