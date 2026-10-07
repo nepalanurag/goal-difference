@@ -26,7 +26,7 @@ a{color:var(--home);text-decoration:none} a:hover{text-decoration:underline}
 .nav a{color:var(--muted)} .nav a:hover{color:var(--text)}
 .dropdown{position:relative}
 .dropbtn{color:var(--muted);cursor:pointer}
-.dropbtn::after{content:" be";font-size:.8em}
+.dropbtn::after{content:" \25be";font-size:.8em}
 .dropdown:hover .dropbtn{color:var(--text)}
 .dropdown-content{display:none;position:absolute;top:calc(100% + 10px);left:0;
   background:#0d1117;border:1px solid var(--line);border-radius:8px;

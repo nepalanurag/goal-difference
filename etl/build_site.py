@@ -111,7 +111,7 @@ a{color:var(--home);text-decoration:none} a:hover{text-decoration:underline}
 .nav a{color:var(--muted)} .nav a:hover{color:var(--text)}
 .dropdown{position:relative}
 .dropbtn{color:var(--muted);cursor:pointer}
-.dropbtn::after{content:" \25be";font-size:.8em}
+.dropbtn::after{content:" \\25be";font-size:.8em}
 .dropdown:hover .dropbtn{color:var(--text)}
 .dropdown-content{display:none;position:absolute;top:calc(100% + 10px);left:0;
   background:#0d1117;border:1px solid var(--line);border-radius:8px;
@@ -625,6 +625,32 @@ def _leaderboards_html() -> str:
 
 
 # ------------------------------------------------- 8.2 likely scorers
+_scorers_cache: pd.DataFrame | None = None
+
+
+def _load_scorers() -> pd.DataFrame:
+    """Cached scorer probabilities for per-fixture 'players to watch'."""
+    global _scorers_cache
+    if _scorers_cache is None:
+        p = settings.data_dir / "scorer_probs.csv"
+        _scorers_cache = pd.read_csv(p) if p.exists() else pd.DataFrame()
+    return _scorers_cache
+
+
+def watch_html(fixture_id: str, n: int = 3) -> str:
+    """'Players to watch' line for a fixture card, from scorer probabilities."""
+    sc = _load_scorers()
+    if sc.empty:
+        return ""
+    top = sc[sc.fixture_id == fixture_id].sort_values("prob", ascending=False).head(n)
+    if top.empty:
+        return ""
+    items = ", ".join(f"{esc(r.player)} <span class='muted'>{r.prob:.0%}</span>"
+                      for _, r in top.iterrows())
+    return (f"<div class='small' style='margin-top:6px'>"
+            f"<span class='muted'>Players to watch:</span> {items}</div>")
+
+
 def scorers_section(scorers: pd.DataFrame) -> str:
     """Top-15 'Likely scorers this week' table with model inputs shown."""
     if scorers is None or scorers.empty:
@@ -908,6 +934,7 @@ href="{SITE_BASE}/leagues/{league}/fixtures/{r.fixture_id}.html">{esc(r.home)} v
 {prob_bar(r.p_home_ens, r.p_draw_ens, r.p_away_ens)}
 {prob_legend(r.home, r.away)}
 <div class="small muted" style="margin-top:6px">xG {r.xg_home:.2f} - {r.xg_away:.2f}</div>
+{watch_html(r.fixture_id)}
 </div>""")
         fix_html = f"<h2>This matchday</h2><div class='grid g2'>{''.join(cards)}</div>"
     else:
@@ -1073,7 +1100,8 @@ vs {esc(away)} <span class="mono">{af.get('shot_diff_pg', 0):+.1f}</span> per ga
 {euro_note(league, ld, home, away, feats)}
 <h2>Head to head</h2><div class="card">{h2h_html}</div>
 {team_news_box(league, ld, home, away)}
-<h2>Prediction</h2><div class="grid g2">{probs}{expect}</div>"""
+<h2>Prediction</h2><div class="grid g2">{probs}{expect}</div>
+<h2>Players to watch</h2><div class="card">{watch_html(row.fixture_id, n=5) or "<p class='muted'>No scorer data for this fixture.</p>"}</div>"""
     return page_shell(f"{home} v {away}", body, league=league, updated=updated)
 
 
