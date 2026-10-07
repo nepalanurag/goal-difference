@@ -115,7 +115,10 @@ def score_league(league: str, results: pd.DataFrame,
 
     res = results[needed].copy()
     res[KEY_COLS] = res[KEY_COLS].astype(str)
-    merged = ledger.merge(res, on=KEY_COLS, how="left", indicator=True)
+    # Drop ledger's result column before merge to avoid result_x/result_y;
+    # the incoming results are the source of truth.
+    ledger_nores = ledger.drop(columns=["result"], errors="ignore")
+    merged = ledger_nores.merge(res, on=KEY_COLS, how="left", indicator=True)
 
     unmatched = res.merge(ledger[KEY_COLS], on=KEY_COLS, how="left",
                           indicator=True)
