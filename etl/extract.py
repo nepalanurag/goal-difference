@@ -338,65 +338,47 @@ def fetch_bundesliga_lineups(n_matchdays: int = 5) -> Path:
     return out
 
 
-def reconstruct_remaining_schedule(league: str) -> pd.DataFrame:
-    """Rebuild the live season's remaining fixtures from the round-robin.
-
-    No free source publishes future fixtures for non-PL leagues, so the
-    remaining ordered pairings (every team hosts every other team once)
-    minus the pairings already played gives the exact remaining schedule.
-    Dates are approximate (weekly matchdays after the last played date).
-    Provenance is labeled schedule_reconstructed; the site states this.
-    """
-    season = settings.live_season
-    path = settings.data_dir / f"fixtures_{league}.csv"
-    df = pd.read_csv(path, dtype={"season": str})
-    live = df[df["season"] == season]
-    teams = sorted(set(live["home"]) | set(live["away"]))
-    played = set(zip(live["home"], live["away"]))
-    remaining = [(h, a) for h in teams for a in teams
-                 if h != a and (h, a) not in played]
-    if not remaining:
-        return pd.DataFrame(columns=OUTPUT_COLS)
-    last_date = pd.to_datetime(live["date"]).max().date()
-    # Start the reconstructed run on the next Saturday on or after TODAY:
-    # CSVs lag real time, so anchoring on the last played date would create
-    # phantom past matchdays.
-    anchor = max(last_date, date.today())
-    days_ahead = (5 - anchor.weekday()) % 7 or 7
-    start = anchor + timedelta(days=days_ahead)
-    per_round = len(teams) // 2
-    rows = []
-    # Deterministic round-robin-ish ordering: sort and chunk into matchdays.
-    remaining_sorted = sorted(remaining)
-    for i, (home, away) in enumerate(remaining_sorted):
-        round_no = i // per_round
-        dt = (start + timedelta(weeks=round_no)).isoformat()
-        fid = slugify(f"{league}-{season}-{dt}-{home}-v-{away}")
-        rows.append({
-            "fixture_id": fid, "date": dt, "season": season, "league": league,
-            "home": home, "away": away, "home_goals": None, "away_goals": None,
-            "status": "scheduled", "provenance": "schedule_reconstructed",
-            "api_fixture_id": None, **{c: None for c in STAT_COLS},
-        })
-    out = pd.DataFrame(rows, columns=OUTPUT_COLS)
-    log.info("schedule_reconstructed", league=league, remaining=len(out),
-             from_date=start.isoformat())
-    return out
-
-
 def append_reconstructed_schedules(leagues: list[str]) -> None:
+    """Replace reconstructed/scheduled rows with real ESPN fixtures.
+
+    The old round-robin reconstruction guessed matchups; ESPN publishes the
+    real schedule. For each non-PL league: drop all schedule_reconstructed
+    and espn rows for the live season, fetch the next 60 days from ESPN,
+    and append with provenance="espn".
+    """
+    from .uefa import fetch_espn_league
+    from .team_names import canonicalize_espn
+    today = date.today().isoformat()
+    end = (date.today() + timedelta(days=60)).isoformat()
     for league in leagues:
         if league == "pl":
             continue  # PL has real scheduled fixtures from FPL
         path = settings.data_dir / f"fixtures_{league}.csv"
         df = pd.read_csv(path, dtype={"season": str})
-        # Drop any previously reconstructed rows, then rebuild.
-        df = df[df["provenance"] != "schedule_reconstructed"]
-        recon = reconstruct_remaining_schedule(league)
-        df = pd.concat([df, recon], ignore_index=True)
+        season = str(settings.live_season)
+        # Drop old guessed rows (and any previous ESPN pull) for live season.
+        mask = ~((df["season"] == season) &
+                 (df["provenance"].isin(["schedule_reconstructed", "espn"])))
+        df = df[mask]
+        rows = []
+        for r in fetch_espn_league(league, today, end):
+            if r["status"] != "scheduled":
+                continue
+            fid = slugify(f"{league}-{season}-{r['date']}-{r['home']}-v-{r['away']}")
+            rows.append({
+                "fixture_id": fid, "date": r["date"], "season": season,
+                "league": league, "home": r["home"], "away": r["away"],
+                "home_goals": None, "away_goals": None,
+                "status": "scheduled", "provenance": "espn",
+                "api_fixture_id": None, **{c: None for c in STAT_COLS},
+            })
+        if rows:
+            df = pd.concat([df, pd.DataFrame(rows, columns=OUTPUT_COLS)],
+                           ignore_index=True)
         df = df.drop_duplicates(subset=["fixture_id"], keep="first")
         df = df.sort_values("date").reset_index(drop=True)
         df.to_csv(path, index=False)
+        log.info("espn_fixtures_written", league=league, n=len(rows))
 
 
 def write_lineup_sources() -> Path:

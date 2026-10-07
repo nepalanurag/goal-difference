@@ -29,6 +29,14 @@ ESPN_SLUGS = {
     "UECL": "uefa.europa.conf",
 }
 
+# Domestic league slugs for real fixture data (replaces schedule reconstruction).
+LEAGUE_SLUGS = {
+    "laliga": "esp.1",
+    "bundesliga": "ger.1",
+    "seriea": "ita.1",
+    "ligue1": "fra.1",
+}
+
 _BASE = "https://site.api.espn.com/apis/site/v2/sports/soccer"
 _FINISHED_EXACT = {"STATUS_FULL_TIME"}
 
@@ -113,4 +121,38 @@ def fetch_espn_uefa(start_date: str, end_date: str) -> list[dict]:
                     rows.append(row)
         day += timedelta(days=1)
     log.info("espn_uefa_fetched", start=start_date, end=end_date, n=len(rows))
+    return rows
+
+
+def fetch_espn_league(league: str, start_date: str, end_date: str) -> list[dict]:
+    """Fetch real fixtures for a domestic league via ESPN scoreboard.
+
+    Dates are YYYY-MM-DD strings. Returns one dict per fixture with keys:
+    fixture_id ("espn-<event id>"), date, competition (league slug),
+    home, away (canonical team names), home_goals, away_goals (int or None),
+    status ("finished"/"scheduled"). Only fixtures where BOTH teams are in
+    the league's canonical team set are returned (filters out playoff/
+    cross-competition noise).
+    """
+    from .team_names import CANONICAL
+    slug = LEAGUE_SLUGS.get(league)
+    if not slug:
+        raise ValueError(f"no ESPN slug for league {league}")
+    known = CANONICAL.get(league, set())
+    rows: list[dict] = []
+    start = date.fromisoformat(start_date)
+    end = date.fromisoformat(end_date)
+    day = start
+    while day <= end:
+        stamp = day.strftime("%Y%m%d")
+        data = _get_json(f"{_BASE}/{slug}/scoreboard?dates={stamp}")
+        time.sleep(1)
+        if data:
+            for event in data.get("events", []):
+                row = _parse_event(event, slug)
+                if row and row["date"] and row["home"] in known and row["away"] in known:
+                    rows.append(row)
+        day += timedelta(days=1)
+    log.info("espn_league_fetched", league=league, start=start_date,
+             end=end_date, n=len(rows))
     return rows
