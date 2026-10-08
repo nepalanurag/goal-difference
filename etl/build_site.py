@@ -1634,8 +1634,14 @@ def main() -> int:
     for league in settings.league_order:
         ld = datas[league]
         ldir = docs / "leagues" / league
-        (ldir / "fixtures").mkdir(parents=True, exist_ok=True)
-        (ldir / "teams").mkdir(parents=True, exist_ok=True)
+        for sub in ("fixtures", "teams"):
+            subdir = ldir / sub
+            subdir.mkdir(parents=True, exist_ok=True)
+            # Drop pages from older fixture sets (e.g. superseded schedule
+            # reconstructions); without this, stale impossible fixtures
+            # accumulate on the live site.
+            for stale in subdir.glob("*.html"):
+                stale.unlink()
         (ldir / "index.html").write_text(build_league(league, ld,
                                                       preds[league], updated))
         pr = preds[league]
