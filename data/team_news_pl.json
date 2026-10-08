@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-08T04:15:44.100220+00:00",
+ "fetched_at": "2026-10-08T19:50:43.855176+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season.",
  "teams": {
   "Arsenal": {
@@ -246,6 +246,14 @@
      "regular_starter": false
     },
     {
+     "player": "Alex Scott",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Thigh injury - Unknown return date",
+     "regular_starter": true
+    },
+    {
      "player": "Justin Kluivert",
      "status": "i",
      "chance_this_round": null,
@@ -278,16 +286,7 @@
      "regular_starter": false
     }
    ],
-   "doubtful": [
-    {
-     "player": "Alex Scott",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 50,
-     "news": "Thigh injury - 50% chance of playing",
-     "regular_starter": true
-    }
-   ],
+   "doubtful": [],
    "key_absences": 2
   },
   "Brentford": {
@@ -627,10 +626,10 @@
     },
     {
      "player": "Kaine Kesler-Hayden",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Hamstring injury - Unknown return date",
+     "chance_next_round": 50,
+     "news": "Hamstring injury - 50% chance of playing",
      "regular_starter": false
     },
     {
@@ -1188,10 +1187,10 @@
    "out": [
     {
      "player": "Harry Wilson",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Thigh injury - Unknown return date",
+     "chance_next_round": 75,
+     "news": "Thigh injury - 75% chance of playing",
      "regular_starter": false
     },
     {
@@ -1235,6 +1234,14 @@
      "regular_starter": false
     },
     {
+     "player": "Daniel James",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Back injury - Expected back 18 Oct",
+     "regular_starter": false
+    },
+    {
      "player": "Joël Piroe",
      "status": "u",
      "chance_this_round": 0,
@@ -1251,7 +1258,16 @@
      "regular_starter": false
     }
    ],
-   "doubtful": [],
+   "doubtful": [
+    {
+     "player": "Jean-Mattéo Bahoya",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Ankle injury - 75% chance of playing",
+     "regular_starter": false
+    }
+   ],
    "key_absences": 0
   },
   "Liverpool": {
@@ -1647,10 +1663,10 @@
     },
     {
      "player": "Joelinton Cássio Apolinário de Lira",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Unspecified injury - Unknown return date",
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": false
     },
     {
@@ -1796,6 +1812,14 @@
      "regular_starter": false
     },
     {
+     "player": "Daniel Ballard",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Unknown return date",
+     "regular_starter": true
+    },
+    {
      "player": "Reinildo Mandava",
      "status": "a",
      "chance_this_round": 0,
@@ -1832,7 +1856,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Hamstring injury - Unknown return date",
+     "news": "Hamstring injury - Expected back 18 Oct",
      "regular_starter": false
     },
     {
@@ -1850,26 +1874,17 @@
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
      "regular_starter": false
-    }
-   ],
-   "doubtful": [
-    {
-     "player": "Daniel Ballard",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
-     "regular_starter": true
     },
     {
      "player": "Brian Brobbey",
-     "status": "d",
+     "status": "i",
      "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Expected back 25 Oct",
      "regular_starter": true
     }
    ],
+   "doubtful": [],
    "key_absences": 3
   },
   "Tottenham": {
