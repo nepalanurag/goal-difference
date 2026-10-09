@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-08T19:50:43.855176+00:00",
+ "fetched_at": "2026-10-09T19:26:34.120455+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season.",
  "teams": {
   "Arsenal": {
@@ -54,17 +54,17 @@
      "chance_next_round": 0,
      "news": "Has joined FC Barcelona permanently",
      "regular_starter": false
+    },
+    {
+     "player": "Christos Tzolis",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Expected back 24 Oct",
+     "regular_starter": true
     }
    ],
    "doubtful": [
-    {
-     "player": "Benjamin White",
-     "status": "d",
-     "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Groin injury - 75% chance of playing",
-     "regular_starter": true
-    },
     {
      "player": "Declan Rice",
      "status": "d",
@@ -72,14 +72,6 @@
      "chance_next_round": 75,
      "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": true
-    },
-    {
-     "player": "Max Dowman",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
-     "regular_starter": false
     },
     {
      "player": "Kai Havertz",
@@ -96,17 +88,9 @@
      "chance_next_round": 75,
      "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": true
-    },
-    {
-     "player": "Christos Tzolis",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
-     "regular_starter": true
     }
    ],
-   "key_absences": 5
+   "key_absences": 4
   },
   "Aston Villa": {
    "out": [
@@ -128,10 +112,10 @@
     },
     {
      "player": "Pau Torres",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Hamstring injury - Expected back 10 Oct",
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
      "regular_starter": false
     },
     {
@@ -184,10 +168,10 @@
     },
     {
      "player": "Brian Madjo",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Unspecified injury - Unknown return date",
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": false
     },
     {
@@ -203,7 +187,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Knee injury - Expected back 10 Oct",
+     "news": "Knee injury - Expected back 17 Oct",
      "regular_starter": false
     }
    ],
@@ -380,10 +364,10 @@
     },
     {
      "player": "Jack Hinshelwood",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Ankle injury - Expected back 10 Oct",
+     "chance_next_round": 50,
+     "news": "Ankle injury - 50% chance of playing",
      "regular_starter": false
     },
     {
@@ -461,14 +445,6 @@
    ],
    "doubtful": [
     {
-     "player": "Lewis Dunk",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Neck injury - 75% chance of playing",
-     "regular_starter": true
-    },
-    {
      "player": "Pascal Struijk",
      "status": "d",
      "chance_this_round": 100,
@@ -477,7 +453,7 @@
      "regular_starter": false
     }
    ],
-   "key_absences": 1
+   "key_absences": 0
   },
   "Chelsea": {
    "out": [
@@ -522,6 +498,14 @@
      "regular_starter": false
     },
     {
+     "player": "Jamie Bynoe-Gittens",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Ankle injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
      "player": "Dário Luís Essugo",
      "status": "u",
      "chance_this_round": 0,
@@ -557,54 +541,38 @@
     },
     {
      "player": "Reece James",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true
     },
     {
      "player": "Marco Palestra",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Thigh injury - 50% chance of playing",
-     "regular_starter": false
-    },
-    {
-     "player": "Cole Palmer",
-     "status": "d",
-     "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Muscular injury - 75% chance of playing",
-     "regular_starter": true
-    },
-    {
-     "player": "Jamie Bynoe-Gittens",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Ankle injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
      "player": "Moisés Caicedo Corozo",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Calf injury - 50% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
      "player": "João Pedro Junqueira de Jesus",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Knee injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true
     }
    ],
-   "key_absences": 3
+   "key_absences": 2
   },
   "Coventry City": {
    "out": [
@@ -740,7 +708,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Foot injury - Expected back 11 Oct",
+     "news": "Foot injury - Expected back 18 Oct",
      "regular_starter": true
     },
     {
@@ -804,7 +772,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Hamstring injury - Expected back 11 Oct",
+     "news": "Hamstring injury - Expected back 18 Oct",
      "regular_starter": false
     },
     {
@@ -814,36 +782,27 @@
      "chance_next_round": 0,
      "news": "has returned to Getafe CF",
      "regular_starter": false
-    }
-   ],
-   "doubtful": [
-    {
-     "player": "Takehiro Tomiyasu",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Calf injury - 75% chance of playing",
-     "regular_starter": true
     },
     {
-     "player": "Anan Khalaili",
-     "status": "d",
+     "player": "Takehiro Tomiyasu",
+     "status": "i",
      "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
+     "chance_next_round": 0,
+     "news": "Calf injury - Expected back 18 Oct",
      "regular_starter": true
     }
    ],
-   "key_absences": 3
+   "doubtful": [],
+   "key_absences": 2
   },
   "Everton": {
    "out": [
     {
      "player": "Christian Nørgaard",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Groin injury - Unknown return date",
+     "chance_next_round": 50,
+     "news": "Groin injury - 50% chance of playing",
      "regular_starter": false
     },
     {
@@ -864,10 +823,10 @@
     },
     {
      "player": "Merlin Röhl",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Unspecified injury - Expected back 11 Oct",
+     "chance_next_round": 50,
+     "news": "Unspecified injury - 50% chance of playing",
      "regular_starter": true
     },
     {
@@ -922,7 +881,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Knee injury - Expected back 10 Oct",
+     "news": "Knee injury - Expected back 17 Oct",
      "regular_starter": false
     },
     {
@@ -936,6 +895,14 @@
    ],
    "doubtful": [
     {
+     "player": "Antonee Robinson",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Ankle injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
      "player": "Ryan Sessegnon",
      "status": "a",
      "chance_this_round": 75,
@@ -944,7 +911,7 @@
      "regular_starter": false
     }
    ],
-   "key_absences": 0
+   "key_absences": 1
   },
   "Hull City": {
    "out": [
@@ -1053,11 +1020,19 @@
      "regular_starter": false
     },
     {
-     "player": "Hidemasa Morita",
+     "player": "Matt Targett",
      "status": "i",
-     "chance_this_round": 0,
+     "chance_this_round": 75,
      "chance_next_round": 0,
-     "news": "Calf injury - Expected back 11 Oct",
+     "news": "Ankle injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
+     "player": "Hidemasa Morita",
+     "status": "a",
+     "chance_this_round": 0,
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
@@ -1077,24 +1052,7 @@
      "regular_starter": false
     }
    ],
-   "doubtful": [
-    {
-     "player": "Matt Targett",
-     "status": "d",
-     "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Ankle injury - 75% chance of playing",
-     "regular_starter": false
-    },
-    {
-     "player": "Brooke Norton-Cuffy",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
-     "regular_starter": false
-    }
-   ],
+   "doubtful": [],
    "key_absences": 1
   },
   "Ipswich Town": {
@@ -1117,10 +1075,10 @@
     },
     {
      "player": "Jack Taylor",
-     "status": "i",
+     "status": "a",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Knee injury - Unknown return date",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
@@ -1313,11 +1271,19 @@
      "regular_starter": false
     },
     {
-     "player": "Federico Chiesa",
+     "player": "Cody Gakpo",
      "status": "i",
-     "chance_this_round": 0,
+     "chance_this_round": 100,
      "chance_next_round": 0,
-     "news": "Back injury - Unknown return date",
+     "news": "Ankle injury - Unknown return date",
+     "regular_starter": true
+    },
+    {
+     "player": "Federico Chiesa",
+     "status": "d",
+     "chance_this_round": 0,
+     "chance_next_round": 25,
+     "news": "Back injury - 25% chance of playing",
      "regular_starter": false
     },
     {
@@ -1337,6 +1303,14 @@
      "regular_starter": false
     },
     {
+     "player": "Alexander Isak",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Thigh injury - Unknown return date",
+     "regular_starter": true
+    },
+    {
      "player": "Hugo Ekitiké",
      "status": "i",
      "chance_this_round": 0,
@@ -1353,33 +1327,8 @@
      "regular_starter": false
     }
    ],
-   "doubtful": [
-    {
-     "player": "Jeremy Jacquet",
-     "status": "d",
-     "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
-     "regular_starter": true
-    },
-    {
-     "player": "Cody Gakpo",
-     "status": "d",
-     "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Ankle injury - 75% chance of playing",
-     "regular_starter": true
-    },
-    {
-     "player": "Alexander Isak",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Thigh injury - 75% chance of playing",
-     "regular_starter": true
-    }
-   ],
-   "key_absences": 3
+   "doubtful": [],
+   "key_absences": 2
   },
   "Man City": {
    "out": [
@@ -1495,6 +1444,14 @@
      "regular_starter": false
     },
     {
+     "player": "Patrick Dorgu",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Expected back 25 Oct",
+     "regular_starter": false
+    },
+    {
      "player": "Matthijs de Ligt",
      "status": "i",
      "chance_this_round": 0,
@@ -1535,6 +1492,14 @@
      "regular_starter": false
     },
     {
+     "player": "Benjamin Sesko",
+     "status": "i",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Shin injury - Expected back 18 Oct",
+     "regular_starter": false
+    },
+    {
      "player": "Chido Obi",
      "status": "u",
      "chance_this_round": 0,
@@ -1558,14 +1523,6 @@
      "chance_this_round": 100,
      "chance_next_round": 75,
      "news": "Unspecified injury - 75% chance of playing",
-     "regular_starter": false
-    },
-    {
-     "player": "Patrick Dorgu",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
      "regular_starter": false
     },
     {
@@ -1599,14 +1556,6 @@
      "chance_next_round": 75,
      "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": true
-    },
-    {
-     "player": "Benjamin Sesko",
-     "status": "d",
-     "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Shin injury - 75% chance of playing",
-     "regular_starter": false
     }
    ],
    "key_absences": 3
@@ -1679,10 +1628,10 @@
     },
     {
      "player": "William Osula",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Foot injury - Unknown return date",
+     "chance_next_round": 50,
+     "news": "Foot injury - 50% chance of playing",
      "regular_starter": false
     },
     {
@@ -1695,10 +1644,10 @@
     },
     {
      "player": "Amar Dedic",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Unspecified injury - Unknown return date",
+     "chance_next_round": 50,
+     "news": "Unspecified injury - 50% chance of playing",
      "regular_starter": true
     },
     {
@@ -1715,8 +1664,8 @@
      "player": "Tino Livramento",
      "status": "d",
      "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
+     "chance_next_round": 50,
+     "news": "Unspecified injury - 50% chance of playing",
      "regular_starter": false
     },
     {
@@ -1745,7 +1694,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Hamstring injury - Expected back 11 Oct",
+     "news": "Knee injury - Unknown return date",
      "regular_starter": true
     },
     {
@@ -1787,9 +1736,25 @@
      "chance_next_round": 0,
      "news": "Has joined Lille on loan for the rest of the season",
      "regular_starter": false
+    },
+    {
+     "player": "Igor Jesus Maciel da Cruz",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Calf injury - Unknown return date",
+     "regular_starter": false
     }
    ],
    "doubtful": [
+    {
+     "player": "Neco Williams",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 50,
+     "news": "Illness - 50% chance of playing",
+     "regular_starter": true
+    },
     {
      "player": "Jair Paula da Cunha Filho",
      "status": "a",
@@ -1799,7 +1764,7 @@
      "regular_starter": true
     }
    ],
-   "key_absences": 2
+   "key_absences": 3
   },
   "Sunderland": {
    "out": [
@@ -1895,6 +1860,14 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Juventus on loan for the rest of the season",
+     "regular_starter": false
+    },
+    {
+     "player": "Pedro Porro Sauceda",
+     "status": "i",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Unknown return date",
      "regular_starter": false
     },
     {
@@ -1994,25 +1967,8 @@
      "regular_starter": false
     }
    ],
-   "doubtful": [
-    {
-     "player": "Jan Paul van Hecke",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Foot injury - 75% chance of playing",
-     "regular_starter": true
-    },
-    {
-     "player": "Pedro Porro Sauceda",
-     "status": "d",
-     "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
-     "regular_starter": false
-    }
-   ],
-   "key_absences": 1
+   "doubtful": [],
+   "key_absences": 0
   }
  }
 }
