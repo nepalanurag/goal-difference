@@ -11,30 +11,23 @@ from __future__ import annotations
 
 import html
 import json
-import re
 from datetime import date
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 from .config import settings
 from .logging_setup import get_logger
-from .scorer_probs import BUNDESLIGA_CLUB_MAP, normalize_laliga_team
-from .team_names import CANONICAL, canonicalize
 
 log = get_logger(__name__)
+
+BASE = "/goal-difference"  # GitHub Pages project path
 
 LEAGUE_NAMES = {"pl": "Premier League", "laliga": "LaLiga",
                 "bundesliga": "Bundesliga", "seriea": "Serie A",
                 "ligue1": "Ligue 1"}
 LEAGUE_ACCENT = {"pl": "#e90052", "laliga": "#ff4b44", "bundesliga": "#d20515",
                  "seriea": "#008fd7", "ligue1": "#00a651"}
-
-# Base path the site is served from. GitHub Pages project sites live under
-# /<repo>/, so every internal link and the stylesheet must carry this prefix.
-# (Root-absolute "/" links 404 on project pages.)
-SITE_BASE = "/goal-difference"
 
 
 def slug(text: str) -> str:
@@ -48,6 +41,9 @@ def esc(text: object) -> str:
 
 def pct(p: float) -> str:
     return f"{100 * p:.0f}%"
+
+
+MAX_APPS = {"pl": 38, "laliga": 38, "bundesliga": 34, "seriea": 38, "ligue1": 34}
 
 
 def dash(v: object) -> str:
@@ -107,18 +103,8 @@ a{color:var(--home);text-decoration:none} a:hover{text-decoration:underline}
 .brand{font-family:'Barlow Condensed',sans-serif;font-size:1.5em;font-weight:700;
   text-transform:uppercase;letter-spacing:.06em;color:var(--text)}
 .brand b{color:#ffd23f}
-.nav{display:flex;gap:16px;flex-wrap:wrap;font-size:.92em;align-items:center}
+.nav{display:flex;gap:16px;flex-wrap:wrap;font-size:.92em}
 .nav a{color:var(--muted)} .nav a:hover{color:var(--text)}
-.dropdown{position:relative}
-.dropbtn{color:var(--muted);cursor:pointer}
-.dropbtn::after{content:" \\25be";font-size:.8em}
-.dropdown:hover .dropbtn{color:var(--text)}
-.dropdown-content{display:none;position:absolute;top:calc(100% + 10px);left:0;
-  background:#0d1117;border:1px solid var(--line);border-radius:8px;
-  min-width:180px;padding:6px;z-index:30}
-.dropdown:hover .dropdown-content,.dropdown:focus-within .dropdown-content{display:block}
-.dropdown-content a{display:block;padding:8px 12px;border-radius:4px}
-.dropdown-content a:hover{background:#1a212d}
 .hero{padding:44px 0 10px}
 .hero p.lede{color:var(--muted);font-size:1.1em;max-width:640px}
 .grid{display:grid;gap:14px}
@@ -168,205 +154,22 @@ tr:hover td{background:#141a24}
 .fixlink{color:var(--text)} .fixlink:hover{color:var(--home)}
 .scoreline{font-family:var(--mono);font-weight:700}
 @media(max-width:640px){h1{font-size:1.9em}.wrap{padding:0 12px 40px}}
-.data-updated{color:var(--faint);font-size:.82em;margin:12px 0 0}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
-.tabbtn{background:var(--panel2);border:1px solid var(--line);color:var(--muted);
-  border-radius:6px;padding:6px 14px;cursor:pointer;font-size:.9em;
-  font-family:inherit}
-.tabbtn:hover{color:var(--text);border-color:var(--muted)}
-.tabbtn.active{background:#ffd23f;border-color:#ffd23f;color:#0a0d12;
-  font-weight:700}
-th.sortable{cursor:pointer;user-select:none}
-th.sortable:hover{color:var(--text)}
-th.sortable .arrow{font-size:.75em;color:var(--faint)}
-.toggle-row{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
-.tgl{background:var(--panel2);border:1px solid var(--line);color:var(--muted);
-  border-radius:6px;padding:5px 12px;cursor:pointer;font-size:.85em;
-  font-family:inherit}
-.tgl:hover{color:var(--text)}
-.tgl.active{background:#4da3ff;border-color:#4da3ff;color:#0a0d12;font-weight:700}
-"""
-
-# Small vanilla-JS layer: progressive enhancement only. With JS disabled the
-# site shows the full tables and the ensemble view everywhere; the JS adds
-# tabs, toggles and sorting on top of the rendered HTML.
-APP_JS = """
-(function () {
-  'use strict';
-
-  function on(selector, event, fn) {
-    document.querySelectorAll(selector).forEach(function (el) {
-      el.addEventListener(event, fn);
-    });
-  }
-
-  // ---- Sortable tables: click a <th> to sort by that column (toggle asc/desc).
-  function cellValue(td) {
-    var t = td.textContent.trim().replace('%', '').replace(/,/g, '');
-    var n = parseFloat(t);
-    return isNaN(n) ? t.toLowerCase() : n;
-  }
-  document.querySelectorAll('table.sortable').forEach(function (table) {
-    var head = table.querySelector('tr');
-    if (!head) return;
-    var ths = Array.prototype.slice.call(head.querySelectorAll('th'));
-    ths.forEach(function (th, idx) {
-      th.classList.add('sortable');
-      th.title = 'Sort by this column';
-      th.setAttribute('tabindex', '0');
-      th.addEventListener('click', function () { sortBy(table, ths, idx); });
-      th.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sortBy(table, ths, idx); }
-      });
-    });
-  });
-  function sortBy(table, ths, idx) {
-    var asc = ths[idx].getAttribute('data-dir') !== 'asc';
-    var rows = Array.prototype.slice.call(table.querySelectorAll('tr')).slice(1);
-    rows.sort(function (a, b) {
-      var va = cellValue(a.children[idx] || a.cells[idx] || document.createElement('td'));
-      var vb = cellValue(b.children[idx] || b.cells[idx] || document.createElement('td'));
-      if (va === vb) return 0;
-      if (asc) return va < vb ? -1 : 1;
-      return va > vb ? -1 : 1;
-    });
-    rows.forEach(function (r) { table.appendChild(r); });
-    ths.forEach(function (t) { t.removeAttribute('data-dir'); t.querySelector('.arrow') &&
-      t.querySelector('.arrow').remove(); });
-    ths[idx].setAttribute('data-dir', asc ? 'asc' : 'desc');
-    var arrow = document.createElement('span');
-    arrow.className = 'arrow';
-    arrow.textContent = asc ? ' \\u25b2' : ' \\u25bc';
-    ths[idx].appendChild(arrow);
-  }
-
-  // ---- League tabs: containers holding .league-panel children get a tab bar.
-  var LEAGUE_NAMES = {pl: 'Premier League', laliga: 'LaLiga',
-    bundesliga: 'Bundesliga', seriea: 'Serie A', ligue1: 'Ligue 1'};
-  ['leaderboards', 'backend-rankings'].forEach(function (id) {
-    var box = document.getElementById(id);
-    if (!box) return;
-    var panels = box.querySelectorAll('.league-panel');
-    if (!panels.length) return;
-    var bar = document.createElement('div');
-    bar.className = 'tabs';
-    panels.forEach(function (p, i) {
-      var key = p.getAttribute('data-league');
-      var b = document.createElement('button');
-      b.className = 'tabbtn' + (i === 0 ? ' active' : '');
-      b.textContent = LEAGUE_NAMES[key] || key;
-      b.addEventListener('click', function () {
-        panels.forEach(function (q) { q.hidden = q !== p; });
-        bar.querySelectorAll('.tabbtn').forEach(function (x) { x.classList.remove('active'); });
-        b.classList.add('active');
-      });
-      bar.appendChild(b);
-      p.hidden = i !== 0;
-    });
-    box.insertBefore(bar, box.firstChild);
-  });
-
-  // ---- Fixture probability views: Poisson / ML / Ensemble toggle.
-  var pv = document.getElementById('probviews');
-  if (pv) {
-    var views = pv.querySelectorAll('.probview');
-    if (views.length > 1) {
-      var row = document.createElement('div');
-      row.className = 'toggle-row';
-      var labels = {poisson: 'Poisson', ml: 'Gradient boosting', ensemble: 'Ensemble'};
-      views.forEach(function (v) {
-        var key = v.getAttribute('data-view');
-        var b = document.createElement('button');
-        b.className = 'tgl' + (key === 'ensemble' ? ' active' : '');
-        b.textContent = labels[key] || key;
-        b.addEventListener('click', function () {
-          views.forEach(function (w) { w.hidden = w !== v; });
-          row.querySelectorAll('.tgl').forEach(function (x) { x.classList.remove('active'); });
-          b.classList.add('active');
-        });
-        row.appendChild(b);
-        v.hidden = key !== 'ensemble';
-      });
-      pv.insertBefore(row, pv.firstChild);
-    }
-  }
-
-  // ---- Team pages: Season vs Last-5 toggle for the attack/defense card.
-  document.querySelectorAll('.stat-toggle').forEach(function (card) {
-    var cells = card.querySelectorAll('[data-stat]');
-    if (!cells.length) return;
-    var row = document.createElement('div');
-    row.className = 'toggle-row';
-    [['season', 'Season'], ['last5', 'Last 5']].forEach(function (pair, i) {
-      var key = pair[0], label = pair[1];
-      var b = document.createElement('button');
-      b.className = 'tgl' + (i === 0 ? ' active' : '');
-      b.textContent = label;
-      b.addEventListener('click', function () {
-        cells.forEach(function (c) { c.hidden = c.getAttribute('data-stat') !== key; });
-        row.querySelectorAll('.tgl').forEach(function (x) { x.classList.remove('active'); });
-        b.classList.add('active');
-      });
-      row.appendChild(b);
-    });
-    card.insertBefore(row, card.firstChild);
-    cells.forEach(function (c) { c.hidden = c.getAttribute('data-stat') !== 'season'; });
-  });
-
-  // ---- Home page likely-scorers: league filter.
-  var sc = document.getElementById('scorers');
-  if (sc) {
-    var tbodyRows = sc.querySelectorAll('tr[data-league]');
-    var seen = {};
-    tbodyRows.forEach(function (r) { seen[r.getAttribute('data-league')] = true; });
-    var leagues = Object.keys(seen);
-    if (leagues.length > 1) {
-      var bar = document.createElement('div');
-      bar.className = 'tabs';
-      function addFilter(key, label) {
-        var b = document.createElement('button');
-        b.className = 'tabbtn' + (key === 'all' ? ' active' : '');
-        b.textContent = label;
-        b.addEventListener('click', function () {
-          tbodyRows.forEach(function (r) {
-            r.hidden = key !== 'all' && r.getAttribute('data-league') !== key;
-          });
-          bar.querySelectorAll('.tabbtn').forEach(function (x) { x.classList.remove('active'); });
-          b.classList.add('active');
-        });
-        bar.appendChild(b);
-      }
-      addFilter('all', 'All leagues');
-      leagues.forEach(function (l) { addFilter(l, LEAGUE_NAMES[l] || l); });
-      sc.insertBefore(bar, sc.firstChild);
-    }
-  }
-})();
 """
 
 
 def page_shell(title: str, body: str, league: str | None = None,
                updated: str = "") -> str:
-    league_links = "".join(
-        f'<a href="{SITE_BASE}/leagues/{s}/">{LEAGUE_NAMES[s]}</a>'
-        for s in settings.league_order)
-    league_links = "".join(
-        f'<a href="{SITE_BASE}/leagues/{s}/">{LEAGUE_NAMES[s]}</a>'
-        for s in settings.league_order)
-    nav = ('<a href="{BASE}/">Home</a>'
-           '<div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span>'
-           f'<div class="dropdown-content">{league_links}</div></div>'
-           '<a href="{BASE}/track-record.html">Track record</a>'
-           '<a href="{BASE}/methodology.html">Methodology</a>'
-           '<a href="{BASE}/model-insights.html">Model insights</a>')
+    nav = (f'<a href="{BASE}/">Home</a>' +
+           "".join(f'<a href="{BASE}/leagues/{s}/">{LEAGUE_NAMES[s]}</a>'
+                   for s in settings.league_order) +
+           f'<a href="{BASE}/players.html">Players</a>'
+           f'<a href="{BASE}/track-record.html">Track record</a>')
     accent = LEAGUE_ACCENT.get(league or "", "#ffd23f")
-    nav = nav.replace("{BASE}", SITE_BASE)
-    body = body.replace("{BASE}", SITE_BASE)
     return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)} | Goal Difference</title>
-<link rel="stylesheet" href="{SITE_BASE}/style.css">
+<link rel="stylesheet" href="{BASE}/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <style>.brand b{{color:{accent}}} a{{color:{accent}}}</style>
@@ -374,7 +177,7 @@ def page_shell(title: str, body: str, league: str | None = None,
 <div class="topbar"><div class="wrap">
 <div class="brand">Goal <b>Difference</b></div>
 <nav class="nav">{nav}</nav></div></div>
-<div class="wrap"><p class="data-updated">Data updated {esc(updated)}</p>{body}
+<div class="wrap">{body}
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not
 betting advice. Live scores for non-PL leagues come from CSVs updated about a
 day after matches. The FPL API and the official league JSON backends are
@@ -385,9 +188,8 @@ leagues show absences detected from lineups, labeled "reason unconfirmed",
 or state plainly when no data is published.</div>
 <div class="footer">Goal Difference &middot; weekly model-driven matchday
 analysis for Europe's top 5 leagues &middot; Poisson + gradient-boosted
-models, refit weekly &middot; updated {esc(updated)} &middot;
-<a href="{SITE_BASE}/methodology.html">How the models work</a></div>
-</div><script src="{SITE_BASE}/app.js" defer></script></body></html>"""
+models, refit weekly &middot; updated {esc(updated)}</div>
+</div></body></html>"""
 
 
 LIMITS_NOTE = ("Sources: api-football (2023/24-2024/25), football-data.co.uk "
@@ -504,315 +306,9 @@ def momentum_word(m: float) -> tuple[str, str]:
     return "steady", "muted"
 
 
-# ------------------------------------------------- 8.1 player leaderboards
-def _leaderboard_rows(league: str) -> tuple[list[dict], str, str]:
-    """Top-10 rows for a league: (rows, stat label, note).
-
-    Each row: name, team (canonical name or None), stat, goals, assists.
-    PL ranks by FPL form; other leagues by goal involvements, tiebreak fewer
-    minutes. Only 90+ minute players qualify (except Bundesliga, whose feed
-    publishes no minutes).
-    """
-    d = settings.data_dir
-    if league == "pl":
-        pl = json.loads((d / "players_pl.json").read_text())
-        ps = [p for p in pl.get("players", []) if (p.get("minutes") or 0) >= 90]
-        ps.sort(key=lambda p: float(p.get("form") or 0), reverse=True)
-        rows = [{"name": p.get("name"), "team": p.get("team"),
-                 "stat": float(p.get("form") or 0), "goals": p.get("goals"),
-                 "assists": p.get("assists")} for p in ps[:10]]
-        return rows, "Form", "Ranked by FPL form (last 30 days)."
-    if league == "laliga":
-        data = json.loads(
-            (d / "player_rankings_official_laliga.json").read_text())
-        ps = [p for p in data.get("players", []) if (p.get("minutes") or 0) >= 90]
-        for p in ps:
-            p["_inv"] = (p.get("goals") or 0) + (p.get("assists") or 0)
-        ps.sort(key=lambda p: (-p["_inv"], p.get("minutes") or 0))
-        rows = [{"name": p.get("nickname") or p.get("name"),
-                 "team": normalize_laliga_team(p.get("team")),
-                 "stat": p["_inv"], "goals": p.get("goals"),
-                 "assists": p.get("assists")} for p in ps[:10]]
-        return (rows, "G+A",
-                "Goal involvements. The feed publishes no assists data, so this is goals.")
-    if league == "bundesliga":
-        data = json.loads(
-            (d / "player_rankings_official_bundesliga.json").read_text())
-        agg: dict[str, dict] = {}
-        for e in data.get("goals", []):
-            a = agg.setdefault(e["player"],
-                               {"goals": 0, "assists": 0, "club_id": e.get("club_id")})
-            a["goals"] = e.get("value") or 0
-        for e in data.get("assists", []):
-            a = agg.setdefault(e["player"],
-                               {"goals": 0, "assists": 0, "club_id": e.get("club_id")})
-            a["assists"] = e.get("value") or 0
-        ps = sorted(agg.items(), key=lambda kv: (-(kv[1]["goals"] + kv[1]["assists"]),
-                                                 -kv[1]["goals"]))
-        rows = [{"name": name, "team": BUNDESLIGA_CLUB_MAP.get(a["club_id"]),
-                 "stat": a["goals"] + a["assists"], "goals": a["goals"],
-                 "assists": a["assists"]} for name, a in ps[:10]]
-        return (rows, "G+A",
-                "Goal involvements. The feed publishes no minutes, so no 90-minute filter applies.")
-    if league == "seriea":
-        data = json.loads(
-            (d / "player_rankings_official_seriea.json").read_text())
-        ps = [p for p in data.get("players", []) if (p.get("minutes") or 0) >= 90]
-        for p in ps:
-            p["_inv"] = (p.get("goals") or 0) + (p.get("assists") or 0)
-        ps.sort(key=lambda p: (-p["_inv"], p.get("minutes") or 0))
-        rows = []
-        for p in ps[:10]:
-            team = canonicalize(p.get("team") or "", "seriea", source="any")
-            if team not in CANONICAL["seriea"]:
-                team = p.get("team_short")
-            rows.append({"name": p.get("name"), "team": team, "stat": p["_inv"],
-                         "goals": p.get("goals"), "assists": p.get("assists")})
-        return rows, "G+A", "Goal involvements, tiebreak fewer minutes."
-    if league == "ligue1":
-        data = json.loads(
-            (d / "player_rankings_official_ligue1.json").read_text())
-        agg = {}
-        for e in data.get("scorers", []) + data.get("assists", []):
-            a = agg.setdefault(e["player"], {"goals": 0, "assists": 0,
-                                             "minutes": 0, "club": e.get("club")})
-            a["goals"] = max(a["goals"], e.get("goals") or 0)
-            a["assists"] = max(a["assists"], e.get("assists") or 0)
-            a["minutes"] = max(a["minutes"], e.get("minutes") or 0)
-        ps = [(n, a) for n, a in agg.items() if (a["minutes"] or 0) >= 90]
-        ps.sort(key=lambda kv: (-(kv[1]["goals"] + kv[1]["assists"]),
-                                kv[1]["minutes"]))
-        rows = [{"name": n, "team": a["club"],
-                 "stat": a["goals"] + a["assists"], "goals": a["goals"],
-                 "assists": a["assists"]} for n, a in ps[:10]]
-        return rows, "G+A", "Goal involvements, tiebreak fewer minutes."
-    return [], "", ""
-
-
-def _leaderboards_html() -> str:
-    parts = ['<h2>Leaderboards</h2><p class="small muted">Top 10 per league, '
-             'current season only. Premier League ranked by FPL form; other '
-             'leagues by goal involvements. 90+ minutes to qualify. '
-             'Click a column header to sort.</p><div id="leaderboards">']
-    for league in settings.league_order:
-        rows, label, note = _leaderboard_rows(league)
-        if not rows:
-            continue
-        trs = []
-        for i, r in enumerate(rows, 1):
-            team = r["team"]
-            if team:
-                tcell = (f'<a href="{SITE_BASE}/leagues/{league}/teams/'
-                         f'{slug(team)}.html">{esc(team)}</a>')
-            else:
-                tcell = '<span class="faint">-</span>'
-            stat = r["stat"]
-            stat_txt = f"{stat:.1f}" if isinstance(stat, float) else str(stat)
-            trs.append(
-                f"<tr><td class='num'>{i}</td><td>{esc(r['name'])}</td>"
-                f"<td>{tcell}</td><td class='num'><b>{stat_txt}</b></td>"
-                f"<td class='num'>{dash(r['goals'])}</td>"
-                f"<td class='num'>{dash(r['assists'])}</td></tr>")
-        parts.append(
-            f'<div class="league-panel" data-league="{league}">'
-            f"<h3>{LEAGUE_NAMES[league]} &mdash; top 10</h3>"
-            f"<p class='small faint' style='margin-top:-.5em'>{esc(note)}</p>"
-            f"<table class='sortable'><tr><th class='num'>#</th><th>Player</th><th>Team</th>"
-            f"<th class='num'>{esc(label)}</th><th class='num'>G</th>"
-            f"<th class='num'>A</th></tr>{''.join(trs)}</table></div>")
-    parts.append("</div>")
-    return "".join(parts)
-
-
-# ------------------------------------------------- 8.2 likely scorers
-_scorers_cache: pd.DataFrame | None = None
-
-
-def _load_scorers() -> pd.DataFrame:
-    """Cached scorer probabilities for per-fixture 'players to watch'."""
-    global _scorers_cache
-    if _scorers_cache is None:
-        p = settings.data_dir / "scorer_probs.csv"
-        _scorers_cache = pd.read_csv(p) if p.exists() else pd.DataFrame()
-    return _scorers_cache
-
-
-def watch_html(fixture_id: str, n: int = 3) -> str:
-    """'Players to watch' line for a fixture card, from scorer probabilities."""
-    sc = _load_scorers()
-    if sc.empty:
-        return ""
-    top = sc[sc.fixture_id == fixture_id].sort_values("prob", ascending=False).head(n)
-    if top.empty:
-        return ""
-    items = ", ".join(f"{esc(r.player)} <span class='muted'>{r.prob:.0%}</span>"
-                      for _, r in top.iterrows())
-    return (f"<div class='small' style='margin-top:6px'>"
-            f"<span class='muted'>Players to watch:</span> {items}</div>")
-
-
-def scorers_section(scorers: pd.DataFrame) -> str:
-    """Top-15 'Likely scorers this week' table with model inputs shown."""
-    if scorers is None or scorers.empty:
-        return ""
-    top = scorers.sort_values("prob", ascending=False).head(15)
-    trs = []
-    for _, r in top.iterrows():
-        league = str(r.fixture_id).split("-")[0]
-        tcell = (f'<a href="{SITE_BASE}/leagues/{league}/teams/{slug(r.team)}.html">'
-                 f'{esc(r.team)}</a>')
-        fcell = (f'<a class="fixlink" href="{SITE_BASE}/leagues/{league}/fixtures/'
-                 f'{r.fixture_id}.html">{esc(r.home)} v {esc(r.away)}</a>')
-        trs.append(
-            f"<tr data-league='{esc(league)}'><td>{esc(r.player)}</td><td>{tcell}</td><td>{fcell}</td>"
-            f"<td class='num'><b>{r.prob:.0%}</b></td>"
-            f"<td class='num'>{r.per90:.2f}</td>"
-            f"<td class='num'>{r.x_minutes:.0f}</td>"
-            f"<td class='num'>{r.team_xg:.2f}</td></tr>")
-    return ("""<div id="scorers"><h2>Likely scorers this week</h2>
-<p class="small muted">Anytime-scorer probability = 1 - exp(-X), where X comes from
-the player's shrunk goals-per-90, expected minutes, and the team's model xG for the
-fixture. Inputs shown. Model estimates, not betting advice. Bundesliga excluded:
-its feed publishes no minutes.</p>
-<table class="sortable"><tr><th>Player</th><th>Team</th><th>Fixture</th><th class="num">Prob</th>
-<th class="num">Per 90</th><th class="num">xMin</th><th class="num">Team xG</th></tr>"""
-            + "".join(trs) + "</table></div>")
-
-
-# ------------------------------------------------- 8.3 team depth
-_depth_cache: dict[str, dict[str, dict]] = {}
-
-
-def _trend_arrow(l5: float, season: float,
-                 lower_is_better: bool = False) -> tuple[str, str]:
-    if abs(l5 - season) < 0.005:
-        return "\u2192", "muted"
-    up = l5 > season
-    good = (not up) if lower_is_better else up
-    return ("\u2191" if up else "\u2193"), ("positive" if good else "negative")
-
-
-def team_depth_data(ld: LeagueData) -> dict[str, dict]:
-    """Per-team depth numbers for the live season (cached per league).
-
-    Opposition-adjusted PPG reweights each finished game by the opponent's
-    final-season PPG (proxy for opponent strength at the time, which is not
-    stored). Expected points come from the fitted ensemble's pre-match 1X2 on
-    finished fixtures (in-sample): the prediction ledgers hold no scored rows
-    yet, so there is nothing to join against.
-    """
-    if ld.league in _depth_cache:
-        return _depth_cache[ld.league]
-    out: dict[str, dict] = {}
-    live = ld.finished[ld.finished.season == settings.live_season]
-    if not live.empty:
-        table = ld.table()
-        ppg = {t: (pts / max(p, 1)) for t, pts, p in
-               zip(table.team, table.pts, table.p)}
-        league_mean = sum(ppg.values()) / max(len(ppg), 1)
-        for team in sorted(set(live.home) | set(live.away)):
-            games = live[(live.home == team) | (live.away == team)]
-            pts = 0.0
-            wpts = 0.0
-            wsum = 0.0
-            for _, r in games.iterrows():
-                is_home = r.home == team
-                hg, ag = r.home_goals, r.away_goals
-                if hg == ag:
-                    p = 1
-                elif (hg > ag and is_home) or (ag > hg and not is_home):
-                    p = 3
-                else:
-                    p = 0
-                opp = r.away if is_home else r.home
-                w = ppg.get(opp, league_mean) / league_mean if league_mean else 1.0
-                pts += p
-                wpts += p * w
-                wsum += w
-            n = len(games)
-            out[team] = {"played": n, "raw_ppg": pts / n,
-                         "adj_ppg": wpts / wsum if wsum else 0.0,
-                         "actual_pts": int(pts)}
-        try:
-            from .fit import blend_ensemble, load_models
-            poisson_model, ml_model, feature_cols, _ = load_models(ld.league)
-            feats = ld.features[ld.features["season"].astype(str)
-                                == str(settings.live_season)]
-            feats = feats.drop_duplicates("fixture_id", keep="last")
-            if not feats.empty:
-                p_dc = np.asarray(
-                    poisson_model.predict_proba_df(feats, feature_cols))
-                p_ml = np.asarray(ml_model.predict_proba(feats[feature_cols]))
-                p_ens = blend_ensemble(p_dc, p_ml)
-                # column order is (away, draw, home); see predict_upcoming
-                for (_, r), probs in zip(feats.iterrows(), p_ens):
-                    pa, pd_, ph = float(probs[0]), float(probs[1]), float(probs[2])
-                    home_exp = out.setdefault(r.home, {}).get("exp_pts", 0.0) \
-                        + 3 * ph + pd_
-                    away_exp = out.setdefault(r.away, {}).get("exp_pts", 0.0) \
-                        + 3 * pa + pd_
-                    out[r.home]["exp_pts"] = round(home_exp, 1)
-                    out[r.away]["exp_pts"] = round(away_exp, 1)
-        except Exception as exc:  # noqa: BLE001 - depth blocks degrade gracefully
-            log.warning("depth_expected_points_failed", league=ld.league,
-                        error=str(exc)[:160])
-    _depth_cache[ld.league] = out
-    return out
-
-
-def _depth_html(team: str, f: dict, dd: dict) -> str:
-    """The three 8.3 depth blocks for a team page. Empty when no data."""
-    if not dd.get("played"):
-        return ""
-    raw, adj = dd["raw_ppg"], dd["adj_ppg"]
-    if adj < raw - 0.05:
-        sched = "softer schedule so far"
-    elif adj > raw + 0.05:
-        sched = "tougher schedule so far"
-    else:
-        sched = "schedule about average"
-    actual, exp = dd["actual_pts"], dd.get("exp_pts")
-    if exp is not None:
-        diff = actual - exp
-        cls = "positive" if diff > 0.5 else ("negative" if diff < -0.5 else "muted")
-        exp_rows = (f"<tr><td class='muted'>Actual points</td>"
-                    f"<td class='num'><b>{actual}</b></td></tr>"
-                    f"<tr><td class='muted'>Expected points</td>"
-                    f"<td class='num'>{exp:.1f}</td></tr>"
-                    f"<tr><td class='muted'>Diff</td>"
-                    f"<td class='num'><span class='{cls}'>{diff:+.1f}</span></td></tr>")
-    else:
-        exp_rows = (f"<tr><td class='muted'>Actual points</td>"
-                    f"<td class='num'><b>{actual}</b></td></tr>")
-    gf, gf5 = f.get("gf_pg", 0), f.get("gf_pg_l5", 0)
-    ga, ga5 = f.get("ga_pg", 0), f.get("ga_pg_l5", 0)
-    a_arrow, a_cls = _trend_arrow(gf5, gf)
-    d_arrow, d_cls = _trend_arrow(ga5, ga, lower_is_better=True)
-    return f"""<h2>Depth check</h2><div class="grid g3">
-<div class="card"><h3>Opposition-adjusted form</h3><table class="small">
-<tr><td class="muted">Raw PPG</td><td class="num">{raw:.2f}</td></tr>
-<tr><td class="muted">Adjusted PPG</td><td class="num"><b>{adj:.2f}</b></td></tr>
-</table><p class="small faint" style="margin-bottom:0">Each game reweighted by
-opponent strength (final PPG as proxy): {sched}.</p></div>
-<div class="card"><h3>Expected points</h3><table class="small">{exp_rows}</table>
-<p class="small faint" style="margin-bottom:0">Expected points from the fitted
-ensemble's pre-match 1X2 (in-sample).</p></div>
-<div class="card"><h3>Attack / defense trend</h3><table class="small">
-<tr><td class="muted">Scored / game</td><td class="num">{gf:.2f}</td>
-<td class="muted">last-5</td><td class="num">{gf5:.2f}
-<span class="{a_cls}">{a_arrow}</span></td></tr>
-<tr><td class="muted">Conceded / game</td><td class="num">{ga:.2f}</td>
-<td class="muted">last-5</td><td class="num">{ga5:.2f}
-<span class="{d_cls}">{d_arrow}</span></td></tr>
-</table><p class="small faint" style="margin-bottom:0">Arrow compares the last 5
-games to the season rate.</p></div>
-</div>"""
-
-
 # ---------------------------------------------------------------- index page
 def build_index(datas: dict[str, LeagueData],
-                preds: dict[str, pd.DataFrame],
-                scorers: pd.DataFrame, updated: str) -> str:
+                preds: dict[str, pd.DataFrame], updated: str) -> str:
     cards = []
     for league in settings.league_order:
         ld = datas[league]
@@ -822,13 +318,13 @@ def build_index(datas: dict[str, LeagueData],
         if not ld.odds.empty:
             row = ld.odds[ld.odds.team == leader.team]
             if not row.empty:
-                p_title = f"Title: {pct(row.iloc[0].p_title)}"
+                p_title = f" &middot; title {pct(row.iloc[0].p_title)}"
         n_up = len(ld.upcoming)
         cards.append(f"""<div class="card">
 <h3 style="color:{LEAGUE_ACCENT[league]}">{LEAGUE_NAMES[league]}</h3>
 <div class="kpi">{esc(leader.team)}<br><small>{leader.pts} pts after {leader.p}</small></div>
-<div class="small muted">{p_title}</div>
-<div style="margin-top:10px"><a href="{SITE_BASE}/leagues/{league}/">League hub &rarr;</a></div>
+<div class="small muted">Next: {n_up} fixtures to play{p_title}</div>
+<div style="margin-top:10px"><a href="{BASE}/leagues/{league}/">League hub &rarr;</a></div>
 </div>""")
     league_cards = '<div class="grid g3">' + "".join(cards) + "</div>"
 
@@ -865,7 +361,7 @@ def build_index(datas: dict[str, LeagueData],
                 matchups.append(
                     f"""<div class="card"><div class="cond">{LEAGUE_NAMES[league]}
 <span class="faint mono small">{r.date}</span></div>
-<div style="font-size:1.2em"><a class="fixlink" href="{SITE_BASE}/leagues/{league}/fixtures/{r.fixture_id}.html">
+<div style="font-size:1.2em"><a class="fixlink" href="{BASE}/leagues/{league}/fixtures/{r.fixture_id}.html">
 {esc(r.home)} v {esc(r.away)}</a></div>
 {prob_bar(r.p_home_ens, r.p_draw_ens, r.p_away_ens)}
 {prob_legend(r.home, r.away)}</div>""")
@@ -886,8 +382,7 @@ refit every matchday. Numbers first.</p>
 <h2>In-form teams</h2>
 <p class="muted small">Last-5 points per game against the season average.</p>
 {form_table}
-<h2>Key matchups</h2>{matchup_html}
-{scorers_section(scorers)}"""
+<h2>Key matchups</h2>{matchup_html}"""
     return page_shell("This week's model view", body, updated=updated)
 
 
@@ -907,7 +402,7 @@ def build_league(league: str, ld: LeagueData, pred: pd.DataFrame,
                         f"<td class='num'>{pct(o.p_relegation)}</td>")
         rows.append(
             f"<tr><td class='num'>{pos}</td>"
-            f"<td><a href=\"{SITE_BASE}/leagues/{league}/teams/{slug(r.team)}.html\">"
+            f"<td><a href=\"/leagues/{league}/teams/{slug(r.team)}.html\">"
             f"{esc(r.team)}</a></td><td class='num'>{r.p}</td>"
             f"<td class='num'>{r.w}</td><td class='num'>{r.d}</td>"
             f"<td class='num'>{r.l}</td><td class='num'>{r.gd:+d}</td>"
@@ -930,11 +425,10 @@ def build_league(league: str, ld: LeagueData, pred: pd.DataFrame,
             cards.append(f"""<div class="card">
 <div class="cond"><span class="faint mono small">{r.date}</span></div>
 <div style="font-size:1.15em;margin-bottom:8px"><a class="fixlink"
-href="{SITE_BASE}/leagues/{league}/fixtures/{r.fixture_id}.html">{esc(r.home)} v {esc(r.away)}</a></div>
+href="{BASE}/leagues/{league}/fixtures/{r.fixture_id}.html">{esc(r.home)} v {esc(r.away)}</a></div>
 {prob_bar(r.p_home_ens, r.p_draw_ens, r.p_away_ens)}
 {prob_legend(r.home, r.away)}
 <div class="small muted" style="margin-top:6px">xG {r.xg_home:.2f} - {r.xg_away:.2f}</div>
-{watch_html(r.fixture_id)}
 </div>""")
         fix_html = f"<h2>This matchday</h2><div class='grid g2'>{''.join(cards)}</div>"
     else:
@@ -951,8 +445,7 @@ href="{SITE_BASE}/leagues/{league}/fixtures/{r.fixture_id}.html">{esc(r.home)} v
     body = f"""<div class="hero"><h1 style="color:{LEAGUE_ACCENT[league]}">
 {LEAGUE_NAMES[league]}</h1>
 <p class="lede">Live table, title odds from 10,000 Monte Carlo simulations,
-and this matchday's fixtures with ensemble probabilities.</p>
-<p><a href="{SITE_BASE}/players.html#{league}">Players &rarr;</a></p></div>
+and this matchday's fixtures with ensemble probabilities.</p></div>
 <h2>Table and odds</h2>{table}
 <p class="small faint">Odds: share of 10,000 season simulations (seed 42).</p>
 {fix_html}{results}"""
@@ -1053,7 +546,7 @@ def build_fixture(league: str, ld: LeagueData, row: pd.Series,
                     f"{at['l']}<small>L</small></div>"
                     f"<p class='small muted'>All-time, {esc(home)} perspective. Last 5:</p>{last5}")
 
-    probs = f"""<div class="card" id="probviews"><h3>Model probabilities</h3>
+    probs = f"""<div class="card"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
 <tr><td>Poisson</td><td class="num">{pct(row.p_home_poisson)}</td>
 <td class="num">{pct(row.p_draw_poisson)}</td><td class="num">{pct(row.p_away_poisson)}</td></tr>
@@ -1061,18 +554,10 @@ def build_fixture(league: str, ld: LeagueData, row: pd.Series,
 <td class="num">{pct(row.p_draw_ml)}</td><td class="num">{pct(row.p_away_ml)}</td></tr>
 <tr><td><b>Ensemble</b></td><td class="num"><b>{pct(row.p_home_ens)}</b></td>
 <td class="num"><b>{pct(row.p_draw_ens)}</b></td><td class="num"><b>{pct(row.p_away_ens)}</b></td></tr>
-</table>
-<div class="probview" data-view="poisson" hidden>
-{prob_bar(row.p_home_poisson, row.p_draw_poisson, row.p_away_poisson)}
-<p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
-<div class="probview" data-view="ml" hidden>
-{prob_bar(row.p_home_ml, row.p_draw_ml, row.p_away_ml)}
-<p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
-<div class="probview" data-view="ensemble">
-{prob_bar(row.p_home_ens, row.p_draw_ens, row.p_away_ens)}
+</table>{prob_bar(row.p_home_ens, row.p_draw_ens, row.p_away_ens)}
 {prob_legend(home, away)}
 <p class="small muted">Expected goals: <span class="mono">{row.xg_home:.2f} - {row.xg_away:.2f}</span>.
-Each row sums to 100%.</p></div></div>"""
+Each row sums to 100%.</p></div>"""
 
     # What to expect: key numbers card.
     edge = feats.get("h2h_edge", 0.5)
@@ -1100,14 +585,13 @@ vs {esc(away)} <span class="mono">{af.get('shot_diff_pg', 0):+.1f}</span> per ga
 {euro_note(league, ld, home, away, feats)}
 <h2>Head to head</h2><div class="card">{h2h_html}</div>
 {team_news_box(league, ld, home, away)}
-<h2>Prediction</h2><div class="grid g2">{probs}{expect}</div>
-<h2>Players to watch</h2><div class="card">{watch_html(row.fixture_id, n=5) or "<p class='muted'>No scorer data for this fixture.</p>"}</div>"""
+<h2>Prediction</h2><div class="grid g2">{probs}{expect}</div>"""
     return page_shell(f"{home} v {away}", body, league=league, updated=updated)
 
 
 # ---------------------------------------------------------------- team page
 def build_team(league: str, ld: LeagueData, team: str,
-               players_pl: dict, depth: dict[str, dict], updated: str) -> str:
+               players_pl: dict, updated: str) -> str:
     f = ld.latest_team_features(team)
     t = ld.table()
     pos = int(t[t.team == team].index[0]) if team in t.team.values else 0
@@ -1129,7 +613,7 @@ def build_team(league: str, ld: LeagueData, team: str,
             h2h_txt = f" (all-time {at['w']}W {at['d']}D {at['l']}L)"
         next_opp = (f"<div class='card'><h3>Next: {esc(opp)} ({venue})</h3>"
                     f"<p class='small'>{esc(r0.date)}{h2h_txt} &mdash; "
-                    f"<a href='{SITE_BASE}/leagues/{league}/fixtures/{r0.fixture_id}.html'>preview &rarr;</a></p></div>")
+                    f"<a href='/leagues/{league}/fixtures/{r0.fixture_id}.html'>preview &rarr;</a></p></div>")
         opps = [(r.away if r.home == team else r.home) for _, r in up.head(5).iterrows()]
         avg_pts = sum(float(t[t.team == o].pts.iloc[0]) if o in t.team.values else 0
                       for o in opps) / max(len(opps), 1)
@@ -1153,21 +637,17 @@ def build_team(league: str, ld: LeagueData, team: str,
     except Exception:
         pass
 
-    # Squad panel (PL only, from FPL): this team's in-form players.
+    # Squad panel (PL only, from FPL).
     squad = ""
     if league == "pl" and players_pl:
-        team_players = sorted(
-            [p for p in players_pl.get("players", [])
-             if p.get("team") == team and (p.get("minutes") or 0) >= 90],
-            key=lambda p: float(p.get("form") or 0), reverse=True)[:6]
-        if team_players:
-            rows = "".join(
-                f"<div class='small'>{esc(p.get('name', ''))} "
-                f"<span class='muted'>{esc(p.get('position', ''))}</span> "
-                f"<span class='num'><b>{p.get('form', '')}</b> form</span></div>"
-                for p in team_players)
-            squad = (f"<h2>Squad watch</h2><div class='card'><h3>{esc(team)} in form</h3>{rows}"
-                     f"<p class='small faint'>From FPL form (unofficial).</p></div>")
+        xi = players_pl.get("in_form_xi", {})
+        xi_html = "".join(
+            f"<div class='small'><span class='muted'>{pos_}:</span> "
+            + ", ".join(esc(p.get("name", "")) if isinstance(p, dict) else esc(p)
+                        for p in picks[:4]) + "</div>"
+            for pos_, picks in xi.items() if picks)
+        squad = (f"<h2>Squad watch</h2><div class='card'><h3>In-form XI</h3>{xi_html}"
+                 f"<p class='small faint'>From FPL form (unofficial).</p></div>")
 
     tn = ld.team_news.get("teams", {}).get(team, {}) if ld.team_news else {}
     avail = ""
@@ -1194,20 +674,19 @@ def build_team(league: str, ld: LeagueData, team: str,
 <tr><td class="muted">Home goals for/against</td><td class="num">{f.get('home_gf_pg', 0):.2f} / {f.get('home_ga_pg', 0):.2f}</td>
 <td class="muted">Away</td><td class="num">{f.get('away_gf_pg', 0):.2f} / {f.get('away_ga_pg', 0):.2f}</td></tr>
 </table></div>
-<div class="card stat-toggle"><h3>Attack / defense</h3><table class="small">
-<tr><td class="muted">Scored / game</td><td class="num" data-stat="season">{f.get('gf_pg', 0):.2f}</td>
-<td class="muted" data-stat="last5">last-5</td><td class="num" data-stat="last5">{f.get('gf_pg_l5', 0):.2f}</td></tr>
-<tr><td class="muted">Conceded / game</td><td class="num" data-stat="season">{f.get('ga_pg', 0):.2f}</td>
-<td class="muted" data-stat="last5">last-5</td><td class="num" data-stat="last5">{f.get('ga_pg_l5', 0):.2f}</td></tr>
-<tr><td class="muted">Shot dominance</td><td class="num" data-stat="season">{f.get('shot_diff_pg', 0):+.1f}</td>
-<td class="muted" data-stat="last5">shots on target</td><td class="num" data-stat="last5">{f.get('sot_pg', 0):.1f}</td></tr>
-<tr><td class="muted">Clean sheets</td><td class="num" data-stat="season">{pct(f.get('cs_rate', 0))}</td>
-<td class="muted" data-stat="last5">Failed to score</td><td class="num" data-stat="last5">{pct(f.get('fts_rate', 0))}</td></tr>
-<tr><td class="muted">Discipline</td><td class="num" data-stat="season">{f.get('fouls_pg', 0):.1f} fouls/g</td>
-<td class="muted" data-stat="last5">cards</td><td class="num" data-stat="last5">{f.get('cards_pg', 0):.1f}/g</td></tr>
+<div class="card"><h3>Attack / defense</h3><table class="small">
+<tr><td class="muted">Scored / game</td><td class="num">{f.get('gf_pg', 0):.2f}</td>
+<td class="muted">last-5</td><td class="num">{f.get('gf_pg_l5', 0):.2f}</td></tr>
+<tr><td class="muted">Conceded / game</td><td class="num">{f.get('ga_pg', 0):.2f}</td>
+<td class="muted">last-5</td><td class="num">{f.get('ga_pg_l5', 0):.2f}</td></tr>
+<tr><td class="muted">Shot dominance</td><td class="num">{f.get('shot_diff_pg', 0):+.1f}</td>
+<td class="muted">shots on target</td><td class="num">{f.get('sot_pg', 0):.1f}</td></tr>
+<tr><td class="muted">Clean sheets</td><td class="num">{pct(f.get('cs_rate', 0))}</td>
+<td class="muted">Failed to score</td><td class="num">{pct(f.get('fts_rate', 0))}</td></tr>
+<tr><td class="muted">Discipline</td><td class="num">{f.get('fouls_pg', 0):.1f} fouls/g</td>
+<td class="muted">cards</td><td class="num">{f.get('cards_pg', 0):.1f}/g</td></tr>
 </table></div></div>
 <div class="grid g2">{next_opp}{difficulty}</div>
-{_depth_html(team, f, depth.get(team, {}) if depth else {})}
 <div class="grid g2">{euro_html}{avail}</div>
 {squad}"""
     return page_shell(team, body, league=league, updated=updated)
@@ -1218,10 +697,9 @@ def ordinal(n: int) -> str:
 
 
 # ---------------------------------------------------------------- players
-def build_players(datas: dict[str, LeagueData], scorers: pd.DataFrame,
-                  updated: str) -> str:
+def build_players(datas: dict[str, LeagueData], updated: str) -> str:
     d = settings.data_dir
-    sections = [_leaderboards_html(), scorers_section(scorers)]
+    sections = []
 
     # Premier League: FPL form watch.
     pl_path = d / "players_pl.json"
@@ -1252,16 +730,14 @@ def build_players(datas: dict[str, LeagueData], scorers: pd.DataFrame,
             f"<div class='small'>{esc(r.get('name', ''))} "
             f"<span class='positive'>+{r.get('form_change', '')}</span></div>"
             for r in pl.get("risers", [])[:8])
-        sections.append(f"""<div class="league-panel" data-league="pl">
-<h2 id="pl">Premier League &mdash; form watch</h2>
-<p class="small muted">Source: FPL API (unofficial). Form = average points over the last 30 days.
-Click a column header to sort.</p>
+        sections.append(f"""<h2>Premier League &mdash; form watch</h2>
+<p class="small muted">Source: FPL API (unofficial). Form = average points over the last 30 days.</p>
 <div class="grid g2"><div class="card"><h3>In-form XI</h3>{xi_html or '<p class="muted">-</p>'}</div>
 <div class="card"><h3>Risers this week</h3>{risers or '<p class="muted">-</p>'}</div></div>
-<table class="sortable"><tr><th>Player</th><th>Team</th><th>Pos</th><th class="num">Form</th>
+<table><tr><th>Player</th><th>Team</th><th>Pos</th><th class="num">Form</th>
 <th class="num">Pts</th><th class="num">G</th><th class="num">A</th>
 <th class="num">Min</th><th class="num">ICT</th><th class="num">Cost</th>
-<th class="num">Pts/m</th></tr>{rows}</table></div>""")
+<th class="num">Pts/m</th></tr>{rows}</table>""")
 
     # Other leagues: official backend rankings.
     backend_labels = {
@@ -1270,16 +746,53 @@ Click a column header to sort.</p>
         "seriea": ("Serie A", "Serie A official data backend (api-sdp.legaseriea.it)"),
         "ligue1": ("Ligue 1", "Ligue 1 official backend (ma-api.ligue1.fr)"),
     }
-    backend_sections = ['<div id="backend-rankings">']
+    # LaLiga backend includes players from other competitions; filter to
+    # Primera Division teams using the live-season team set.
+    laliga_teams = set()
+    try:
+        _lf = pd.read_csv(d / "fixtures_laliga.csv", dtype={"season": str})
+        _live = _lf[_lf["season"] == str(settings.live_season)]
+        laliga_teams = set(_live["home"]) | set(_live["away"])
+    except Exception:
+        pass
     for league, (name, source) in backend_labels.items():
         p = d / f"player_rankings_official_{league}.json"
         if not p.exists():
-            backend_sections.append(f"<h2>{name}</h2><p class='muted small'>"
+            sections.append(f"<h2>{name}</h2><p class='muted small'>"
                             f"Official backend unreachable this week; "
                             f"2024/25 topscorers below are the fallback.</p>")
             continue
         data = json.loads(p.read_text())
-        players = data.get("players") or data.get("rankings") or []
+        # Normalize different backend structures to a player list.
+        players = []
+        if league == "bundesliga" and isinstance(data.get("goals"), list):
+            # Bundesliga: top-level 'goals' list with player/value.
+            players = [{"name": x.get("player"), "team": x.get("club_id", "").replace("DFL-CLU-", ""),
+                        "goals": x.get("value")} for x in data["goals"]]
+        elif league == "ligue1" and isinstance(data.get("scorers"), list):
+            players = [{"name": x.get("player"), "team": x.get("club"),
+                        "goals": x.get("goals"), "assists": x.get("assists"),
+                        "minutes": x.get("minutes")} for x in data["scorers"]]
+        else:
+            players = data.get("players") or data.get("rankings") or []
+        # Filter LaLiga to Primera Division teams (backend includes other comps).
+        if league == "laliga" and laliga_teams:
+            def _is_laliga_team(t):
+                if not t:
+                    return False
+                tl = t.lower()
+                # Match against canonical team names via distinctive substrings.
+                for ct in laliga_teams:
+                    cl = ct.lower()
+                    # Check if canonical name (or key part) appears in backend name.
+                    if cl in tl or tl in cl:
+                        return True
+                    # Handle specific mappings: "ath bilbao" -> "athletic club", etc.
+                    parts = cl.split()
+                    if any(len(p) > 3 and p in tl for p in parts):
+                        return True
+                return False
+            players = [x for x in players if _is_laliga_team(x.get("team", ""))]
         rows = "".join(
             f"<tr><td>{esc(x.get('name', ''))}</td>"
             f"<td class='muted'>{dash(x.get('team'))}</td>"
@@ -1287,59 +800,57 @@ Click a column header to sort.</p>
             f"<td class='num'>{dash(x.get('assists'))}</td>"
             f"<td class='num'>{dash(x.get('appearances', x.get('minutes')))}</td></tr>"
             for x in players[:25])
-        backend_sections.append(f"""<div class="league-panel" data-league="{league}">
-<h2 id="{league}">{name} &mdash; current season</h2>
-<p class="small muted">Source: {esc(source)} (unofficial feed, no SLA).
-Click a column header to sort.</p>
-<table class="sortable"><tr><th>Player</th><th>Team</th><th class="num">Goals</th>
-<th class="num">Assists</th><th class="num">Apps/Min</th></tr>{rows}</table></div>""")
-    backend_sections.append("</div>")
-    sections.append("".join(backend_sections))
+        sections.append(f"""<h2>{name} &mdash; current season</h2>
+<p class="small muted">Source: {esc(source)} (unofficial feed, no SLA).</p>
+<table><tr><th>Player</th><th>Team</th><th class="num">Goals</th>
+<th class="num">Assists</th><th class="num">Apps/Min</th></tr>{rows}</table>""")
 
-    # Note: data/topscorers_2425.json (last season) is kept in the repo as a
-    # labeled baseline for modeling, but per Anurag's rule the site only ever
-    # shows current-season data, so it is not rendered here.
+    # 2024/25 topscorers baseline for all leagues.
+    ts_path = d / "topscorers_2425.json"
+    if ts_path.exists():
+        ts = json.loads(ts_path.read_text())
+        leagues_ts = ts.get("leagues", ts)
+        for league in settings.league_order:
+            entries = (leagues_ts.get(league) or [])[:20]
+            if not entries:
+                continue
+            max_apps = MAX_APPS.get(league, 38)
+            def _apps(e):
+                a = e.get("appearances")
+                if a is None:
+                    return "-"
+                try:
+                    a = int(a)
+                except (TypeError, ValueError):
+                    return "-"
+                # api-football occasionally returns inflated appearance counts;
+                # cap at the league maximum rather than showing impossible data.
+                return str(min(a, max_apps))
+            def _rating(e):
+                r = e.get("rating")
+                if r is None:
+                    return "-"
+                try:
+                    return f"{float(r):.2f}"
+                except (TypeError, ValueError):
+                    return "-"
+            rows = "".join(
+                f"<tr><td>{esc(e.get('player', ''))}</td>"
+                f"<td class='muted'>{esc(e.get('team', ''))}</td>"
+                f"<td class='num'>{dash(e.get('goals'))}</td>"
+                f"<td class='num'>{dash(e.get('assists'))}</td>"
+                f"<td class='num'>{_apps(e)}</td>"
+                f"<td class='num'>{_rating(e)}</td></tr>"
+                for e in entries)
+            sections.append(f"""<h2>{LEAGUE_NAMES[league]} &mdash; 2024/25 top scorers</h2>
+<p class="small muted">Source: api-football topscorers, season 2024/25 (labeled baseline).</p>
+<table><tr><th>Player</th><th>Team</th><th class="num">Goals</th>
+<th class="num">Assists</th><th class="num">Apps</th><th class="num">Rating</th></tr>
+{rows}</table>""")
 
     body = ('<div class="hero"><h1>Players</h1><p class="lede">Who is in form, '
             'per league, each source labeled.</p></div>' + "".join(sections))
     return page_shell("Players", body, updated=updated)
-
-
-# ------------------------------------------------- 8.7 calibration buckets
-def _calibration_html() -> str:
-    """Per-league calibration-by-confidence-bucket tables."""
-    d = settings.data_dir
-    parts = ['<h2>Calibration</h2><p class="small muted">Walk-forward ensemble '
-             'probabilities grouped by confidence bucket, across all three '
-             'outcomes (home, draw, away). When the model is calibrated, the '
-             'observed rate tracks the predicted mean.</p>']
-    for league in settings.league_order:
-        p = d / f"calibration_{league}.json"
-        if not p.exists():
-            continue
-        cal = json.loads(p.read_text())
-        trs = []
-        for b in cal.get("buckets", []):
-            mp = b.get("mean_pred")
-            ob = b.get("observed_rate")
-            n = b.get("n", 0)
-            mp_txt = f"{mp:.3f}" if mp is not None else "-"
-            ob_txt = f"{ob:.3f}" if ob is not None else "-"
-            trs.append(f"<tr><td class='num'>{b['lo']:.1f}-{b['hi']:.1f}</td>"
-                       f"<td class='num'>{mp_txt}</td>"
-                       f"<td class='num'><b>{ob_txt}</b></td>"
-                       f"<td class='num muted'>{n:,}</td></tr>")
-        ver = esc(cal.get("model_version", ""))
-        n = cal.get("n_predictions", 0)
-        parts.append(
-            f"<h3>{LEAGUE_NAMES[league]}</h3>"
-            f"<p class='small faint' style='margin-top:-.5em'>{n:,} outcome "
-            f"predictions, walk-forward, model {ver}.</p>"
-            f"<table><tr><th class='num'>Bucket</th>"
-            f"<th class='num'>Predicted mean</th>"
-            f"<th class='num'>Observed rate</th>"
-            f"<th class='num'>Count</th></tr>{''.join(trs)}</table>")
-    return "".join(parts)
 
 
 # ---------------------------------------------------------------- track record
@@ -1362,7 +873,7 @@ def build_track_record(datas: dict[str, LeagueData], updated: str) -> str:
             rows += (f"<tr><td>{esc(model)}{star}</td>"
                      f"<td class='num'>{m.get('logloss', 0):.4f}</td>"
                      f"<td class='num'>{pct(m.get('accuracy', 0))}</td></tr>")
-        ah = wf.get("always_home_accuracy")
+        ah = wf.get("models", {}).get("baseline", {}).get("accuracy")
         note = (f"<p class='small faint'>Always-pick-home accuracy: {pct(ah)}. "
                 f"Baseline log-loss uses each league's historical outcome rates. "
                 f"* = the ML config used for this league's headline probabilities.</p>"
@@ -1397,209 +908,8 @@ Lower log-loss is better. {esc(verdict)}</p>
 
     body = ('<div class="hero"><h1>Track record</h1><p class="lede">'
             'Every model scored walk-forward against a naive baseline. '
-            'No cherry-picking.</p></div>' + "".join(sections)
-            + _calibration_html() + ledger_html)
+            'No cherry-picking.</p></div>' + "".join(sections) + ledger_html)
     return page_shell("Track record", body, updated=updated)
-
-
-# ---------------------------------------------------------------- model insights
-def _freq_bar(freq: float) -> str:
-    w = int(round(freq * 100))
-    return (f'<div style="background:#eee;height:8px;width:120px;'
-            f'display:inline-block;vertical-align:middle">'
-            f'<div style="background:#1a7f4b;height:8px;width:{w}%"></div></div>'
-            f' <span class="num">{w}%</span>')
-
-
-def build_model_insights(datas: dict[str, "LeagueData"], updated: str) -> str:
-    """Per-league PAM feature-selection tables and the PAM-vs-full verdict."""
-    from .pam_select import GROUP_LABELS, GROUP_ORDER
-    sections = []
-    method = ('<p class="small muted">Feature groups are tested against '
-              'row-permuted decoy copies of themselves: each group is fitted '
-              'alongside 5 shuffled copies, and it "wins" a round when its '
-              'real features carry more model importance than every copy. '
-              'A group is kept when it wins at least 60% of 20 rounds. '
-              'Stability is the Jaccard similarity of the kept sets on two '
-              'halves of the data. The kept set trains the final ML model '
-              'only if it beats the full feature set walk-forward; otherwise '
-              'the full set stays.</p>')
-    for league in settings.league_order:
-        pam_path = settings.data_dir / f"pam_selection_{league}.json"
-        fm = ((datas[league].params or {}).get("feature_mask") or {})
-        if not pam_path.exists():
-            sections.append(f"<h2>{LEAGUE_NAMES[league]}</h2>"
-                            "<p class='muted'>Feature selection not run for "
-                            "this league yet.</p>")
-            continue
-        pam = json.loads(pam_path.read_text())
-        freqs = pam.get("selection_frequency", {})
-        groups = pam.get("groups", {})
-        selected = set(pam.get("selected_groups", []))
-        rows = ""
-        for g in GROUP_ORDER:
-            if g not in groups:
-                continue
-            f = freqs.get(g, 0.0)
-            mark = "yes" if g in selected else "no"
-            rows += (f"<tr><td>{esc(GROUP_LABELS.get(g, g))}</td>"
-                     f"<td class='num'>{len(groups[g])}</td>"
-                     f"<td>{_freq_bar(f)}</td>"
-                     f"<td>{mark}</td></tr>")
-        jac = pam.get("jaccard_stability")
-        stab = (f"<p class='small'>Selection stability (Jaccard, two data "
-                f"halves): <b>{jac:.2f}</b>.</p>" if jac is not None else "")
-        cmp_ = fm.get("pam_compare") or {}
-        if cmp_:
-            verdict = ("The selected features won walk-forward and train the "
-                       "final model." if fm.get("source") == "pam"
-                       else "The full feature set won walk-forward, so it "
-                            "trains the final model.")
-            comp = (f"<p class='small'>Walk-forward log-loss, xgb_tiny: "
-                    f"selected features <b>{cmp_['pam_logloss']:.4f}</b> vs "
-                    f"full set <b>{cmp_['full_logloss']:.4f}</b>. {verdict}</p>")
-        else:
-            comp = ("<p class='small faint'>PAM-vs-full comparison not run "
-                    "yet (needs a refit with the selection file present).</p>")
-        sections.append(f"<h2>{LEAGUE_NAMES[league]}</h2>"
-                        f"<table><tr><th>Feature group</th>"
-                        f"<th class='num'>Features</th>"
-                        f"<th>Selection frequency</th><th>Kept</th></tr>"
-                        f"{rows}</table>{stab}{comp}")
-    body = ('<div class="hero"><h1>Model insights</h1>'
-            '<p class="lede">Which feature groups the model actually keeps, '
-            'and whether the smaller set earns its place.</p></div>'
-            + method + "".join(sections)
-            + f'<p class="small"><a href="{SITE_BASE}/track-record.html">'
-              'Track record &rarr;</a></p>')
-    return page_shell("Model insights", body, updated=updated)
-
-
-# ------------------------------------------------- 8.7 methodology
-def build_methodology(datas: dict[str, "LeagueData"], updated: str) -> str:
-    """Model, inputs, per-league params, evaluation, honest limitations."""
-    from .pam_select import GROUP_LABELS, GROUP_ORDER
-
-    # Per-league Dixon-Coles params.
-    dc_rows = []
-    ens_w = {}
-    ml_cfgs = {}
-    for league in settings.league_order:
-        p = (datas[league].params or {})
-        dc = p.get("dc", {})
-        dc_rows.append(
-            f"<tr><td>{LEAGUE_NAMES[league]}</td>"
-            f"<td class='num'>{dc.get('xi', 0):.4f}</td>"
-            f"<td class='num'>{dc.get('home_adv', 0):.3f}</td>"
-            f"<td class='num'>{dc.get('rho', 0):+.3f}</td>"
-            f"<td class='num muted'>{dc.get('n_matches', 0):,}</td></tr>")
-        if league == "pl":
-            ens_w = p.get("ensemble_weights", {})
-        ml_cfgs[LEAGUE_NAMES[league]] = p.get("chosen_ml", "gradient boosting")
-    ml_note = ", ".join(f"{lg}: {esc(cfg)}" for lg, cfg in ml_cfgs.items())
-    dc_table = (f"<table><tr><th>League</th>"
-                f"<th class='num'>Time decay (xi)</th>"
-                f"<th class='num'>Home advantage</th>"
-                f"<th class='num'>Rho</th>"
-                f"<th class='num'>Matches fitted</th></tr>"
-                f"{''.join(dc_rows)}</table>")
-
-    # Feature families.
-    feat_items = "".join(
-        f"<li>{esc(GROUP_LABELS[g])}</li>" for g in GROUP_ORDER
-        if g in GROUP_LABELS)
-
-    # Evaluation: walk-forward log-loss, Brier, RPS for the ensemble,
-    # plus the de-vigged market benchmark.
-    eval_rows = []
-    notes = []
-    for league in settings.league_order:
-        wf = (datas[league].params or {}).get("walkforward", {})
-        ens = wf.get("ensemble", {})
-        odds = wf.get("odds", {})
-        mkt = ""
-        if odds:
-            ll_o, ll_e = odds.get("logloss"), ens.get("logloss")
-            if ll_o is not None and ll_e is not None:
-                mkt = (f"<td class='num'>{ll_o:.4f}</td>"
-                       f"<td class='num'>{odds.get('rps', 0):.4f}</td>")
-                if ll_o < ll_e:
-                    notes.append(
-                        f"In {LEAGUE_NAMES[league]} the de-vigged market "
-                        f"odds beat the ensemble on walk-forward log-loss "
-                        f"({ll_o:.4f} vs {ll_e:.4f}).")
-            else:
-                mkt = "<td class='num'>-</td><td class='num'>-</td>"
-        eval_rows.append(
-            f"<tr><td>{LEAGUE_NAMES[league]}</td>"
-            f"<td class='num'>{ens.get('logloss', 0):.4f}</td>"
-            f"<td class='num'>{ens.get('brier', 0):.4f}</td>"
-            f"<td class='num'>{ens.get('rps', 0):.4f}</td>"
-            f"<td class='num'>{pct(ens.get('accuracy', 0))}</td>{mkt}</tr>")
-    eval_table = (f"<table><tr><th>League</th>"
-                  f"<th class='num'>Ensemble log-loss</th>"
-                  f"<th class='num'>Brier</th><th class='num'>RPS</th>"
-                  f"<th class='num'>Accuracy</th>"
-                  f"<th class='num'>Market log-loss</th>"
-                  f"<th class='num'>Market RPS</th></tr>"
-                  f"{''.join(eval_rows)}</table>")
-
-    w_ml = ens_w.get("ml", 0.6) if ens_w else 0.6
-    w_dc = ens_w.get("dc", 0.4) if ens_w else 0.4
-    body = f"""<div class="hero"><h1>Methodology</h1>
-<p class="lede">How the predictions are made, what goes in, how they score,
-and where they fall short.</p></div>
-
-<h2>The model</h2>
-<div class="card"><p style="margin-top:0">Each league is fitted separately.
-Two models run side by side and are blended into one headline probability:</p>
-<ul>
-<li><b>Dixon-Coles Poisson.</b> A per-league Poisson goal model with a time
-decay parameter (recent matches weigh more), an estimated home advantage,
-and a rho term adjusting for correlated low scores. Fitted by maximum
-likelihood on the finished fixtures.</li>
-<li><b>Gradient boosting.</b> Trained on the selected feature set from
-permutation-assisted selection (PAM), which keeps only feature groups that
-beat shuffled decoy copies. Config per league: {ml_note}.</li>
-<li><b>Ensemble.</b> The headline probability is {w_ml:g} x ML plus
-{w_dc:g} x Dixon-Coles. The weights are fixed, not tuned per matchday.</li>
-</ul></div>
-
-<h2>Inputs</h2>
-<div class="card"><ul style="margin:0">{feat_items}</ul>
-<p class="small muted" style="margin-bottom:0">Team news: full injury data for
-the PL via FPL; other leagues use absences detected from lineups, labeled
-"reason unconfirmed". Forecasts freeze before kickoff; ledgers keep the
-misses.</p></div>
-
-<h2>Dixon-Coles parameters</h2>
-{dc_table}
-<p class="small muted">Xi is the per-day time decay; home advantage and rho
-are on the goal scale. Fitted on all finished fixtures in the data window.</p>
-
-<h2>Evaluation</h2>
-{eval_table}
-<p class="small muted">Walk-forward (time-series split) on all finished
-fixtures. Lower is better for log-loss, Brier and RPS. The market benchmark
-is de-vigged closing odds: the raw home/draw/away odds with the bookmaker
-margin removed, scored on the same walk-forward splits. See the
-<a href="{{BASE}}/track-record.html">track record</a> page for per-model
-tables and calibration by confidence bucket.</p>
-
-<h2>Honest limitations</h2>
-<div class="limit"><ul style="margin:0">
-<li><b>The market is a hard benchmark.</b>
-{" ".join(esc(n) for n in notes) if notes else "The de-vigged market odds score close to the ensemble on most leagues."}
-Odds compilers see team sheets, weather and late money; this model does not.</li>
-<li><b>Feature selection is unstable.</b> PAM selection run on two halves of
-the data agrees on a Jaccard similarity of 0.0 for every league. The selected
-set still beat the full set walk-forward for most leagues, but treat the
-"kept" groups as one draw, not the truth.</li>
-<li><b>Probabilities are estimates.</b> A 70% probability means the model
-expects that outcome 7 times in 10, not that it knows which. These numbers
-are not betting advice.</li>
-</ul></div>"""
-    return page_shell("Methodology", body, updated=updated)
 
 
 # ---------------------------------------------------------------- main
@@ -1610,7 +920,6 @@ def main() -> int:
     docs = settings.docs_dir
     docs.mkdir(parents=True, exist_ok=True)
     (docs / "style.css").write_text(CSS)
-    (docs / "app.js").write_text(APP_JS.strip() + "\n")
     updated = date.today().isoformat()
 
     datas = {lg: LeagueData(lg) for lg in settings.league_order}
@@ -1622,14 +931,7 @@ def main() -> int:
     if p.exists():
         players_pl = json.loads(p.read_text())
 
-    from .scorer_probs import compute_scorer_probs
-    scorers = compute_scorer_probs(preds)
-    (settings.data_dir / "scorer_probs.csv").write_text(
-        scorers.to_csv(index=False))
-    log.info("scorer_probs_written", rows=len(scorers))
-    depth = {lg: team_depth_data(datas[lg]) for lg in settings.league_order}
-
-    (docs / "index.html").write_text(build_index(datas, preds, scorers, updated))
+    (docs / "index.html").write_text(build_index(datas, preds, updated))
 
     for league in settings.league_order:
         ld = datas[league]
@@ -1653,16 +955,12 @@ def main() -> int:
                 feats = fp.loc[r.fixture_id].to_dict()
             (ldir / "fixtures" / f"{r.fixture_id}.html").write_text(
                 build_fixture(league, ld, r, feats, updated))
-        live_teams = ld.fixtures[ld.fixtures.season == settings.live_season]
-        for team in sorted(set(live_teams.home) | set(live_teams.away)):
+        for team in sorted(set(ld.fixtures.home) | set(ld.fixtures.away)):
             (ldir / "teams" / f"{slug(team)}.html").write_text(
-                build_team(league, ld, team, players_pl, depth[league], updated))
+                build_team(league, ld, team, players_pl, updated))
 
-    (docs / "players.html").write_text(build_players(datas, scorers, updated))
+    (docs / "players.html").write_text(build_players(datas, updated))
     (docs / "track-record.html").write_text(build_track_record(datas, updated))
-    (docs / "methodology.html").write_text(build_methodology(datas, updated))
-    (docs / "model-insights.html").write_text(
-        build_model_insights(datas, updated))
 
     n_pages = (1 + len(settings.league_order)
                + sum(len(preds[lg]) for lg in settings.league_order)
