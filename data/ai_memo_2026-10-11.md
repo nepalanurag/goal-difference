@@ -8,10 +8,10 @@
 | league | model version | poisson | ML (chosen) | ensemble | baseline |
 | --- | --- | --- | --- | --- | --- |
 | pl | v2026-10-11 | 1.0118 | 0.9430 (xgb_tiny) | 0.9396 | 1.0849 |
-| laliga | v2026-10-11 | 1.0308 | 0.9364 (xgb_reg) | 0.9368 | 1.0661 |
-| bundesliga | v2026-10-11 | 1.0663 | 0.9255 (xgb_tiny) | 0.9347 | 1.0824 |
-| seriea | v2026-10-11 | 1.0342 | 0.9533 (xgb_reg) | 0.9514 | 1.0943 |
-| ligue1 | v2026-10-11 | 1.0766 | 0.9303 (xgb_reg) | 0.9457 | 1.0728 |
+| laliga | v2026-10-11 | 1.0285 | 0.9364 (xgb_reg) | 0.9367 | 1.0661 |
+| bundesliga | v2026-10-11 | 1.0670 | 0.9255 (xgb_tiny) | 0.9352 | 1.0824 |
+| seriea | v2026-10-11 | 1.0348 | 0.9533 (xgb_reg) | 0.9515 | 1.0943 |
+| ligue1 | v2026-10-11 | 1.0772 | 0.9303 (xgb_reg) | 0.9457 | 1.0728 |
 
 ## 2. Ledger scoring this run
 
@@ -72,9 +72,9 @@
 Compares the ledger's overall ensemble log-loss against the walk-forward ensemble log-loss. Flagged when the ledger is worse by more than 0.05.
 
 - pl: ledger 1.0455 vs walk-forward 0.9396 (delta +0.1059, n=9) — DECAY FLAG.
-- laliga: ledger 0.7645 vs walk-forward 0.9368 (delta -0.1723, n=8) — ok.
-- bundesliga: ledger 1.2621 vs walk-forward 0.9347 (delta +0.3274, n=9) — DECAY FLAG.
-- seriea: ledger 0.8608 vs walk-forward 0.9514 (delta -0.0906, n=8) — ok.
+- laliga: ledger 0.7645 vs walk-forward 0.9367 (delta -0.1722, n=8) — ok.
+- bundesliga: ledger 1.2621 vs walk-forward 0.9352 (delta +0.3269, n=9) — DECAY FLAG.
+- seriea: ledger 0.8608 vs walk-forward 0.9515 (delta -0.0907, n=8) — ok.
 - ligue1: ledger 0.7560 vs walk-forward 0.9457 (delta -0.1897, n=9) — ok.
 
 One or more leagues are flagged. The weekly memo should investigate before the next refresh: check for distribution shift (new season, promoted teams) or stale features.
