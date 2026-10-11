@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-11T05:08:19.099206+00:00",
+ "fetched_at": "2026-10-11T18:47:46.648804+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season.",
  "teams": {
   "Arsenal": {
@@ -789,11 +789,11 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Calf injury - Expected back 18 Oct",
-     "regular_starter": true
+     "regular_starter": false
     }
    ],
    "doubtful": [],
-   "key_absences": 2
+   "key_absences": 1
   },
   "Everton": {
    "out": [
@@ -825,10 +825,10 @@
    "doubtful": [
     {
      "player": "Christian Nørgaard",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Groin injury - 50% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
@@ -841,14 +841,14 @@
     },
     {
      "player": "Merlin Röhl",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Unspecified injury - 50% chance of playing",
-     "regular_starter": true
+     "chance_next_round": 100,
+     "news": "",
+     "regular_starter": false
     }
    ],
-   "key_absences": 2
+   "key_absences": 1
   },
   "Fulham": {
    "out": [
@@ -1231,6 +1231,14 @@
      "regular_starter": true
     },
     {
+     "player": "Ryan Gravenberch",
+     "status": "s",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Suspended until 25 Oct",
+     "regular_starter": false
+    },
+    {
      "player": "Curtis Jones",
      "status": "u",
      "chance_this_round": 0,
@@ -1273,15 +1281,23 @@
    ],
    "doubtful": [
     {
-     "player": "Federico Chiesa",
+     "player": "Dominik Szoboszlai",
      "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Federico Chiesa",
+     "status": "a",
      "chance_this_round": 25,
-     "chance_next_round": 25,
-     "news": "Back injury - 25% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     }
    ],
-   "key_absences": 2
+   "key_absences": 3
   },
   "Man City": {
    "out": [
@@ -1295,10 +1311,10 @@
     },
     {
      "player": "Phil Foden",
-     "status": "s",
+     "status": "a",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Suspended until 17 Oct",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
@@ -1353,18 +1369,18 @@
    "doubtful": [
     {
      "player": "Nico O'Reilly",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
      "player": "Antoine Semenyo",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Ankle injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true
     }
    ],
@@ -1616,7 +1632,7 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": true
+     "regular_starter": false
     },
     {
      "player": "Nicolò Savona",
@@ -1670,14 +1686,14 @@
    "doubtful": [
     {
      "player": "Neco Williams",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Illness - 50% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true
     }
    ],
-   "key_absences": 2
+   "key_absences": 1
   },
   "Sunderland": {
    "out": [

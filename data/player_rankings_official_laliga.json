@@ -1,7 +1,7 @@
 {
  "source": "LaLiga apim public-service API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-11T05:07:24.445010+00:00",
+ "fetched_at": "2026-10-11T18:46:52.159587+00:00",
  "notes": "72 advanced stats per player cached raw; assists are not published in this feed, so assists is null here.",
  "players": [
   {
@@ -109,8 +109,8 @@
    "position": "Delantero",
    "goals": 1,
    "assists": null,
-   "appearances": 4,
-   "minutes": 175,
+   "appearances": 5,
+   "minutes": 206,
    "shots": 8,
    "shots_on_target": 3,
    "key_passes": 2,
@@ -165,11 +165,11 @@
    "position": "Delantero",
    "goals": null,
    "assists": null,
-   "appearances": 4,
-   "minutes": 112,
+   "appearances": 5,
+   "minutes": 145,
    "shots": 1,
    "shots_on_target": null,
-   "key_passes": null,
+   "key_passes": 1,
    "starts": null
   },
   {
@@ -193,11 +193,11 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 4,
-   "minutes": 240,
-   "shots": null,
+   "appearances": 5,
+   "minutes": 273,
+   "shots": 1,
    "shots_on_target": null,
-   "key_passes": 1,
+   "key_passes": 2,
    "starts": 3
   },
   {
@@ -417,12 +417,12 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 2,
-   "minutes": 167,
+   "appearances": 3,
+   "minutes": 250,
    "shots": 1,
    "shots_on_target": 1,
    "key_passes": null,
-   "starts": 2
+   "starts": 3
   },
   {
    "name": "Alejandro Balde",
@@ -683,12 +683,12 @@
    "position": "Centrocampista",
    "goals": 2,
    "assists": null,
-   "appearances": 6,
-   "minutes": 317,
-   "shots": 4,
+   "appearances": 7,
+   "minutes": 405,
+   "shots": 5,
    "shots_on_target": 2,
-   "key_passes": 1,
-   "starts": 4
+   "key_passes": 3,
+   "starts": 5
   },
   {
    "name": "Ander Guevara",
@@ -1229,12 +1229,12 @@
    "position": "Delantero",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 405,
-   "shots": 5,
-   "shots_on_target": 2,
-   "key_passes": 3,
-   "starts": 6
+   "appearances": 8,
+   "minutes": 495,
+   "shots": 8,
+   "shots_on_target": 3,
+   "key_passes": 4,
+   "starts": 7
   },
   {
    "name": "Borja Iglesias",
@@ -1243,8 +1243,8 @@
    "position": "Delantero",
    "goals": null,
    "assists": null,
-   "appearances": 2,
-   "minutes": 48,
+   "appearances": 3,
+   "minutes": 78,
    "shots": 2,
    "shots_on_target": null,
    "key_passes": 1,
@@ -1299,12 +1299,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 4,
-   "minutes": 286,
-   "shots": 2,
+   "appearances": 5,
+   "minutes": 376,
+   "shots": 3,
    "shots_on_target": null,
-   "key_passes": null,
-   "starts": 3
+   "key_passes": 1,
+   "starts": 4
   },
   {
    "name": "Bryan Zaragoza",
@@ -1574,9 +1574,9 @@
   },
   {
    "name": "Christian Imga",
-   "nickname": "Christian Imga",
-   "team": null,
-   "position": null,
+   "nickname": "Imga",
+   "team": "Athletic Club",
+   "position": "Delantero",
    "goals": null,
    "assists": null,
    "appearances": null,
@@ -1621,9 +1621,9 @@
    "position": "Delantero",
    "goals": null,
    "assists": null,
-   "appearances": 3,
-   "minutes": 63,
-   "shots": 1,
+   "appearances": 4,
+   "minutes": 82,
+   "shots": 3,
    "shots_on_target": null,
    "key_passes": 2,
    "starts": null
@@ -1873,12 +1873,12 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 3,
-   "minutes": 122,
+   "appearances": 4,
+   "minutes": 167,
    "shots": 2,
    "shots_on_target": 2,
    "key_passes": 1,
-   "starts": 1
+   "starts": 2
   },
   {
    "name": "David Otorbi",
@@ -2027,12 +2027,12 @@
    "position": "Centrocampista",
    "goals": 1,
    "assists": null,
-   "appearances": 3,
-   "minutes": 114,
-   "shots": 1,
+   "appearances": 4,
+   "minutes": 171,
+   "shots": 2,
    "shots_on_target": 1,
    "key_passes": 1,
-   "starts": null
+   "starts": 1
   },
   {
    "name": "Dimitri Foulquier",
@@ -2321,8 +2321,8 @@
    "position": "Centrocampista",
    "goals": 1,
    "assists": null,
-   "appearances": 4,
-   "minutes": 219,
+   "appearances": 5,
+   "minutes": 222,
    "shots": 7,
    "shots_on_target": 4,
    "key_passes": 1,
@@ -2363,12 +2363,12 @@
    "position": "Delantero",
    "goals": 5,
    "assists": null,
-   "appearances": 7,
-   "minutes": 470,
-   "shots": 10,
+   "appearances": 8,
+   "minutes": 541,
+   "shots": 11,
    "shots_on_target": 9,
    "key_passes": 2,
-   "starts": 6
+   "starts": 7
   },
   {
    "name": "Fermín López",
@@ -2405,12 +2405,12 @@
    "position": "Delantero",
    "goals": 1,
    "assists": null,
-   "appearances": 7,
-   "minutes": 388,
-   "shots": 6,
+   "appearances": 8,
+   "minutes": 459,
+   "shots": 8,
    "shots_on_target": 3,
    "key_passes": 3,
-   "starts": 5
+   "starts": 6
   },
   {
    "name": "Filip Ugrinic",
@@ -2629,12 +2629,12 @@
    "position": "Centrocampista",
    "goals": 1,
    "assists": null,
-   "appearances": 7,
-   "minutes": 572,
+   "appearances": 8,
+   "minutes": 662,
    "shots": 2,
    "shots_on_target": 1,
-   "key_passes": 11,
-   "starts": 7
+   "key_passes": 12,
+   "starts": 8
   },
   {
    "name": "Giacomo Quagliata",
@@ -2643,12 +2643,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 569,
+   "appearances": 8,
+   "minutes": 648,
    "shots": 5,
    "shots_on_target": 1,
-   "key_passes": 6,
-   "starts": 6
+   "key_passes": 7,
+   "starts": 7
   },
   {
    "name": "Giorgi Guliashvili",
@@ -2741,26 +2741,26 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 573,
-   "shots": 3,
-   "shots_on_target": 3,
+   "appearances": 8,
+   "minutes": 644,
+   "shots": 4,
+   "shots_on_target": 4,
    "key_passes": 7,
-   "starts": 7
+   "starts": 8
   },
   {
    "name": "Gonçalo Manuel Ganchinho Guedes",
    "nickname": "Guedes",
    "team": "Real Sociedad de Fútbol SAD",
    "position": "Centrocampista",
-   "goals": null,
+   "goals": 1,
    "assists": null,
-   "appearances": 6,
-   "minutes": 267,
-   "shots": 6,
-   "shots_on_target": 4,
+   "appearances": 7,
+   "minutes": 323,
+   "shots": 7,
+   "shots_on_target": 5,
    "key_passes": 5,
-   "starts": 3
+   "starts": 4
   },
   {
    "name": "Gorka Carrera",
@@ -2895,8 +2895,8 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 2,
-   "minutes": 22,
+   "appearances": 3,
+   "minutes": 29,
    "shots": 1,
    "shots_on_target": 1,
    "key_passes": null,
@@ -2993,12 +2993,12 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 5,
-   "minutes": 279,
+   "appearances": 6,
+   "minutes": 350,
    "shots": 1,
    "shots_on_target": null,
-   "key_passes": 3,
-   "starts": 3
+   "key_passes": 4,
+   "starts": 4
   },
   {
    "name": "Héctor Bellerín",
@@ -3021,8 +3021,8 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 1,
-   "minutes": 9,
+   "appearances": 2,
+   "minutes": 11,
    "shots": null,
    "shots_on_target": null,
    "key_passes": null,
@@ -3231,12 +3231,12 @@
    "position": "Centrocampista",
    "goals": 1,
    "assists": null,
-   "appearances": 7,
-   "minutes": 492,
+   "appearances": 8,
+   "minutes": 582,
    "shots": 5,
    "shots_on_target": 1,
-   "key_passes": 1,
-   "starts": 6
+   "key_passes": 2,
+   "starts": 7
   },
   {
    "name": "Ilias Akhomach",
@@ -3259,12 +3259,12 @@
    "position": "Portero",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 630,
+   "appearances": 8,
+   "minutes": 720,
    "shots": null,
    "shots_on_target": null,
    "key_passes": null,
-   "starts": 7
+   "starts": 8
   },
   {
    "name": "Isaac Romero",
@@ -3497,12 +3497,12 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 6,
-   "minutes": 231,
+   "appearances": 7,
+   "minutes": 302,
    "shots": null,
    "shots_on_target": null,
    "key_passes": 4,
-   "starts": 3
+   "starts": 4
   },
   {
    "name": "Javi Guerra",
@@ -3581,12 +3581,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 376,
+   "appearances": 8,
+   "minutes": 466,
    "shots": 1,
    "shots_on_target": null,
    "key_passes": 6,
-   "starts": 4
+   "starts": 5
   },
   {
    "name": "Javier Morcillo",
@@ -3595,12 +3595,12 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 5,
-   "minutes": 307,
+   "appearances": 6,
+   "minutes": 397,
    "shots": 1,
    "shots_on_target": 1,
    "key_passes": 1,
-   "starts": 3
+   "starts": 4
   },
   {
    "name": "Jean Valou",
@@ -3873,14 +3873,14 @@
    "nickname": "Jon Martín",
    "team": null,
    "position": null,
-   "goals": null,
+   "goals": 1,
    "assists": null,
-   "appearances": 6,
-   "minutes": 456,
-   "shots": 2,
-   "shots_on_target": 1,
+   "appearances": 7,
+   "minutes": 546,
+   "shots": 4,
+   "shots_on_target": 2,
    "key_passes": 1,
-   "starts": 5
+   "starts": 6
   },
   {
    "name": "Jon Moncayola",
@@ -3917,8 +3917,8 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 5,
-   "minutes": 227,
+   "appearances": 6,
+   "minutes": 238,
    "shots": 7,
    "shots_on_target": 6,
    "key_passes": 2,
@@ -4183,12 +4183,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 6,
-   "minutes": 364,
-   "shots": 3,
+   "appearances": 7,
+   "minutes": 454,
+   "shots": 4,
    "shots_on_target": 1,
    "key_passes": 2,
-   "starts": 4
+   "starts": 5
   },
   {
    "name": "José Salinas",
@@ -4527,6 +4527,20 @@
    "starts": null
   },
   {
+   "name": "Kevin Lomónaco",
+   "nickname": "Kevin J.",
+   "team": "Elche Club de Fútbol SAD",
+   "position": "Defensa",
+   "goals": null,
+   "assists": null,
+   "appearances": null,
+   "minutes": null,
+   "shots": null,
+   "shots_on_target": null,
+   "key_passes": null,
+   "starts": null
+  },
+  {
    "name": "Kevin Sánchez",
    "nickname": "Kevin",
    "team": "Real Club Deportivo de A Coruña SAD",
@@ -4673,12 +4687,12 @@
    "position": "Portero",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 630,
+   "appearances": 8,
+   "minutes": 720,
    "shots": null,
    "shots_on_target": null,
    "key_passes": null,
-   "starts": 7
+   "starts": 8
   },
   {
    "name": "Llorenç Serred Martínez",
@@ -4715,8 +4729,8 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 6,
-   "minutes": 540,
+   "appearances": 7,
+   "minutes": 573,
    "shots": null,
    "shots_on_target": null,
    "key_passes": 2,
@@ -4743,8 +4757,8 @@
    "position": "Delantero",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 227,
+   "appearances": 8,
+   "minutes": 246,
    "shots": 6,
    "shots_on_target": 5,
    "key_passes": 3,
@@ -4827,12 +4841,12 @@
    "position": "Delantero",
    "goals": 1,
    "assists": null,
-   "appearances": 7,
-   "minutes": 399,
+   "appearances": 8,
+   "minutes": 456,
    "shots": 4,
    "shots_on_target": 2,
-   "key_passes": 13,
-   "starts": 5
+   "key_passes": 15,
+   "starts": 6
   },
   {
    "name": "Luiz Felipe Ramos Marchi",
@@ -4869,12 +4883,12 @@
    "position": "Centrocampista",
    "goals": 3,
    "assists": null,
-   "appearances": 7,
-   "minutes": 551,
+   "appearances": 8,
+   "minutes": 641,
    "shots": 11,
    "shots_on_target": 6,
-   "key_passes": 8,
-   "starts": 6
+   "key_passes": 11,
+   "starts": 7
   },
   {
    "name": "Luken Beitia",
@@ -5023,12 +5037,12 @@
    "position": "Centrocampista",
    "goals": 1,
    "assists": null,
-   "appearances": 4,
-   "minutes": 257,
-   "shots": 1,
+   "appearances": 5,
+   "minutes": 347,
+   "shots": 2,
    "shots_on_target": 1,
-   "key_passes": 1,
-   "starts": 4
+   "key_passes": 2,
+   "starts": 5
   },
   {
    "name": "Marc Bartra",
@@ -5163,12 +5177,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 5,
-   "minutes": 411,
+   "appearances": 6,
+   "minutes": 501,
    "shots": 2,
    "shots_on_target": null,
    "key_passes": null,
-   "starts": 5
+   "starts": 6
   },
   {
    "name": "Marcos Fernández",
@@ -5273,14 +5287,14 @@
    "nickname": "Mario S.",
    "team": "Real Club Deportivo de A Coruña SAD",
    "position": "Centrocampista",
-   "goals": null,
+   "goals": 1,
    "assists": null,
-   "appearances": 7,
-   "minutes": 508,
-   "shots": 4,
-   "shots_on_target": 1,
-   "key_passes": 5,
-   "starts": 6
+   "appearances": 8,
+   "minutes": 598,
+   "shots": 6,
+   "shots_on_target": 2,
+   "key_passes": 9,
+   "starts": 7
   },
   {
    "name": "Marko Dmitrovic",
@@ -5317,12 +5331,26 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 4,
-   "minutes": 161,
-   "shots": 3,
-   "shots_on_target": null,
-   "key_passes": 3,
+   "appearances": 5,
+   "minutes": 180,
+   "shots": 4,
+   "shots_on_target": 1,
+   "key_passes": 4,
    "starts": 2
+  },
+  {
+   "name": "Martín Ochoa",
+   "nickname": "Martín Ochoa",
+   "team": null,
+   "position": null,
+   "goals": null,
+   "assists": null,
+   "appearances": null,
+   "minutes": null,
+   "shots": null,
+   "shots_on_target": null,
+   "key_passes": null,
+   "starts": null
   },
   {
    "name": "Martín Satriano",
@@ -5387,12 +5415,12 @@
    "position": "Portero",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 630,
+   "appearances": 8,
+   "minutes": 720,
    "shots": null,
    "shots_on_target": null,
    "key_passes": null,
-   "starts": 7
+   "starts": 8
   },
   {
    "name": "Mauro Echegoyen",
@@ -5801,6 +5829,20 @@
    "starts": null
   },
   {
+   "name": "Noé Carrillo Collazo",
+   "nickname": "Noé",
+   "team": "Real Club Deportivo de A Coruña SAD",
+   "position": "Centrocampista",
+   "goals": null,
+   "assists": null,
+   "appearances": null,
+   "minutes": null,
+   "shots": null,
+   "shots_on_target": null,
+   "key_passes": null,
+   "starts": null
+  },
+  {
    "name": "Obed Vargas",
    "nickname": "Obed Vargas",
    "team": "Club Atlético de Madrid SAD",
@@ -5947,12 +5989,12 @@
    "position": "Delantero",
    "goals": 2,
    "assists": null,
-   "appearances": 5,
-   "minutes": 246,
+   "appearances": 6,
+   "minutes": 306,
    "shots": 5,
    "shots_on_target": 4,
    "key_passes": 3,
-   "starts": 2
+   "starts": 3
   },
   {
    "name": "Pablo Fornals",
@@ -6023,6 +6065,20 @@
    "shots_on_target": 2,
    "key_passes": 12,
    "starts": 4
+  },
+  {
+   "name": "Pablo Marín",
+   "nickname": "Marin",
+   "team": "Real Sociedad de Fútbol SAD",
+   "position": "Centrocampista",
+   "goals": null,
+   "assists": null,
+   "appearances": 1,
+   "minutes": 66,
+   "shots": null,
+   "shots_on_target": null,
+   "key_passes": null,
+   "starts": 1
   },
   {
    "name": "Pablo Ramón",
@@ -6521,11 +6577,11 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 4,
-   "minutes": 240,
-   "shots": 1,
-   "shots_on_target": null,
-   "key_passes": 1,
+   "appearances": 5,
+   "minutes": 285,
+   "shots": 3,
+   "shots_on_target": 1,
+   "key_passes": 2,
    "starts": 4
   },
   {
@@ -6703,12 +6759,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 4,
-   "minutes": 266,
+   "appearances": 5,
+   "minutes": 356,
    "shots": 1,
    "shots_on_target": null,
-   "key_passes": 1,
-   "starts": 3
+   "key_passes": 2,
+   "starts": 4
   },
   {
    "name": "Rubén García",
@@ -6745,12 +6801,12 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 3,
-   "minutes": 89,
-   "shots": 1,
+   "appearances": 4,
+   "minutes": 179,
+   "shots": 3,
    "shots_on_target": null,
-   "key_passes": null,
-   "starts": null
+   "key_passes": 1,
+   "starts": 1
   },
   {
    "name": "Rubén Vargas",
@@ -6955,8 +7011,8 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 456,
+   "appearances": 8,
+   "minutes": 475,
    "shots": 2,
    "shots_on_target": 1,
    "key_passes": 4,
@@ -6969,12 +7025,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 591,
+   "appearances": 8,
+   "minutes": 681,
    "shots": 4,
    "shots_on_target": 1,
-   "key_passes": 8,
-   "starts": 7
+   "key_passes": 9,
+   "starts": 8
   },
   {
    "name": "Sergio Herrera",
@@ -7109,12 +7165,12 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 398,
-   "shots": 5,
+   "appearances": 8,
+   "minutes": 457,
+   "shots": 6,
    "shots_on_target": 1,
-   "key_passes": 2,
-   "starts": 4
+   "key_passes": 3,
+   "starts": 5
   },
   {
    "name": "Teun Gijselhart",
@@ -7179,12 +7235,12 @@
    "position": "Centrocampista",
    "goals": 1,
    "assists": null,
-   "appearances": 4,
-   "minutes": 165,
-   "shots": 2,
+   "appearances": 5,
+   "minutes": 252,
+   "shots": 4,
    "shots_on_target": 1,
-   "key_passes": 2,
-   "starts": 1
+   "key_passes": 3,
+   "starts": 2
   },
   {
    "name": "Toni Martínez",
@@ -7431,12 +7487,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 630,
+   "appearances": 8,
+   "minutes": 720,
    "shots": 4,
    "shots_on_target": 1,
-   "key_passes": 2,
-   "starts": 7
+   "key_passes": 3,
+   "starts": 8
   },
   {
    "name": "Víctor García",
@@ -7459,11 +7515,11 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 6,
-   "minutes": 310,
+   "appearances": 7,
+   "minutes": 329,
    "shots": 3,
    "shots_on_target": 3,
-   "key_passes": 3,
+   "key_passes": 4,
    "starts": 4
   },
   {
@@ -7529,12 +7585,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 6,
-   "minutes": 533,
+   "appearances": 7,
+   "minutes": 590,
    "shots": 4,
    "shots_on_target": null,
    "key_passes": 1,
-   "starts": 6
+   "starts": 7
   },
   {
    "name": "Yan Diomande",
@@ -7557,12 +7613,12 @@
    "position": "Centrocampista",
    "goals": 1,
    "assists": null,
-   "appearances": 7,
-   "minutes": 403,
-   "shots": 4,
+   "appearances": 8,
+   "minutes": 493,
+   "shots": 5,
    "shots_on_target": 2,
-   "key_passes": 1,
-   "starts": 5
+   "key_passes": 2,
+   "starts": 6
   },
   {
    "name": "Yanis Musuayi",
@@ -7611,14 +7667,14 @@
    "nickname": "Yeremay",
    "team": "Real Club Deportivo de A Coruña SAD",
    "position": "Centrocampista",
-   "goals": null,
+   "goals": 1,
    "assists": null,
-   "appearances": 6,
-   "minutes": 161,
-   "shots": null,
-   "shots_on_target": null,
-   "key_passes": null,
-   "starts": 1
+   "appearances": 7,
+   "minutes": 251,
+   "shots": 4,
+   "shots_on_target": 4,
+   "key_passes": 3,
+   "starts": 2
   },
   {
    "name": "Yoel Lago",
@@ -7627,12 +7683,12 @@
    "position": null,
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 585,
+   "appearances": 8,
+   "minutes": 675,
    "shots": null,
    "shots_on_target": null,
    "key_passes": 1,
-   "starts": 6
+   "starts": 7
   },
   {
    "name": "Youssef Enriquez",
@@ -7865,12 +7921,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 3,
-   "minutes": 264,
-   "shots": 2,
+   "appearances": 4,
+   "minutes": 354,
+   "shots": 3,
    "shots_on_target": 2,
    "key_passes": 1,
-   "starts": 3
+   "starts": 4
   },
   {
    "name": "Álvaro Padilla",
