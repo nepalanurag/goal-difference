@@ -112,25 +112,31 @@ def fetch_api_fixtures(league: str, season: str) -> pd.DataFrame:
 
 # ---------------------------------------------------------------- CSV source
 def fetch_csv(league: str, season: str) -> pd.DataFrame:
-    """football-data.co.uk CSV for one league/season (download or local cache)."""
+    """football-data.co.uk CSV for one league/season.
+
+    Always re-downloads; falls back to the cached copy on failure.
+    (The old code only downloaded once and served the stale cache forever.)
+    """
     csv_code = settings.leagues[league]["csv_code"]
     season_code = CSV_SEASON_CODE[season]
     url = f"{CSV_BASE}/{season_code}/{csv_code}.csv"
     cache_name = f"csv_{league}_{season}.csv"
     path = cached(cache_name)
     provenance = "csv_cached"
-    if path is None:
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        try:
-            with urllib.request.urlopen(req, timeout=60) as resp:
-                raw = resp.read()
-        except Exception as exc:
-            raise RuntimeError(f"CSV download failed for {url}: {exc}") from exc
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            raw = resp.read()
         # Strip UTF-8 BOM; the site redirects (handled by urlopen).
         text = raw.decode("utf-8-sig")
         cache_raw(cache_name, text)
         path = settings.raw_dir / cache_name
         provenance = "csv_download"
+    except Exception as exc:
+        if path is None:
+            raise RuntimeError(f"CSV download failed for {url}: {exc}") from exc
+        log.warning("csv_download_failed_using_cache", league=league,
+                    season=season, error=str(exc)[:200])
     df = pd.read_csv(path, encoding="utf-8-sig")
     rows = []
     for _, r in df.iterrows():
@@ -227,6 +233,47 @@ def fetch_fpl() -> pd.DataFrame:
     return pd.DataFrame(rows, columns=OUTPUT_COLS)
 
 
+# ---------------------------------------------------------------- ESPN source
+# Live-season results for non-PL leagues via ESPN's public scoreboard API.
+# football-data.co.uk CSVs lag by weeks; ESPN has full-time scores same-day.
+ESPN_LEAGUES = ("laliga", "bundesliga", "seriea", "ligue1")
+ESPN_SEASON_START = "2026-08-01"
+
+
+def fetch_espn_results(league: str, season: str) -> pd.DataFrame:
+    """Live-season fixtures+results for a league via ESPN scoreboard.
+
+    Fetches every date from season start to today. Returns OUTPUT_COLS
+    DataFrame with provenance="espn". Raises on total failure.
+    """
+    from .uefa import fetch_espn_league
+    from .team_names import canonicalize
+    today = date.today().isoformat()
+    rows = fetch_espn_league(league, ESPN_SEASON_START, today)
+    if not rows:
+        raise RuntimeError(f"ESPN returned no fixtures for {league}")
+    out = []
+    for r in rows:
+        finished = r["status"] == "finished"
+        out.append({
+            "fixture_id": r["fixture_id"],
+            "date": r["date"],
+            "season": season,
+            "league": league,
+            "home": canonicalize(r["home"], league, "espn"),
+            "away": canonicalize(r["away"], league, "espn"),
+            "home_goals": r["home_goals"] if finished else None,
+            "away_goals": r["away_goals"] if finished else None,
+            "status": r["status"],
+            "provenance": "espn",
+            "api_fixture_id": None,
+            **{c: None for c in STAT_COLS},
+        })
+    log.info("espn_results", league=league, season=season, n=len(out),
+             finished=sum(1 for r in out if r["status"] == "finished"))
+    return pd.DataFrame(out, columns=OUTPUT_COLS)
+
+
 # ---------------------------------------------------------------- per-season
 def extract_league_season(league: str, season: str, prefer_csv: bool) -> pd.DataFrame:
     if season in settings.historical_seasons and not prefer_csv:
@@ -240,7 +287,14 @@ def extract_league_season(league: str, season: str, prefer_csv: bool) -> pd.Data
             return fetch_fpl()
         except Exception as exc:
             log.warning("fpl_failed_falling_back_to_csv", error=str(exc)[:200])
-    # CSV path: only source for 2025/26, fallback everywhere else.
+    if (season == settings.live_season and league in ESPN_LEAGUES
+            and not prefer_csv):
+        try:
+            return fetch_espn_results(league, season)
+        except Exception as exc:
+            log.warning("espn_failed_falling_back_to_csv", league=league,
+                        season=season, error=str(exc)[:200])
+    # CSV path: fallback when APIs fail.
     try:
         return fetch_csv(league, season)
     except Exception as exc:
@@ -357,8 +411,9 @@ def append_reconstructed_schedules(leagues: list[str]) -> None:
 
     The old round-robin reconstruction guessed matchups; ESPN publishes the
     real schedule. For each non-PL league: drop all schedule_reconstructed
-    and espn rows for the live season, fetch the next 60 days from ESPN,
-    and append with provenance="espn".
+    and *scheduled* espn rows for the live season, fetch the next 60 days
+    from ESPN, and append with provenance="espn". Finished ESPN results
+    (from fetch_espn_results) are preserved.
     """
     from .uefa import fetch_espn_league
     from .team_names import canonicalize_espn
@@ -370,9 +425,11 @@ def append_reconstructed_schedules(leagues: list[str]) -> None:
         path = settings.data_dir / f"fixtures_{league}.csv"
         df = pd.read_csv(path, dtype={"season": str})
         season = str(settings.live_season)
-        # Drop old guessed rows (and any previous ESPN pull) for live season.
+        # Drop old guessed rows (and previous ESPN *scheduled* pulls) for live
+        # season. Finished ESPN results are kept.
         mask = ~((df["season"] == season) &
-                 (df["provenance"].isin(["schedule_reconstructed", "espn"])))
+                 (df["provenance"].isin(["schedule_reconstructed", "espn"])) &
+                 (df["status"] == "scheduled"))
         df = df[mask]
         rows = []
         for r in fetch_espn_league(league, today, end):
