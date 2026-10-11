@@ -188,8 +188,22 @@ def fetch_fpl() -> pd.DataFrame:
         raise RuntimeError(f"FPL fetch failed: {exc}") from exc
     team_name = {t["id"]: canonicalize(t["name"], "pl", "fpl") for t in boot["teams"]}
     rows = []
+    now_utc = datetime.now(timezone.utc)
     for fx in fixtures:
+        # FPL flips `finished` only after bonus points are calculated,
+        # which can lag the final whistle by hours. Also treat a fixture
+        # as done if it has final scores and kicked off 3+ hours ago.
         finished = bool(fx.get("finished"))
+        if not finished:
+            hs, aws = fx.get("team_h_score"), fx.get("team_a_score")
+            ko = fx.get("kickoff_time", "")
+            try:
+                ko_dt = datetime.fromisoformat(ko.replace("Z", "+00:00"))
+            except ValueError:
+                ko_dt = None
+            if (hs is not None and aws is not None and ko_dt is not None
+                    and (now_utc - ko_dt).total_seconds() > 3 * 3600):
+                finished = True
         kickoff = fx.get("kickoff_time", "")[:10]
         home = team_name[fx["team_h"]]
         away = team_name[fx["team_a"]]
