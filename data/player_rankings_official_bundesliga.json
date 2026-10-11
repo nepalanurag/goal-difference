@@ -1,7 +1,7 @@
 {
  "source": "Bundesliga official Firebase playerRankings (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-10T18:22:28.093103+00:00",
+ "fetched_at": "2026-10-11T05:07:25.440078+00:00",
  "notes": "No dedicated goals ranking in the feed; goals are taken from shotsAtGoalSuccessful. Club names are not in the feed, so club_id + logo URL are kept instead.",
  "category_map": {
   "goals": "shotsAtGoalSuccessful",
@@ -3617,6 +3617,13 @@
    "rank": 39
   },
   {
+   "player": "Can Uzun",
+   "club_id": "DFL-CLU-00000F",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
+   "value": 6,
+   "rank": 39
+  },
+  {
    "player": "Elias Baum",
    "club_id": "DFL-CLU-00000F",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
@@ -3663,56 +3670,49 @@
    "club_id": "DFL-CLU-000004",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000004.svg",
    "value": 5,
-   "rank": 52
+   "rank": 53
   },
   {
    "player": "Borna Sosa",
    "club_id": "DFL-CLU-000008",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000008.svg",
    "value": 5,
-   "rank": 52
+   "rank": 53
   },
   {
    "player": "Joe Scally",
    "club_id": "DFL-CLU-000004",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000004.svg",
    "value": 5,
-   "rank": 52
+   "rank": 53
   },
   {
    "player": "Luca Sirch",
    "club_id": "DFL-CLU-000N6L",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000N6L.svg",
    "value": 5,
-   "rank": 52
-  },
-  {
-   "player": "Can Uzun",
-   "club_id": "DFL-CLU-00000F",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
-   "value": 5,
-   "rank": 52
+   "rank": 53
   },
   {
    "player": "Bilal El Khannouss",
    "club_id": "DFL-CLU-00000D",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000D.svg",
    "value": 5,
-   "rank": 52
+   "rank": 53
   },
   {
    "player": "Albert Grønbæk",
    "club_id": "DFL-CLU-00000C",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000C.svg",
    "value": 5,
-   "rank": 52
+   "rank": 53
   },
   {
    "player": "Chuki",
    "club_id": "DFL-CLU-00000E",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000E.svg",
    "value": 5,
-   "rank": 52
+   "rank": 53
   },
   {
    "player": "Philipp Treu",
@@ -4947,21 +4947,21 @@
    "player": "Santiago Castaneda",
    "club_id": "DFL-CLU-00000L",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
-   "value": 60.3,
+   "value": 60.2,
    "rank": 5
   },
   {
    "player": "Tom Rothe",
    "club_id": "DFL-CLU-00000V",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000V.svg",
-   "value": 59.1,
+   "value": 59.3,
    "rank": 6
   },
   {
    "player": "Aleksandar Pavlović",
    "club_id": "DFL-CLU-00000G",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000G.svg",
-   "value": 58.5,
+   "value": 58.4,
    "rank": 7
   },
   {
@@ -4982,7 +4982,7 @@
    "player": "Felix Keidel",
    "club_id": "DFL-CLU-000N6L",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000N6L.svg",
-   "value": 57.5,
+   "value": 57.6,
    "rank": 10
   },
   {
@@ -4996,14 +4996,14 @@
    "player": "Vladimír Coufal",
    "club_id": "DFL-CLU-000002",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000002.svg",
-   "value": 57.2,
+   "value": 57.4,
    "rank": 12
   },
   {
    "player": "Josha Vagnoman",
    "club_id": "DFL-CLU-00000D",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000D.svg",
-   "value": 57.2,
+   "value": 57.3,
    "rank": 13
   },
   {
@@ -5045,7 +5045,7 @@
    "player": "Adam Daghim",
    "club_id": "DFL-CLU-000002",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000002.svg",
-   "value": 55.4,
+   "value": 55.5,
    "rank": 19
   },
   {
@@ -5059,7 +5059,7 @@
    "player": "Miguel Gutiérrez",
    "club_id": "DFL-CLU-00000B",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000B.svg",
-   "value": 55.2,
+   "value": 55,
    "rank": 21
   },
   {
@@ -5087,7 +5087,7 @@
    "player": "Lukas Petkov",
    "club_id": "DFL-CLU-000N6L",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000N6L.svg",
-   "value": 54.2,
+   "value": 54.3,
    "rank": 25
   },
   {
@@ -5105,44 +5105,44 @@
    "rank": 27
   },
   {
-   "player": "Phillipp Mwene",
-   "club_id": "DFL-CLU-000006",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
-   "value": 53.8,
-   "rank": 28
-  },
-  {
    "player": "Kaishu Sano",
    "club_id": "DFL-CLU-000006",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
    "value": 53.7,
-   "rank": 29
+   "rank": 28
   },
   {
-   "player": "Chrislain Matsima",
-   "club_id": "DFL-CLU-000010",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000010.svg",
-   "value": 53.3,
-   "rank": 30
+   "player": "Phillipp Mwene",
+   "club_id": "DFL-CLU-000006",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
+   "value": 53.6,
+   "rank": 29
   },
   {
    "player": "Raphael Onyedika",
    "club_id": "DFL-CLU-00000F",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
    "value": 53.2,
-   "rank": 31
+   "rank": 30
   },
   {
-   "player": "Calvin Brackelmann",
+   "player": "Chrislain Matsima",
    "club_id": "DFL-CLU-000010",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000010.svg",
-   "value": 53.1,
-   "rank": 32
+   "value": 53.2,
+   "rank": 31
   },
   {
    "player": "Nadiem Amiri",
    "club_id": "DFL-CLU-000006",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
+   "value": 53.1,
+   "rank": 32
+  },
+  {
+   "player": "Calvin Brackelmann",
+   "club_id": "DFL-CLU-000010",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000010.svg",
    "value": 53,
    "rank": 33
   },
@@ -5161,16 +5161,16 @@
    "rank": 35
   },
   {
-   "player": "Phillip Tietz",
-   "club_id": "DFL-CLU-000006",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
-   "value": 52.5,
-   "rank": 36
-  },
-  {
    "player": "Gabriel Vidović",
    "club_id": "DFL-CLU-00000L",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
+   "value": 52.6,
+   "rank": 36
+  },
+  {
+   "player": "Phillip Tietz",
+   "club_id": "DFL-CLU-000006",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
    "value": 52.5,
    "rank": 37
   },
@@ -5178,7 +5178,7 @@
    "player": "Can Uzun",
    "club_id": "DFL-CLU-00000F",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
-   "value": 52.4,
+   "value": 52.5,
    "rank": 38
   },
   {
@@ -5206,7 +5206,7 @@
    "player": "Han-Noah Massengo",
    "club_id": "DFL-CLU-000010",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000010.svg",
-   "value": 51.6,
+   "value": 51.5,
    "rank": 42
   },
   {
@@ -5238,30 +5238,30 @@
    "rank": 46
   },
   {
-   "player": "Ozan Kabak",
-   "club_id": "DFL-CLU-000002",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000002.svg",
-   "value": 50.7,
-   "rank": 47
-  },
-  {
    "player": "Robin Fellhauer",
    "club_id": "DFL-CLU-000010",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000010.svg",
-   "value": 50.6,
-   "rank": 48
-  },
-  {
-   "player": "Nicolai Remberg",
-   "club_id": "DFL-CLU-00000C",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000C.svg",
-   "value": 50.6,
-   "rank": 49
+   "value": 50.8,
+   "rank": 47
   },
   {
    "player": "Laurin Ulrich",
    "club_id": "DFL-CLU-00000L",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
+   "value": 50.8,
+   "rank": 48
+  },
+  {
+   "player": "Ozan Kabak",
+   "club_id": "DFL-CLU-000002",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000002.svg",
+   "value": 50.8,
+   "rank": 49
+  },
+  {
+   "player": "Nicolai Remberg",
+   "club_id": "DFL-CLU-00000C",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000C.svg",
    "value": 50.6,
    "rank": 50
   },
@@ -5269,21 +5269,21 @@
    "player": "Ezechiel Banzuzi",
    "club_id": "DFL-CLU-000017",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000017.svg",
-   "value": 50.6,
+   "value": 50.5,
    "rank": 51
   },
   {
    "player": "Raphael Obermair",
    "club_id": "DFL-CLU-00000L",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
-   "value": 50.4,
+   "value": 50.5,
    "rank": 52
   },
   {
    "player": "Jonathan Burkardt",
    "club_id": "DFL-CLU-00000F",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
-   "value": 50.1,
+   "value": 50.2,
    "rank": 53
   },
   {
@@ -5294,17 +5294,17 @@
    "rank": 54
   },
   {
-   "player": "Laurin Curda",
-   "club_id": "DFL-CLU-00000L",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
+   "player": "Edmond Tapsoba",
+   "club_id": "DFL-CLU-00000B",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000B.svg",
    "value": 49.9,
    "rank": 55
   },
   {
-   "player": "Edmond Tapsoba",
-   "club_id": "DFL-CLU-00000B",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000B.svg",
-   "value": 49.8,
+   "player": "Laurin Curda",
+   "club_id": "DFL-CLU-00000L",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
+   "value": 49.9,
    "rank": 56
   },
   {
@@ -5332,7 +5332,7 @@
    "player": "Angelo Stiller",
    "club_id": "DFL-CLU-00000D",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000D.svg",
-   "value": 49.2,
+   "value": 49.1,
    "rank": 60
   },
   {
@@ -5346,28 +5346,28 @@
    "player": "Dayot Upamecano",
    "club_id": "DFL-CLU-00000G",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000G.svg",
-   "value": 48.9,
+   "value": 48.8,
    "rank": 62
+  },
+  {
+   "player": "Lasse Günther",
+   "club_id": "DFL-CLU-000N6L",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000N6L.svg",
+   "value": 48.6,
+   "rank": 63
   },
   {
    "player": "Robin Koch",
    "club_id": "DFL-CLU-00000F",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
    "value": 48.5,
-   "rank": 63
+   "rank": 64
   },
   {
    "player": "Elias Baum",
    "club_id": "DFL-CLU-00000F",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
-   "value": 48.3,
-   "rank": 64
-  },
-  {
-   "player": "Lasse Günther",
-   "club_id": "DFL-CLU-000N6L",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000N6L.svg",
-   "value": 48.1,
+   "value": 48.4,
    "rank": 65
   },
   {
@@ -5385,17 +5385,17 @@
    "rank": 67
   },
   {
-   "player": "Harry Kane",
-   "club_id": "DFL-CLU-00000G",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000G.svg",
+   "player": "Mattes Hansen",
+   "club_id": "DFL-CLU-00000L",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
    "value": 47.5,
    "rank": 68
   },
   {
-   "player": "Mattes Hansen",
-   "club_id": "DFL-CLU-00000L",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
-   "value": 47.4,
+   "player": "Harry Kane",
+   "club_id": "DFL-CLU-00000G",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000G.svg",
+   "value": 47.5,
    "rank": 69
   },
   {
@@ -5406,17 +5406,17 @@
    "rank": 70
   },
   {
-   "player": "Marvin Pieringer",
-   "club_id": "DFL-CLU-00000L",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
+   "player": "Jeff Chabot",
+   "club_id": "DFL-CLU-00000D",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000D.svg",
    "value": 46.5,
    "rank": 71
   },
   {
-   "player": "Jeff Chabot",
-   "club_id": "DFL-CLU-00000D",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000D.svg",
-   "value": 46.4,
+   "player": "Marvin Pieringer",
+   "club_id": "DFL-CLU-00000L",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
+   "value": 46.5,
    "rank": 72
   },
   {
@@ -5437,7 +5437,7 @@
    "player": "Alphonso Davies",
    "club_id": "DFL-CLU-00000G",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000G.svg",
-   "value": 46.1,
+   "value": 46,
    "rank": 75
   },
   {
@@ -5451,7 +5451,7 @@
    "player": "Michel Aebischer",
    "club_id": "DFL-CLU-00000V",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000V.svg",
-   "value": 45.5,
+   "value": 45.6,
    "rank": 77
   },
   {
@@ -5486,7 +5486,7 @@
    "player": "Stefan Posch",
    "club_id": "DFL-CLU-000006",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
-   "value": 43.9,
+   "value": 43.8,
    "rank": 82
   },
   {
@@ -5500,7 +5500,7 @@
    "player": "Patrik Schick",
    "club_id": "DFL-CLU-00000B",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000B.svg",
-   "value": 43.1,
+   "value": 43,
    "rank": 84
   },
   {
@@ -5518,16 +5518,16 @@
    "rank": 86
   },
   {
-   "player": "Felix Nmecha",
-   "club_id": "DFL-CLU-000007",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000007.svg",
+   "player": "Anthony Caci",
+   "club_id": "DFL-CLU-000006",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
    "value": 42.7,
    "rank": 87
   },
   {
-   "player": "Anthony Caci",
-   "club_id": "DFL-CLU-000006",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
+   "player": "Felix Nmecha",
+   "club_id": "DFL-CLU-000007",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000007.svg",
    "value": 42.7,
    "rank": 88
   },
@@ -5598,7 +5598,7 @@
    "player": "David Møller Wolfe",
    "club_id": "DFL-CLU-00000C",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000C.svg",
-   "value": 41.6,
+   "value": 41.5,
    "rank": 98
   },
   {
@@ -5612,14 +5612,14 @@
    "player": "András Schäfer",
    "club_id": "DFL-CLU-00000V",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000V.svg",
-   "value": 41.3,
+   "value": 41.4,
    "rank": 100
   },
   {
    "player": "Sheraldo Becker",
    "club_id": "DFL-CLU-000006",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
-   "value": 41,
+   "value": 40.9,
    "rank": 101
   },
   {
@@ -5682,20 +5682,20 @@
    "player": "David Mokwa",
    "club_id": "DFL-CLU-000N6L",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000N6L.svg",
-   "value": 39.4,
+   "value": 39.5,
    "rank": 110
-  },
-  {
-   "player": "Hugo Bolin",
-   "club_id": "DFL-CLU-000004",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000004.svg",
-   "value": 39.3,
-   "rank": 111
   },
   {
    "player": "Lilian Brassier",
    "club_id": "DFL-CLU-00000F",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
+   "value": 39.3,
+   "rank": 111
+  },
+  {
+   "player": "Hugo Bolin",
+   "club_id": "DFL-CLU-000004",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000004.svg",
    "value": 39.3,
    "rank": 112
   },
@@ -5724,7 +5724,7 @@
    "player": "Ridle Baku",
    "club_id": "DFL-CLU-000017",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000017.svg",
-   "value": 38.9,
+   "value": 38.8,
    "rank": 116
   },
   {
@@ -5745,7 +5745,7 @@
    "player": "Ritsu Dōan",
    "club_id": "DFL-CLU-00000F",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
-   "value": 38.5,
+   "value": 38.4,
    "rank": 119
   },
   {
@@ -5787,7 +5787,7 @@
    "player": "Stefano Marino",
    "club_id": "DFL-CLU-00000L",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
-   "value": 37.8,
+   "value": 37.7,
    "rank": 125
   },
   {
@@ -5805,16 +5805,16 @@
    "rank": 127
   },
   {
-   "player": "Ezequiel Fernández",
-   "club_id": "DFL-CLU-00000B",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000B.svg",
-   "value": 36.7,
-   "rank": 128
-  },
-  {
    "player": "Jaesung Lee",
    "club_id": "DFL-CLU-000006",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
+   "value": 36.6,
+   "rank": 128
+  },
+  {
+   "player": "Ezequiel Fernández",
+   "club_id": "DFL-CLU-00000B",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000B.svg",
    "value": 36.6,
    "rank": 129
   },
@@ -5843,20 +5843,20 @@
    "player": "Woo-yeong Jeong",
    "club_id": "DFL-CLU-00000V",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000V.svg",
-   "value": 36.3,
+   "value": 36.2,
    "rank": 133
-  },
-  {
-   "player": "Satoshi Tanaka",
-   "club_id": "DFL-CLU-000009",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000009.svg",
-   "value": 35.8,
-   "rank": 134
   },
   {
    "player": "Cole Campbell",
    "club_id": "DFL-CLU-000N6L",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000N6L.svg",
+   "value": 35.9,
+   "rank": 134
+  },
+  {
+   "player": "Satoshi Tanaka",
+   "club_id": "DFL-CLU-000009",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000009.svg",
    "value": 35.8,
    "rank": 135
   },
@@ -5906,7 +5906,7 @@
    "player": "Chris Führich",
    "club_id": "DFL-CLU-00000D",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000D.svg",
-   "value": 33.7,
+   "value": 33.8,
    "rank": 142
   },
   {
@@ -5917,31 +5917,31 @@
    "rank": 143
   },
   {
-   "player": "Michael Gregoritsch",
-   "club_id": "DFL-CLU-000010",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000010.svg",
-   "value": 33.2,
-   "rank": 144
-  },
-  {
    "player": "Zeno van den Bosch",
    "club_id": "DFL-CLU-00000V",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000V.svg",
    "value": 33.2,
-   "rank": 145
+   "rank": 144
   },
   {
-   "player": "Ramon Hendriks",
-   "club_id": "DFL-CLU-00000D",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000D.svg",
-   "value": 32.6,
-   "rank": 146
+   "player": "Michael Gregoritsch",
+   "club_id": "DFL-CLU-000010",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000010.svg",
+   "value": 33.1,
+   "rank": 145
   },
   {
    "player": "Tidiam Gomis",
    "club_id": "DFL-CLU-000017",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000017.svg",
-   "value": 32.6,
+   "value": 32.8,
+   "rank": 146
+  },
+  {
+   "player": "Ramon Hendriks",
+   "club_id": "DFL-CLU-00000D",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000D.svg",
+   "value": 32.7,
    "rank": 147
   },
   {
@@ -5969,7 +5969,7 @@
    "player": "Ismael Saibari",
    "club_id": "DFL-CLU-00000G",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000G.svg",
-   "value": 32.1,
+   "value": 32,
    "rank": 151
   },
   {
@@ -6071,16 +6071,16 @@
    "rank": 165
   },
   {
-   "player": "Josip Juranović",
-   "club_id": "DFL-CLU-00000V",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000V.svg",
+   "player": "Oliver Baumann",
+   "club_id": "DFL-CLU-000002",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000002.svg",
    "value": 30,
    "rank": 166
   },
   {
-   "player": "Oliver Baumann",
-   "club_id": "DFL-CLU-000002",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000002.svg",
+   "player": "Josip Juranović",
+   "club_id": "DFL-CLU-00000V",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000V.svg",
    "value": 30,
    "rank": 167
   },
@@ -6141,16 +6141,16 @@
    "rank": 175
   },
   {
-   "player": "Gregor Kobel",
-   "club_id": "DFL-CLU-000007",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000007.svg",
-   "value": 28.1,
-   "rank": 176
-  },
-  {
    "player": "Fábio Vieira",
    "club_id": "DFL-CLU-00000C",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000C.svg",
+   "value": 28.2,
+   "rank": 176
+  },
+  {
+   "player": "Gregor Kobel",
+   "club_id": "DFL-CLU-000007",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000007.svg",
    "value": 28.1,
    "rank": 177
   },
@@ -6158,7 +6158,7 @@
    "player": "Nathaniel Brown",
    "club_id": "DFL-CLU-00000G",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000G.svg",
-   "value": 27.9,
+   "value": 28,
    "rank": 178
   },
   {
@@ -6169,31 +6169,31 @@
    "rank": 179
   },
   {
+   "player": "Janik Haberer",
+   "club_id": "DFL-CLU-00000V",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000V.svg",
+   "value": 27.4,
+   "rank": 180
+  },
+  {
    "player": "Martin Adeline",
    "club_id": "DFL-CLU-00000C",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000C.svg",
    "value": 27.3,
-   "rank": 180
+   "rank": 181
   },
   {
-   "player": "Janik Haberer",
+   "player": "Livan Burcu",
    "club_id": "DFL-CLU-00000V",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000V.svg",
-   "value": 27.2,
-   "rank": 181
+   "value": 27.1,
+   "rank": 182
   },
   {
    "player": "Tim Kleindienst",
    "club_id": "DFL-CLU-000004",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000004.svg",
    "value": 27.1,
-   "rank": 182
-  },
-  {
-   "player": "Livan Burcu",
-   "club_id": "DFL-CLU-00000V",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000V.svg",
-   "value": 27,
    "rank": 183
   },
   {
@@ -6347,7 +6347,7 @@
    "player": "Manuel Neuer",
    "club_id": "DFL-CLU-00000G",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000G.svg",
-   "value": 23.1,
+   "value": 23,
    "rank": 205
   },
   {
@@ -6382,7 +6382,7 @@
    "player": "Danny da Costa",
    "club_id": "DFL-CLU-000006",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
-   "value": 22.1,
+   "value": 22.2,
    "rank": 210
   },
   {
@@ -6407,17 +6407,17 @@
    "rank": 213
   },
   {
-   "player": "Warmed Omari",
-   "club_id": "DFL-CLU-00000C",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000C.svg",
-   "value": 21.9,
-   "rank": 214
-  },
-  {
    "player": "Brajan Gruda",
    "club_id": "DFL-CLU-000017",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000017.svg",
    "value": 21.9,
+   "rank": 214
+  },
+  {
+   "player": "Warmed Omari",
+   "club_id": "DFL-CLU-00000C",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000C.svg",
+   "value": 21.8,
    "rank": 215
   },
   {
@@ -6431,7 +6431,7 @@
    "player": "Frederik Rønnow",
    "club_id": "DFL-CLU-00000V",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000V.svg",
-   "value": 21.2,
+   "value": 21.1,
    "rank": 217
   },
   {
@@ -6484,16 +6484,16 @@
    "rank": 224
   },
   {
-   "player": "Jamie Leweling",
-   "club_id": "DFL-CLU-00000D",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000D.svg",
-   "value": 20.3,
-   "rank": 225
-  },
-  {
    "player": "Isac Lidberg",
    "club_id": "DFL-CLU-000004",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000004.svg",
+   "value": 20.2,
+   "rank": 225
+  },
+  {
+   "player": "Jamie Leweling",
+   "club_id": "DFL-CLU-00000D",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000D.svg",
    "value": 20.2,
    "rank": 226
   },
@@ -6536,7 +6536,7 @@
    "player": "Mert Kömür",
    "club_id": "DFL-CLU-000010",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000010.svg",
-   "value": 18.9,
+   "value": 19,
    "rank": 232
   },
   {
@@ -6554,17 +6554,17 @@
    "rank": 234
   },
   {
-   "player": "Rodrigo Ribeiro",
-   "club_id": "DFL-CLU-000010",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000010.svg",
-   "value": 18.7,
-   "rank": 235
-  },
-  {
    "player": "Fabio Silva",
    "club_id": "DFL-CLU-000007",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000007.svg",
    "value": 18.7,
+   "rank": 235
+  },
+  {
+   "player": "Rodrigo Ribeiro",
+   "club_id": "DFL-CLU-000010",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000010.svg",
+   "value": 18.6,
    "rank": 236
   },
   {
@@ -6585,7 +6585,7 @@
    "player": "Farès Chaïbi",
    "club_id": "DFL-CLU-00000F",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
-   "value": 18,
+   "value": 18.1,
    "rank": 239
   },
   {
@@ -6624,30 +6624,30 @@
    "rank": 244
   },
   {
-   "player": "Youngwoo Seol",
-   "club_id": "DFL-CLU-000010",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000010.svg",
+   "player": "Ransford-Yeboah Königsdörffer",
+   "club_id": "DFL-CLU-000006",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
    "value": 17.1,
    "rank": 245
   },
   {
-   "player": "Ransford-Yeboah Königsdörffer",
-   "club_id": "DFL-CLU-000006",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
-   "value": 17,
+   "player": "Youngwoo Seol",
+   "club_id": "DFL-CLU-000010",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000010.svg",
+   "value": 17.1,
    "rank": 246
-  },
-  {
-   "player": "Robert Andrich",
-   "club_id": "DFL-CLU-00000B",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000B.svg",
-   "value": 17,
-   "rank": 247
   },
   {
    "player": "Ayoube Amaimouni-Echghouyab",
    "club_id": "DFL-CLU-00000F",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
+   "value": 17,
+   "rank": 247
+  },
+  {
+   "player": "Robert Andrich",
+   "club_id": "DFL-CLU-00000B",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000B.svg",
    "value": 17,
    "rank": 248
   },
@@ -6683,14 +6683,14 @@
    "player": "Alexander Schwolow",
    "club_id": "DFL-CLU-000006",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
-   "value": 15.6,
+   "value": 15.5,
    "rank": 253
   },
   {
    "player": "Benjamin Henrichs",
    "club_id": "DFL-CLU-000017",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000017.svg",
-   "value": 15.4,
+   "value": 15.5,
    "rank": 254
   },
   {
@@ -6704,7 +6704,7 @@
    "player": "Anton Kade",
    "club_id": "DFL-CLU-000010",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000010.svg",
-   "value": 15,
+   "value": 15.1,
    "rank": 256
   },
   {
@@ -6764,24 +6764,24 @@
    "rank": 264
   },
   {
-   "player": "Eric Martel",
-   "club_id": "DFL-CLU-000006",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
-   "value": 13.9,
-   "rank": 265
-  },
-  {
    "player": "Alexis Claude-Maurice",
    "club_id": "DFL-CLU-000010",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000010.svg",
    "value": 13.9,
+   "rank": 265
+  },
+  {
+   "player": "Eric Martel",
+   "club_id": "DFL-CLU-000006",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
+   "value": 13.8,
    "rank": 266
   },
   {
    "player": "Rocco Reitz",
    "club_id": "DFL-CLU-000017",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000017.svg",
-   "value": 13.6,
+   "value": 13.7,
    "rank": 267
   },
   {
@@ -6834,16 +6834,16 @@
    "rank": 274
   },
   {
-   "player": "Edin Džeko",
-   "club_id": "DFL-CLU-000009",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000009.svg",
+   "player": "Atakan Karazor",
+   "club_id": "DFL-CLU-00000D",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000D.svg",
    "value": 12,
    "rank": 275
   },
   {
-   "player": "Atakan Karazor",
-   "club_id": "DFL-CLU-00000D",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000D.svg",
+   "player": "Edin Džeko",
+   "club_id": "DFL-CLU-000009",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000009.svg",
    "value": 12,
    "rank": 276
   },
@@ -6851,7 +6851,7 @@
    "player": "Otto Stange",
    "club_id": "DFL-CLU-00000C",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000C.svg",
-   "value": 12,
+   "value": 11.9,
    "rank": 277
   },
   {
@@ -6998,7 +6998,7 @@
    "player": "Oliver Batista Meier",
    "club_id": "DFL-CLU-00000L",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
-   "value": 7.8,
+   "value": 7.9,
    "rank": 298
   },
   {
@@ -7026,7 +7026,7 @@
    "player": "Tom Zimmerschied",
    "club_id": "DFL-CLU-000N6L",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000N6L.svg",
-   "value": 7.3,
+   "value": 7.4,
    "rank": 302
   },
   {
@@ -7047,14 +7047,14 @@
    "player": "Nicholas Mickelson",
    "club_id": "DFL-CLU-000N6L",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000N6L.svg",
-   "value": 7.2,
+   "value": 7.3,
    "rank": 305
   },
   {
    "player": "Kastriot Imeri",
    "club_id": "DFL-CLU-00000V",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000V.svg",
-   "value": 7,
+   "value": 7.1,
    "rank": 306
   },
   {
@@ -7075,7 +7075,7 @@
    "player": "Leo Sauer",
    "club_id": "DFL-CLU-00000D",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000D.svg",
-   "value": 6.8,
+   "value": 6.9,
    "rank": 309
   },
   {
@@ -7117,20 +7117,20 @@
    "player": "Martin Terrier",
    "club_id": "DFL-CLU-00000B",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000B.svg",
-   "value": 6.1,
+   "value": 6,
    "rank": 315
-  },
-  {
-   "player": "Tom Baack",
-   "club_id": "DFL-CLU-00000L",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
-   "value": 5.7,
-   "rank": 316
   },
   {
    "player": "Max Finkgräfe",
    "club_id": "DFL-CLU-000017",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000017.svg",
+   "value": 5.8,
+   "rank": 316
+  },
+  {
+   "player": "Tom Baack",
+   "club_id": "DFL-CLU-00000L",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
    "value": 5.7,
    "rank": 317
   },
@@ -7142,9 +7142,9 @@
    "rank": 318
   },
   {
-   "player": "Jonas Hofmann",
-   "club_id": "DFL-CLU-00000B",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000B.svg",
+   "player": "Serge Gnabry",
+   "club_id": "DFL-CLU-00000G",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000G.svg",
    "value": 5.6,
    "rank": 319
   },
@@ -7156,9 +7156,9 @@
    "rank": 320
   },
   {
-   "player": "Serge Gnabry",
-   "club_id": "DFL-CLU-00000G",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000G.svg",
+   "player": "Jonas Hofmann",
+   "club_id": "DFL-CLU-00000B",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000B.svg",
    "value": 5.6,
    "rank": 321
   },
@@ -7194,7 +7194,7 @@
    "player": "Dennis Seimen",
    "club_id": "DFL-CLU-00000D",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000D.svg",
-   "value": 5.2,
+   "value": 5.3,
    "rank": 326
   },
   {
@@ -7215,7 +7215,7 @@
    "player": "Love Arrhov",
    "club_id": "DFL-CLU-00000F",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
-   "value": 4.7,
+   "value": 4.8,
    "rank": 329
   },
   {
@@ -7282,16 +7282,16 @@
    "rank": 338
   },
   {
-   "player": "Timothy Chandler",
-   "club_id": "DFL-CLU-00000F",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
+   "player": "Felix Götze",
+   "club_id": "DFL-CLU-00000L",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
    "value": 3.6,
    "rank": 339
   },
   {
-   "player": "Lennard Maloney",
-   "club_id": "DFL-CLU-000006",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
+   "player": "Timothy Chandler",
+   "club_id": "DFL-CLU-00000F",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000F.svg",
    "value": 3.6,
    "rank": 340
   },
@@ -7303,9 +7303,9 @@
    "rank": 341
   },
   {
-   "player": "Felix Götze",
-   "club_id": "DFL-CLU-00000L",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000L.svg",
+   "player": "Lennard Maloney",
+   "club_id": "DFL-CLU-000006",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000006.svg",
    "value": 3.5,
    "rank": 342
   },
@@ -7373,30 +7373,30 @@
    "rank": 351
   },
   {
+   "player": "Alexander Røssing-Lelesiit",
+   "club_id": "DFL-CLU-00000C",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000C.svg",
+   "value": 2.7,
+   "rank": 352
+  },
+  {
    "player": "Alexander Prass",
    "club_id": "DFL-CLU-000002",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-000002.svg",
    "value": 2.6,
-   "rank": 352
-  },
-  {
-   "player": "Alexander Røssing-Lelesiit",
-   "club_id": "DFL-CLU-00000C",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000C.svg",
-   "value": 2.6,
    "rank": 353
-  },
-  {
-   "player": "Nathan Tella",
-   "club_id": "DFL-CLU-00000B",
-   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000B.svg",
-   "value": 2.4,
-   "rank": 354
   },
   {
    "player": "Kofi Amoako",
    "club_id": "DFL-CLU-00000C",
    "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000C.svg",
+   "value": 2.4,
+   "rank": 354
+  },
+  {
+   "player": "Nathan Tella",
+   "club_id": "DFL-CLU-00000B",
+   "club_logo": "https://assets.bundesliga.com/clublogos/DFL-SEA-0001KA/DFL-CLU-00000B.svg",
    "value": 2.4,
    "rank": 355
   },
