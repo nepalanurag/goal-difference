@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-11T23:30:50.983740+00:00",
+ "fetched_at": "2026-10-12T22:15:33.008242+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season.",
  "teams": {
   "Arsenal": {
@@ -66,12 +66,28 @@
    ],
    "doubtful": [
     {
+     "player": "Piero Hincapié",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Ankle injury - 75% chance of playing",
+     "regular_starter": false
+    },
+    {
      "player": "Declan Rice",
      "status": "a",
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
      "regular_starter": true
+    },
+    {
+     "player": "Martín Zubimendi Ibáñez",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": false
     },
     {
      "player": "Kai Havertz",
@@ -212,8 +228,8 @@
      "player": "Matteo Ruggeri",
      "status": "d",
      "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
+     "chance_next_round": 25,
+     "news": "Hamstring injury - 25% chance of playing",
      "regular_starter": false
     }
    ],
@@ -666,20 +682,20 @@
     },
     {
      "player": "Taiwo Awoniyi",
-     "status": "s",
+     "status": "a",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Suspended until 19 Oct",
-     "regular_starter": true
+     "chance_next_round": 100,
+     "news": "",
+     "regular_starter": false
     }
    ],
    "doubtful": [
     {
      "player": "Milan van Ewijk",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true
     },
     {
@@ -691,7 +707,7 @@
      "regular_starter": false
     }
    ],
-   "key_absences": 3
+   "key_absences": 2
   },
   "Crystal Palace": {
    "out": [
@@ -1487,6 +1503,14 @@
      "regular_starter": false
     },
     {
+     "player": "Luke Shaw",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
      "player": "Marcus Rashford",
      "status": "a",
      "chance_this_round": 75,
@@ -1496,14 +1520,14 @@
     },
     {
      "player": "Kobbie Mainoo",
-     "status": "a",
+     "status": "d",
      "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": true
     }
    ],
-   "key_absences": 2
+   "key_absences": 3
   },
   "Newcastle": {
    "out": [
@@ -1517,10 +1541,10 @@
     },
     {
      "player": "Dan Burn",
-     "status": "i",
+     "status": "a",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Ankle injury - Expected back 12 Oct",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
@@ -1537,7 +1561,7 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Unspecified injury - Unknown return date",
-     "regular_starter": true
+     "regular_starter": false
     },
     {
      "player": "Jacob Ramsey",
@@ -1583,38 +1607,46 @@
     },
     {
      "player": "Joelinton Cássio Apolinário de Lira",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
      "player": "Lewis Miley",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true
     },
     {
-     "player": "William Osula",
+     "player": "Bazoumana Touré",
      "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": false
+    },
+    {
+     "player": "William Osula",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Foot injury - 50% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
      "player": "Amar Dedic",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Unspecified injury - 50% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true
     }
    ],
-   "key_absences": 3
+   "key_absences": 2
   },
   "Nott'm Forest": {
    "out": [
