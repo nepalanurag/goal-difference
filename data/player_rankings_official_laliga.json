@@ -1,7 +1,7 @@
 {
  "source": "LaLiga apim public-service API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-12T22:14:32.596354+00:00",
+ "fetched_at": "2026-10-13T20:19:32.700217+00:00",
  "notes": "72 advanced stats per player cached raw; assists are not published in this feed, so assists is null here.",
  "players": [
   {
@@ -261,14 +261,14 @@
    "nickname": "Dela",
    "team": "Levante Unión Deportiva SAD",
    "position": "Defensa",
-   "goals": 1,
+   "goals": 2,
    "assists": null,
-   "appearances": 6,
-   "minutes": 521,
-   "shots": 5,
-   "shots_on_target": 2,
+   "appearances": 7,
+   "minutes": 611,
+   "shots": 9,
+   "shots_on_target": 5,
    "key_passes": 2,
-   "starts": 6
+   "starts": 7
   },
   {
    "name": "Aihen Muñoz",
@@ -613,8 +613,8 @@
    "position": "Delantero",
    "goals": null,
    "assists": null,
-   "appearances": 2,
-   "minutes": 21,
+   "appearances": 3,
+   "minutes": 43,
    "shots": 1,
    "shots_on_target": 1,
    "key_passes": 1,
@@ -781,12 +781,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 6,
-   "minutes": 480,
+   "appearances": 7,
+   "minutes": 570,
    "shots": 2,
    "shots_on_target": 1,
    "key_passes": 3,
-   "starts": 5
+   "starts": 6
   },
   {
    "name": "Andrés Céspedes",
@@ -2511,18 +2511,32 @@
    "starts": 5
   },
   {
+   "name": "Fábio Rafael Rodrigues Cardoso",
+   "nickname": "Cardoso",
+   "team": "Sevilla Fútbol Club SAD",
+   "position": "Defensa",
+   "goals": null,
+   "assists": null,
+   "appearances": null,
+   "minutes": null,
+   "shots": null,
+   "shots_on_target": null,
+   "key_passes": null,
+   "starts": null
+  },
+  {
    "name": "Félix Alexandre Andrade Sanches Correia",
    "nickname": "Felix",
    "team": "Sevilla Fútbol Club SAD",
    "position": "Delantero",
-   "goals": null,
+   "goals": 1,
    "assists": null,
-   "appearances": 3,
-   "minutes": 223,
-   "shots": 2,
-   "shots_on_target": 1,
-   "key_passes": 3,
-   "starts": 3
+   "appearances": 4,
+   "minutes": 295,
+   "shots": 4,
+   "shots_on_target": 2,
+   "key_passes": 5,
+   "starts": 4
   },
   {
    "name": "Gabriel Fernando de Jesus",
@@ -2559,12 +2573,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 630,
+   "appearances": 8,
+   "minutes": 720,
    "shots": null,
    "shots_on_target": null,
-   "key_passes": 9,
-   "starts": 7
+   "key_passes": 12,
+   "starts": 8
   },
   {
    "name": "Pablo Páez Gavira",
@@ -2685,12 +2699,12 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 5,
-   "minutes": 185,
+   "appearances": 6,
+   "minutes": 273,
    "shots": 3,
    "shots_on_target": null,
-   "key_passes": null,
-   "starts": 2
+   "key_passes": 4,
+   "starts": 3
   },
   {
    "name": "Giorgi Tsitaishvili",
@@ -3285,12 +3299,12 @@
    "nickname": "Isaac",
    "team": "Sevilla Fútbol Club SAD",
    "position": "Delantero",
-   "goals": 1,
+   "goals": 2,
    "assists": null,
-   "appearances": 6,
-   "minutes": 211,
-   "shots": 5,
-   "shots_on_target": 1,
+   "appearances": 7,
+   "minutes": 233,
+   "shots": 6,
+   "shots_on_target": 2,
    "key_passes": 2,
    "starts": 2
   },
@@ -3383,14 +3397,14 @@
    "nickname": "I. Romero",
    "team": "Levante Unión Deportiva SAD",
    "position": "Delantero",
-   "goals": 2,
+   "goals": 3,
    "assists": null,
-   "appearances": 6,
-   "minutes": 379,
-   "shots": 13,
-   "shots_on_target": 7,
-   "key_passes": 3,
-   "starts": 5
+   "appearances": 7,
+   "minutes": 469,
+   "shots": 15,
+   "shots_on_target": 9,
+   "key_passes": 4,
+   "starts": 6
   },
   {
    "name": "Iván Villar",
@@ -3665,12 +3679,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 6,
-   "minutes": 264,
+   "appearances": 7,
+   "minutes": 353,
    "shots": 1,
    "shots_on_target": null,
-   "key_passes": null,
-   "starts": 2
+   "key_passes": 1,
+   "starts": 3
   },
   {
    "name": "Jesús Areso",
@@ -3875,8 +3889,8 @@
    "position": "Centrocampista",
    "goals": 1,
    "assists": null,
-   "appearances": 7,
-   "minutes": 353,
+   "appearances": 8,
+   "minutes": 355,
    "shots": 4,
    "shots_on_target": 3,
    "key_passes": 3,
@@ -4337,12 +4351,12 @@
    "position": "Defensa",
    "goals": 1,
    "assists": null,
-   "appearances": 7,
-   "minutes": 630,
-   "shots": 4,
-   "shots_on_target": 3,
-   "key_passes": 3,
-   "starts": 7
+   "appearances": 8,
+   "minutes": 720,
+   "shots": 6,
+   "shots_on_target": 4,
+   "key_passes": 4,
+   "starts": 8
   },
   {
    "name": "Juan Musso",
@@ -4435,8 +4449,8 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 4,
-   "minutes": 83,
+   "appearances": 5,
+   "minutes": 101,
    "shots": null,
    "shots_on_target": null,
    "key_passes": 2,
@@ -4589,12 +4603,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 5,
-   "minutes": 448,
+   "appearances": 6,
+   "minutes": 538,
    "shots": 5,
    "shots_on_target": 2,
    "key_passes": 2,
-   "starts": 5
+   "starts": 6
   },
   {
    "name": "Francisco Femenía Far",
@@ -4827,12 +4841,12 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 630,
+   "appearances": 8,
+   "minutes": 720,
    "shots": 3,
    "shots_on_target": null,
-   "key_passes": 2,
-   "starts": 7
+   "key_passes": 3,
+   "starts": 8
   },
   {
    "name": "Luis Rioja",
@@ -5009,12 +5023,12 @@
    "position": "Defensa",
    "goals": null,
    "assists": null,
-   "appearances": 6,
-   "minutes": 521,
+   "appearances": 7,
+   "minutes": 611,
    "shots": 1,
    "shots_on_target": null,
-   "key_passes": 1,
-   "starts": 6
+   "key_passes": 2,
+   "starts": 7
   },
   {
    "name": "Manuel Ángel Castillo",
@@ -5387,12 +5401,12 @@
    "position": "Portero",
    "goals": null,
    "assists": null,
-   "appearances": 6,
-   "minutes": 540,
+   "appearances": 7,
+   "minutes": 630,
    "shots": null,
    "shots_on_target": null,
    "key_passes": null,
-   "starts": 6
+   "starts": 7
   },
   {
    "name": "Matia Barzic",
@@ -5499,12 +5513,12 @@
    "position": "Delantero",
    "goals": 2,
    "assists": null,
-   "appearances": 7,
-   "minutes": 496,
-   "shots": 8,
+   "appearances": 8,
+   "minutes": 564,
+   "shots": 9,
    "shots_on_target": 5,
    "key_passes": 7,
-   "starts": 7
+   "starts": 8
   },
   {
    "name": "Mikel Bermejo",
@@ -5891,12 +5905,12 @@
    "position": "Portero",
    "goals": null,
    "assists": null,
-   "appearances": 7,
-   "minutes": 630,
+   "appearances": 8,
+   "minutes": 720,
    "shots": null,
    "shots_on_target": null,
    "key_passes": null,
-   "starts": 7
+   "starts": 8
   },
   {
    "name": "Oihan Sancet",
@@ -5947,12 +5961,12 @@
    "position": "Centrocampista",
    "goals": null,
    "assists": null,
-   "appearances": 6,
-   "minutes": 473,
+   "appearances": 7,
+   "minutes": 541,
    "shots": 1,
    "shots_on_target": null,
-   "key_passes": 1,
-   "starts": 5
+   "key_passes": 2,
+   "starts": 6
   },
   {
    "name": "Orri Óskarsson",
@@ -6617,14 +6631,14 @@
    "nickname": "Robbie Ure",
    "team": "Sevilla Fútbol Club SAD",
    "position": "Delantero",
-   "goals": null,
+   "goals": 1,
    "assists": null,
-   "appearances": 7,
-   "minutes": 397,
-   "shots": 5,
-   "shots_on_target": 1,
-   "key_passes": 3,
-   "starts": 4
+   "appearances": 8,
+   "minutes": 465,
+   "shots": 10,
+   "shots_on_target": 2,
+   "key_passes": 4,
+   "starts": 5
   },
   {
    "name": "Robert Navarro",
@@ -7753,12 +7767,12 @@
    "position": "Centrocampista",
    "goals": 1,
    "assists": null,
-   "appearances": 4,
-   "minutes": 276,
-   "shots": 3,
-   "shots_on_target": 2,
-   "key_passes": 1,
-   "starts": 3
+   "appearances": 5,
+   "minutes": 366,
+   "shots": 5,
+   "shots_on_target": 3,
+   "key_passes": 3,
+   "starts": 4
   },
   {
    "name": "Yuri Berchiche",
