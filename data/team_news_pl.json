@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-13T20:20:42.977571+00:00",
+ "fetched_at": "2026-10-14T18:34:35.262519+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season.",
  "teams": {
   "Arsenal": {
@@ -184,10 +184,10 @@
     },
     {
      "player": "Leon Goretzka",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Knee injury - Expected back 17 Oct",
+     "chance_next_round": 75,
+     "news": "Knee injury - 75% chance of playing",
      "regular_starter": false
     }
    ],
@@ -228,8 +228,8 @@
      "player": "Brian Madjo",
      "status": "d",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
+     "chance_next_round": 50,
+     "news": "Unspecified injury - 50% chance of playing",
      "regular_starter": false
     }
    ],
@@ -271,18 +271,18 @@
     },
     {
      "player": "Justin Kluivert",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Unspecified injury - Unknown return date",
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": true
     },
     {
      "player": "Amine Adli",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Calf injury - Unknown return date",
+     "chance_next_round": 75,
+     "news": "Calf injury - 75% chance of playing",
      "regular_starter": false
     },
     {
@@ -467,14 +467,6 @@
      "regular_starter": false
     },
     {
-     "player": "Pascal Struijk",
-     "status": "s",
-     "chance_this_round": 75,
-     "chance_next_round": 0,
-     "news": "Suspended until 25 Oct",
-     "regular_starter": false
-    },
-    {
      "player": "Amario Cozier-Duberry",
      "status": "u",
      "chance_this_round": 0,
@@ -498,6 +490,14 @@
      "chance_this_round": 50,
      "chance_next_round": 50,
      "news": "Ankle injury - 50% chance of playing",
+     "regular_starter": false
+    },
+    {
+     "player": "Pascal Struijk",
+     "status": "a",
+     "chance_this_round": 75,
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     }
    ],
