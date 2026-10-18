@@ -71,14 +71,21 @@ def _read_ledger(ledger_path: Path) -> pd.DataFrame:
 
 def append_predictions(league: str, rows: list[dict],
                        path: Path | None = None) -> int:
-    """Append prediction rows. Each row must carry fixture_date/home/away."""
+    """Append prediction rows idempotently. Each row must carry fixture_date/home/away."""
     for i, row in enumerate(rows):
         missing = [c for c in KEY_COLS if c not in row]
         if missing:
             raise ValueError(f"row {i} missing keys: {missing}")
     ledger_path = init_ledger(league, path)
     new = pd.DataFrame(rows).reindex(columns=LEDGER_COLS)
-    new.to_csv(ledger_path, mode="a", header=False, index=False)
+    key = KEY_COLS + ["model_version"]
+    new = new.drop_duplicates(subset=key, keep="last")
+    existing = _read_ledger(ledger_path)
+    if not existing.empty:
+        seen = set(map(tuple, existing[key].astype(str).to_numpy()))
+        new = new[~new[key].astype(str).apply(tuple, axis=1).isin(seen)]
+    if not new.empty:
+        new.to_csv(ledger_path, mode="a", header=False, index=False)
     log.info("predictions_appended", league=league, n=len(new),
              path=str(ledger_path))
     return len(new)
@@ -115,6 +122,7 @@ def score_league(league: str, results: pd.DataFrame,
 
     res = results[needed].copy()
     res[KEY_COLS] = res[KEY_COLS].astype(str)
+    res = res.drop_duplicates(subset=KEY_COLS, keep="last")
     # Drop ledger's result column before merge to avoid result_x/result_y;
     # the incoming results are the source of truth.
     ledger_nores = ledger.drop(columns=["result"], errors="ignore")

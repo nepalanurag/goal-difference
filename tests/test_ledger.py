@@ -141,3 +141,35 @@ def test_cli_init_and_score(tmp_path, monkeypatch):
                         "--leagues", LEAGUE]) == 0
     df = pd.read_csv(ledger_path)
     assert df.loc[0, "logloss_poisson"] == pytest.approx(-math.log(0.60))
+
+
+def test_append_idempotent_no_duplicates(tmp_path):
+    path = _setup(tmp_path)
+    # Re-appending the exact same rows must append 0 rows and keep length at 3
+    appended = ledger.append_predictions(LEAGUE, ROWS, path=path)
+    assert appended == 0
+    df = pd.read_csv(path)
+    assert len(df) == 3
+
+    # Appending a mix of 1 new row and 1 duplicate row appends only the new row
+    mixed_rows = [
+        ROWS[0],  # duplicate
+        {"fixture_date": "2026-08-20", "home": "Newcastle", "away": "Brighton",
+         "p_home_poisson": 0.50, "p_draw_poisson": 0.30, "p_away_poisson": 0.20,
+         "p_home_ml": 0.52, "p_draw_ml": 0.28, "p_away_ml": 0.20,
+         "p_home_ens": 0.51, "p_draw_ens": 0.29, "p_away_ens": 0.20,
+         "model_version": "v1"},
+    ]
+    appended_new = ledger.append_predictions(LEAGUE, mixed_rows, path=path)
+    assert appended_new == 1
+    df2 = pd.read_csv(path)
+    assert len(df2) == 4
+
+
+def test_score_deduplicates_incoming_results(tmp_path):
+    path = _setup(tmp_path)
+    # Duplicate result rows for Arsenal v Chelsea
+    dup_results = pd.concat([RESULTS, RESULTS.iloc[[0]]], ignore_index=True)
+    scored = ledger.score_league(LEAGUE, dup_results, path=path)
+    assert len(scored) == 3
+

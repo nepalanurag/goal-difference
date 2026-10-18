@@ -7,24 +7,24 @@
 
 ## Ranked Vulnerability Matrix
 
-| # | Severity | Component | Finding | Impact |
-|---|----------|-----------|---------|--------|
-| 1 | **CRITICAL** | features.py + h2h.py | `h2h_edge` uses all-time H2H including future matches — direct lookahead leakage | Inflates backtest/walk-forward performance; production predictions use a feature that cannot be computed at prediction time |
-| 2 | **CRITICAL** | simulate.py | Tie-break uses stale pre-simulation goal difference (never updated by simulated results) | Title/top-4/relegation odds are computed with a tie-breaker that ignores 100+ simulated matches |
-| 3 | **CRITICAL** | simulate.py | LaLiga/Serie A tie-break wrong: uses GD, but both leagues use head-to-head first | Systematically wrong title odds in 2 of 5 leagues whenever teams finish level on points |
-| 4 | HIGH | fit.py | No Dixon-Coles correction on independent Poisson | Systematic mispricing of 0-0, 1-0, 0-1, 1-1; biased draw probabilities |
-| 5 | HIGH | fit.py | Walk-forward ensemble (poisson+xgb_tiny)/2 ≠ production ensemble (poisson+chosen_ml)/2 | Reported ensemble log-loss does not reflect the deployed model when chosen_ml ≠ xgb_tiny |
-| 6 | HIGH | features.py | European team names not canonicalized — silent feature loss | `load_european()` matches raw API names against canonical fixture names; mismatches → euro features silently default (999/0/1.0/0) |
-| 7 | HIGH | ledger.py | `append_predictions` not idempotent; no dedup guard | Cron double-run appends duplicates → cartesian explosion in `score_league` merge |
-| 8 | HIGH | features.py | Column-mean imputation computed over full dataset (all seasons) | Lookahead leakage for early-season cold-start rows (minor magnitude, real principle violation) |
-| 9 | MEDIUM | fit.py | Poisson assumes Var=Mean; no overdispersion handling | Miscalibrated tail probabilities; Negative Binomial strictly dominates |
-| 10 | MEDIUM | fit.py | No probability calibration (Platt/isotonic/temperature) on ensemble | Raw average of two models is rarely calibrated; log-loss suffers |
-| 11 | MEDIUM | ledger.py | Log-loss only; no RPS or Brier score | Log-loss is proper but RPS is the correct scoring rule for ordinal 1X2 outcomes |
-| 12 | MEDIUM | simulate.py | Static team strengths across 10,000 runs; no form/momentum dynamics | Fine for short horizons; understates variance in title races |
-| 13 | MEDIUM | extract.py | `reconstruct_remaining_schedule` assigns dates by greedy hash-order, not real calendar | Simulated "rest days" and midweek flags for future fixtures are fictional |
-| 14 | LOW | fit.py | 10×10 scoreline matrix truncation | Negligible after renormalization; P(H≥10) < 0.001 for realistic λ |
-| 15 | LOW | fit.py | `PoissonRegressor(alpha=0.1)` weak for 60+ features | Walk-forward would catch overfitting, but stronger prior is cheaper |
-| 16 | LOW | features.py | `data_hash` covers only fixture_id/goals | Silent to shot-stat or provenance changes |
+| # | Severity | Component | Finding | Impact | Status |
+|---|----------|-----------|---------|--------|--------|
+| 1 | **CRITICAL** | features.py + h2h.py | `h2h_edge` uses all-time H2H including future matches — direct lookahead leakage | Inflates backtest/walk-forward performance; production predictions use a feature that cannot be computed at prediction time | **FIXED** (`load_h2h_dated` + `h2h_edge_before`) |
+| 2 | **CRITICAL** | simulate.py | Tie-break uses stale pre-simulation goal difference (never updated by simulated results) | Title/top-4/relegation odds are computed with a tie-breaker that ignores 100+ simulated matches | **FIXED** (dynamic Poisson scorelines & GD updates) |
+| 3 | **CRITICAL** | simulate.py | LaLiga/Serie A tie-break wrong: uses GD, but both leagues use head-to-head first | Systematically wrong title odds in 2 of 5 leagues whenever teams finish level on points | **FIXED** (H2H mini-tables for LaLiga/Serie A) |
+| 4 | HIGH | fit.py | No Dixon-Coles correction on independent Poisson | Systematic mispricing of 0-0, 1-0, 0-1, 1-1; biased draw probabilities | **FIXED** (`DixonColesModel` with rho and xi) |
+| 5 | HIGH | fit.py | Walk-forward ensemble (poisson+xgb_tiny)/2 ≠ production ensemble (poisson+chosen_ml)/2 | Reported ensemble log-loss does not reflect the deployed model when chosen_ml ≠ xgb_tiny | Open |
+| 6 | HIGH | features.py | European team names not canonicalized — silent feature loss | `load_european()` matches raw API names against canonical fixture names; mismatches → euro features silently default (999/0/1.0/0) | Mitigated (`uefa.py` canonicalization) |
+| 7 | HIGH | ledger.py | `append_predictions` not idempotent; no dedup guard | Cron double-run appends duplicates → cartesian explosion in `score_league` merge | **FIXED** (dedup on key+version, results dedup) |
+| 8 | HIGH | features.py | Column-mean imputation computed over full dataset (all seasons) | Lookahead leakage for early-season cold-start rows (minor magnitude, real principle violation) | Open |
+| 9 | MEDIUM | fit.py | Poisson assumes Var=Mean; no overdispersion handling | Miscalibrated tail probabilities; Negative Binomial strictly dominates | Open |
+| 10 | MEDIUM | fit.py | No probability calibration (Platt/isotonic/temperature) on ensemble | Raw average of two models is rarely calibrated; log-loss suffers | Partial (calibration tables generated) |
+| 11 | MEDIUM | ledger.py | Log-loss only; no RPS or Brier score | Log-loss is proper but RPS is the correct scoring rule for ordinal 1X2 outcomes | **FIXED** (`ranked_probability_score` and `brier_score_3`) |
+| 12 | MEDIUM | simulate.py | Static team strengths across 10,000 runs; no form/momentum dynamics | Fine for short horizons; understates variance in title races | Open |
+| 13 | MEDIUM | extract.py | `reconstruct_remaining_schedule` assigns dates by greedy hash-order, not real calendar | Simulated "rest days" and midweek flags for future fixtures are fictional | Open |
+| 14 | LOW | fit.py | 10×10 scoreline matrix truncation | Negligible after renormalization; P(H≥10) < 0.001 for realistic λ | Closed (insignificant) |
+| 15 | LOW | fit.py | `PoissonRegressor(alpha=0.1)` weak for 60+ features | Walk-forward would catch overfitting, but stronger prior is cheaper | Closed (Dixon-Coles is primary) |
+| 16 | LOW | features.py | `data_hash` covers only fixture_id/goals | Silent to shot-stat or provenance changes | Open |
 
 ---
 
