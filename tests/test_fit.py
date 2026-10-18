@@ -132,12 +132,23 @@ def test_elo_home_win_moves_ratings():
     assert rh3 > rh
 
 
-def test_devigged_odds_sum_to_one():
+def test_devigged_odds_sum_to_one(tmp_path, monkeypatch):
+    """De-vigged probabilities sum to 1 (self-contained: synthetic CSV)."""
+    from etl import config as cfg
+    csv_content = (
+        "Date,HomeTeam,AwayTeam,B365CH,B365CD,B365CA,B365H,B365D,B365A\n"
+        "16/08/2025,Arsenal,Chelsea,1.8,3.6,4.5,1.9,3.5,4.2\n"
+        "17/08/2025,Liverpool,Everton,1.5,4.0,6.0,1.6,3.8,5.5\n"
+    )
+    (tmp_path / "csv_pl_2025.csv").write_text(csv_content)
+    monkeypatch.setattr(cfg.settings, "raw_dir", tmp_path)
     odds = load_devigged_odds("pl")
-    assert len(odds) == 380  # full 2025/26 season covered
-    for probs in list(odds.values())[:20]:
+    assert len(odds) == 2
+    for probs in odds.values():
         assert abs(sum(probs) - 1.0) < 1e-9
         assert all(0 < p < 1 for p in probs)
+    # Closing odds preferred: 1/1.8 / (1/1.8+1/3.6+1/4.5) = 0.526
+    assert abs(odds[("Arsenal", "Chelsea", "2025-08-16")][0] - 0.5263) < 1e-3
 
 
 def test_calibration_buckets_cover_all_samples():
