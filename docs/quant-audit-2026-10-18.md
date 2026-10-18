@@ -212,3 +212,4 @@ def append_predictions(league, rows, path=None):
 - **Key absences** are Premier League only, sourced from FPL injury flags — correctly labeled per the repo's honesty conventions.
 - **Walk-forward protocol itself is sound** (TimeSeriesSplit, no shuffle, recency weights computed on train folds only). The flaw is the ensemble mismatch (finding 5), not the CV scheme.
 - **Half-life 180 days** is a reasonable prior for football form decay; the audit did not find evidence it was tuned. Suggest a quick grid search (90/180/365) on walk-forward log-loss as a cheap win.
+
