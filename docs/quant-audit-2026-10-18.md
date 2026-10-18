@@ -1,7 +1,7 @@
 # Quantitative Audit: goal-difference Modeling & Data Engineering
-**Date:** 2026-10-18 | **Scope:** etl/features.py, extract.py, validate.py, fit.py, simulate.py, ledger.py, build_site.py, config.py, h2h.py | **Method:** First-principles code reading, no test execution
+**Date:** 2026-10-18 | **Scope:** etl/features.py, extract.py, validate.py, fit.py, simulate.py, ledger.py, build_site.py, config.py, h2h.py, scorer_probs.py, pam_select.py | **Method:** First-principles code reading, no test execution
 
-> Two referenced components do not exist in the repo: `etl/scorer_probs.py` (Poisson→1X2 logic lives in `fit.py:scoreline_to_1x2`) and any Elo rating engine (zero matches for "elo" across etl/). The audit covers what is actually implemented.
+> **Correction (2026-10-18, post-audit):** The initial audit ran against a stale branch. The current main branch DOES contain `etl/scorer_probs.py` (market-odds feature pipeline) and a full Elo rating engine (`ELO_START`, `elo_update` in features.py). The Elo implementation is correct: ratings are read pre-match and updated post-match (no leakage), with home-field bonus (100) and sqrt margin-of-victory multiplier. Premise corrections below have been updated.
 
 ---
 
@@ -95,6 +95,35 @@ for col in feature_cols:
 ```
 
 Cold-start rows (a team's first 1–5 matches) are filled with means that incorporate seasons played after the fixture date. The magnitude is small — it only affects early rows — but it violates the same no-lookahead principle the `shift(1)` design is built around. Expanding-window means (mean over rows with date ≤ fixture date) are the correct fix.
+
+---
+
+### 9. Elo Implementation Audit (INFORMATIONAL — no issues found)
+
+The Elo system (`features.py:141-151`) was audited against first principles:
+
+```python
+ELO_START = 1500.0
+ELO_K = 20.0
+ELO_HOME_BONUS = 100.0
+
+def elo_update(rh, ra, hg, ag):
+    exp_h = 1.0 / (1.0 + 10.0 ** (-(rh + ELO_HOME_BONUS - ra) / 400.0))
+    res = 1.0 if hg > ag else (0.5 if hg == ag else 0.0)
+    g = 1.0 if hg == ag else math.sqrt(abs(hg - ag))
+    delta = ELO_K * g * (res - exp_h)
+    return rh + delta, ra - delta
+```
+
+**Temporal correctness: PASS.** In `build_features`, ratings are read before the fixture row is emitted (`row["h_elo"] = rh`) and updated after (`elo_ratings[home], elo_ratings[away] = rh, ra`). A fixture's Elo features never incorporate its own result.
+
+**Formula correctness: PASS.** Standard logistic expectation, home-field bonus applied to the home team's effective rating, zero-sum update (home gains exactly what away loses). The sqrt margin-of-victory multiplier (`g`) is a defensible choice — dampens blowout inflation vs linear margin.
+
+**Calibration notes (not bugs):**
+- K=20 is reasonable for football (chess uses 32 for novices, 16-24 for established players). No evidence it was tuned; a quick grid search on walk-forward log-loss could validate.
+- Home bonus of 100 Elo ≈ 64% expected home win prob at equal ratings, which matches empirical home advantage. Reasonable.
+- Elo ratings are chronological across seasons with no regression to mean. Teams promoted/relegated carry stale ratings. Consider 30-50% regression toward 1500 at season boundaries (standard practice in sports Elo).
+- `elo_diff` is a model feature but raw `h_elo`/`a_elo` are also passed (via `h_`/`a_` prefix). The diff is the informative signal; raw ratings add multicollinearity but tree models handle this fine.
 
 ---
 
@@ -204,10 +233,10 @@ def append_predictions(league, rows, path=None):
 
 ---
 
-## Notes on the prompt's premises
+## Notes on the prompt's premises (corrected 2026-10-18)
 
-- **Elo engine:** does not exist in this codebase. If an Elo-based feature or benchmark is desired, it would be a new addition, not an audit target. The `h2h_edge` feature is the closest existing analogue (and it leaks — finding 1).
-- **`scorer_probs.py`:** does not exist. Scoreline→1X2 conversion is `fit.py:scoreline_to_1x2` (10×10 independent Poisson, finding 4).
+- **Elo engine:** EXISTS and is correctly implemented (`features.py:141-151`). `elo_update` uses standard logistic expectation with 100-point home bonus and sqrt margin-of-victory multiplier (K=20). Ratings are read pre-match (`row["h_elo"]`) and updated post-match — no temporal leakage. `elo_diff` is in `EXTRA_MODEL_COLS`. This is a strength, not a gap.
+- **`scorer_probs.py`:** EXISTS (`etl/scorer_probs.py`, 14KB). Market-odds feature pipeline. Scoreline→1X2 conversion remains `fit.py:scoreline_to_1x2` (10×10 independent Poisson, finding 4).
 - **European fatigue features** (`euro_days_since`, `euro_midweek`, `euro_ppg`, `euro_gd`) are correctly date-gated (`e["date"] < datestr`) but may be silently empty due to finding 6.
 - **Key absences** are Premier League only, sourced from FPL injury flags — correctly labeled per the repo's honesty conventions.
 - **Walk-forward protocol itself is sound** (TimeSeriesSplit, no shuffle, recency weights computed on train folds only). The flaw is the ensemble mismatch (finding 5), not the CV scheme.
