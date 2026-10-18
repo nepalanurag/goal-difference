@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-17T17:08:32.945720+00:00",
+ "fetched_at": "2026-10-18T17:22:40.199728+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season.",
  "teams": {
   "Arsenal": {
@@ -75,10 +75,10 @@
    "doubtful": [
     {
      "player": "Martín Zubimendi Ibáñez",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     }
    ],
@@ -177,11 +177,27 @@
      "regular_starter": true
     },
     {
+     "player": "Johan Manzambi",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Calf injury - 75% chance of playing",
+     "regular_starter": false
+    },
+    {
      "player": "Brian Madjo",
      "status": "a",
      "chance_this_round": 50,
      "chance_next_round": 100,
      "news": "",
+     "regular_starter": false
+    },
+    {
+     "player": "Aaron Wan-Bissaka",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
      "regular_starter": false
     }
    ],
@@ -264,7 +280,7 @@
      "status": "s",
      "chance_this_round": null,
      "chance_next_round": 0,
-     "news": "Suspended until 8 Nov",
+     "news": "Suspended until 23 Nov",
      "regular_starter": true
     },
     {
@@ -335,7 +351,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Hamstring injury - Expected back 18 Oct",
+     "news": "Hamstring injury - Expected back 31 Oct",
      "regular_starter": false
     },
     {
@@ -383,7 +399,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Unspecified injury - Expected back 18 Oct",
+     "news": "Unspecified injury - Expected back 31 Oct",
      "regular_starter": false
     },
     {
@@ -399,7 +415,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Ankle injury - Expected back 18 Oct",
+     "news": "Ankle injury - Unknown return date",
      "regular_starter": false
     },
     {
@@ -415,7 +431,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Hamstring injury - Expected back 18 Oct",
+     "news": "Hamstring injury - Expected back 31 Oct",
      "regular_starter": false
     }
    ],
@@ -433,6 +449,14 @@
   },
   "Chelsea": {
    "out": [
+    {
+     "player": "Emiliano Martínez Romero",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Head injury - Unknown return date",
+     "regular_starter": true
+    },
     {
      "player": "Robert Lynch Sánchez",
      "status": "u",
@@ -516,12 +540,12 @@
    ],
    "doubtful": [
     {
-     "player": "Emiliano Martínez Romero",
+     "player": "Malo Gusto",
      "status": "d",
      "chance_this_round": null,
-     "chance_next_round": 25,
-     "news": "Head injury - 25% chance of playing",
-     "regular_starter": true
+     "chance_next_round": 75,
+     "news": "Illness - 75% chance of playing",
+     "regular_starter": false
     },
     {
      "player": "Pep Chavarría",
@@ -641,10 +665,10 @@
    "out": [
     {
      "player": "Axel Disasi",
-     "status": "s",
+     "status": "a",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Suspended until 25 Oct",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
@@ -705,10 +729,10 @@
     },
     {
      "player": "Jean-Philippe Mateta",
-     "status": "i",
+     "status": "a",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Hamstring injury - Expected back 18 Oct",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
@@ -810,7 +834,7 @@
      "status": "s",
      "chance_this_round": 100,
      "chance_next_round": 0,
-     "news": "Suspended until 7 Nov",
+     "news": "Suspended until 21 Nov",
      "regular_starter": false
     },
     {
@@ -997,7 +1021,16 @@
      "regular_starter": false
     }
    ],
-   "doubtful": [],
+   "doubtful": [
+    {
+     "player": "Robinio Vaz",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 50,
+     "news": "Achilles injury - 50% chance of playing",
+     "regular_starter": false
+    }
+   ],
    "key_absences": 1
   },
   "Ipswich Town": {
@@ -1160,6 +1193,14 @@
      "regular_starter": false
     },
     {
+     "player": "Jeremie Frimpong",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Unknown return date",
+     "regular_starter": false
+    },
+    {
      "player": "Conor Bradley",
      "status": "i",
      "chance_this_round": 0,
@@ -1184,11 +1225,19 @@
      "regular_starter": false
     },
     {
-     "player": "Ryan Gravenberch",
-     "status": "s",
-     "chance_this_round": 0,
+     "player": "Dominik Szoboszlai",
+     "status": "i",
+     "chance_this_round": 25,
      "chance_next_round": 0,
-     "news": "Suspended until 25 Oct",
+     "news": "Hamstring injury - Unknown return date",
+     "regular_starter": true
+    },
+    {
+     "player": "Ryan Gravenberch",
+     "status": "a",
+     "chance_this_round": 0,
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
@@ -1226,27 +1275,11 @@
    ],
    "doubtful": [
     {
-     "player": "Jeremie Frimpong",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
-     "regular_starter": false
-    },
-    {
      "player": "Cody Gakpo",
      "status": "a",
      "chance_this_round": 25,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": true
-    },
-    {
-     "player": "Dominik Szoboszlai",
-     "status": "d",
-     "chance_this_round": 25,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": true
     },
     {
@@ -1321,20 +1354,12 @@
    ],
    "doubtful": [
     {
-     "player": "Matheus Nunes",
+     "player": "Antoine Semenyo",
      "status": "d",
      "chance_this_round": 100,
      "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
+     "news": "Knee injury - 75% chance of playing",
      "regular_starter": true
-    },
-    {
-     "player": "Mateo Kovačić",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
-     "regular_starter": false
     }
    ],
    "key_absences": 1
@@ -1408,11 +1433,19 @@
    ],
    "doubtful": [
     {
-     "player": "Noussair Mazraoui",
+     "player": "Lisandro Martínez",
      "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Thigh injury - 75% chance of playing",
+     "regular_starter": true
+    },
+    {
+     "player": "Noussair Mazraoui",
+     "status": "a",
      "chance_this_round": 25,
-     "chance_next_round": 25,
-     "news": "Back injury - 25% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
@@ -1432,7 +1465,7 @@
      "regular_starter": true
     }
    ],
-   "key_absences": 2
+   "key_absences": 3
   },
   "Newcastle": {
    "out": [
@@ -1575,10 +1608,10 @@
    "doubtful": [
     {
      "player": "Nikola Milenković",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Knee injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false
     },
     {
@@ -1594,6 +1627,14 @@
   },
   "Sunderland": {
    "out": [
+    {
+     "player": "Kevin Danso",
+     "status": "s",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Suspended until 31 Oct",
+     "regular_starter": false
+    },
     {
      "player": "Anthony Patterson",
      "status": "u",
@@ -1674,6 +1715,14 @@
   "Tottenham": {
    "out": [
     {
+     "player": "Sávio Moreira de Oliveira",
+     "status": "i",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Muscular injury - Expected back 7 Nov",
+     "regular_starter": true
+    },
+    {
      "player": "Guglielmo Vicario",
      "status": "u",
      "chance_this_round": 0,
@@ -1686,7 +1735,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Hamstring injury - Unknown return date",
+     "news": "Hamstring injury - Expected back 24 Oct",
      "regular_starter": false
     },
     {
@@ -1754,11 +1803,19 @@
      "regular_starter": false
     },
     {
-     "player": "Dejan Kulusevski",
+     "player": "Lucas Bergvall",
      "status": "i",
-     "chance_this_round": 0,
+     "chance_this_round": null,
      "chance_next_round": 0,
-     "news": "Knee injury - Unknown return date",
+     "news": "Knee injury - Expected back 7 Nov",
+     "regular_starter": false
+    },
+    {
+     "player": "Dejan Kulusevski",
+     "status": "d",
+     "chance_this_round": 0,
+     "chance_next_round": 75,
+     "news": "Knee injury - 75% chance of playing",
      "regular_starter": false
     },
     {
@@ -1795,7 +1852,7 @@
     }
    ],
    "doubtful": [],
-   "key_absences": 1
+   "key_absences": 2
   }
  }
 }

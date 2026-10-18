@@ -608,6 +608,14 @@
   "Angers vs Marseille": {
     "last5": [
       {
+        "date": "2026-10-18",
+        "venue": "H",
+        "home": "Angers",
+        "away": "Marseille",
+        "home_goals": 2,
+        "away_goals": 5
+      },
+      {
         "date": "2026-01-17",
         "venue": "H",
         "home": "Angers",
@@ -643,11 +651,19 @@
     "alltime": {
       "w": 0,
       "d": 2,
-      "l": 2
+      "l": 3
     }
   },
   "Marseille vs Angers": {
     "last5": [
+      {
+        "date": "2026-10-18",
+        "venue": "A",
+        "home": "Angers",
+        "away": "Marseille",
+        "home_goals": 2,
+        "away_goals": 5
+      },
       {
         "date": "2026-01-17",
         "venue": "A",
@@ -682,7 +698,7 @@
       }
     ],
     "alltime": {
-      "w": 2,
+      "w": 3,
       "d": 2,
       "l": 0
     }
@@ -1662,6 +1678,14 @@
   "Auxerre vs Le Havre": {
     "last5": [
       {
+        "date": "2026-10-18",
+        "venue": "A",
+        "home": "Le Havre",
+        "away": "Auxerre",
+        "home_goals": 1,
+        "away_goals": 3
+      },
+      {
         "date": "2026-04-05",
         "venue": "A",
         "home": "Le Havre",
@@ -1695,13 +1719,21 @@
       }
     ],
     "alltime": {
-      "w": 0,
+      "w": 1,
       "d": 1,
       "l": 3
     }
   },
   "Le Havre vs Auxerre": {
     "last5": [
+      {
+        "date": "2026-10-18",
+        "venue": "H",
+        "home": "Le Havre",
+        "away": "Auxerre",
+        "home_goals": 1,
+        "away_goals": 3
+      },
       {
         "date": "2026-04-05",
         "venue": "H",
@@ -1738,7 +1770,7 @@
     "alltime": {
       "w": 3,
       "d": 1,
-      "l": 0
+      "l": 1
     }
   },
   "Auxerre vs Lens": {
@@ -3290,6 +3322,14 @@
   "Brest vs Lille": {
     "last5": [
       {
+        "date": "2026-10-17",
+        "venue": "A",
+        "home": "Lille",
+        "away": "Brest",
+        "home_goals": 1,
+        "away_goals": 1
+      },
+      {
         "date": "2026-02-14",
         "venue": "A",
         "home": "Lille",
@@ -3320,25 +3360,25 @@
         "away": "Brest",
         "home_goals": 3,
         "away_goals": 1
-      },
-      {
-        "date": "2024-03-17",
-        "venue": "H",
-        "home": "Brest",
-        "away": "Lille",
-        "home_goals": 1,
-        "away_goals": 1
       }
     ],
     "alltime": {
       "w": 1,
-      "d": 3,
+      "d": 4,
       "l": 2
     }
   },
   "Lille vs Brest": {
     "last5": [
       {
+        "date": "2026-10-17",
+        "venue": "H",
+        "home": "Lille",
+        "away": "Brest",
+        "home_goals": 1,
+        "away_goals": 1
+      },
+      {
         "date": "2026-02-14",
         "venue": "H",
         "home": "Lille",
@@ -3369,19 +3409,11 @@
         "away": "Brest",
         "home_goals": 3,
         "away_goals": 1
-      },
-      {
-        "date": "2024-03-17",
-        "venue": "A",
-        "home": "Brest",
-        "away": "Lille",
-        "home_goals": 1,
-        "away_goals": 1
       }
     ],
     "alltime": {
       "w": 2,
-      "d": 3,
+      "d": 4,
       "l": 1
     }
   },
@@ -8629,6 +8661,40 @@
       "l": 4
     }
   },
+  "Lens vs Troyes": {
+    "last5": [
+      {
+        "date": "2026-10-17",
+        "venue": "A",
+        "home": "Troyes",
+        "away": "Lens",
+        "home_goals": 1,
+        "away_goals": 3
+      }
+    ],
+    "alltime": {
+      "w": 1,
+      "d": 0,
+      "l": 0
+    }
+  },
+  "Troyes vs Lens": {
+    "last5": [
+      {
+        "date": "2026-10-17",
+        "venue": "H",
+        "home": "Troyes",
+        "away": "Lens",
+        "home_goals": 1,
+        "away_goals": 3
+      }
+    ],
+    "alltime": {
+      "w": 0,
+      "d": 0,
+      "l": 1
+    }
+  },
   "Lille vs Lorient": {
     "last5": [
       {
@@ -10222,6 +10288,14 @@
   "Lorient vs Monaco": {
     "last5": [
       {
+        "date": "2026-10-18",
+        "venue": "H",
+        "home": "Lorient",
+        "away": "Monaco",
+        "home_goals": 1,
+        "away_goals": 0
+      },
+      {
         "date": "2026-01-16",
         "venue": "A",
         "home": "Monaco",
@@ -10255,13 +10329,21 @@
       }
     ],
     "alltime": {
-      "w": 2,
+      "w": 3,
       "d": 2,
       "l": 0
     }
   },
   "Monaco vs Lorient": {
     "last5": [
+      {
+        "date": "2026-10-18",
+        "venue": "A",
+        "home": "Lorient",
+        "away": "Monaco",
+        "home_goals": 1,
+        "away_goals": 0
+      },
       {
         "date": "2026-01-16",
         "venue": "H",
@@ -10298,7 +10380,7 @@
     "alltime": {
       "w": 0,
       "d": 2,
-      "l": 2
+      "l": 3
     }
   },
   "Lorient vs Montpellier": {
@@ -17198,6 +17280,14 @@
   "Paris SG vs Strasbourg": {
     "last5": [
       {
+        "date": "2026-10-17",
+        "venue": "A",
+        "home": "Strasbourg",
+        "away": "Paris SG",
+        "home_goals": 1,
+        "away_goals": 3
+      },
+      {
         "date": "2026-02-01",
         "venue": "A",
         "home": "Strasbourg",
@@ -17228,18 +17318,10 @@
         "away": "Strasbourg",
         "home_goals": 4,
         "away_goals": 2
-      },
-      {
-        "date": "2024-02-02",
-        "venue": "A",
-        "home": "Strasbourg",
-        "away": "Paris SG",
-        "home_goals": 1,
-        "away_goals": 2
       }
     ],
     "alltime": {
-      "w": 4,
+      "w": 5,
       "d": 1,
       "l": 1
     }
@@ -17247,6 +17329,14 @@
   "Strasbourg vs Paris SG": {
     "last5": [
       {
+        "date": "2026-10-17",
+        "venue": "H",
+        "home": "Strasbourg",
+        "away": "Paris SG",
+        "home_goals": 1,
+        "away_goals": 3
+      },
+      {
         "date": "2026-02-01",
         "venue": "H",
         "home": "Strasbourg",
@@ -17277,20 +17367,12 @@
         "away": "Strasbourg",
         "home_goals": 4,
         "away_goals": 2
-      },
-      {
-        "date": "2024-02-02",
-        "venue": "H",
-        "home": "Strasbourg",
-        "away": "Paris SG",
-        "home_goals": 1,
-        "away_goals": 2
       }
     ],
     "alltime": {
       "w": 1,
       "d": 1,
-      "l": 4
+      "l": 5
     }
   },
   "Paris SG vs Toulouse": {
