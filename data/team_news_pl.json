@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-19T22:28:37.171330+00:00",
+ "fetched_at": "2026-10-19T23:29:03.621285+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -2158,10 +2158,47 @@
      "position": "MID"
     }
    ],
-   "doubtful": [],
-   "key_absences": 2,
-   "drag_att": 0.0847,
-   "drag_def": 0.0
+   "doubtful": [
+    {
+     "player": "Tosin Adarabioyo",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Calf injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "DEF"
+    },
+    {
+     "player": "Omar Marmoush",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Calf injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "FWD"
+    },
+    {
+     "player": "Andrew Robertson",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Foot injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "DEF"
+    },
+    {
+     "player": "Destiny Udogie",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Knee injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "DEF"
+    }
+   ],
+   "key_absences": 4,
+   "drag_att": 0.1281,
+   "drag_def": 0.0431
   }
  }
 }
