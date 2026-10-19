@@ -47,14 +47,79 @@
 <td class="muted">cards / game</td><td class="num">2.4</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>2<small>W</small> 2<small>D</small> 2<small>L</small></div><p class='small muted'>All-time, Valencia perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-03-01</span> Valencia 1-0 Osasuna</div><div class='small'><span class='mono faint'>2025-08-24</span> Osasuna 1-0 Valencia</div><div class='small'><span class='mono faint'>2025-03-02</span> Osasuna 3-3 Valencia</div><div class='small'><span class='mono faint'>2024-09-24</span> Valencia 0-0 Osasuna</div><div class='small'><span class='mono faint'>2024-04-15</span> Osasuna 0-1 Valencia</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">2</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">2</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">2</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Valencia</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="2W 2D 2L">
+  <div class="h2h-bar-segment win" style="width: 33.3%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 33.3%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 33.3%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 5 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2026-03-01</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Valencia</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;0</span>
+    <span style="color: var(--text-muted);">Osasuna</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2025-08-24</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Osasuna</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;0</span>
+    <span style="color: var(--text-muted);">Valencia</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2025-03-02</span>
+  <span class="h2h-match-teams">
+    <span style="">Osasuna</span>
+    <span class="scoreline mono" style="margin: 0 8px;">3&ndash;3</span>
+    <span style="">Valencia</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2024-09-24</span>
+  <span class="h2h-match-teams">
+    <span style="">Valencia</span>
+    <span class="scoreline mono" style="margin: 0 8px;">0&ndash;0</span>
+    <span style="">Osasuna</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2024-04-15</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Osasuna</span>
+    <span class="scoreline mono" style="margin: 0 8px;">0&ndash;1</span>
+    <span style="font-weight: 600;">Valencia</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: LaLiga apim public-service API (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
 <tr><td>Poisson</td><td class="num">48%</td>
 <td class="num">27%</td><td class="num">25%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">41%</td>
-<td class="num">37%</td><td class="num">22%</td></tr>
+<tr><td>Gradient boosting</td><td class="num">42%</td>
+<td class="num">37%</td><td class="num">21%</td></tr>
 <tr><td><b>Ensemble</b></td><td class="num"><b>44%</b></td>
 <td class="num"><b>33%</b></td><td class="num"><b>23%</b></td></tr>
 </table>
@@ -62,10 +127,10 @@
 <div class="probbar"><span class="seg home" style="width:47.8%">48%</span><span class="seg draw" style="width:27.2%">27%</span><span class="seg away" style="width:25.1%">25%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:40.7%">41%</span><span class="seg draw" style="width:37.4%">37%</span><span class="seg away" style="width:22.0%">22%</span></div>
+<div class="probbar"><span class="seg home" style="width:41.9%">42%</span><span class="seg draw" style="width:36.7%">37%</span><span class="seg away" style="width:21.3%">21%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:43.5%">44%</span><span class="seg draw" style="width:33.3%">33%</span><span class="seg away" style="width:23.2%">23%</span></div>
+<div class="probbar"><span class="seg home" style="width:44.3%">44%</span><span class="seg draw" style="width:32.9%">33%</span><span class="seg away" style="width:22.8%">23%</span></div>
 <div class="legend"><span class="sw home"></span>Valencia <span class="sw draw"></span>Draw <span class="sw away"></span>Osasuna</div>
 <p class="small muted">Expected goals: <span class="mono">1.40 - 0.93</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
@@ -80,8 +145,7 @@ vs Osasuna <span class="mono">-0.7</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Valencia
 <span class="mono">50%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Valencia 7 days,
-Osasuna 7 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Valencia:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-11-22 at Rayo Vallecano (sched))</span><br><b>Osasuna:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-11-22 vs Malaga (sched))</span></td></tr>
 </table></div></div>
 <h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not

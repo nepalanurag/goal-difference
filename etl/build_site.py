@@ -502,6 +502,90 @@ tr:hover td {
   border: 1px solid rgba(244, 63, 94, 0.3);
 }
 
+/* Head to Head Record */
+.h2h-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.h2h-pill {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--panel-elevated);
+  border: 1px solid var(--line);
+}
+.h2h-pill .count {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.h2h-pill .label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+.h2h-pill.win {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: var(--home-soft);
+}
+.h2h-pill.win .count { color: #34d399; }
+.h2h-pill.draw {
+  border-color: rgba(148, 163, 184, 0.4);
+  background: var(--draw-soft);
+}
+.h2h-pill.draw .count { color: #cbd5e1; }
+.h2h-pill.loss {
+  border-color: rgba(244, 63, 94, 0.4);
+  background: var(--away-soft);
+}
+.h2h-pill.loss .count { color: #fb7185; }
+
+.h2h-bar {
+  display: flex;
+  height: 6px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  margin-bottom: 14px;
+}
+.h2h-bar-segment.win { background: #10b981; }
+.h2h-bar-segment.draw { background: #94a3b8; }
+.h2h-bar-segment.loss { background: #f43f5e; }
+
+.h2h-matches {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.h2h-match-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  font-size: 0.85rem;
+}
+.h2h-match-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+.h2h-match-date {
+  min-width: 82px;
+  font-size: 0.78rem;
+}
+.h2h-match-teams {
+  flex: 1;
+}
+
 .muted { color: var(--text-muted); }
 .faint { color: var(--faint); }
 .small { font-size: 0.84rem; }
@@ -846,6 +930,75 @@ class LeagueData:
         self.finished = self.fixtures[self.fixtures.status == "finished"].copy()
         self.upcoming = self.fixtures[self.fixtures.status == "scheduled"].copy()
         self.upcoming = self.upcoming.sort_values("date").reset_index(drop=True)
+
+        euro_path = d / "european_fixtures.jsonl"
+        self.euro: dict[str, list[dict]] = {}
+        if euro_path.exists():
+            for line in euro_path.read_text().splitlines():
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    fx = json.loads(line)
+                    for side, gf_k, ga_k in (("home", "home_goals", "away_goals"),
+                                             ("away", "away_goals", "home_goals")):
+                        gf_val = fx.get(gf_k)
+                        ga_val = fx.get(ga_k)
+                        self.euro.setdefault(fx[side], []).append({
+                            "date": str(fx.get("date", ""))[:10],
+                            "competition": fx.get("competition", "Europe"),
+                            "opp": fx["away" if side == "home" else "home"],
+                            "venue": "vs" if side == "home" else "at",
+                            "status": fx.get("status", "finished"),
+                            "gf": int(gf_val) if gf_val is not None and pd.notna(gf_val) else None,
+                            "ga": int(ga_val) if ga_val is not None and pd.notna(ga_val) else None,
+                        })
+                except Exception:
+                    continue
+            for v in self.euro.values():
+                v.sort(key=lambda x: x["date"])
+
+    def prev_match_info(self, team: str, before_date: str) -> tuple[int, int, str]:
+        """Returns (rest_days, turnaround_days, description) for team before before_date."""
+        candidates = []
+        df = self.fixtures
+        past = df[((df["home"] == team) | (df["away"] == team)) & (df["date"] < before_date)]
+        if not past.empty:
+            m = past.sort_values("date").iloc[-1]
+            opp = m["away"] if m["home"] == team else m["home"]
+            ven = "vs" if m["home"] == team else "at"
+            if m["status"] == "finished" and pd.notna(m.get("home_goals")):
+                hg, ag = int(m["home_goals"]), int(m["away_goals"])
+                my_g, opp_g = (hg, ag) if m["home"] == team else (ag, hg)
+                res = "W" if my_g > opp_g else ("D" if my_g == opp_g else "L")
+                desc = f"{ven} {opp} ({res} {my_g}&ndash;{opp_g})"
+            else:
+                desc = f"{ven} {opp} (sched)"
+            candidates.append((str(m["date"])[:10], desc))
+
+        for em in self.euro.get(team, []):
+            ed = str(em.get("date", ""))[:10]
+            if ed and ed < before_date:
+                gf, ga = em.get("gf"), em.get("ga")
+                comp = em.get("competition", "Europe")
+                opp = em.get("opp")
+                ven = em.get("venue", "vs")
+                if gf is not None and ga is not None:
+                    res = "W" if gf > ga else ("D" if gf == ga else "L")
+                    candidates.append((ed, f"{comp} {ven} {opp} ({res} {gf}&ndash;{ga})"))
+                else:
+                    candidates.append((ed, f"{comp} {ven} {opp} (sched)"))
+
+        if not candidates:
+            return 6, 7, "season opener"
+
+        candidates.sort(key=lambda x: x[0])
+        last_date_str, desc = candidates[-1]
+        turnaround = (date.fromisoformat(before_date) - date.fromisoformat(last_date_str)).days
+        if turnaround > 30:
+            return 13, 14, f"summer break ({last_date_str})"
+        rest_days = max(0, turnaround - 1)
+        return rest_days, turnaround, f"{last_date_str} {desc}"
 
     def table(self) -> pd.DataFrame:
         """Live-season league table."""
@@ -1478,13 +1631,67 @@ def build_fixture(league: str, ld: LeagueData, row: pd.Series,
     if key in ld.h2h:
         rec = ld.h2h[key]
         at = rec["alltime"]
-        last5 = "".join(
-            f"<div class='small'><span class='mono faint'>{m['date']}</span> "
-            f"{esc(m['home'])} {int(m['home_goals'])}-{int(m['away_goals'])} "
-            f"{esc(m['away'])}</div>" for m in rec["last5"])
-        h2h_html = (f"<div class='kpi'>{at['w']}<small>W</small> {at['d']}<small>D</small> "
-                    f"{at['l']}<small>L</small></div>"
-                    f"<p class='small muted'>All-time, {esc(home)} perspective. Last 5:</p>{last5}")
+        w, d, l = at.get("w", 0), at.get("d", 0), at.get("l", 0)
+        tot = w + d + l
+        w_pct = (w / tot * 100) if tot else 0
+        d_pct = (d / tot * 100) if tot else 0
+        l_pct = (l / tot * 100) if tot else 0
+
+        bar_html = ""
+        if tot > 0:
+            bar_html = f"""<div class="h2h-bar" title="{w}W {d}D {l}L">
+  <div class="h2h-bar-segment win" style="width: {w_pct:.1f}%;"></div>
+  <div class="h2h-bar-segment draw" style="width: {d_pct:.1f}%;"></div>
+  <div class="h2h-bar-segment loss" style="width: {l_pct:.1f}%;"></div>
+</div>"""
+
+        m_rows = []
+        for m in rec.get("last5", []):
+            hg = int(m.get("home_goals", 0))
+            ag = int(m.get("away_goals", 0))
+            m_home = m.get("home", "")
+            m_away = m.get("away", "")
+            if m_home == home:
+                outcome = "W" if hg > ag else ("D" if hg == ag else "L")
+            else:
+                outcome = "W" if ag > hg else ("D" if ag == hg else "L")
+            h_style = "font-weight: 600;" if hg > ag else ("color: var(--text-muted);" if hg < ag else "")
+            a_style = "font-weight: 600;" if ag > hg else ("color: var(--text-muted);" if ag < hg else "")
+            m_rows.append(
+                f"""<div class="h2h-match-row">
+  <span class="badge {outcome}" style="min-width: 24px; text-align: center; font-weight: 700;">{outcome}</span>
+  <span class="mono faint h2h-match-date">{esc(str(m.get('date', ''))[:10])}</span>
+  <span class="h2h-match-teams">
+    <span style="{h_style}">{esc(m_home)}</span>
+    <span class="scoreline mono" style="margin: 0 8px;">{hg}&ndash;{ag}</span>
+    <span style="{a_style}">{esc(m_away)}</span>
+  </span>
+</div>"""
+            )
+
+        matches_list = "".join(m_rows)
+        h2h_html = f"""<div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">{w}</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">{d}</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">{l}</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>{esc(home)}</b> perspective
+  </div>
+</div>
+{bar_html}
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last {len(m_rows)} meetings
+</div>
+<div class="h2h-matches">{matches_list}</div>"""
 
     probs = f"""<div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
@@ -1509,6 +1716,10 @@ Each row sums to 100%.</p></div></div>"""
 
     # What to expect: key numbers card.
     edge = feats.get("h2h_edge", 0.5)
+    h_rest, h_turn, h_desc = ld.prev_match_info(home, str(row.date)[:10])
+    a_rest, a_turn, a_desc = ld.prev_match_info(away, str(row.date)[:10])
+    h_rest_lbl = f"{h_rest} day{'s' if h_rest != 1 else ''} rest"
+    a_rest_lbl = f"{a_rest} day{'s' if a_rest != 1 else ''} rest"
     expect = f"""<div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>{esc(home if row.p_home_ens >= row.p_away_ens else away)}</b>
 <span class="muted">favored at</span> <b>{pct(max(row.p_home_ens, row.p_away_ens))}</b>
@@ -1521,8 +1732,7 @@ vs {esc(away)} <span class="mono">{af.get('shot_diff_pg', 0):+.1f}</span> per ga
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>{esc(home)}
 <span class="mono">{pct(edge)}</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>{esc(home)} {int(feats.get('h_rest_days', 7))} days,
-{esc(away)} {int(feats.get('a_rest_days', 7))} days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>{esc(home)}:</b> {h_rest_lbl} <span class="faint">({h_turn}d gap &middot; {h_desc})</span><br><b>{esc(away)}:</b> {a_rest_lbl} <span class="faint">({a_turn}d gap &middot; {a_desc})</span></td></tr>
 </table></div>"""
 
     body = f"""<div class="hero"><p class="cond muted">{LEAGUE_NAMES[league]}

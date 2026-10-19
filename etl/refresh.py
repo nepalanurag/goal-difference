@@ -46,7 +46,7 @@ PIPELINE = [
 
 
 def finished_hash() -> str:
-    """Hash of the finished-fixture set across all leagues (ids + scores)."""
+    """Hash of the fixture set across all leagues (finished results + scheduled calendar)."""
     h = hashlib.sha1()
     for league in settings.league_order:
         path = settings.data_dir / f"fixtures_{league}.csv"
@@ -56,16 +56,17 @@ def finished_hash() -> str:
         fin = df[df["status"] == "finished"][
             ["fixture_id", "home_goals", "away_goals"]].sort_values("fixture_id")
         h.update(fin.to_csv(index=False).encode())
+        sched = df[df["status"] != "finished"][
+            ["fixture_id", "date"]].sort_values("fixture_id")
+        h.update(sched.to_csv(index=False).encode())
     return h.hexdigest()[:16]
 
 
 def run_module(args: list[str]) -> None:
     cmd = [sys.executable, "-m", f"etl.{args[0]}", *args[1:]]
     log.info("pipeline_step", module=args[0])
-    proc = subprocess.run(cmd, cwd=settings.repo_root, capture_output=True, text=True)
-    sys.stdout.write(proc.stdout)
+    proc = subprocess.run(cmd, cwd=settings.repo_root)
     if proc.returncode != 0:
-        sys.stderr.write(proc.stderr)
         raise RuntimeError(f"etl.{args[0]} failed (exit {proc.returncode})")
 
 

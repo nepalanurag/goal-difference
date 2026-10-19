@@ -47,30 +47,87 @@
 <td class="muted">cards / game</td><td class="num">2.3</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>2<small>W</small> 1<small>D</small> 1<small>L</small></div><p class='small muted'>All-time, Sassuolo perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-04-26</span> Fiorentina 0-0 Sassuolo</div><div class='small'><span class='mono faint'>2025-12-06</span> Sassuolo 3-1 Fiorentina</div><div class='small'><span class='mono faint'>2024-04-28</span> Fiorentina 5-1 Sassuolo</div><div class='small'><span class='mono faint'>2024-01-06</span> Sassuolo 1-0 Fiorentina</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">2</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">1</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">1</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Sassuolo</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="2W 1D 1L">
+  <div class="h2h-bar-segment win" style="width: 50.0%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 25.0%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 25.0%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 4 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2026-04-26</span>
+  <span class="h2h-match-teams">
+    <span style="">Fiorentina</span>
+    <span class="scoreline mono" style="margin: 0 8px;">0&ndash;0</span>
+    <span style="">Sassuolo</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2025-12-06</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Sassuolo</span>
+    <span class="scoreline mono" style="margin: 0 8px;">3&ndash;1</span>
+    <span style="color: var(--text-muted);">Fiorentina</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2024-04-28</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Fiorentina</span>
+    <span class="scoreline mono" style="margin: 0 8px;">5&ndash;1</span>
+    <span style="color: var(--text-muted);">Sassuolo</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2024-01-06</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Sassuolo</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;0</span>
+    <span style="color: var(--text-muted);">Fiorentina</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: Serie A api-sdp (Deltatre) stats feed (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
-<tr><td>Poisson</td><td class="num">51%</td>
+<tr><td>Poisson</td><td class="num">52%</td>
 <td class="num">24%</td><td class="num">25%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">60%</td>
-<td class="num">18%</td><td class="num">22%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>57%</b></td>
-<td class="num"><b>20%</b></td><td class="num"><b>23%</b></td></tr>
+<tr><td>Gradient boosting</td><td class="num">51%</td>
+<td class="num">21%</td><td class="num">28%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>51%</b></td>
+<td class="num"><b>22%</b></td><td class="num"><b>27%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
-<div class="probbar"><span class="seg home" style="width:50.8%">51%</span><span class="seg draw" style="width:23.8%">24%</span><span class="seg away" style="width:25.4%">25%</span></div>
+<div class="probbar"><span class="seg home" style="width:51.7%">52%</span><span class="seg draw" style="width:23.7%">24%</span><span class="seg away" style="width:24.6%">25%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:60.5%">60%</span><span class="seg draw" style="width:17.9%">18%</span><span class="seg away" style="width:21.6%">22%</span></div>
+<div class="probbar"><span class="seg home" style="width:51.2%">51%</span><span class="seg draw" style="width:20.9%">21%</span><span class="seg away" style="width:27.9%">28%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:56.6%">57%</span><span class="seg draw" style="width:20.3%">20%</span><span class="seg away" style="width:23.1%">23%</span></div>
+<div class="probbar"><span class="seg home" style="width:51.4%">51%</span><span class="seg draw" style="width:22.0%">22%</span><span class="seg away" style="width:26.6%">27%</span></div>
 <div class="legend"><span class="sw home"></span>Sassuolo <span class="sw draw"></span>Draw <span class="sw away"></span>Fiorentina</div>
-<p class="small muted">Expected goals: <span class="mono">1.72 - 1.15</span>.
+<p class="small muted">Expected goals: <span class="mono">1.74 - 1.13</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Sassuolo</b>
-<span class="muted">favored at</span> <b>57%</b>
+<span class="muted">favored at</span> <b>51%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Sassuolo score
 <span class="mono">1.80</span>/game lately; Fiorentina concede
@@ -80,8 +137,7 @@ vs Fiorentina <span class="mono">+1.0</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Sassuolo
 <span class="mono">62%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Sassuolo 6 days,
-Fiorentina 4 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Sassuolo:</b> 5 days rest <span class="faint">(6d gap &middot; 2026-10-27 vs Lazio (sched))</span><br><b>Fiorentina:</b> 3 days rest <span class="faint">(4d gap &middot; 2026-10-29 vs Atalanta (sched))</span></td></tr>
 </table></div></div>
 <h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not

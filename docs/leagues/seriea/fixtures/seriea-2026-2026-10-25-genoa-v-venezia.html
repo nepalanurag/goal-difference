@@ -47,30 +47,71 @@
 <td class="muted">cards / game</td><td class="num">2.1</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>1<small>W</small> 0<small>D</small> 1<small>L</small></div><p class='small muted'>All-time, Genoa perspective. Last 5:</p><div class='small'><span class='mono faint'>2025-02-17</span> Genoa 2-0 Venezia</div><div class='small'><span class='mono faint'>2024-09-21</span> Venezia 2-0 Genoa</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">1</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">0</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">1</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Genoa</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="1W 0D 1L">
+  <div class="h2h-bar-segment win" style="width: 50.0%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 0.0%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 50.0%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 2 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2025-02-17</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Genoa</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;0</span>
+    <span style="color: var(--text-muted);">Venezia</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2024-09-21</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Venezia</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;0</span>
+    <span style="color: var(--text-muted);">Genoa</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: Serie A api-sdp (Deltatre) stats feed (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
 <tr><td>Poisson</td><td class="num">55%</td>
 <td class="num">26%</td><td class="num">20%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">58%</td>
-<td class="num">22%</td><td class="num">21%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>57%</b></td>
-<td class="num"><b>23%</b></td><td class="num"><b>20%</b></td></tr>
+<tr><td>Gradient boosting</td><td class="num">61%</td>
+<td class="num">18%</td><td class="num">21%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>58%</b></td>
+<td class="num"><b>21%</b></td><td class="num"><b>20%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
-<div class="probbar"><span class="seg home" style="width:54.6%">55%</span><span class="seg draw" style="width:25.6%">26%</span><span class="seg away" style="width:19.8%">20%</span></div>
+<div class="probbar"><span class="seg home" style="width:54.5%">55%</span><span class="seg draw" style="width:25.7%">26%</span><span class="seg away" style="width:19.8%">20%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:58.0%">58%</span><span class="seg draw" style="width:21.5%">22%</span><span class="seg away" style="width:20.5%">21%</span></div>
+<div class="probbar"><span class="seg home" style="width:61.1%">61%</span><span class="seg draw" style="width:18.2%">18%</span><span class="seg away" style="width:20.7%">21%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:56.6%">57%</span><span class="seg draw" style="width:23.2%">23%</span><span class="seg away" style="width:20.2%">20%</span></div>
+<div class="probbar"><span class="seg home" style="width:58.5%">58%</span><span class="seg draw" style="width:21.2%">21%</span><span class="seg away" style="width:20.4%">20%</span></div>
 <div class="legend"><span class="sw home"></span>Genoa <span class="sw draw"></span>Draw <span class="sw away"></span>Venezia</div>
-<p class="small muted">Expected goals: <span class="mono">1.55 - 0.82</span>.
+<p class="small muted">Expected goals: <span class="mono">1.54 - 0.82</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Genoa</b>
-<span class="muted">favored at</span> <b>57%</b>
+<span class="muted">favored at</span> <b>58%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Genoa score
 <span class="mono">1.00</span>/game lately; Venezia concede
@@ -80,10 +121,9 @@ vs Venezia <span class="mono">-4.4</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Genoa
 <span class="mono">50%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Genoa 8 days,
-Venezia 8 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Genoa:</b> 7 days rest <span class="faint">(8d gap &middot; 2026-10-17 at Roma (L 0&ndash;2))</span><br><b>Venezia:</b> 7 days rest <span class="faint">(8d gap &middot; 2026-10-17 vs Napoli (W 1&ndash;0))</span></td></tr>
 </table></div></div>
-<h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
+<h2>Players to watch</h2><div class="card"><div class='small' style='margin-top:6px'><span class='muted'>Players to watch:</span> Osmajić <span class='muted'>31%</span>, Wiafe <span class='muted'>15%</span>, Messias <span class='muted'>14%</span>, A. Adams <span class='muted'>14%</span>, Hainaut <span class='muted'>13%</span></div></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not
 betting advice. Live scores for non-PL leagues come from CSVs updated about a
 day after matches. The FPL API and the official league JSON backends are

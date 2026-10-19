@@ -47,30 +47,71 @@
 <td class="muted">cards / game</td><td class="num">2.4</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>1<small>W</small> 1<small>D</small> 0<small>L</small></div><p class='small muted'>All-time, Elche perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-04-22</span> Elche 3-2 Ath Madrid</div><div class='small'><span class='mono faint'>2025-08-23</span> Ath Madrid 1-1 Elche</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">1</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">1</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">0</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Elche</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="1W 1D 0L">
+  <div class="h2h-bar-segment win" style="width: 50.0%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 50.0%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 0.0%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 2 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2026-04-22</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Elche</span>
+    <span class="scoreline mono" style="margin: 0 8px;">3&ndash;2</span>
+    <span style="color: var(--text-muted);">Ath Madrid</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2025-08-23</span>
+  <span class="h2h-match-teams">
+    <span style="">Ath Madrid</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;1</span>
+    <span style="">Elche</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: LaLiga apim public-service API (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
 <tr><td>Poisson</td><td class="num">29%</td>
 <td class="num">25%</td><td class="num">46%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">22%</td>
-<td class="num">21%</td><td class="num">56%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>25%</b></td>
-<td class="num"><b>23%</b></td><td class="num"><b>52%</b></td></tr>
+<tr><td>Gradient boosting</td><td class="num">20%</td>
+<td class="num">22%</td><td class="num">58%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>24%</b></td>
+<td class="num"><b>23%</b></td><td class="num"><b>53%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
 <div class="probbar"><span class="seg home" style="width:28.7%">29%</span><span class="seg draw" style="width:25.3%">25%</span><span class="seg away" style="width:46.0%">46%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:22.4%">22%</span><span class="seg draw" style="width:21.3%">21%</span><span class="seg away" style="width:56.2%">56%</span></div>
+<div class="probbar"><span class="seg home" style="width:20.1%">20%</span><span class="seg draw" style="width:21.7%">22%</span><span class="seg away" style="width:58.1%">58%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:24.9%">25%</span><span class="seg draw" style="width:22.9%">23%</span><span class="seg away" style="width:52.1%">52%</span></div>
+<div class="probbar"><span class="seg home" style="width:23.6%">24%</span><span class="seg draw" style="width:23.2%">23%</span><span class="seg away" style="width:53.2%">53%</span></div>
 <div class="legend"><span class="sw home"></span>Elche <span class="sw draw"></span>Draw <span class="sw away"></span>Ath Madrid</div>
 <p class="small muted">Expected goals: <span class="mono">1.16 - 1.54</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Ath Madrid</b>
-<span class="muted">favored at</span> <b>52%</b>
+<span class="muted">favored at</span> <b>53%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Elche score
 <span class="mono">1.60</span>/game lately; Ath Madrid concede
@@ -80,8 +121,7 @@ vs Ath Madrid <span class="mono">+1.4</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Elche
 <span class="mono">75%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Elche 7 days,
-Ath Madrid 7 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Elche:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-11-22 at Levante (sched))</span><br><b>Ath Madrid:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-11-22 at Getafe (sched))</span></td></tr>
 </table></div></div>
 <h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not

@@ -47,7 +47,72 @@
 <td class="muted">cards / game</td><td class="num">2.4</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>1<small>W</small> 1<small>D</small> 4<small>L</small></div><p class='small muted'>All-time, Mainz perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-03-15</span> Werder Bremen 0-2 Mainz</div><div class='small'><span class='mono faint'>2025-11-01</span> Mainz 1-1 Werder Bremen</div><div class='small'><span class='mono faint'>2025-01-31</span> Werder Bremen 1-0 Mainz</div><div class='small'><span class='mono faint'>2024-09-15</span> Mainz 1-2 Werder Bremen</div><div class='small'><span class='mono faint'>2024-02-03</span> Mainz 0-1 Werder Bremen</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">1</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">1</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">4</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Mainz</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="1W 1D 4L">
+  <div class="h2h-bar-segment win" style="width: 16.7%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 16.7%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 66.7%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 5 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2026-03-15</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Werder Bremen</span>
+    <span class="scoreline mono" style="margin: 0 8px;">0&ndash;2</span>
+    <span style="font-weight: 600;">Mainz</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2025-11-01</span>
+  <span class="h2h-match-teams">
+    <span style="">Mainz</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;1</span>
+    <span style="">Werder Bremen</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2025-01-31</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Werder Bremen</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;0</span>
+    <span style="color: var(--text-muted);">Mainz</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2024-09-15</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Mainz</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;2</span>
+    <span style="font-weight: 600;">Werder Bremen</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2024-02-03</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Mainz</span>
+    <span class="scoreline mono" style="margin: 0 8px;">0&ndash;1</span>
+    <span style="font-weight: 600;">Werder Bremen</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: bundesliga official Firebase</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
@@ -80,8 +145,7 @@ vs Werder Bremen <span class="mono">-1.8</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Mainz
 <span class="mono">25%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Mainz 7 days,
-Werder Bremen 7 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Mainz:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-10-17 at Schalke 04 (W 1&ndash;0))</span><br><b>Werder Bremen:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-10-17 vs Paderborn (D 2&ndash;2))</span></td></tr>
 </table></div></div>
 <h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not

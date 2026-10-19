@@ -47,7 +47,48 @@
 <td class="muted">cards / game</td><td class="num">2.5</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>1<small>W</small> 1<small>D</small> 0<small>L</small></div><p class='small muted'>All-time, Real Sociedad perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-04-04</span> Real Sociedad 2-0 Levante</div><div class='small'><span class='mono faint'>2025-12-20</span> Levante 1-1 Real Sociedad</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">1</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">1</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">0</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Real Sociedad</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="1W 1D 0L">
+  <div class="h2h-bar-segment win" style="width: 50.0%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 50.0%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 0.0%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 2 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2026-04-04</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Real Sociedad</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;0</span>
+    <span style="color: var(--text-muted);">Levante</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2025-12-20</span>
+  <span class="h2h-match-teams">
+    <span style="">Levante</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;1</span>
+    <span style="">Real Sociedad</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: LaLiga apim public-service API (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
@@ -59,13 +100,13 @@
 <td class="num"><b>41%</b></td><td class="num"><b>18%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
-<div class="probbar"><span class="seg home" style="width:58.6%">59%</span><span class="seg draw" style="width:20.2%">20%</span><span class="seg away" style="width:21.2%">21%</span></div>
+<div class="probbar"><span class="seg home" style="width:58.6%">59%</span><span class="seg draw" style="width:20.2%">20%</span><span class="seg away" style="width:21.1%">21%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:28.7%">29%</span><span class="seg draw" style="width:55.0%">55%</span><span class="seg away" style="width:16.3%">16%</span></div>
+<div class="probbar"><span class="seg home" style="width:29.2%">29%</span><span class="seg draw" style="width:54.5%">55%</span><span class="seg away" style="width:16.3%">16%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:40.7%">41%</span><span class="seg draw" style="width:41.1%">41%</span><span class="seg away" style="width:18.2%">18%</span></div>
+<div class="probbar"><span class="seg home" style="width:41.0%">41%</span><span class="seg draw" style="width:40.8%">41%</span><span class="seg away" style="width:18.2%">18%</span></div>
 <div class="legend"><span class="sw home"></span>Real Sociedad <span class="sw draw"></span>Draw <span class="sw away"></span>Levante</div>
 <p class="small muted">Expected goals: <span class="mono">2.18 - 1.25</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
@@ -80,10 +121,9 @@ vs Levante <span class="mono">-2.8</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Real Sociedad
 <span class="mono">75%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Real Sociedad 7 days,
-Levante 4 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Real Sociedad:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-10-18 at Malaga (W 5&ndash;2))</span><br><b>Levante:</b> 3 days rest <span class="faint">(4d gap &middot; 2026-10-21 vs Ath Bilbao (sched))</span></td></tr>
 </table></div></div>
-<h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
+<h2>Players to watch</h2><div class="card"><div class='small' style='margin-top:6px'><span class='muted'>Players to watch:</span> Sucic <span class='muted'>34%</span>, Oyarzabal <span class='muted'>25%</span>, Oskarsson <span class='muted'>24%</span>, Barrene <span class='muted'>24%</span>, R. Brugué <span class='muted'>23%</span></div></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not
 betting advice. Live scores for non-PL leagues come from CSVs updated about a
 day after matches. The FPL API and the official league JSON backends are

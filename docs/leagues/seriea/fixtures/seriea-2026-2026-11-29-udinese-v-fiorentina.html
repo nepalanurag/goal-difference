@@ -47,30 +47,95 @@
 <td class="muted">cards / game</td><td class="num">2.3</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>2<small>W</small> 1<small>D</small> 3<small>L</small></div><p class='small muted'>All-time, Udinese perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-03-02</span> Udinese 3-0 Fiorentina</div><div class='small'><span class='mono faint'>2025-12-21</span> Fiorentina 5-1 Udinese</div><div class='small'><span class='mono faint'>2025-05-25</span> Udinese 2-3 Fiorentina</div><div class='small'><span class='mono faint'>2024-12-23</span> Fiorentina 1-2 Udinese</div><div class='small'><span class='mono faint'>2024-01-14</span> Fiorentina 2-2 Udinese</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">2</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">1</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">3</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Udinese</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="2W 1D 3L">
+  <div class="h2h-bar-segment win" style="width: 33.3%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 16.7%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 50.0%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 5 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2026-03-02</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Udinese</span>
+    <span class="scoreline mono" style="margin: 0 8px;">3&ndash;0</span>
+    <span style="color: var(--text-muted);">Fiorentina</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2025-12-21</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Fiorentina</span>
+    <span class="scoreline mono" style="margin: 0 8px;">5&ndash;1</span>
+    <span style="color: var(--text-muted);">Udinese</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2025-05-25</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Udinese</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;3</span>
+    <span style="font-weight: 600;">Fiorentina</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2024-12-23</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Fiorentina</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;2</span>
+    <span style="font-weight: 600;">Udinese</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2024-01-14</span>
+  <span class="h2h-match-teams">
+    <span style="">Fiorentina</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;2</span>
+    <span style="">Udinese</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: Serie A api-sdp (Deltatre) stats feed (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
 <tr><td>Poisson</td><td class="num">46%</td>
-<td class="num">26%</td><td class="num">29%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">31%</td>
-<td class="num">22%</td><td class="num">47%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>37%</b></td>
-<td class="num"><b>24%</b></td><td class="num"><b>40%</b></td></tr>
+<td class="num">26%</td><td class="num">28%</td></tr>
+<tr><td>Gradient boosting</td><td class="num">33%</td>
+<td class="num">21%</td><td class="num">46%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>38%</b></td>
+<td class="num"><b>23%</b></td><td class="num"><b>39%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
-<div class="probbar"><span class="seg home" style="width:45.6%">46%</span><span class="seg draw" style="width:25.6%">26%</span><span class="seg away" style="width:28.9%">29%</span></div>
+<div class="probbar"><span class="seg home" style="width:46.2%">46%</span><span class="seg draw" style="width:25.6%">26%</span><span class="seg away" style="width:28.2%">28%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:30.8%">31%</span><span class="seg draw" style="width:22.4%">22%</span><span class="seg away" style="width:46.8%">47%</span></div>
+<div class="probbar"><span class="seg home" style="width:32.9%">33%</span><span class="seg draw" style="width:20.8%">21%</span><span class="seg away" style="width:46.3%">46%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:36.7%">37%</span><span class="seg draw" style="width:23.7%">24%</span><span class="seg away" style="width:39.6%">40%</span></div>
+<div class="probbar"><span class="seg home" style="width:38.2%">38%</span><span class="seg draw" style="width:22.7%">23%</span><span class="seg away" style="width:39.1%">39%</span></div>
 <div class="legend"><span class="sw home"></span>Udinese <span class="sw draw"></span>Draw <span class="sw away"></span>Fiorentina</div>
-<p class="small muted">Expected goals: <span class="mono">1.51 - 1.15</span>.
+<p class="small muted">Expected goals: <span class="mono">1.51 - 1.13</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Fiorentina</b>
-<span class="muted">favored at</span> <b>40%</b>
+<span class="muted">favored at</span> <b>39%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Udinese score
 <span class="mono">1.60</span>/game lately; Fiorentina concede
@@ -80,8 +145,7 @@ vs Fiorentina <span class="mono">+1.0</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Udinese
 <span class="mono">42%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Udinese 7 days,
-Fiorentina 6 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Udinese:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-11-22 at Bologna (sched))</span><br><b>Fiorentina:</b> 5 days rest <span class="faint">(6d gap &middot; 2026-11-23 at Monza (sched))</span></td></tr>
 </table></div></div>
 <h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not

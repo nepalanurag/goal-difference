@@ -47,30 +47,71 @@
 <td class="muted">cards / game</td><td class="num">2.4</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>0<small>W</small> 1<small>D</small> 1<small>L</small></div><p class='small muted'>All-time, Levante perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-01-31</span> Levante 0-0 Ath Madrid</div><div class='small'><span class='mono faint'>2025-11-08</span> Ath Madrid 3-1 Levante</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">0</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">1</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">1</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Levante</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="0W 1D 1L">
+  <div class="h2h-bar-segment win" style="width: 0.0%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 50.0%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 50.0%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 2 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2026-01-31</span>
+  <span class="h2h-match-teams">
+    <span style="">Levante</span>
+    <span class="scoreline mono" style="margin: 0 8px;">0&ndash;0</span>
+    <span style="">Ath Madrid</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2025-11-08</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Ath Madrid</span>
+    <span class="scoreline mono" style="margin: 0 8px;">3&ndash;1</span>
+    <span style="color: var(--text-muted);">Levante</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: LaLiga apim public-service API (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
 <tr><td>Poisson</td><td class="num">28%</td>
 <td class="num">24%</td><td class="num">48%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">34%</td>
-<td class="num">22%</td><td class="num">44%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>32%</b></td>
-<td class="num"><b>23%</b></td><td class="num"><b>45%</b></td></tr>
+<tr><td>Gradient boosting</td><td class="num">31%</td>
+<td class="num">23%</td><td class="num">46%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>30%</b></td>
+<td class="num"><b>24%</b></td><td class="num"><b>46%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
-<div class="probbar"><span class="seg home" style="width:28.2%">28%</span><span class="seg draw" style="width:24.2%">24%</span><span class="seg away" style="width:47.6%">48%</span></div>
+<div class="probbar"><span class="seg home" style="width:28.2%">28%</span><span class="seg draw" style="width:24.2%">24%</span><span class="seg away" style="width:47.5%">48%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:33.9%">34%</span><span class="seg draw" style="width:22.4%">22%</span><span class="seg away" style="width:43.7%">44%</span></div>
+<div class="probbar"><span class="seg home" style="width:31.4%">31%</span><span class="seg draw" style="width:23.1%">23%</span><span class="seg away" style="width:45.5%">46%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:31.6%">32%</span><span class="seg draw" style="width:23.1%">23%</span><span class="seg away" style="width:45.3%">45%</span></div>
+<div class="probbar"><span class="seg home" style="width:30.1%">30%</span><span class="seg draw" style="width:23.5%">24%</span><span class="seg away" style="width:46.3%">46%</span></div>
 <div class="legend"><span class="sw home"></span>Levante <span class="sw draw"></span>Draw <span class="sw away"></span>Ath Madrid</div>
 <p class="small muted">Expected goals: <span class="mono">1.22 - 1.66</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Ath Madrid</b>
-<span class="muted">favored at</span> <b>45%</b>
+<span class="muted">favored at</span> <b>46%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Levante score
 <span class="mono">2.20</span>/game lately; Ath Madrid concede
@@ -80,8 +121,7 @@ vs Ath Madrid <span class="mono">+1.4</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Levante
 <span class="mono">25%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Levante 6 days,
-Ath Madrid 7 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Levante:</b> 5 days rest <span class="faint">(6d gap &middot; 2026-10-25 at Real Sociedad (sched))</span><br><b>Ath Madrid:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-10-24 vs La Coruna (sched))</span></td></tr>
 </table></div></div>
 <h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not

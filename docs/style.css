@@ -417,6 +417,90 @@ tr:hover td {
   border: 1px solid rgba(244, 63, 94, 0.3);
 }
 
+/* Head to Head Record */
+.h2h-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.h2h-pill {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--panel-elevated);
+  border: 1px solid var(--line);
+}
+.h2h-pill .count {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.h2h-pill .label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+.h2h-pill.win {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: var(--home-soft);
+}
+.h2h-pill.win .count { color: #34d399; }
+.h2h-pill.draw {
+  border-color: rgba(148, 163, 184, 0.4);
+  background: var(--draw-soft);
+}
+.h2h-pill.draw .count { color: #cbd5e1; }
+.h2h-pill.loss {
+  border-color: rgba(244, 63, 94, 0.4);
+  background: var(--away-soft);
+}
+.h2h-pill.loss .count { color: #fb7185; }
+
+.h2h-bar {
+  display: flex;
+  height: 6px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  margin-bottom: 14px;
+}
+.h2h-bar-segment.win { background: #10b981; }
+.h2h-bar-segment.draw { background: #94a3b8; }
+.h2h-bar-segment.loss { background: #f43f5e; }
+
+.h2h-matches {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.h2h-match-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  font-size: 0.85rem;
+}
+.h2h-match-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+.h2h-match-date {
+  min-width: 82px;
+  font-size: 0.78rem;
+}
+.h2h-match-teams {
+  flex: 1;
+}
+
 .muted { color: var(--text-muted); }
 .faint { color: var(--faint); }
 .small { font-size: 0.84rem; }

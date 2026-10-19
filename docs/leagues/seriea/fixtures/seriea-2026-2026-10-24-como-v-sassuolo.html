@@ -47,30 +47,71 @@
 <td class="muted">cards / game</td><td class="num">2.2</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>1<small>W</small> 0<small>D</small> 1<small>L</small></div><p class='small muted'>All-time, Como perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-04-17</span> Sassuolo 2-1 Como</div><div class='small'><span class='mono faint'>2025-11-28</span> Como 2-0 Sassuolo</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">1</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">0</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">1</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Como</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="1W 0D 1L">
+  <div class="h2h-bar-segment win" style="width: 50.0%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 0.0%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 50.0%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 2 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2026-04-17</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Sassuolo</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;1</span>
+    <span style="color: var(--text-muted);">Como</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2025-11-28</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Como</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;0</span>
+    <span style="color: var(--text-muted);">Sassuolo</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: Serie A api-sdp (Deltatre) stats feed (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
-<tr><td>Poisson</td><td class="num">70%</td>
-<td class="num">18%</td><td class="num">12%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">41%</td>
-<td class="num">37%</td><td class="num">22%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>53%</b></td>
-<td class="num"><b>29%</b></td><td class="num"><b>18%</b></td></tr>
+<tr><td>Poisson</td><td class="num">69%</td>
+<td class="num">19%</td><td class="num">12%</td></tr>
+<tr><td>Gradient boosting</td><td class="num">48%</td>
+<td class="num">32%</td><td class="num">20%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>57%</b></td>
+<td class="num"><b>27%</b></td><td class="num"><b>17%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
-<div class="probbar"><span class="seg home" style="width:70.0%">70%</span><span class="seg draw" style="width:18.5%">18%</span><span class="seg away" style="width:11.5%">12%</span></div>
+<div class="probbar"><span class="seg home" style="width:69.3%">69%</span><span class="seg draw" style="width:18.8%">19%</span><span class="seg away" style="width:11.9%">12%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:41.1%">41%</span><span class="seg draw" style="width:36.8%">37%</span><span class="seg away" style="width:22.1%">22%</span></div>
+<div class="probbar"><span class="seg home" style="width:48.3%">48%</span><span class="seg draw" style="width:31.7%">32%</span><span class="seg away" style="width:20.0%">20%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:52.7%">53%</span><span class="seg draw" style="width:29.4%">29%</span><span class="seg away" style="width:17.9%">18%</span></div>
+<div class="probbar"><span class="seg home" style="width:56.7%">57%</span><span class="seg draw" style="width:26.6%">27%</span><span class="seg away" style="width:16.7%">17%</span></div>
 <div class="legend"><span class="sw home"></span>Como <span class="sw draw"></span>Draw <span class="sw away"></span>Sassuolo</div>
-<p class="small muted">Expected goals: <span class="mono">2.17 - 0.75</span>.
+<p class="small muted">Expected goals: <span class="mono">2.13 - 0.75</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Como</b>
-<span class="muted">favored at</span> <b>53%</b>
+<span class="muted">favored at</span> <b>57%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Como score
 <span class="mono">1.60</span>/game lately; Sassuolo concede
@@ -80,10 +121,9 @@ vs Sassuolo <span class="mono">-3.0</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Como
 <span class="mono">50%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Como 6 days,
-Sassuolo 8 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Como:</b> 5 days rest <span class="faint">(6d gap &middot; 2026-10-18 at Fiorentina (W 3&ndash;1))</span><br><b>Sassuolo:</b> 7 days rest <span class="faint">(8d gap &middot; 2026-10-16 at Frosinone (L 2&ndash;4))</span></td></tr>
 </table></div></div>
-<h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
+<h2>Players to watch</h2><div class="card"><div class='small' style='margin-top:6px'><span class='muted'>Players to watch:</span> Douvikas <span class='muted'>36%</span>, Nico Paz <span class='muted'>32%</span>, Diao <span class='muted'>31%</span>, Baturina <span class='muted'>24%</span>, Liberali <span class='muted'>18%</span></div></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not
 betting advice. Live scores for non-PL leagues come from CSVs updated about a
 day after matches. The FPL API and the official league JSON backends are

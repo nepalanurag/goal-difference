@@ -47,30 +47,95 @@
 <td class="muted">cards / game</td><td class="num">2.4</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>1<small>W</small> 3<small>D</small> 2<small>L</small></div><p class='small muted'>All-time, Sevilla perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-04-26</span> Osasuna 2-1 Sevilla</div><div class='small'><span class='mono faint'>2025-11-08</span> Sevilla 1-0 Osasuna</div><div class='small'><span class='mono faint'>2025-04-24</span> Osasuna 1-0 Sevilla</div><div class='small'><span class='mono faint'>2024-12-02</span> Sevilla 1-1 Osasuna</div><div class='small'><span class='mono faint'>2024-01-28</span> Sevilla 1-1 Osasuna</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">1</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">3</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">2</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Sevilla</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="1W 3D 2L">
+  <div class="h2h-bar-segment win" style="width: 16.7%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 50.0%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 33.3%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 5 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2026-04-26</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Osasuna</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;1</span>
+    <span style="color: var(--text-muted);">Sevilla</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2025-11-08</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Sevilla</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;0</span>
+    <span style="color: var(--text-muted);">Osasuna</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2025-04-24</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Osasuna</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;0</span>
+    <span style="color: var(--text-muted);">Sevilla</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2024-12-02</span>
+  <span class="h2h-match-teams">
+    <span style="">Sevilla</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;1</span>
+    <span style="">Osasuna</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2024-01-28</span>
+  <span class="h2h-match-teams">
+    <span style="">Sevilla</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;1</span>
+    <span style="">Osasuna</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: LaLiga apim public-service API (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
 <tr><td>Poisson</td><td class="num">53%</td>
 <td class="num">24%</td><td class="num">23%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">41%</td>
-<td class="num">32%</td><td class="num">27%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>46%</b></td>
-<td class="num"><b>29%</b></td><td class="num"><b>25%</b></td></tr>
+<tr><td>Gradient boosting</td><td class="num">40%</td>
+<td class="num">30%</td><td class="num">30%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>45%</b></td>
+<td class="num"><b>28%</b></td><td class="num"><b>27%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
 <div class="probbar"><span class="seg home" style="width:53.0%">53%</span><span class="seg draw" style="width:24.2%">24%</span><span class="seg away" style="width:22.8%">23%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:41.4%">41%</span><span class="seg draw" style="width:31.8%">32%</span><span class="seg away" style="width:26.8%">27%</span></div>
+<div class="probbar"><span class="seg home" style="width:40.0%">40%</span><span class="seg draw" style="width:30.5%">30%</span><span class="seg away" style="width:29.5%">30%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:46.0%">46%</span><span class="seg draw" style="width:28.8%">29%</span><span class="seg away" style="width:25.2%">25%</span></div>
+<div class="probbar"><span class="seg home" style="width:45.2%">45%</span><span class="seg draw" style="width:28.0%">28%</span><span class="seg away" style="width:26.8%">27%</span></div>
 <div class="legend"><span class="sw home"></span>Sevilla <span class="sw draw"></span>Draw <span class="sw away"></span>Osasuna</div>
-<p class="small muted">Expected goals: <span class="mono">1.69 - 1.02</span>.
+<p class="small muted">Expected goals: <span class="mono">1.68 - 1.02</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Sevilla</b>
-<span class="muted">favored at</span> <b>46%</b>
+<span class="muted">favored at</span> <b>45%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Sevilla score
 <span class="mono">1.40</span>/game lately; Osasuna concede
@@ -80,8 +145,7 @@ vs Osasuna <span class="mono">-0.7</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Sevilla
 <span class="mono">42%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Sevilla 8 days,
-Osasuna 8 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Sevilla:</b> 7 days rest <span class="faint">(8d gap &middot; 2026-10-18 at Real Madrid (L 1&ndash;4))</span><br><b>Osasuna:</b> 7 days rest <span class="faint">(8d gap &middot; 2026-10-18 vs Santander (W 2&ndash;0))</span></td></tr>
 </table></div></div>
 <h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not

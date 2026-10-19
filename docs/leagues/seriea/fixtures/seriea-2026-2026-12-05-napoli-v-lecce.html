@@ -47,30 +47,95 @@
 <td class="muted">cards / game</td><td class="num">2.1</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>5<small>W</small> 1<small>D</small> 0<small>L</small></div><p class='small muted'>All-time, Napoli perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-03-14</span> Napoli 2-1 Lecce</div><div class='small'><span class='mono faint'>2025-10-28</span> Lecce 0-1 Napoli</div><div class='small'><span class='mono faint'>2025-05-03</span> Lecce 0-1 Napoli</div><div class='small'><span class='mono faint'>2024-10-26</span> Napoli 1-0 Lecce</div><div class='small'><span class='mono faint'>2024-05-26</span> Napoli 0-0 Lecce</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">5</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">1</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">0</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Napoli</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="5W 1D 0L">
+  <div class="h2h-bar-segment win" style="width: 83.3%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 16.7%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 0.0%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 5 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2026-03-14</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Napoli</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;1</span>
+    <span style="color: var(--text-muted);">Lecce</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2025-10-28</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Lecce</span>
+    <span class="scoreline mono" style="margin: 0 8px;">0&ndash;1</span>
+    <span style="font-weight: 600;">Napoli</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2025-05-03</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Lecce</span>
+    <span class="scoreline mono" style="margin: 0 8px;">0&ndash;1</span>
+    <span style="font-weight: 600;">Napoli</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2024-10-26</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Napoli</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;0</span>
+    <span style="color: var(--text-muted);">Lecce</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2024-05-26</span>
+  <span class="h2h-match-teams">
+    <span style="">Napoli</span>
+    <span class="scoreline mono" style="margin: 0 8px;">0&ndash;0</span>
+    <span style="">Lecce</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: Serie A api-sdp (Deltatre) stats feed (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
 <tr><td>Poisson</td><td class="num">66%</td>
 <td class="num">23%</td><td class="num">11%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">73%</td>
-<td class="num">12%</td><td class="num">16%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>70%</b></td>
-<td class="num"><b>16%</b></td><td class="num"><b>14%</b></td></tr>
+<tr><td>Gradient boosting</td><td class="num">72%</td>
+<td class="num">11%</td><td class="num">17%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>69%</b></td>
+<td class="num"><b>16%</b></td><td class="num"><b>15%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
-<div class="probbar"><span class="seg home" style="width:66.1%">66%</span><span class="seg draw" style="width:22.7%">23%</span><span class="seg away" style="width:11.2%">11%</span></div>
+<div class="probbar"><span class="seg home" style="width:65.9%">66%</span><span class="seg draw" style="width:22.9%">23%</span><span class="seg away" style="width:11.2%">11%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:72.8%">73%</span><span class="seg draw" style="width:11.7%">12%</span><span class="seg away" style="width:15.6%">16%</span></div>
+<div class="probbar"><span class="seg home" style="width:71.7%">72%</span><span class="seg draw" style="width:11.3%">11%</span><span class="seg away" style="width:17.0%">17%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:70.1%">70%</span><span class="seg draw" style="width:16.1%">16%</span><span class="seg away" style="width:13.8%">14%</span></div>
+<div class="probbar"><span class="seg home" style="width:69.4%">69%</span><span class="seg draw" style="width:15.9%">16%</span><span class="seg away" style="width:14.7%">15%</span></div>
 <div class="legend"><span class="sw home"></span>Napoli <span class="sw draw"></span>Draw <span class="sw away"></span>Lecce</div>
-<p class="small muted">Expected goals: <span class="mono">1.71 - 0.54</span>.
+<p class="small muted">Expected goals: <span class="mono">1.70 - 0.54</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Napoli</b>
-<span class="muted">favored at</span> <b>70%</b>
+<span class="muted">favored at</span> <b>69%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Napoli score
 <span class="mono">1.60</span>/game lately; Lecce concede
@@ -80,8 +145,7 @@ vs Lecce <span class="mono">-1.7</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Napoli
 <span class="mono">92%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Napoli 6 days,
-Lecce 5 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Napoli:</b> 5 days rest <span class="faint">(6d gap &middot; 2026-11-29 at Sassuolo (sched))</span><br><b>Lecce:</b> 4 days rest <span class="faint">(5d gap &middot; 2026-11-30 vs Atalanta (sched))</span></td></tr>
 </table></div></div>
 <h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not

@@ -47,27 +47,92 @@
 <td class="muted">cards / game</td><td class="num">1.8</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>2<small>W</small> 2<small>D</small> 2<small>L</small></div><p class='small muted'>All-time, Lazio perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-02-14</span> Lazio 0-2 Atalanta</div><div class='small'><span class='mono faint'>2025-10-19</span> Atalanta 0-0 Lazio</div><div class='small'><span class='mono faint'>2025-04-06</span> Atalanta 0-1 Lazio</div><div class='small'><span class='mono faint'>2024-12-28</span> Lazio 1-1 Atalanta</div><div class='small'><span class='mono faint'>2024-02-04</span> Atalanta 3-1 Lazio</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">2</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">2</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">2</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Lazio</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="2W 2D 2L">
+  <div class="h2h-bar-segment win" style="width: 33.3%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 33.3%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 33.3%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 5 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2026-02-14</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Lazio</span>
+    <span class="scoreline mono" style="margin: 0 8px;">0&ndash;2</span>
+    <span style="font-weight: 600;">Atalanta</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2025-10-19</span>
+  <span class="h2h-match-teams">
+    <span style="">Atalanta</span>
+    <span class="scoreline mono" style="margin: 0 8px;">0&ndash;0</span>
+    <span style="">Lazio</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2025-04-06</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Atalanta</span>
+    <span class="scoreline mono" style="margin: 0 8px;">0&ndash;1</span>
+    <span style="font-weight: 600;">Lazio</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2024-12-28</span>
+  <span class="h2h-match-teams">
+    <span style="">Lazio</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;1</span>
+    <span style="">Atalanta</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2024-02-04</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Atalanta</span>
+    <span class="scoreline mono" style="margin: 0 8px;">3&ndash;1</span>
+    <span style="color: var(--text-muted);">Lazio</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: Serie A api-sdp (Deltatre) stats feed (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
-<tr><td>Poisson</td><td class="num">46%</td>
-<td class="num">28%</td><td class="num">26%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">48%</td>
-<td class="num">40%</td><td class="num">13%</td></tr>
+<tr><td>Poisson</td><td class="num">47%</td>
+<td class="num">28%</td><td class="num">25%</td></tr>
+<tr><td>Gradient boosting</td><td class="num">47%</td>
+<td class="num">39%</td><td class="num">14%</td></tr>
 <tr><td><b>Ensemble</b></td><td class="num"><b>47%</b></td>
 <td class="num"><b>35%</b></td><td class="num"><b>18%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
-<div class="probbar"><span class="seg home" style="width:46.2%">46%</span><span class="seg draw" style="width:28.2%">28%</span><span class="seg away" style="width:25.6%">26%</span></div>
+<div class="probbar"><span class="seg home" style="width:47.2%">47%</span><span class="seg draw" style="width:28.1%">28%</span><span class="seg away" style="width:24.7%">25%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:47.7%">48%</span><span class="seg draw" style="width:39.8%">40%</span><span class="seg away" style="width:12.5%">13%</span></div>
+<div class="probbar"><span class="seg home" style="width:46.6%">47%</span><span class="seg draw" style="width:39.0%">39%</span><span class="seg away" style="width:14.3%">14%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:47.1%">47%</span><span class="seg draw" style="width:35.2%">35%</span><span class="seg away" style="width:17.8%">18%</span></div>
+<div class="probbar"><span class="seg home" style="width:46.9%">47%</span><span class="seg draw" style="width:34.7%">35%</span><span class="seg away" style="width:18.5%">18%</span></div>
 <div class="legend"><span class="sw home"></span>Lazio <span class="sw draw"></span>Draw <span class="sw away"></span>Atalanta</div>
-<p class="small muted">Expected goals: <span class="mono">1.31 - 0.90</span>.
+<p class="small muted">Expected goals: <span class="mono">1.33 - 0.88</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Lazio</b>
 <span class="muted">favored at</span> <b>47%</b>
@@ -80,8 +145,7 @@ vs Atalanta <span class="mono">+3.1</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Lazio
 <span class="mono">50%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Lazio 8 days,
-Atalanta 6 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Lazio:</b> 7 days rest <span class="faint">(8d gap &middot; 2026-11-28 at Torino (sched))</span><br><b>Atalanta:</b> 5 days rest <span class="faint">(6d gap &middot; 2026-11-30 at Lecce (sched))</span></td></tr>
 </table></div></div>
 <h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not

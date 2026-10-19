@@ -30,10 +30,13 @@ def _attach_auth(req: urllib.request.Request) -> None:
     if env_key:
         req.add_header("x-apisports-key", env_key)
         return
-    sys.path.insert(0, "/opt/hatch/skills/skill-creator/bin")
-    from dynamic_credentials import add_surrogate_to_request  # noqa: E402
+    try:
+        sys.path.insert(0, "/opt/hatch/skills/skill-creator/bin")
+        from dynamic_credentials import add_surrogate_to_request  # noqa: E402
 
-    add_surrogate_to_request(req, CREDENTIAL, allowed_hosts=["v3.football.api-sports.io"])
+        add_surrogate_to_request(req, CREDENTIAL, allowed_hosts=["v3.football.api-sports.io"])
+    except (ImportError, ModuleNotFoundError):
+        pass
 
 
 def api_get(path: str, params: dict, *, sleep: bool = True) -> dict:

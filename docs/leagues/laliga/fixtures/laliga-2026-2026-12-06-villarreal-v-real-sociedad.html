@@ -47,30 +47,95 @@
 <td class="muted">cards / game</td><td class="num">2.5</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>3<small>W</small> 1<small>D</small> 2<small>L</small></div><p class='small muted'>All-time, Villarreal perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-03-20</span> Villarreal 3-1 Real Sociedad</div><div class='small'><span class='mono faint'>2025-11-30</span> Real Sociedad 2-3 Villarreal</div><div class='small'><span class='mono faint'>2025-04-20</span> Villarreal 2-2 Real Sociedad</div><div class='small'><span class='mono faint'>2025-01-13</span> Real Sociedad 1-0 Villarreal</div><div class='small'><span class='mono faint'>2024-02-23</span> Real Sociedad 1-3 Villarreal</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">3</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">1</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">2</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Villarreal</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="3W 1D 2L">
+  <div class="h2h-bar-segment win" style="width: 50.0%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 16.7%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 33.3%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 5 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2026-03-20</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Villarreal</span>
+    <span class="scoreline mono" style="margin: 0 8px;">3&ndash;1</span>
+    <span style="color: var(--text-muted);">Real Sociedad</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2025-11-30</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Real Sociedad</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;3</span>
+    <span style="font-weight: 600;">Villarreal</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2025-04-20</span>
+  <span class="h2h-match-teams">
+    <span style="">Villarreal</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;2</span>
+    <span style="">Real Sociedad</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2025-01-13</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Real Sociedad</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;0</span>
+    <span style="color: var(--text-muted);">Villarreal</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2024-02-23</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Real Sociedad</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;3</span>
+    <span style="font-weight: 600;">Villarreal</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: LaLiga apim public-service API (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
 <tr><td>Poisson</td><td class="num">63%</td>
 <td class="num">19%</td><td class="num">18%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">38%</td>
-<td class="num">34%</td><td class="num">28%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>48%</b></td>
-<td class="num"><b>28%</b></td><td class="num"><b>24%</b></td></tr>
+<tr><td>Gradient boosting</td><td class="num">36%</td>
+<td class="num">35%</td><td class="num">29%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>47%</b></td>
+<td class="num"><b>29%</b></td><td class="num"><b>24%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
 <div class="probbar"><span class="seg home" style="width:63.5%">63%</span><span class="seg draw" style="width:18.7%">19%</span><span class="seg away" style="width:17.8%">18%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:38.5%">38%</span><span class="seg draw" style="width:33.9%">34%</span><span class="seg away" style="width:27.6%">28%</span></div>
+<div class="probbar"><span class="seg home" style="width:36.1%">36%</span><span class="seg draw" style="width:35.3%">35%</span><span class="seg away" style="width:28.6%">29%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:48.5%">48%</span><span class="seg draw" style="width:27.8%">28%</span><span class="seg away" style="width:23.7%">24%</span></div>
+<div class="probbar"><span class="seg home" style="width:47.0%">47%</span><span class="seg draw" style="width:28.7%">29%</span><span class="seg away" style="width:24.3%">24%</span></div>
 <div class="legend"><span class="sw home"></span>Villarreal <span class="sw draw"></span>Draw <span class="sw away"></span>Real Sociedad</div>
 <p class="small muted">Expected goals: <span class="mono">2.36 - 1.19</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Villarreal</b>
-<span class="muted">favored at</span> <b>48%</b>
+<span class="muted">favored at</span> <b>47%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Villarreal score
 <span class="mono">1.80</span>/game lately; Real Sociedad concede
@@ -80,8 +145,7 @@ vs Real Sociedad <span class="mono">-0.4</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Villarreal
 <span class="mono">58%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Villarreal 7 days,
-Real Sociedad 7 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Villarreal:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-11-29 at Celta (sched))</span><br><b>Real Sociedad:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-11-29 vs Sevilla (sched))</span></td></tr>
 </table></div></div>
 <h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not

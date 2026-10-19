@@ -47,30 +47,95 @@
 <td class="muted">cards / game</td><td class="num">2.7</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>6<small>W</small> 0<small>D</small> 0<small>L</small></div><p class='small muted'>All-time, Real Madrid perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-04-21</span> Real Madrid 2-1 Alaves</div><div class='small'><span class='mono faint'>2025-12-14</span> Alaves 1-2 Real Madrid</div><div class='small'><span class='mono faint'>2025-04-13</span> Alaves 0-1 Real Madrid</div><div class='small'><span class='mono faint'>2024-09-24</span> Real Madrid 3-2 Alaves</div><div class='small'><span class='mono faint'>2024-05-14</span> Real Madrid 5-0 Alaves</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">6</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">0</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">0</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Real Madrid</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="6W 0D 0L">
+  <div class="h2h-bar-segment win" style="width: 100.0%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 0.0%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 0.0%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 5 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2026-04-21</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Real Madrid</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;1</span>
+    <span style="color: var(--text-muted);">Alaves</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2025-12-14</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Alaves</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;2</span>
+    <span style="font-weight: 600;">Real Madrid</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2025-04-13</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Alaves</span>
+    <span class="scoreline mono" style="margin: 0 8px;">0&ndash;1</span>
+    <span style="font-weight: 600;">Real Madrid</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2024-09-24</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Real Madrid</span>
+    <span class="scoreline mono" style="margin: 0 8px;">3&ndash;2</span>
+    <span style="color: var(--text-muted);">Alaves</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2024-05-14</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Real Madrid</span>
+    <span class="scoreline mono" style="margin: 0 8px;">5&ndash;0</span>
+    <span style="color: var(--text-muted);">Alaves</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: LaLiga apim public-service API (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
 <tr><td>Poisson</td><td class="num">76%</td>
 <td class="num">15%</td><td class="num">8%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">79%</td>
-<td class="num">14%</td><td class="num">6%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>78%</b></td>
-<td class="num"><b>15%</b></td><td class="num"><b>7%</b></td></tr>
+<tr><td>Gradient boosting</td><td class="num">77%</td>
+<td class="num">17%</td><td class="num">6%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>77%</b></td>
+<td class="num"><b>16%</b></td><td class="num"><b>7%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
 <div class="probbar"><span class="seg home" style="width:76.2%">76%</span><span class="seg draw" style="width:15.5%">15%</span><span class="seg away" style="width:8.3%">8%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:79.3%">79%</span><span class="seg draw" style="width:14.4%">14%</span><span class="seg away" style="width:6.2%">6%</span></div>
+<div class="probbar"><span class="seg home" style="width:77.3%">77%</span><span class="seg draw" style="width:16.6%">17%</span><span class="seg away" style="width:6.1%">6%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:78.1%">78%</span><span class="seg draw" style="width:14.8%">15%</span><span class="seg away" style="width:7.1%">7%</span></div>
+<div class="probbar"><span class="seg home" style="width:76.8%">77%</span><span class="seg draw" style="width:16.2%">16%</span><span class="seg away" style="width:7.0%">7%</span></div>
 <div class="legend"><span class="sw home"></span>Real Madrid <span class="sw draw"></span>Draw <span class="sw away"></span>Alaves</div>
-<p class="small muted">Expected goals: <span class="mono">2.43 - 0.67</span>.
+<p class="small muted">Expected goals: <span class="mono">2.42 - 0.67</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Real Madrid</b>
-<span class="muted">favored at</span> <b>78%</b>
+<span class="muted">favored at</span> <b>77%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Real Madrid score
 <span class="mono">1.80</span>/game lately; Alaves concede
@@ -80,8 +145,7 @@ vs Alaves <span class="mono">+0.1</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Real Madrid
 <span class="mono">100%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Real Madrid 7 days,
-Alaves 7 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Real Madrid:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-11-22 vs Celta (sched))</span><br><b>Alaves:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-11-22 vs La Coruna (sched))</span></td></tr>
 </table></div></div>
 <h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not

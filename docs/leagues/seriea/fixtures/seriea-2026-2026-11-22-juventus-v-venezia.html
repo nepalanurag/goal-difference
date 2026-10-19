@@ -47,30 +47,71 @@
 <td class="muted">cards / game</td><td class="num">2.1</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>1<small>W</small> 1<small>D</small> 0<small>L</small></div><p class='small muted'>All-time, Juventus perspective. Last 5:</p><div class='small'><span class='mono faint'>2025-05-25</span> Venezia 2-3 Juventus</div><div class='small'><span class='mono faint'>2024-12-14</span> Juventus 2-2 Venezia</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">1</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">1</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">0</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Juventus</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="1W 1D 0L">
+  <div class="h2h-bar-segment win" style="width: 50.0%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 50.0%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 0.0%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 2 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2025-05-25</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Venezia</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;3</span>
+    <span style="font-weight: 600;">Juventus</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2024-12-14</span>
+  <span class="h2h-match-teams">
+    <span style="">Juventus</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;2</span>
+    <span style="">Venezia</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: Serie A api-sdp (Deltatre) stats feed (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
-<tr><td>Poisson</td><td class="num">77%</td>
+<tr><td>Poisson</td><td class="num">76%</td>
 <td class="num">16%</td><td class="num">8%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">73%</td>
-<td class="num">14%</td><td class="num">13%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>74%</b></td>
-<td class="num"><b>15%</b></td><td class="num"><b>11%</b></td></tr>
+<tr><td>Gradient boosting</td><td class="num">76%</td>
+<td class="num">12%</td><td class="num">12%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>76%</b></td>
+<td class="num"><b>13%</b></td><td class="num"><b>10%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
-<div class="probbar"><span class="seg home" style="width:76.7%">77%</span><span class="seg draw" style="width:15.7%">16%</span><span class="seg away" style="width:7.6%">8%</span></div>
+<div class="probbar"><span class="seg home" style="width:76.4%">76%</span><span class="seg draw" style="width:15.9%">16%</span><span class="seg away" style="width:7.7%">8%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:72.9%">73%</span><span class="seg draw" style="width:14.4%">14%</span><span class="seg away" style="width:12.7%">13%</span></div>
+<div class="probbar"><span class="seg home" style="width:76.3%">76%</span><span class="seg draw" style="width:11.7%">12%</span><span class="seg away" style="width:12.0%">12%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:74.4%">74%</span><span class="seg draw" style="width:14.9%">15%</span><span class="seg away" style="width:10.7%">11%</span></div>
+<div class="probbar"><span class="seg home" style="width:76.4%">76%</span><span class="seg draw" style="width:13.3%">13%</span><span class="seg away" style="width:10.3%">10%</span></div>
 <div class="legend"><span class="sw home"></span>Juventus <span class="sw draw"></span>Draw <span class="sw away"></span>Venezia</div>
-<p class="small muted">Expected goals: <span class="mono">2.33 - 0.59</span>.
+<p class="small muted">Expected goals: <span class="mono">2.32 - 0.59</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Juventus</b>
-<span class="muted">favored at</span> <b>74%</b>
+<span class="muted">favored at</span> <b>76%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Juventus score
 <span class="mono">1.60</span>/game lately; Venezia concede
@@ -80,8 +121,7 @@ vs Venezia <span class="mono">-4.4</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Juventus
 <span class="mono">75%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Juventus 14 days,
-Venezia 16 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Juventus:</b> 13 days rest <span class="faint">(14d gap &middot; 2026-11-08 at Fiorentina (sched))</span><br><b>Venezia:</b> 15 days rest <span class="faint">(16d gap &middot; 2026-11-06 vs Udinese (sched))</span></td></tr>
 </table></div></div>
 <h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not

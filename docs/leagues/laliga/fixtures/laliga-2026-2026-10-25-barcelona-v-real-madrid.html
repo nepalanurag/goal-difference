@@ -46,31 +46,96 @@
 <tr><td class="muted">Discipline</td><td class="num">9.5 fouls</td>
 <td class="muted">cards / game</td><td class="num">2.0</td></tr>
 </table></div></div>
-
-<h2>Head to head</h2><div class="card"><div class='kpi'>3<small>W</small> 0<small>D</small> 3<small>L</small></div><p class='small muted'>All-time, Barcelona perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-05-10</span> Barcelona 2-0 Real Madrid</div><div class='small'><span class='mono faint'>2025-10-26</span> Real Madrid 2-1 Barcelona</div><div class='small'><span class='mono faint'>2025-05-11</span> Barcelona 4-3 Real Madrid</div><div class='small'><span class='mono faint'>2024-10-26</span> Real Madrid 0-4 Barcelona</div><div class='small'><span class='mono faint'>2024-04-21</span> Real Madrid 3-2 Barcelona</div></div>
+<div class='card'><h3>European congestion</h3><p class='small'>Barcelona played in Europe 5 days ago.</p></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">3</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">0</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">3</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Barcelona</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="3W 0D 3L">
+  <div class="h2h-bar-segment win" style="width: 50.0%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 0.0%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 50.0%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 5 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2026-05-10</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Barcelona</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;0</span>
+    <span style="color: var(--text-muted);">Real Madrid</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2025-10-26</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Real Madrid</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;1</span>
+    <span style="color: var(--text-muted);">Barcelona</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2025-05-11</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Barcelona</span>
+    <span class="scoreline mono" style="margin: 0 8px;">4&ndash;3</span>
+    <span style="color: var(--text-muted);">Real Madrid</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2024-10-26</span>
+  <span class="h2h-match-teams">
+    <span style="color: var(--text-muted);">Real Madrid</span>
+    <span class="scoreline mono" style="margin: 0 8px;">0&ndash;4</span>
+    <span style="font-weight: 600;">Barcelona</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2024-04-21</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Real Madrid</span>
+    <span class="scoreline mono" style="margin: 0 8px;">3&ndash;2</span>
+    <span style="color: var(--text-muted);">Barcelona</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: LaLiga apim public-service API (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
 <tr><td>Poisson</td><td class="num">62%</td>
 <td class="num">19%</td><td class="num">19%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">68%</td>
-<td class="num">9%</td><td class="num">23%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>65%</b></td>
-<td class="num"><b>13%</b></td><td class="num"><b>21%</b></td></tr>
+<tr><td>Gradient boosting</td><td class="num">70%</td>
+<td class="num">10%</td><td class="num">20%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>67%</b></td>
+<td class="num"><b>14%</b></td><td class="num"><b>20%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
 <div class="probbar"><span class="seg home" style="width:61.6%">62%</span><span class="seg draw" style="width:19.2%">19%</span><span class="seg away" style="width:19.3%">19%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:67.9%">68%</span><span class="seg draw" style="width:9.4%">9%</span><span class="seg away" style="width:22.7%">23%</span></div>
+<div class="probbar"><span class="seg home" style="width:69.9%">70%</span><span class="seg draw" style="width:9.7%">10%</span><span class="seg away" style="width:20.3%">20%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:65.4%">65%</span><span class="seg draw" style="width:13.3%">13%</span><span class="seg away" style="width:21.3%">21%</span></div>
+<div class="probbar"><span class="seg home" style="width:66.6%">67%</span><span class="seg draw" style="width:13.5%">14%</span><span class="seg away" style="width:19.9%">20%</span></div>
 <div class="legend"><span class="sw home"></span>Barcelona <span class="sw draw"></span>Draw <span class="sw away"></span>Real Madrid</div>
 <p class="small muted">Expected goals: <span class="mono">2.32 - 1.24</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>Barcelona</b>
-<span class="muted">favored at</span> <b>65%</b>
+<span class="muted">favored at</span> <b>67%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Barcelona score
 <span class="mono">4.40</span>/game lately; Real Madrid concede
@@ -80,10 +145,9 @@ vs Real Madrid <span class="mono">+6.1</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Barcelona
 <span class="mono">50%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Barcelona 8 days,
-Real Madrid 7 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Barcelona:</b> 4 days rest <span class="faint">(5d gap &middot; 2026-10-20 UCL at Paris SG (sched))</span><br><b>Real Madrid:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-10-18 vs Sevilla (W 4&ndash;1))</span></td></tr>
 </table></div></div>
-<h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
+<h2>Players to watch</h2><div class="card"><div class='small' style='margin-top:6px'><span class='muted'>Players to watch:</span> Raphinha <span class='muted'>68%</span>, Lamine Yamal <span class='muted'>57%</span>, Mbappé <span class='muted'>40%</span>, Fermin <span class='muted'>38%</span>, Gabriel Jesus <span class='muted'>26%</span></div></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not
 betting advice. Live scores for non-PL leagues come from CSVs updated about a
 day after matches. The FPL API and the official league JSON backends are

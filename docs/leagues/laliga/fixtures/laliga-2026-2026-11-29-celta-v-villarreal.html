@@ -47,30 +47,95 @@
 <td class="muted">cards / game</td><td class="num">2.8</td></tr>
 </table></div></div>
 
-<h2>Head to head</h2><div class="card"><div class='kpi'>2<small>W</small> 1<small>D</small> 3<small>L</small></div><p class='small muted'>All-time, Celta perspective. Last 5:</p><div class='small'><span class='mono faint'>2026-04-26</span> Villarreal 2-1 Celta</div><div class='small'><span class='mono faint'>2025-08-31</span> Celta 1-1 Villarreal</div><div class='small'><span class='mono faint'>2025-04-23</span> Celta 3-0 Villarreal</div><div class='small'><span class='mono faint'>2024-08-26</span> Villarreal 4-3 Celta</div><div class='small'><span class='mono faint'>2024-05-05</span> Celta 3-2 Villarreal</div></div>
+<h2>Head to head</h2><div class="card"><div class="h2h-summary">
+  <div class="h2h-pill win">
+    <span class="count">2</span>
+    <span class="label">Wins</span>
+  </div>
+  <div class="h2h-pill draw">
+    <span class="count">1</span>
+    <span class="label">Draws</span>
+  </div>
+  <div class="h2h-pill loss">
+    <span class="count">3</span>
+    <span class="label">Losses</span>
+  </div>
+  <div class="small muted" style="margin-left: auto;">
+    All-time &middot; <b>Celta</b> perspective
+  </div>
+</div>
+<div class="h2h-bar" title="2W 1D 3L">
+  <div class="h2h-bar-segment win" style="width: 33.3%;"></div>
+  <div class="h2h-bar-segment draw" style="width: 16.7%;"></div>
+  <div class="h2h-bar-segment loss" style="width: 50.0%;"></div>
+</div>
+<div style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px;">
+  Last 5 meetings
+</div>
+<div class="h2h-matches"><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2026-04-26</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Villarreal</span>
+    <span class="scoreline mono" style="margin: 0 8px;">2&ndash;1</span>
+    <span style="color: var(--text-muted);">Celta</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge D" style="min-width: 24px; text-align: center; font-weight: 700;">D</span>
+  <span class="mono faint h2h-match-date">2025-08-31</span>
+  <span class="h2h-match-teams">
+    <span style="">Celta</span>
+    <span class="scoreline mono" style="margin: 0 8px;">1&ndash;1</span>
+    <span style="">Villarreal</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2025-04-23</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Celta</span>
+    <span class="scoreline mono" style="margin: 0 8px;">3&ndash;0</span>
+    <span style="color: var(--text-muted);">Villarreal</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge L" style="min-width: 24px; text-align: center; font-weight: 700;">L</span>
+  <span class="mono faint h2h-match-date">2024-08-26</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Villarreal</span>
+    <span class="scoreline mono" style="margin: 0 8px;">4&ndash;3</span>
+    <span style="color: var(--text-muted);">Celta</span>
+  </span>
+</div><div class="h2h-match-row">
+  <span class="badge W" style="min-width: 24px; text-align: center; font-weight: 700;">W</span>
+  <span class="mono faint h2h-match-date">2024-05-05</span>
+  <span class="h2h-match-teams">
+    <span style="font-weight: 600;">Celta</span>
+    <span class="scoreline mono" style="margin: 0 8px;">3&ndash;2</span>
+    <span style="color: var(--text-muted);">Villarreal</span>
+  </span>
+</div></div></div>
 <h2>Team news</h2><div class='card'><p class='muted small'>no current-season availability data published by the league backend</p><p class='small faint' style='margin-bottom:0'>Source: LaLiga apim public-service API (unofficial)</p></div>
 <h2>Prediction</h2><div class="grid g2"><div class="card" id="probviews"><h3>Model probabilities</h3>
 <table><tr><th></th><th class="num">Home</th><th class="num">Draw</th><th class="num">Away</th></tr>
 <tr><td>Poisson</td><td class="num">42%</td>
 <td class="num">26%</td><td class="num">32%</td></tr>
-<tr><td>Gradient boosting</td><td class="num">27%</td>
-<td class="num">35%</td><td class="num">38%</td></tr>
-<tr><td><b>Ensemble</b></td><td class="num"><b>33%</b></td>
-<td class="num"><b>31%</b></td><td class="num"><b>35%</b></td></tr>
+<tr><td>Gradient boosting</td><td class="num">31%</td>
+<td class="num">36%</td><td class="num">33%</td></tr>
+<tr><td><b>Ensemble</b></td><td class="num"><b>36%</b></td>
+<td class="num"><b>32%</b></td><td class="num"><b>32%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
 <div class="probbar"><span class="seg home" style="width:42.4%">42%</span><span class="seg draw" style="width:25.9%">26%</span><span class="seg away" style="width:31.6%">32%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:27.3%">27%</span><span class="seg draw" style="width:35.0%">35%</span><span class="seg away" style="width:37.8%">38%</span></div>
+<div class="probbar"><span class="seg home" style="width:31.3%">31%</span><span class="seg draw" style="width:35.7%">36%</span><span class="seg away" style="width:32.9%">33%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:33.3%">33%</span><span class="seg draw" style="width:31.3%">31%</span><span class="seg away" style="width:35.3%">35%</span></div>
+<div class="probbar"><span class="seg home" style="width:35.8%">36%</span><span class="seg draw" style="width:31.8%">32%</span><span class="seg away" style="width:32.4%">32%</span></div>
 <div class="legend"><span class="sw home"></span>Celta <span class="sw draw"></span>Draw <span class="sw away"></span>Villarreal</div>
 <p class="small muted">Expected goals: <span class="mono">1.44 - 1.21</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
-<tr><td class="muted">Headline</td><td><b>Villarreal</b>
-<span class="muted">favored at</span> <b>35%</b>
+<tr><td class="muted">Headline</td><td><b>Celta</b>
+<span class="muted">favored at</span> <b>36%</b>
 <span class="muted">(ensemble)</span></td></tr>
 <tr><td class="muted">Attack vs defense</td><td>Celta score
 <span class="mono">1.40</span>/game lately; Villarreal concede
@@ -80,8 +145,7 @@ vs Villarreal <span class="mono">-0.9</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Celta
 <span class="mono">42%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest</td><td>Celta 7 days,
-Villarreal 7 days since last match</td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Celta:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-11-22 at Real Madrid (sched))</span><br><b>Villarreal:</b> 6 days rest <span class="faint">(7d gap &middot; 2026-11-22 at Barcelona (sched))</span></td></tr>
 </table></div></div>
 <h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not
