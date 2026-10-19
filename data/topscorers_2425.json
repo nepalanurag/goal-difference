@@ -1,15 +1,15 @@
 {
  "source": "api-football /players/topscorers",
  "season_label": "2024/25",
- "fetched_at": "2026-10-19T00:35:26.987481+00:00",
+ "fetched_at": "2026-10-19T22:28:36.655293+00:00",
  "notes": "One-off historical pull. Every table on the site that uses this data is labeled with the season.",
  "pl": [],
  "_league_notes": {
-  "pl": "topscorers pull failed (No module named 'dynamic_credentials'); official-backend rankings in part (c) are the fallback",
-  "laliga": "topscorers pull failed (No module named 'dynamic_credentials'); official-backend rankings in part (c) are the fallback",
-  "bundesliga": "topscorers pull failed (No module named 'dynamic_credentials'); official-backend rankings in part (c) are the fallback",
-  "seriea": "topscorers pull failed (No module named 'dynamic_credentials'); official-backend rankings in part (c) are the fallback",
-  "ligue1": "topscorers pull failed (No module named 'dynamic_credentials'); official-backend rankings in part (c) are the fallback"
+  "pl": "topscorers pull failed (api-football HTTP 403 on /players/topscorers: {\"get\": \"\",\"parameters\": [],\"errors\": {\"token\": \"Missing application key, Check our documentation on how to add your API key in headers.\",\"error\": \"4xHe\"},\"results\": 0,\"paging\": {\"current\": 1,\"total\": 1},\"response\": []}); official-backend rankings in part (c) are the fallback",
+  "laliga": "topscorers pull failed (api-football HTTP 403 on /players/topscorers: {\"get\": \"\",\"parameters\": [],\"errors\": {\"token\": \"Missing application key, Check our documentation on how to add your API key in headers.\",\"error\": \"4xHe\"},\"results\": 0,\"paging\": {\"current\": 1,\"total\": 1},\"response\": []}); official-backend rankings in part (c) are the fallback",
+  "bundesliga": "topscorers pull failed (api-football HTTP 403 on /players/topscorers: {\"get\": \"\",\"parameters\": [],\"errors\": {\"token\": \"Missing application key, Check our documentation on how to add your API key in headers.\",\"error\": \"4xHe\"},\"results\": 0,\"paging\": {\"current\": 1,\"total\": 1},\"response\": []}); official-backend rankings in part (c) are the fallback",
+  "seriea": "topscorers pull failed (api-football HTTP 403 on /players/topscorers: {\"get\": \"\",\"parameters\": [],\"errors\": {\"token\": \"Missing application key, Check our documentation on how to add your API key in headers.\",\"error\": \"4xHe\"},\"results\": 0,\"paging\": {\"current\": 1,\"total\": 1},\"response\": []}); official-backend rankings in part (c) are the fallback",
+  "ligue1": "topscorers pull failed (api-football HTTP 403 on /players/topscorers: {\"get\": \"\",\"parameters\": [],\"errors\": {\"token\": \"Missing application key, Check our documentation on how to add your API key in headers.\",\"error\": \"4xHe\"},\"results\": 0,\"paging\": {\"current\": 1,\"total\": 1},\"response\": []}); official-backend rankings in part (c) are the fallback"
  },
  "laliga": [],
  "bundesliga": [],

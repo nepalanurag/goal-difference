@@ -1,10 +1,10 @@
 {
  "league": "bundesliga",
- "model_version": "v2026-10-18",
- "fit_date": "2026-10-19T00:35:43.087937+00:00",
+ "model_version": "v2026-10-19",
+ "fit_date": "2026-10-19T22:28:52.901285+00:00",
  "data_hash": "84344946d3a4",
- "feature_logic_version": "8bbd915f2696",
- "feature_set_version": "8bbd915f",
+ "feature_logic_version": "4a9f0d4784b4",
+ "feature_set_version": "4a9f0d47",
  "n_train_rows": 972,
  "feature_cols": [
   "odds_p_home",
@@ -38,7 +38,7 @@
   "pam_jaccard_stability": 0.0,
   "pam_compare": {
    "pam_logloss": 1.0320939129869229,
-   "full_logloss": 1.036089185466151,
+   "full_logloss": 1.036041181416722,
    "pam_wins": true,
    "n_pam_features": 17,
    "n_full_features": 80
@@ -142,39 +142,39 @@
    "accuracy": 0.49382716049382724
   },
   "xgb_tiny": {
-   "logloss": 1.036089185466151,
-   "brier": 0.619716477394104,
-   "rps": 0.21034224033355714,
+   "logloss": 1.036041181416722,
+   "brier": 0.6196818232536316,
+   "rps": 0.21032783687114714,
    "accuracy": 0.48888888888888893
   },
   "xgb_reg": {
-   "logloss": 1.0358004250243638,
-   "brier": 0.618340003490448,
-   "rps": 0.20885061025619506,
+   "logloss": 1.0358282764705593,
+   "brier": 0.6183626294136048,
+   "rps": 0.20883476734161377,
    "accuracy": 0.4950617283950617
   },
   "xgb_base": {
-   "logloss": 1.1883150943730119,
-   "brier": 0.6866730332374573,
-   "rps": 0.2336138367652893,
-   "accuracy": 0.47407407407407404
+   "logloss": 1.1950970072032736,
+   "brier": 0.6908937096595764,
+   "rps": 0.23511335551738738,
+   "accuracy": 0.4716049382716049
   },
   "lgbm_a": {
-   "logloss": 1.0887579846691087,
-   "brier": 0.6436441376430996,
-   "rps": 0.2183356795972664,
-   "accuracy": 0.49382716049382713
+   "logloss": 1.0899201691845324,
+   "brier": 0.6436577262101214,
+   "rps": 0.21832172097403352,
+   "accuracy": 0.48888888888888893
   },
   "lgbm_b": {
-   "logloss": 1.1485272592248705,
-   "brier": 0.6634753130270401,
-   "rps": 0.226468357084955,
-   "accuracy": 0.47777777777777775
+   "logloss": 1.1490777697890002,
+   "brier": 0.6628593774919825,
+   "rps": 0.2258459228325987,
+   "accuracy": 0.4962962962962963
   },
   "ensemble": {
-   "logloss": 1.0082947054015952,
-   "brier": 0.6017388091585858,
-   "rps": 0.20529323058337212,
+   "logloss": 1.0082709060728265,
+   "brier": 0.6017213373808675,
+   "rps": 0.20528606448598063,
    "accuracy": 0.5074074074074074
   },
   "baseline": {
@@ -194,7 +194,7 @@
   "chosen_ml": "xgb_reg",
   "pam_compare": {
    "pam_logloss": 1.0320939129869229,
-   "full_logloss": 1.036089185466151,
+   "full_logloss": 1.036041181416722,
    "pam_wins": true,
    "n_pam_features": 17,
    "n_full_features": 80

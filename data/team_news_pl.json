@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-19T00:35:27.196932+00:00",
+ "fetched_at": "2026-10-19T22:28:37.171330+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -317,7 +317,7 @@
      "status": "s",
      "chance_this_round": null,
      "chance_next_round": 0,
-     "news": "Suspended until 23 Nov",
+     "news": "Suspended until 8 Nov",
      "regular_starter": true,
      "position": "MID"
     },
@@ -605,7 +605,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Hamstring injury - Expected back 17 Oct",
+     "news": "Hamstring injury - Unknown return date",
      "regular_starter": false,
      "position": "FWD"
     }
@@ -739,17 +739,17 @@
    "doubtful": [
     {
      "player": "Kaine Kesler-Hayden",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "DEF"
     }
    ],
    "key_absences": 1,
    "drag_att": 0.0,
-   "drag_def": 0.0771
+   "drag_def": 0.0659
   },
   "Crystal Palace": {
    "out": [
@@ -848,7 +848,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Calf injury - Expected back 18 Oct",
+     "news": "Calf injury - Expected back 25 Oct",
      "regular_starter": false,
      "position": "DEF"
     },
@@ -947,7 +947,7 @@
      "status": "s",
      "chance_this_round": 100,
      "chance_next_round": 0,
-     "news": "Suspended until 21 Nov",
+     "news": "Suspended until 7 Nov",
      "regular_starter": false,
      "position": "DEF"
     },
@@ -1249,9 +1249,19 @@
      "position": "MID"
     }
    ],
-   "doubtful": [],
-   "key_absences": 0,
-   "drag_att": 0.0,
+   "doubtful": [
+    {
+     "player": "Saša Lukić",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Groin injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "MID"
+    }
+   ],
+   "key_absences": 1,
+   "drag_att": 0.0368,
    "drag_def": 0.0
   },
   "Leeds": {
@@ -1482,6 +1492,15 @@
      "position": "DEF"
     },
     {
+     "player": "Antoine Semenyo",
+     "status": "i",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "regular_starter": true,
+     "position": "MID"
+    },
+    {
      "player": "Rodrigo 'Rodri' Hernandez Cascante",
      "status": "u",
      "chance_this_round": 0,
@@ -1538,17 +1557,44 @@
    ],
    "doubtful": [
     {
-     "player": "Antoine Semenyo",
+     "player": "Nico O'Reilly",
      "status": "d",
      "chance_this_round": 100,
      "chance_next_round": 75,
-     "news": "Knee injury - 75% chance of playing",
+     "news": "Back injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "DEF"
+    },
+    {
+     "player": "Matheus Nunes",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": true,
+     "position": "DEF"
+    },
+    {
+     "player": "Mateo Kovačić",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": false,
      "position": "MID"
+    },
+    {
+     "player": "Erling Haaland",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "FWD"
     }
    ],
-   "key_absences": 1,
-   "drag_att": 0.0,
+   "key_absences": 3,
+   "drag_att": 0.1847,
    "drag_def": 0.0
   },
   "Man United": {
@@ -1612,7 +1658,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Shin injury - Expected back 18 Oct",
+     "news": "Shin injury - Expected back 31 Oct",
      "regular_starter": false,
      "position": "FWD"
     },
@@ -1934,6 +1980,15 @@
      "position": "DEF"
     },
     {
+     "player": "Brian Brobbey",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "FWD"
+    },
+    {
      "player": "Wilson Isidor",
      "status": "d",
      "chance_this_round": 50,
@@ -1943,7 +1998,7 @@
      "position": "FWD"
     }
    ],
-   "key_absences": 2,
+   "key_absences": 3,
    "drag_att": 0.0,
    "drag_def": 0.1676
   },
@@ -2053,16 +2108,16 @@
      "status": "i",
      "chance_this_round": null,
      "chance_next_round": 0,
-     "news": "Knee injury - Expected back 7 Nov",
+     "news": "Knee injury - Expected back 31 Oct",
      "regular_starter": false,
      "position": "MID"
     },
     {
      "player": "Dejan Kulusevski",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 0,
-     "chance_next_round": 75,
-     "news": "Knee injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "MID"
     },
@@ -2105,7 +2160,7 @@
    ],
    "doubtful": [],
    "key_absences": 2,
-   "drag_att": 0.0986,
+   "drag_att": 0.0847,
    "drag_def": 0.0
   }
  }
