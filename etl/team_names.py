@@ -191,19 +191,19 @@ def canonicalize(name: str, league: str, source: str = "api") -> str:
     known = CANONICAL.get(league, set())
     if name in known:
         return name
-    if source == "fpl":
-        alias_dicts = [FPL_ALIASES]
-    elif source == "csv":
-        alias_dicts = [CSV_ALIASES.get(league, {})]
-    elif source == "espn":
-        alias_dicts = [ESPN_ALIASES.get(league, {})]
-    elif source == "any":
-        alias_dicts = [CSV_ALIASES.get(league, {}), API_ALIASES.get(league, {}),
-                       ESPN_ALIASES.get(league, {}), FPL_ALIASES]
-    else:
-        alias_dicts = [API_ALIASES.get(league, {})]
-    for aliases in alias_dicts:
-        if name in aliases:
+    # Source-specific aliases first, then fall through to all sources.
+    # A mapping defined for one source (e.g. "Ipswich" in CSV_ALIASES)
+    # must work for the others too; siloed dicts drift and break validation.
+    primary = {
+        "fpl": FPL_ALIASES,
+        "csv": CSV_ALIASES.get(league, {}),
+        "espn": ESPN_ALIASES.get(league, {}),
+    }.get(source, API_ALIASES.get(league, {}))
+    if name in primary:
+        return primary[name]
+    for aliases in (CSV_ALIASES.get(league, {}), API_ALIASES.get(league, {}),
+                    ESPN_ALIASES.get(league, {}), FPL_ALIASES):
+        if aliases is not primary and name in aliases:
             return aliases[name]
     matches = difflib.get_close_matches(name, sorted(known), n=1, cutoff=0.82)
     if matches:
