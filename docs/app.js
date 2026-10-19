@@ -21,6 +21,7 @@
       th.classList.add('sortable');
       th.title = 'Sort by this column';
       th.setAttribute('tabindex', '0');
+      th.setAttribute('role', 'columnheader');
       th.addEventListener('click', function () { sortBy(table, ths, idx); });
       th.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sortBy(table, ths, idx); }
@@ -38,12 +39,15 @@
       return va > vb ? -1 : 1;
     });
     rows.forEach(function (r) { table.appendChild(r); });
-    ths.forEach(function (t) { t.removeAttribute('data-dir'); t.querySelector('.arrow') &&
-      t.querySelector('.arrow').remove(); });
+    ths.forEach(function (t) {
+      t.removeAttribute('data-dir');
+      var old = t.querySelector('.arrow');
+      if (old) old.remove();
+    });
     ths[idx].setAttribute('data-dir', asc ? 'asc' : 'desc');
     var arrow = document.createElement('span');
     arrow.className = 'arrow';
-    arrow.textContent = asc ? ' \u25b2' : ' \u25bc';
+    arrow.textContent = asc ? ' ▲' : ' ▼';
     ths[idx].appendChild(arrow);
   }
 
@@ -57,15 +61,22 @@
     if (!panels.length) return;
     var bar = document.createElement('div');
     bar.className = 'tabs';
+    bar.setAttribute('role', 'tablist');
     panels.forEach(function (p, i) {
       var key = p.getAttribute('data-league');
       var b = document.createElement('button');
       b.className = 'tabbtn' + (i === 0 ? ' active' : '');
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       b.textContent = LEAGUE_NAMES[key] || key;
       b.addEventListener('click', function () {
         panels.forEach(function (q) { q.hidden = q !== p; });
-        bar.querySelectorAll('.tabbtn').forEach(function (x) { x.classList.remove('active'); });
+        bar.querySelectorAll('.tabbtn').forEach(function (x) {
+          x.classList.remove('active');
+          x.setAttribute('aria-selected', 'false');
+        });
         b.classList.add('active');
+        b.setAttribute('aria-selected', 'true');
       });
       bar.appendChild(b);
       p.hidden = i !== 0;
@@ -80,16 +91,23 @@
     if (views.length > 1) {
       var row = document.createElement('div');
       row.className = 'toggle-row';
+      row.setAttribute('role', 'tablist');
       var labels = {poisson: 'Poisson', ml: 'Gradient boosting', ensemble: 'Ensemble'};
       views.forEach(function (v) {
         var key = v.getAttribute('data-view');
         var b = document.createElement('button');
         b.className = 'tgl' + (key === 'ensemble' ? ' active' : '');
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-selected', key === 'ensemble' ? 'true' : 'false');
         b.textContent = labels[key] || key;
         b.addEventListener('click', function () {
           views.forEach(function (w) { w.hidden = w !== v; });
-          row.querySelectorAll('.tgl').forEach(function (x) { x.classList.remove('active'); });
+          row.querySelectorAll('.tgl').forEach(function (x) {
+            x.classList.remove('active');
+            x.setAttribute('aria-selected', 'false');
+          });
           b.classList.add('active');
+          b.setAttribute('aria-selected', 'true');
         });
         row.appendChild(b);
         v.hidden = key !== 'ensemble';

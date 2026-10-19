@@ -84,112 +84,526 @@ def prob_legend(home: str = "Home", away: str = "Away") -> str:
 
 
 CSS = """
-:root{
-  --bg:#0a0d12; --panel:#11151d; --panel2:#161c26; --line:#232c3b;
-  --text:#e9edf3; --muted:#8d97a8; --faint:#5b6474;
-  --home:#4da3ff; --draw:#8d97a8; --away:#ff5d5d;
-  --up:#3ddc84; --down:#ff5d5d;
-  --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+:root {
+  /* Canvas & Base Surface */
+  --bg: #090d16;
+  --bg-gradient: radial-gradient(circle at 50% 0%, #151d30 0%, #090d16 65%);
+  --panel: #0f1626;
+  --panel-elevated: #151f34;
+  --panel-card: #0f1626;
+  --panel-card-hover: #162035;
+  --panel-surface: rgba(15, 22, 38, 0.85);
+  --line: rgba(255, 255, 255, 0.08);
+  --line-subtle: rgba(255, 255, 255, 0.035);
+  --line-strong: rgba(255, 255, 255, 0.15);
+
+  /* Typography Hierarchy */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Restrained Neutral Palette */
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --muted: #64748b;
+  --faint: #475569;
+  --brand: #f59e0b;
+  --brand-glow: rgba(245, 158, 11, 0.2);
+
+  /* Outcome Spectrum */
+  --home: #10b981;
+  --home-soft: rgba(16, 185, 129, 0.15);
+  --draw: #94a3b8;
+  --draw-soft: rgba(148, 163, 184, 0.15);
+  --away: #f43f5e;
+  --away-soft: rgba(244, 63, 94, 0.15);
+
+  --up: #10b981;
+  --down: #f43f5e;
+  --link: #38bdf8;
+  --link-hover: #7dd3fc;
+
+  /* Shapes, Borders & Elevation */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
+  --shadow-card-hover: 0 8px 30px -4px rgba(0, 0, 0, 0.65);
+  --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
-*{box-sizing:border-box}
-body{background:var(--bg);color:var(--text);margin:0;
-  font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-  font-size:15px;line-height:1.5}
-h1,h2,h3,.cond{font-family:'Barlow Condensed','Arial Narrow',sans-serif;
-  text-transform:uppercase;letter-spacing:.04em;margin:0 0 .5em;font-weight:600}
-h1{font-size:2.6em} h2{font-size:1.7em;border-bottom:1px solid var(--line);
-  padding-bottom:.25em;margin-top:1.6em} h3{font-size:1.25em;color:var(--muted)}
-a{color:var(--home);text-decoration:none} a:hover{text-decoration:underline}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
-.topbar{border-bottom:1px solid var(--line);background:#0d1117;
-  position:sticky;top:0;z-index:10}
-.topbar .wrap{display:flex;align-items:center;gap:22px;padding-top:14px;padding-bottom:14px}
-.brand{font-family:'Barlow Condensed',sans-serif;font-size:1.5em;font-weight:700;
-  text-transform:uppercase;letter-spacing:.06em;color:var(--text)}
-.brand b{color:#ffd23f}
-.nav{display:flex;gap:16px;flex-wrap:wrap;font-size:.92em;align-items:center}
-.nav a{color:var(--muted)} .nav a:hover{color:var(--text)}
-.dropdown{position:relative}
-.dropbtn{color:var(--muted);cursor:pointer}
-.dropbtn::after{content:" \\25be";font-size:.8em}
-.dropdown:hover .dropbtn{color:var(--text)}
-.dropdown-content{display:none;position:absolute;top:calc(100% + 10px);left:0;
-  background:#0d1117;border:1px solid var(--line);border-radius:8px;
-  min-width:180px;padding:6px;z-index:30}
-.dropdown:hover .dropdown-content,.dropdown:focus-within .dropdown-content{display:block}
-.dropdown-content a{display:block;padding:8px 12px;border-radius:4px}
-.dropdown-content a:hover{background:#1a212d}
-.hero{padding:44px 0 10px}
-.hero p.lede{color:var(--muted);font-size:1.1em;max-width:640px}
-.grid{display:grid;gap:14px}
-.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;
-  padding:16px 18px}
-.card h3{margin-top:0}
-.kpi{font-family:var(--mono);font-size:1.9em;font-weight:700}
-.kpi small{font-size:.45em;color:var(--muted);font-weight:400}
-table{width:100%;border-collapse:collapse;font-size:.93em}
-th{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;
-  letter-spacing:.05em;color:var(--muted);font-weight:600;text-align:left;
-  padding:8px 10px;border-bottom:1px solid var(--line);font-size:.95em}
-td{padding:7px 10px;border-bottom:1px solid #1a212d}
-tr:hover td{background:#141a24}
-.num{font-family:var(--mono);text-align:right;white-space:nowrap}
-.probbar{display:flex;height:26px;border-radius:4px;overflow:hidden;
-  background:var(--panel2);border:1px solid var(--line);min-width:120px}
-.seg{display:flex;align-items:center;justify-content:center;font-size:.75em;
-  font-family:var(--mono);color:#0a0d12;font-weight:700;white-space:nowrap;
-  overflow:hidden}
-.seg.home{background:var(--home)} .seg.draw{background:var(--draw)}
-.seg.away{background:var(--away)}
-.legend{font-size:.8em;color:var(--muted);margin-top:4px}
-.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 10px}
-.sw.home{background:var(--home)} .sw.draw{background:var(--draw)}
-.sw.away{background:var(--away)}
-.tag{display:inline-block;font-size:.72em;font-family:var(--mono);
-  background:var(--panel2);border:1px solid var(--line);border-radius:4px;
-  padding:2px 8px;color:var(--muted);margin:2px 4px 2px 0}
-.formline{display:flex;gap:6px;margin:6px 0}
-.badge{width:26px;height:26px;border-radius:4px;display:inline-flex;
-  align-items:center;justify-content:center;font-weight:700;font-size:.8em;
-  font-family:var(--mono);color:#0a0d12}
-.badge.W{background:var(--up)} .badge.D{background:var(--draw)}
-.badge.L{background:var(--down)}
-.muted{color:var(--muted)} .faint{color:var(--faint)}
-.small{font-size:.85em}
-.mono{font-family:var(--mono)}
-.positive{color:var(--up)} .negative{color:var(--down)}
-.limit{border:1px dashed #3a4557;border-radius:8px;padding:14px 18px;
-  color:var(--muted);font-size:.88em;margin-top:2.5em;background:#0d1117}
-.limit b{color:var(--text)}
-.footer{border-top:1px solid var(--line);margin-top:50px;padding:22px 0;
-  color:var(--faint);font-size:.85em}
-.fixlink{color:var(--text)} .fixlink:hover{color:var(--home)}
-.scoreline{font-family:var(--mono);font-weight:700}
-@media(max-width:640px){h1{font-size:1.9em}.wrap{padding:0 12px 40px}}
-.data-updated{color:var(--faint);font-size:.82em;margin:12px 0 0}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
-.tabbtn{background:var(--panel2);border:1px solid var(--line);color:var(--muted);
-  border-radius:6px;padding:6px 14px;cursor:pointer;font-size:.9em;
-  font-family:inherit}
-.tabbtn:hover{color:var(--text);border-color:var(--muted)}
-.tabbtn.active{background:#ffd23f;border-color:#ffd23f;color:#0a0d12;
-  font-weight:700}
-th.sortable{cursor:pointer;user-select:none}
-th.sortable:hover{color:var(--text)}
-th.sortable .arrow{font-size:.75em;color:var(--faint)}
-.toggle-row{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
-.tgl{background:var(--panel2);border:1px solid var(--line);color:var(--muted);
-  border-radius:6px;padding:5px 12px;cursor:pointer;font-size:.85em;
-  font-family:inherit}
-.tgl:hover{color:var(--text)}
-.tgl.active{background:#4da3ff;border-color:#4da3ff;color:#0a0d12;font-weight:700}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text);
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, .cond {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+  margin: 0 0 0.5em;
+  font-weight: 700;
+  color: var(--text);
+}
+h1 {
+  font-size: 2.25rem;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+h2 {
+  font-size: 1.35rem;
+  margin-top: 2.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: -0.015em;
+}
+.cond {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: var(--transition);
+}
+a:hover {
+  color: var(--link-hover);
+  text-decoration: none;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* Glassmorphic Header & Navigation */
+.topbar {
+  border-bottom: 1px solid var(--line);
+  background: rgba(9, 13, 22, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: var(--transition);
+}
+.topbar .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.brand-link {
+  color: var(--text);
+}
+.brand-link:hover {
+  color: var(--text);
+}
+.brand b {
+  color: var(--brand);
+}
+.nav {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  align-items: center;
+}
+.nav a, .dropbtn {
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  font-weight: 500;
+}
+.nav a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+}
+.dropdown {
+  position: relative;
+}
+.dropbtn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  user-select: none;
+}
+.dropbtn::after {
+  content: "▾";
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: var(--panel-elevated);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  min-width: 200px;
+  padding: 6px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+  z-index: 100;
+}
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+  display: block;
+}
+.dropdown-content a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+}
+.dropdown-content a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+/* Meta Pill & Hero Banner */
+.meta-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 6px;
+}
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  padding: 4px 12px;
+  border-radius: 9999px;
+}
+.hero {
+  padding: 28px 0 14px;
+}
+.hero h1 {
+  margin-bottom: 0.4rem;
+}
+.hero p.lede {
+  color: var(--text-muted);
+  font-size: 1.08rem;
+  max-width: 680px;
+  margin: 0 0 14px;
+  line-height: 1.6;
+}
+
+/* Responsive Grid & Cards */
+.grid {
+  display: grid;
+  gap: 16px;
+  margin: 14px 0;
+}
+.g2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.g3 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+
+.card {
+  background: var(--panel-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+  position: relative;
+}
+.card:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-card-hover);
+}
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+.kpi {
+  font-family: var(--font-mono);
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.2;
+}
+.kpi small {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: block;
+  margin-top: 4px;
+}
+
+/* Clean Data Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 12px 0;
+}
+th {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line-strong);
+}
+td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line-subtle);
+  color: var(--text);
+}
+tr:hover td {
+  background: rgba(255, 255, 255, 0.025);
+}
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Tripartite Probability Meter */
+.probbar {
+  display: flex;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--panel-elevated);
+  border: 1px solid var(--line);
+  min-width: 140px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+.seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: #070a10;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: width 0.3s ease;
+}
+.seg.home { background: var(--home); }
+.seg.draw { background: var(--draw); }
+.seg.away { background: var(--away); }
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+.sw {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.sw.home { background: var(--home); }
+.sw.draw { background: var(--draw); }
+.sw.away { background: var(--away); }
+
+/* Bespoke Progress Track */
+.progress-track {
+  width: 110px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  transition: width 0.3s ease;
+}
+
+/* Form Badges */
+.formline {
+  display: flex;
+  gap: 6px;
+  margin: 6px 0;
+}
+.badge {
+  width: 25px;
+  height: 25px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+}
+.badge.W {
+  background: var(--home-soft);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.badge.D {
+  background: var(--draw-soft);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+.badge.L {
+  background: var(--away-soft);
+  color: #fb7185;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.muted { color: var(--text-muted); }
+.faint { color: var(--faint); }
+.small { font-size: 0.84rem; }
+.mono { font-family: var(--font-mono); }
+.positive { color: var(--up); font-weight: 600; }
+.negative { color: var(--down); font-weight: 600; }
+
+/* Interactive Segmented Controls */
+.tabs, .toggle-row {
+  display: inline-flex;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  gap: 4px;
+  margin: 12px 0 16px;
+  flex-wrap: wrap;
+}
+.tabbtn, .tgl {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  transition: var(--transition);
+}
+.tabbtn:hover, .tgl:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+.tabbtn.active, .tgl.active {
+  background: var(--panel-elevated);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--text);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s ease;
+}
+th.sortable:hover {
+  color: var(--text);
+}
+th.sortable .arrow {
+  font-size: 0.72rem;
+  margin-left: 4px;
+  color: var(--brand);
+}
+
+.limit {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--brand);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  margin-top: 3rem;
+  background: rgba(15, 22, 38, 0.6);
+  line-height: 1.6;
+}
+.limit b {
+  color: var(--text);
+}
+
+.footer {
+  border-top: 1px solid var(--line);
+  margin-top: 50px;
+  padding: 24px 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+.fixlink {
+  color: var(--text);
+  font-weight: 600;
+  transition: var(--transition);
+}
+.fixlink:hover {
+  color: var(--link);
+}
+.scoreline {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 1.85rem; }
+  .wrap { padding: 0 16px 50px; }
+  .topbar .wrap { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .nav { width: 100%; overflow-x: auto; padding-bottom: 4px; }
+  .g2, .g3 { grid-template-columns: 1fr; }
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
 """
 
-# Small vanilla-JS layer: progressive enhancement only. With JS disabled the
-# site shows the full tables and the ensemble view everywhere; the JS adds
-# tabs, toggles and sorting on top of the rendered HTML.
 APP_JS = """
 (function () {
   'use strict';
@@ -214,6 +628,7 @@ APP_JS = """
       th.classList.add('sortable');
       th.title = 'Sort by this column';
       th.setAttribute('tabindex', '0');
+      th.setAttribute('role', 'columnheader');
       th.addEventListener('click', function () { sortBy(table, ths, idx); });
       th.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sortBy(table, ths, idx); }
@@ -231,12 +646,15 @@ APP_JS = """
       return va > vb ? -1 : 1;
     });
     rows.forEach(function (r) { table.appendChild(r); });
-    ths.forEach(function (t) { t.removeAttribute('data-dir'); t.querySelector('.arrow') &&
-      t.querySelector('.arrow').remove(); });
+    ths.forEach(function (t) {
+      t.removeAttribute('data-dir');
+      var old = t.querySelector('.arrow');
+      if (old) old.remove();
+    });
     ths[idx].setAttribute('data-dir', asc ? 'asc' : 'desc');
     var arrow = document.createElement('span');
     arrow.className = 'arrow';
-    arrow.textContent = asc ? ' \\u25b2' : ' \\u25bc';
+    arrow.textContent = asc ? ' ▲' : ' ▼';
     ths[idx].appendChild(arrow);
   }
 
@@ -250,15 +668,22 @@ APP_JS = """
     if (!panels.length) return;
     var bar = document.createElement('div');
     bar.className = 'tabs';
+    bar.setAttribute('role', 'tablist');
     panels.forEach(function (p, i) {
       var key = p.getAttribute('data-league');
       var b = document.createElement('button');
       b.className = 'tabbtn' + (i === 0 ? ' active' : '');
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       b.textContent = LEAGUE_NAMES[key] || key;
       b.addEventListener('click', function () {
         panels.forEach(function (q) { q.hidden = q !== p; });
-        bar.querySelectorAll('.tabbtn').forEach(function (x) { x.classList.remove('active'); });
+        bar.querySelectorAll('.tabbtn').forEach(function (x) {
+          x.classList.remove('active');
+          x.setAttribute('aria-selected', 'false');
+        });
         b.classList.add('active');
+        b.setAttribute('aria-selected', 'true');
       });
       bar.appendChild(b);
       p.hidden = i !== 0;
@@ -273,16 +698,23 @@ APP_JS = """
     if (views.length > 1) {
       var row = document.createElement('div');
       row.className = 'toggle-row';
+      row.setAttribute('role', 'tablist');
       var labels = {poisson: 'Poisson', ml: 'Gradient boosting', ensemble: 'Ensemble'};
       views.forEach(function (v) {
         var key = v.getAttribute('data-view');
         var b = document.createElement('button');
         b.className = 'tgl' + (key === 'ensemble' ? ' active' : '');
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-selected', key === 'ensemble' ? 'true' : 'false');
         b.textContent = labels[key] || key;
         b.addEventListener('click', function () {
           views.forEach(function (w) { w.hidden = w !== v; });
-          row.querySelectorAll('.tgl').forEach(function (x) { x.classList.remove('active'); });
+          row.querySelectorAll('.tgl').forEach(function (x) {
+            x.classList.remove('active');
+            x.setAttribute('aria-selected', 'false');
+          });
           b.classList.add('active');
+          b.setAttribute('aria-selected', 'true');
         });
         row.appendChild(b);
         v.hidden = key !== 'ensemble';
@@ -350,31 +782,30 @@ def page_shell(title: str, body: str, league: str | None = None,
     league_links = "".join(
         f'<a href="{SITE_BASE}/leagues/{s}/">{LEAGUE_NAMES[s]}</a>'
         for s in settings.league_order)
-    league_links = "".join(
-        f'<a href="{SITE_BASE}/leagues/{s}/">{LEAGUE_NAMES[s]}</a>'
-        for s in settings.league_order)
     nav = ('<a href="{BASE}/">Home</a>'
            '<div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span>'
            f'<div class="dropdown-content">{league_links}</div></div>'
            '<a href="{BASE}/track-record.html">Track record</a>'
            '<a href="{BASE}/methodology.html">Methodology</a>'
            '<a href="{BASE}/model-insights.html">Model insights</a>')
-    accent = LEAGUE_ACCENT.get(league or "", "#ffd23f")
+    accent = LEAGUE_ACCENT.get(league or "", "#f59e0b")
     nav = nav.replace("{BASE}", SITE_BASE)
     body = body.replace("{BASE}", SITE_BASE)
+    league_style = f"<style>:root {{ --league-accent: {accent}; }}</style>" if league else ""
     return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)} | Goal Difference</title>
 <link rel="stylesheet" href="{SITE_BASE}/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
-<style>.brand b{{color:{accent}}} a{{color:{accent}}}</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+{league_style}
 </head><body>
 <div class="topbar"><div class="wrap">
-<div class="brand">Goal <b>Difference</b></div>
+<div class="brand"><a href="{SITE_BASE}/" class="brand-link">Goal <b>Difference</b></a></div>
 <nav class="nav">{nav}</nav></div></div>
-<div class="wrap"><p class="data-updated">Data updated {esc(updated)}</p>{body}
+<div class="wrap"><div class="meta-strip"><span class="pill-badge">Model update {esc(updated)}</span></div>{body}
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not
 betting advice. Live scores for non-PL leagues come from CSVs updated about a
 day after matches. The FPL API and the official league JSON backends are
@@ -419,8 +850,10 @@ class LeagueData:
     def table(self) -> pd.DataFrame:
         """Live-season league table."""
         fin = self.finished[self.finished.season == settings.live_season]
+        live_fx = self.fixtures[self.fixtures.season == settings.live_season]
+        all_teams = sorted(set(live_fx.home) | set(live_fx.away)) if not live_fx.empty else sorted(set(fin.home) | set(fin.away))
         rows = []
-        for team in sorted(set(fin.home) | set(fin.away)):
+        for team in all_teams:
             h = fin[fin.home == team]
             a = fin[fin.away == team]
             w = int((h.home_goals > h.away_goals).sum()
@@ -744,15 +1177,15 @@ def team_depth_data(ld: LeagueData) -> dict[str, dict]:
                     poisson_model.predict_proba_df(feats, feature_cols))
                 p_ml = np.asarray(ml_model.predict_proba(feats[feature_cols]))
                 p_ens = blend_ensemble(p_dc, p_ml)
-                # column order is (away, draw, home); see predict_upcoming
+                home_exp_acc: dict[str, float] = {}
+                away_exp_acc: dict[str, float] = {}
                 for (_, r), probs in zip(feats.iterrows(), p_ens):
                     pa, pd_, ph = float(probs[0]), float(probs[1]), float(probs[2])
-                    home_exp = out.setdefault(r.home, {}).get("exp_pts", 0.0) \
-                        + 3 * ph + pd_
-                    away_exp = out.setdefault(r.away, {}).get("exp_pts", 0.0) \
-                        + 3 * pa + pd_
-                    out[r.home]["exp_pts"] = round(home_exp, 1)
-                    out[r.away]["exp_pts"] = round(away_exp, 1)
+                    home_exp_acc[r.home] = home_exp_acc.get(r.home, 0.0) + (3.0 * ph + pd_)
+                    away_exp_acc[r.away] = away_exp_acc.get(r.away, 0.0) + (3.0 * pa + pd_)
+                for team in set(home_exp_acc) | set(away_exp_acc):
+                    tot_exp = home_exp_acc.get(team, 0.0) + away_exp_acc.get(team, 0.0)
+                    out.setdefault(team, {})["exp_pts"] = round(tot_exp, 1)
         except Exception as exc:  # noqa: BLE001 - depth blocks degrade gracefully
             log.warning("depth_expected_points_failed", league=ld.league,
                         error=str(exc)[:160])
@@ -1086,8 +1519,8 @@ Each row sums to 100%.</p></div></div>"""
 <tr><td class="muted">Shot dominance</td><td>{esc(home)} <span class="mono">{hf.get('shot_diff_pg', 0):+.1f}</span>
 vs {esc(away)} <span class="mono">{af.get('shot_diff_pg', 0):+.1f}</span> per game
 <span class="faint">(shot-based)</span></td></tr>
-<tr><td class="muted">Head-to-head edge</td><td>{esc(home)} win
-<span class="mono">{pct(edge)}</span> of past meetings</td></tr>
+<tr><td class="muted">Head-to-head edge</td><td>{esc(home)}
+<span class="mono">{pct(edge)}</span> points expectation (W + 0.5&times;D)</td></tr>
 <tr><td class="muted">Rest</td><td>{esc(home)} {int(feats.get('h_rest_days', 7))} days,
 {esc(away)} {int(feats.get('a_rest_days', 7))} days since last match</td></tr>
 </table></div>"""
@@ -1435,11 +1868,10 @@ Lower log-loss is better. {esc(verdict)}</p>
 
 # ---------------------------------------------------------------- model insights
 def _freq_bar(freq: float) -> str:
-    w = int(round(freq * 100))
-    return (f'<div style="background:#eee;height:8px;width:120px;'
-            f'display:inline-block;vertical-align:middle">'
-            f'<div style="background:#1a7f4b;height:8px;width:{w}%"></div></div>'
-            f' <span class="num">{w}%</span>')
+    w = max(0, min(100, int(round(freq * 100))))
+    return (f'<div class="progress-track">'
+            f'<div class="progress-fill" style="width:{w}%"></div></div>'
+            f' <span class="mono small" style="margin-left:8px;font-weight:600">{w}%</span>')
 
 
 def build_model_insights(datas: dict[str, "LeagueData"], updated: str) -> str:

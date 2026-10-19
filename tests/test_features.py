@@ -171,3 +171,83 @@ def test_load_injury_drags_fallback(tmp_path, monkeypatch):
     res = features.load_injury_drags("unknown_league")
     assert res == {}
 
+
+def test_compute_rest_days_accounts_for_european_midweek():
+    """European competition match 3 days prior must be preferred over 7-day domestic match."""
+    from etl.features import compute_rest_days
+
+    last_date = {"Arsenal": "2026-10-17"}  # Saturday domestic game
+    euro = {"Arsenal": [{"date": "2026-10-21", "pts": 3, "gf": 2, "ga": 0}]}  # Wednesday UCL
+
+    # Match on Saturday 2026-10-24
+    rest = compute_rest_days("Arsenal", "2026-10-24", last_date, euro)
+    assert rest == 3, f"Expected 3 days turnaround from UCL, got {rest}"
+
+
+def test_compute_rest_days_bounds_and_summer_break():
+    """Summer break (>30d) normalizes to fully rested 14d, same-day/negative bounds to 1d."""
+    from etl.features import compute_rest_days
+
+    # Summer break (80 days)
+    last_date = {"Man City": "2026-05-19"}
+    rest = compute_rest_days("Man City", "2026-08-15", last_date, {})
+    assert rest == 14, f"Expected 14d normalized summer break, got {rest}"
+
+    # Same day or out of order fixture
+    last_date = {"Man City": "2026-10-20"}
+    rest = compute_rest_days("Man City", "2026-10-20", last_date, {})
+    assert rest == 7, "Same day should ignore same-day as prior match and fallback"
+
+    # 1 day rest (back to back)
+    last_date = {"Man City": "2026-10-19"}
+    rest = compute_rest_days("Man City", "2026-10-20", last_date, {})
+    assert rest == 1
+
+
+def test_predict_mode_advances_rest_days_calendar(tmp_path, monkeypatch):
+    """Multiple sequential scheduled fixtures must not saturate at 30 days."""
+    import pandas as pd
+    from etl import config as cfg
+    from etl.features import build_features
+
+    rows = [
+        # Finished match on Oct 10
+        {"fixture_id": "f_fin", "date": "2026-10-10", "season": "2026",
+         "league": "pl", "home": "Arsenal", "away": "Chelsea",
+         "home_goals": 2, "away_goals": 1, "status": "finished",
+         "provenance": "csv", "api_fixture_id": None},
+        # Scheduled match 1 on Oct 17 (7 days later)
+        {"fixture_id": "f_sch1", "date": "2026-10-17", "season": "2026",
+         "league": "pl", "home": "Arsenal", "away": "Everton",
+         "home_goals": None, "away_goals": None, "status": "scheduled",
+         "provenance": "fpl", "api_fixture_id": None},
+        # Scheduled match 2 on Oct 24 (7 days later)
+        {"fixture_id": "f_sch2", "date": "2026-10-24", "season": "2026",
+         "league": "pl", "home": "Liverpool", "away": "Arsenal",
+         "home_goals": None, "away_goals": None, "status": "scheduled",
+         "provenance": "fpl", "api_fixture_id": None},
+        # Scheduled match 3 on Nov 07 (14 days later, international break)
+        {"fixture_id": "f_sch3", "date": "2026-11-07", "season": "2026",
+         "league": "pl", "home": "Arsenal", "away": "Tottenham",
+         "home_goals": None, "away_goals": None, "status": "scheduled",
+         "provenance": "fpl", "api_fixture_id": None},
+    ]
+    for c in ["hs", "as_", "hst", "ast", "hf", "af", "hy", "ay", "hr", "ar"]:
+        for r in rows:
+            r[c] = None
+    df = pd.DataFrame(rows)
+    df.to_csv(tmp_path / "fixtures_pl.csv", index=False)
+    monkeypatch.setattr(cfg.settings, "data_dir", tmp_path)
+
+    feats_pred, _ = build_features("pl", mode="predict")
+    assert len(feats_pred) == 3
+
+    r1 = feats_pred[feats_pred.fixture_id == "f_sch1"].iloc[0]
+    r2 = feats_pred[feats_pred.fixture_id == "f_sch2"].iloc[0]
+    r3 = feats_pred[feats_pred.fixture_id == "f_sch3"].iloc[0]
+
+    assert r1["h_rest_days"] == 7
+    assert r2["a_rest_days"] == 7, f"Expected 7 days, got {r2['a_rest_days']} (30d saturation bug!)"
+    assert r3["h_rest_days"] == 14, f"Expected 14 days, got {r3['h_rest_days']}"
+
+

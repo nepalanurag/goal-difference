@@ -151,14 +151,15 @@ def shrunk_per90(goals: float, minutes: float,
                  prior_goals: float = PRIOR_GOALS,
                  prior_90s: float = PRIOR_90S) -> float:
     """Goals per 90 shrunk toward the position prior (empirical Bayes)."""
-    n90 = (minutes or 0) / 90.0
-    return (goals + prior_goals) / (n90 + prior_90s)
+    n90 = max(0.0, float(minutes or 0)) / 90.0
+    return max(0.0, float(goals or 0) + float(prior_goals)) / (n90 + float(prior_90s))
 
 
 def scorer_prob(shrunk_rate: float, x_minutes: float, team_xg: float,
                 league_avg_xg: float, penalty: bool = False) -> float:
     """Anytime-scorer probability: P = 1 - exp(-X)."""
-    x = shrunk_rate * (x_minutes / 90.0) * (team_xg / league_avg_xg)
+    avg_xg = max(float(league_avg_xg or 1.0), 1e-4)
+    x = float(shrunk_rate) * (float(x_minutes) / 90.0) * (float(team_xg) / avg_xg)
     if penalty:
         x *= PENALTY_UPLIFT
     return 1.0 - math.exp(-x)

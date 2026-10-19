@@ -763,13 +763,20 @@ def predict_upcoming(league: str) -> pd.DataFrame:
 
     # Scale expected goals by pre-match player availability / injury drag
     # Attacking drag reduces scoring potency; opponent defensive drag increases scoring opportunity.
-    h_drag_att = np.clip(pred_df.get("h_injury_drag_att", 0.0).fillna(0.0).to_numpy(dtype=float), 0.0, 0.40)
-    h_drag_def = np.clip(pred_df.get("h_injury_drag_def", 0.0).fillna(0.0).to_numpy(dtype=float), 0.0, 0.40)
-    a_drag_att = np.clip(pred_df.get("a_injury_drag_att", 0.0).fillna(0.0).to_numpy(dtype=float), 0.0, 0.40)
-    a_drag_def = np.clip(pred_df.get("a_injury_drag_def", 0.0).fillna(0.0).to_numpy(dtype=float), 0.0, 0.40)
+    def _safe_drag(col: str) -> np.ndarray:
+        if col in pred_df.columns:
+            s = pred_df[col]
+            if isinstance(s, pd.Series):
+                return np.clip(pd.to_numeric(s, errors="coerce").fillna(0.0).to_numpy(dtype=float), 0.0, 0.40)
+        return np.zeros(len(pred_df), dtype=float)
 
-    xg_h_adj = xg_h * (1.0 - h_drag_att) * (1.0 + a_drag_def)
-    xg_a_adj = xg_a * (1.0 - a_drag_att) * (1.0 + h_drag_def)
+    h_drag_att = _safe_drag("h_injury_drag_att")
+    h_drag_def = _safe_drag("h_injury_drag_def")
+    a_drag_att = _safe_drag("a_injury_drag_att")
+    a_drag_def = _safe_drag("a_injury_drag_def")
+
+    xg_h_adj = np.clip(xg_h * (1.0 - h_drag_att) * (1.0 + a_drag_def), 0.0, None)
+    xg_a_adj = np.clip(xg_a * (1.0 - a_drag_att) * (1.0 + h_drag_def), 0.0, None)
 
     # Recompute Poisson 1X2 probabilities with adjusted xG
     p_pois_list = []
@@ -777,8 +784,11 @@ def predict_upcoming(league: str) -> pd.DataFrame:
         pa, pd_, ph = scoreline_to_1x2(lh, la)
         p_pois_list.append([pa, pd_, ph])
     p_poisson = np.array(p_pois_list)
+    p_poisson = p_poisson / p_poisson.sum(axis=1, keepdims=True)
+    p_ml = p_ml / p_ml.sum(axis=1, keepdims=True)
 
     p_ens = blend_ensemble(p_poisson, p_ml)
+    p_ens = p_ens / p_ens.sum(axis=1, keepdims=True)
 
     out = pred_df[["fixture_id", "date", "home", "away"]].copy()
     out["p_away_poisson"], out["p_draw_poisson"], out["p_home_poisson"] = p_poisson.T

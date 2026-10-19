@@ -22,7 +22,7 @@ import argparse
 import hashlib
 import json
 import math
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 import numpy as np
@@ -365,6 +365,45 @@ def h2h_edge_before(h2h_idx: dict[str, list[dict]], home: str, away: str,
     return (w + 0.5 * d) / tot if tot else 0.5
 
 
+def compute_rest_days(
+    team: str,
+    datestr: str,
+    last_date: dict[str, str],
+    euro: dict[str, list[dict]] | None = None,
+) -> int:
+    """Calculate physical rest days before a fixture at datestr.
+
+    Considers both domestic league matches and European competitions.
+    Strictly filters to prior matches (date < datestr).
+    Handles summer/winter breaks (>30 days) and season openers with a
+    neutral fully-rested baseline, eliminating artificial bias against
+    promoted teams.
+    """
+    candidates: list[str] = []
+    last_dom = last_date.get(team)
+    if last_dom and last_dom < datestr:
+        candidates.append(last_dom)
+
+    if euro and team in euro:
+        for em in euro[team]:
+            edate = str(em.get("date", ""))[:10]
+            if edate and edate < datestr:
+                candidates.append(edate)
+
+    if not candidates:
+        return 7  # Baseline for opening fixtures without prior history
+
+    most_recent = max(candidates)
+    delta = (date.fromisoformat(datestr) - date.fromisoformat(most_recent)).days
+
+    if delta <= 0:
+        return 1
+    if delta > 30:
+        # Offseason / multi-week break: full physical recovery
+        return 14
+    return min(delta, 21)
+
+
 def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict]:
     """Build lagged feature rows.
 
@@ -423,22 +462,17 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
         row["h_travel_km"] = 0.0
         row["a_travel_km"] = haversine_km(ac, hc) if hc and ac else 0.0
         for prefix, team in (("h_", home), ("a_", away)):
-            if team in last_date:
-                delta = (datetime.fromisoformat(datestr).date()
-                         - datetime.fromisoformat(last_date[team]).date()).days
-                row[f"{prefix}rest_days"] = min(delta, 30)
-            else:
-                row[f"{prefix}rest_days"] = 7
+            row[f"{prefix}rest_days"] = compute_rest_days(team, datestr, last_date, euro)
         for prefix, team in (("h_", home), ("a_", away)):
-            played = [e for e in euro.get(team, []) if e["date"] < datestr]
+            played = [e for e in euro.get(team, []) if str(e.get("date", ""))[:10] < datestr]
             if played:
                 last = played[-1]
-                gap = (datetime.fromisoformat(datestr).date()
-                       - datetime.fromisoformat(last["date"]).date()).days
+                gap = (date.fromisoformat(datestr)
+                       - date.fromisoformat(str(last["date"])[:10])).days
                 row[f"{prefix}euro_days_since"] = gap
                 row[f"{prefix}euro_midweek"] = 1 if gap <= 4 else 0
                 season_euro = [e for e in played
-                                if e["date"] >= f"{row['season']}-07-01"]
+                                if str(e.get("date", ""))[:10] >= f"{row['season']}-07-01"]
                 row[f"{prefix}euro_ppg"] = (
                     sum(e["pts"] for e in season_euro) / len(season_euro))
                 row[f"{prefix}euro_gd"] = sum(e["gf"] - e["ga"] for e in season_euro)
@@ -491,11 +525,13 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
         return row
 
     for _, fx in df.iterrows():
-        datestr = fx["date"].date().isoformat()
+        datestr = str(fx["date"])[:10]
         home, away = fx["home"], fx["away"]
         if fx["status"] != "finished":
             if mode == "predict":
                 rows.append(feature_row(fx, home, away, datestr))
+                last_date[home] = datestr
+                last_date[away] = datestr
             continue
         if mode == "train":
             rows.append(feature_row(fx, home, away, datestr))
