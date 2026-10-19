@@ -182,3 +182,17 @@ def test_predict_upcoming_injury_scaling():
         assert r["xg_home"] >= 0.0
         assert r["xg_away"] >= 0.0
 
+
+def test_score_normalizes_and_silences_warning():
+    """Unnormalized probability vectors must be normalized without sklearn UserWarning."""
+    import warnings
+    from etl.fit import _score
+    unnormalized_probs = np.array([[0.2, 0.3, 0.7], [0.1, 0.1, 0.6]])  # sums to 1.2 and 0.8
+    y = np.array([2, 0])
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")  # Any warning will raise
+        res = _score(unnormalized_probs, y)
+    assert res["logloss"] > 0.0
+    assert 0.0 <= res["accuracy"] <= 1.0
+
+

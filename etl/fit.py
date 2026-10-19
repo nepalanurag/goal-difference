@@ -200,6 +200,8 @@ def select_dc_xi(df: pd.DataFrame,
             m = DixonColesModel()
             if m.fit(df.iloc[tr], xi=xi):
                 p = m.predict_proba(df.iloc[te])
+                p = np.clip(p, EPS, 1.0 - EPS)
+                p = p / p.sum(axis=1, keepdims=True)
                 scores[xi].append(log_loss(y[te], p, labels=LABELS))
     mean = {xi: float(np.mean(v)) for xi, v in scores.items() if v}
     if not mean:
@@ -413,11 +415,13 @@ METRICS = ("logloss", "brier", "rps", "accuracy")
 
 
 def _score(probs: np.ndarray, yte: np.ndarray) -> dict[str, float]:
+    p = np.clip(probs, EPS, 1.0 - EPS)
+    p = p / p.sum(axis=1, keepdims=True)
     return {
-        "logloss": float(log_loss(yte, probs, labels=LABELS)),
-        "brier": brier_score_3(yte, probs),
-        "rps": ranked_probability_score(yte, probs),
-        "accuracy": float(accuracy_score(yte, probs.argmax(axis=1))),
+        "logloss": float(log_loss(yte, p, labels=LABELS)),
+        "brier": brier_score_3(yte, p),
+        "rps": ranked_probability_score(yte, p),
+        "accuracy": float(accuracy_score(yte, p.argmax(axis=1))),
     }
 
 
@@ -463,12 +467,14 @@ def walkforward(league: str, df: pd.DataFrame,
         for kind in ML_CONFIGS:
             clf = make_ml(kind)
             clf.fit(Xtr, y[tr], sample_weight=w)
-            p_ml[kind] = np.clip(clf.predict_proba(Xte), EPS, 1 - EPS)
+            pred = np.clip(clf.predict_proba(Xte), EPS, 1 - EPS)
+            p_ml[kind] = pred / pred.sum(axis=1, keepdims=True)
 
         if use_pam_compare:
             clf_pam = make_ml("xgb_tiny")
             clf_pam.fit(Xtr[pam_cols], y[tr], sample_weight=w)
             p_pam = np.clip(clf_pam.predict_proba(Xte[pam_cols]), EPS, 1 - EPS)
+            p_pam = p_pam / p_pam.sum(axis=1, keepdims=True)
             pam_ll.append(float(log_loss(yte, p_pam, labels=LABELS)))
 
         rates = np.bincount(y[tr], minlength=3) / len(tr)
@@ -477,6 +483,7 @@ def walkforward(league: str, df: pd.DataFrame,
         # Ensemble: GBM-dominant blend. The best ML config on the train
         # folds so far is unknown; use xgb_tiny (most regularized).
         p_ens = blend_ensemble(p_poisson, p_ml["xgb_tiny"])
+        p_ens = p_ens / p_ens.sum(axis=1, keepdims=True)
         cal_y.append(yte)
         cal_p.append(p_ens)
 
@@ -627,19 +634,24 @@ def _fit_league_body(league: str, df: pd.DataFrame, feature_cols: list[str],
     pam = load_pam_selection(league, feature_cols)
     pam_cols = pam["selected_features"] if pam else None
 
+    params_path = settings.data_dir / f"params_{league}.json"
+    existing_params = json.loads(params_path.read_text()) if params_path.exists() else {}
+
     if skip_walkforward:
-        xi, wf, calib = 0.0018, {}, None
+        xi = float((existing_params.get("dc") or {}).get("xi", 0.0018))
+        wf = existing_params.get("walkforward", {})
+        calib = None
     else:
         xi = select_dc_xi(df)
         wf, calib = walkforward(league, df, feature_cols, xi=xi,
                                 pam_cols=pam_cols)
-    chosen_ml = wf.get("chosen_ml", "xgb_tiny") if wf else "xgb_tiny"
+    chosen_ml = wf.get("chosen_ml", existing_params.get("chosen_ml", "xgb_tiny"))
 
     # Honest call: PAM features train the final model only if they beat the
     # full set walk-forward (xgb_tiny log-loss). Otherwise the full set
     # stays and the comparison is recorded in params.
-    pam_compare = wf.get("pam_compare") if wf else None
-    use_pam = bool(pam_compare and pam_compare["pam_wins"])
+    pam_compare = wf.get("pam_compare") if wf else existing_params.get("feature_mask", {}).get("pam_compare")
+    use_pam = bool(pam_compare and pam_compare.get("pam_wins"))
     if pam_cols and not use_pam:
         log.warning("pam_not_better_fallback_full", league=league,
                     **({k: round(v, 4) for k, v in pam_compare.items()
@@ -690,8 +702,8 @@ def _fit_league_body(league: str, df: pd.DataFrame, feature_cols: list[str],
         "feature_mask": {
             "source": "pam" if use_pam else "full",
             "n_full_features": len(feature_cols),
-            "pam_selected_groups": pam["selected_groups"] if pam else None,
-            "pam_jaccard_stability": pam.get("jaccard_stability") if pam else None,
+            "pam_selected_groups": pam["selected_groups"] if pam else existing_params.get("feature_mask", {}).get("pam_selected_groups"),
+            "pam_jaccard_stability": pam.get("jaccard_stability") if pam else existing_params.get("feature_mask", {}).get("pam_jaccard_stability"),
             "pam_compare": pam_compare,
         },
         "dc": dc_params,

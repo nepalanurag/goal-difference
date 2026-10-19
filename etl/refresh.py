@@ -38,7 +38,7 @@ PIPELINE = [
     (["h2h"], "h2h"),
     (["players"], "players"),
     (["team_news"], "team_news"),
-    (["fit"], "fit"),
+    (["fit", "--skip-walkforward"], "fit"),
     (["simulate"], "simulate"),
     (["ai_forecaster"], "ai_forecaster"),  # appends to ledgers + scores + memo
     (["build_site"], "build_site"),

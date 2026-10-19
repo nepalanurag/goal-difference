@@ -130,6 +130,8 @@ def short_walkforward_poisson(df: pd.DataFrame, feature_cols: list[str],
         pm = fit.PoissonModel().fit(X.iloc[tr], yh[tr], ya[tr],
                                     sample_weight=w)
         probs = pm.predict_proba(X.iloc[te])
+        probs = np.clip(probs, 1e-15, 1.0 - 1e-15)
+        probs = probs / probs.sum(axis=1, keepdims=True)
         losses.append(log_loss(y[te], probs, labels=LABELS))
     return float(np.mean(losses))
 
