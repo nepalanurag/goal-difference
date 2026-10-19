@@ -50,7 +50,7 @@ COMPLETED_SEASONS = ("2023", "2024")
 SEASONS = ("2023", "2024", "2025", "2026")
 STATUSES = ("finished", "scheduled")
 PROVENANCES = ("api_football", "csv_download", "csv_cached", "fpl_api",
-               "schedule_reconstructed")
+               "schedule_reconstructed", "espn")
 
 schema = DataFrameSchema(
     {

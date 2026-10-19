@@ -135,7 +135,7 @@ def init_ops_db(path: str | Path | None = None) -> Path:
     """Create data/ops.sqlite and apply any pending migrations (idempotent)."""
     path = Path(path) if path else ops_db_path()
     path.parent.mkdir(parents=True, exist_ok=True)
-    con = sqlite3.connect(path)
+    con = sqlite3.connect(path, timeout=30.0)
     try:
         con.execute(
             "CREATE TABLE IF NOT EXISTS schema_migrations "
@@ -160,7 +160,7 @@ def init_ops_db(path: str | Path | None = None) -> Path:
 def start_ingest_run(notes: str = "", path: str | Path | None = None) -> str:
     """Record the start of an ingest run. Returns the run id."""
     run_id = f"refresh-{datetime.now(timezone.utc):%Y%m%dT%H%M%S}-{uuid.uuid4().hex[:6]}"
-    con = sqlite3.connect(Path(path) if path else ops_db_path())
+    con = sqlite3.connect(Path(path) if path else ops_db_path(), timeout=30.0)
     try:
         con.execute(
             "INSERT INTO ingest_runs (run_id, started_at, status, notes)"
@@ -178,7 +178,7 @@ def finish_ingest_run(run_id: str, status: str, rows_in: int | None = None,
                       rows_out: int | None = None, notes: str = "",
                       path: str | Path | None = None) -> None:
     """Mark an ingest run finished (or failed)."""
-    con = sqlite3.connect(Path(path) if path else ops_db_path())
+    con = sqlite3.connect(Path(path) if path else ops_db_path(), timeout=30.0)
     try:
         con.execute(
             "UPDATE ingest_runs SET finished_at = ?, status = ?,"
@@ -198,7 +198,7 @@ def start_run(league: str, params: dict, seed: int | None,
               path: str | Path | None = None) -> str:
     """Record the start of a training run. Returns the run id."""
     run_id = f"fit-{datetime.now(timezone.utc):%Y%m%dT%H%M%S}-{uuid.uuid4().hex[:6]}"
-    con = sqlite3.connect(Path(path) if path else ops_db_path())
+    con = sqlite3.connect(Path(path) if path else ops_db_path(), timeout=30.0)
     try:
         con.execute(
             "INSERT INTO runs (run_id, git_sha, started_at, league,"
@@ -217,7 +217,7 @@ def start_run(league: str, params: dict, seed: int | None,
 def finish_run(run_id: str, status: str,
                path: str | Path | None = None) -> None:
     """Mark a training run finished (or failed)."""
-    con = sqlite3.connect(Path(path) if path else ops_db_path())
+    con = sqlite3.connect(Path(path) if path else ops_db_path(), timeout=30.0)
     try:
         con.execute(
             "UPDATE runs SET finished_at = ?, status = ? WHERE run_id = ?",
@@ -235,7 +235,7 @@ def log_evaluation(run_id: str, model_version: str, league: str,
                    metric_value: float,
                    path: str | Path | None = None) -> None:
     """Write one metric value to the evaluations table."""
-    con = sqlite3.connect(Path(path) if path else ops_db_path())
+    con = sqlite3.connect(Path(path) if path else ops_db_path(), timeout=30.0)
     try:
         con.execute(
             "INSERT INTO evaluations (run_id, model_version, league, protocol,"
@@ -255,7 +255,7 @@ def upsert_model_registry(model_version: str, league: str,
                           path: str | Path | None = None) -> None:
     """Insert or refresh a model_registry row. Re-fitting on the same day
     reuses the date-based version and just refreshes the row."""
-    con = sqlite3.connect(Path(path) if path else ops_db_path())
+    con = sqlite3.connect(Path(path) if path else ops_db_path(), timeout=30.0)
     try:
         con.execute(
             "INSERT INTO model_registry (model_version, league, git_sha,"

@@ -25,7 +25,7 @@ def _real_feature_cols() -> list[str]:
 
 def test_assign_group_covers_every_real_feature():
     cols = _real_feature_cols()
-    assert len(cols) == 74
+    assert len(cols) == 80
     groups = feature_groups(cols)
     assert set(groups) <= set(GROUP_ORDER)
     flat = [c for cs in groups.values() for c in cs]
@@ -45,8 +45,11 @@ def test_assign_group_spot_checks():
     assert assign_group("a_travel_km") == "rest_travel"
     assert assign_group("h_euro_midweek") == "european"
     assert assign_group("a_key_absences") == "absences"
+    assert assign_group("h_injury_drag_att") == "absences"
+    assert assign_group("injury_drag_diff") == "absences"
     assert assign_group("h_elo") == "elo"
     assert assign_group("elo_diff") == "elo"
+    assert assign_group("effective_elo_diff") == "elo"
     assert assign_group("odds_p_home") == "odds"
     assert assign_group("odds_available") == "odds"
 

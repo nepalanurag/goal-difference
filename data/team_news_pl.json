@@ -2,8 +2,8 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-18T17:22:40.199728+00:00",
- "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season.",
+ "fetched_at": "2026-10-19T00:35:27.196932+00:00",
+ "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
    "out": [
@@ -13,7 +13,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Back injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Piero Hincapié",
@@ -21,7 +22,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Ankle injury - Expected back 24 Oct",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Gabriel Martinelli Silva",
@@ -29,7 +31,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Al Hilal permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Ethan Nwaneri",
@@ -37,7 +40,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Borussia Dortmund on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Fábio Ferreira Vieira",
@@ -45,7 +49,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Hamburger SV permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Reiss Nelson",
@@ -53,7 +58,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "has departed the club as a free agent.",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Gabriel Fernando de Jesus",
@@ -61,7 +67,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined FC Barcelona permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Christos Tzolis",
@@ -69,7 +76,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Expected back 1 Nov",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "MID"
     }
    ],
    "doubtful": [
@@ -79,10 +87,13 @@
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     }
    ],
-   "key_absences": 1
+   "key_absences": 1,
+   "drag_att": 0.0759,
+   "drag_def": 0.0
   },
   "Aston Villa": {
    "out": [
@@ -92,7 +103,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Paris Saint-Germain permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Ian Maatsen",
@@ -100,7 +112,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Ankle injury - Unknown return date",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "DEF"
     },
     {
      "player": "Kosta Nedeljkovic",
@@ -108,7 +121,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Rangers on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Leon Bailey",
@@ -116,7 +130,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Olympiakos permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Amadou Onana",
@@ -124,7 +139,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Samuel Iling-Junior",
@@ -132,7 +148,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Bolton Wanderers on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Ollie Watkins",
@@ -140,7 +157,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Al Hilal permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Matteo Ruggeri",
@@ -148,7 +166,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Luka Lynch",
@@ -156,7 +175,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Oxford United on loan until January",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     }
    ],
    "doubtful": [
@@ -166,7 +186,8 @@
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "MID"
     },
     {
      "player": "George Hemmings",
@@ -174,7 +195,8 @@
      "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Knee injury - 75% chance of playing",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "MID"
     },
     {
      "player": "Johan Manzambi",
@@ -182,7 +204,8 @@
      "chance_this_round": 100,
      "chance_next_round": 75,
      "news": "Calf injury - 75% chance of playing",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Brian Madjo",
@@ -190,7 +213,8 @@
      "chance_this_round": 50,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Aaron Wan-Bissaka",
@@ -198,10 +222,13 @@
      "chance_this_round": null,
      "chance_next_round": 75,
      "news": "Hamstring injury - 75% chance of playing",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     }
    ],
-   "key_absences": 3
+   "key_absences": 3,
+   "drag_att": 0.0179,
+   "drag_def": 0.0899
   },
   "Bournemouth": {
    "out": [
@@ -211,7 +238,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined MK Dons permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Veljko Milosavljevic",
@@ -219,7 +247,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Thigh injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Julián Araujo Zúñiga",
@@ -227,7 +256,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Thigh injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Alex Scott",
@@ -235,7 +265,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Thigh injury - Unknown return date",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "MID"
     },
     {
      "player": "Junior Kroupi",
@@ -243,7 +274,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Foot injury - Expected back 7 Nov",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Enes Ünal",
@@ -251,11 +283,14 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Getafe permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     }
    ],
    "doubtful": [],
-   "key_absences": 1
+   "key_absences": 1,
+   "drag_att": 0.1295,
+   "drag_def": 0.0
   },
   "Brentford": {
    "out": [
@@ -265,7 +300,8 @@
      "chance_this_round": null,
      "chance_next_round": 0,
      "news": "Suspended until 31 Oct",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "MID"
     },
     {
      "player": "Antoni Milambo",
@@ -273,7 +309,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Yehor Yarmoliuk",
@@ -281,7 +318,8 @@
      "chance_this_round": null,
      "chance_next_round": 0,
      "news": "Suspended until 23 Nov",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "MID"
     },
     {
      "player": "Josh Dasilva",
@@ -289,7 +327,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Kaye Furo",
@@ -297,7 +336,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Unspecified injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     }
    ],
    "doubtful": [
@@ -307,7 +347,8 @@
      "chance_this_round": 50,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Jannik Schuster",
@@ -315,7 +356,8 @@
      "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Ankle injury - 75% chance of playing",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "DEF"
     },
     {
      "player": "Kevin Schade",
@@ -323,7 +365,8 @@
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "MID"
     },
     {
      "player": "Mikkel Damsgaard",
@@ -331,10 +374,13 @@
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     }
    ],
-   "key_absences": 4
+   "key_absences": 4,
+   "drag_att": 0.2151,
+   "drag_def": 0.0134
   },
   "Brighton": {
    "out": [
@@ -344,7 +390,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Burnley permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Mitoma Kaoru",
@@ -352,7 +399,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Expected back 31 Oct",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Yankuba Minteh",
@@ -360,7 +408,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Leg injury - Expected back 28 Nov",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Facundo Buonanotte",
@@ -368,7 +417,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Elche on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Mats Wieffer",
@@ -376,7 +426,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Harry Howell",
@@ -384,7 +435,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Leicester City on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Tom Watson",
@@ -392,7 +444,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Leicester City on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Zadok Yohanna",
@@ -400,7 +453,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Unspecified injury - Expected back 31 Oct",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Stefanos Tzimas",
@@ -408,7 +462,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Evan Ferguson",
@@ -416,7 +471,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Ankle injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Amario Cozier-Duberry",
@@ -424,7 +480,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Middlesbrough on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Femi Azeez",
@@ -432,7 +489,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Expected back 31 Oct",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     }
    ],
    "doubtful": [
@@ -442,10 +500,13 @@
      "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Hamstring injury - 75% chance of playing",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     }
    ],
-   "key_absences": 0
+   "key_absences": 0,
+   "drag_att": 0.0,
+   "drag_def": 0.0
   },
   "Chelsea": {
    "out": [
@@ -455,7 +516,8 @@
      "chance_this_round": null,
      "chance_next_round": 0,
      "news": "Head injury - Unknown return date",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "GK"
     },
     {
      "player": "Robert Lynch Sánchez",
@@ -463,7 +525,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Como on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Filip Jörgensen",
@@ -471,7 +534,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined RC Strasbourg on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Reece James",
@@ -479,7 +543,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Trevoh Chalobah",
@@ -487,7 +552,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Como permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Benoît Badiashile Mukinayi",
@@ -495,7 +561,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Napoli on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Mamadou Sarr",
@@ -503,7 +570,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Real Sociedad on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Jamie Bynoe-Gittens",
@@ -511,7 +579,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Ankle injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Dário Luís Essugo",
@@ -519,7 +588,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined RC Strasbourg on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Marc Guiu Paz",
@@ -527,7 +597,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined RB Leipzig permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Emmanuel Emegha",
@@ -535,7 +606,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Expected back 17 Oct",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     }
    ],
    "doubtful": [
@@ -545,7 +617,8 @@
      "chance_this_round": null,
      "chance_next_round": 75,
      "news": "Illness - 75% chance of playing",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Pep Chavarría",
@@ -553,10 +626,13 @@
      "chance_this_round": null,
      "chance_next_round": 75,
      "news": "Unspecified injury - 75% chance of playing",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "DEF"
     }
    ],
-   "key_absences": 2
+   "key_absences": 2,
+   "drag_att": 0.0,
+   "drag_def": 0.2118
   },
   "Coventry City": {
    "out": [
@@ -566,7 +642,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Leyton Orient on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Liam Kitching",
@@ -574,7 +651,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Sheffield United on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Luke Woolfenden",
@@ -582,7 +660,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Miguel Brau",
@@ -590,7 +669,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Academico de Viseu on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Aurèle Amenda",
@@ -598,7 +678,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Calf injury - Unknown return date",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "DEF"
     },
     {
      "player": "Josh Eccles",
@@ -606,7 +687,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Ankle injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Raphael Borges Rodrigues",
@@ -614,7 +696,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Burton Albion on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Kai Andrews",
@@ -622,7 +705,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Oxford United on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Haji Wright",
@@ -630,7 +714,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Thigh injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Jahnoah Markelo",
@@ -638,7 +723,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Shabab Al-Ahli Dubai permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Norman Bassette",
@@ -646,7 +732,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined KVC Westerlo on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     }
    ],
    "doubtful": [
@@ -656,10 +743,13 @@
      "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Hamstring injury - 75% chance of playing",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     }
    ],
-   "key_absences": 1
+   "key_absences": 1,
+   "drag_att": 0.0,
+   "drag_def": 0.0771
   },
   "Crystal Palace": {
    "out": [
@@ -669,7 +759,8 @@
      "chance_this_round": 0,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Borna Sosa",
@@ -677,7 +768,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined FC Cologne on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Chadi Riad Dnanou",
@@ -685,7 +777,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Justin Devenny",
@@ -693,7 +786,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Stoke City permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Romain Esse",
@@ -701,7 +795,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Millwall on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Matheus França de Oliveira",
@@ -709,7 +804,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Alverca on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Jesurun Rak-Sakyi",
@@ -717,7 +813,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "has joined  Kasimpasa on loan for the rest of the seaon.",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Rio Cardines",
@@ -725,7 +822,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Bristol City on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Jean-Philippe Mateta",
@@ -733,7 +831,8 @@
      "chance_this_round": 0,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Christantus Uche",
@@ -741,7 +840,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "has returned to Getafe CF",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Takehiro Tomiyasu",
@@ -749,7 +849,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Calf injury - Expected back 18 Oct",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Ben Chilwell",
@@ -757,7 +858,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Unspecified injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     }
    ],
    "doubtful": [
@@ -767,10 +869,13 @@
      "chance_this_round": 50,
      "chance_next_round": 50,
      "news": "Foot injury - 50% chance of playing",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "GK"
     }
    ],
-   "key_absences": 1
+   "key_absences": 1,
+   "drag_att": 0.0,
+   "drag_def": 0.0247
   },
   "Everton": {
    "out": [
@@ -780,7 +885,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Torino permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Adam Aznou",
@@ -788,7 +894,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Malaga on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Norberto Bercique Gomes Betuncal",
@@ -796,7 +903,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Fiorentina permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     }
    ],
    "doubtful": [
@@ -806,7 +914,8 @@
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "DEF"
     },
     {
      "player": "Vitalii Mykolenko",
@@ -814,10 +923,13 @@
      "chance_this_round": 50,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "DEF"
     }
    ],
-   "key_absences": 2
+   "key_absences": 2,
+   "drag_att": 0.0,
+   "drag_def": 0.0739
   },
   "Fulham": {
    "out": [
@@ -827,7 +939,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined York City on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Ryan Sessegnon",
@@ -835,7 +948,8 @@
      "chance_this_round": 100,
      "chance_next_round": 0,
      "news": "Suspended until 21 Nov",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Luc De Fougerolles",
@@ -843,7 +957,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "has joined  Real Salt Lake on loan for the rest of the seaon.",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     }
    ],
    "doubtful": [
@@ -853,7 +968,8 @@
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "DEF"
     },
     {
      "player": "Tom Cairney",
@@ -861,7 +977,8 @@
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Hugo Larsson",
@@ -869,10 +986,13 @@
      "chance_this_round": 25,
      "chance_next_round": 25,
      "news": "Groin injury - 25% chance of playing",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     }
    ],
-   "key_absences": 1
+   "key_absences": 1,
+   "drag_att": 0.0,
+   "drag_def": 0.0221
   },
   "Hull City": {
    "out": [
@@ -882,7 +1002,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Arm injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Harvey Cartwright",
@@ -890,7 +1011,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Grimsby Town on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Thimothée Lo-Tutala",
@@ -898,7 +1020,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Colchester United on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Charlie Hughes",
@@ -906,7 +1029,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Groin injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Cody Drameh",
@@ -914,7 +1038,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Genoa permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Matty Jacob",
@@ -922,7 +1047,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Newport County on loan until January",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Liam Millar",
@@ -930,7 +1056,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Birmingham on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Eliot Matazo",
@@ -938,7 +1065,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Abu Kamara",
@@ -946,7 +1074,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Portsmouth permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "David Akintola",
@@ -954,7 +1083,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Omonoia FC permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Darko Gyabi",
@@ -962,7 +1092,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Thigh injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Enis Destan",
@@ -970,7 +1101,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Konyaspor permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Mason Burstow",
@@ -978,7 +1110,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Sheffield Wednesday on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Matt Targett",
@@ -986,7 +1119,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Ankle injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Nobel Mendy",
@@ -994,7 +1128,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Groin injury - Expected back 31 Oct",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "DEF"
     },
     {
      "player": "Lucas Gourna-Douath",
@@ -1002,7 +1137,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Calf injury - Expected back 25 Oct",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Mohamed-Ali Cho",
@@ -1010,7 +1146,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Unspecified injury - Expected back 25 Oct",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Ilyas Ansah",
@@ -1018,7 +1155,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Back injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     }
    ],
    "doubtful": [
@@ -1028,10 +1166,13 @@
      "chance_this_round": null,
      "chance_next_round": 50,
      "news": "Achilles injury - 50% chance of playing",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     }
    ],
-   "key_absences": 1
+   "key_absences": 1,
+   "drag_att": 0.0,
+   "drag_def": 0.0609
   },
   "Ipswich Town": {
    "out": [
@@ -1041,7 +1182,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Stoke City on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Wes Burns",
@@ -1049,7 +1191,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Leicester City permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Chiedozie Ogbene",
@@ -1057,7 +1200,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Lincoln City on loan until January",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "George Hirst",
@@ -1065,7 +1209,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Stoke City permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Sam Szmodics",
@@ -1073,7 +1218,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Derby County on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Ali Al-Hamadi",
@@ -1081,7 +1227,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Sheffield Wednesday on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Kayne van Oevelen",
@@ -1089,7 +1236,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Valencia on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Cameron Humphreys",
@@ -1097,11 +1245,14 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Huddersfield Town on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     }
    ],
    "doubtful": [],
-   "key_absences": 0
+   "key_absences": 0,
+   "drag_att": 0.0,
+   "drag_def": 0.0
   },
   "Leeds": {
    "out": [
@@ -1111,7 +1262,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Torino on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Joe Rodon",
@@ -1119,7 +1271,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Expected back 21 Nov",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Sebastiaan Bornauw",
@@ -1127,7 +1280,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Hamburg SV on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Wilfried Gnonto",
@@ -1135,7 +1289,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined ACF Fiorentina on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Jack Harrison",
@@ -1143,7 +1298,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined New England Revolution permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Joël Piroe",
@@ -1151,7 +1307,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined West Ham United on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Mateo Joseph Fernández-Regatillo",
@@ -1159,7 +1316,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     }
    ],
    "doubtful": [
@@ -1169,10 +1327,13 @@
      "chance_this_round": 50,
      "chance_next_round": 50,
      "news": "Back injury - 50% chance of playing",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     }
    ],
-   "key_absences": 0
+   "key_absences": 0,
+   "drag_att": 0.0,
+   "drag_def": 0.0
   },
   "Liverpool": {
    "out": [
@@ -1182,7 +1343,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined TSV Hartberg on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Vitezslav Jaros",
@@ -1190,7 +1352,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Jeremie Frimpong",
@@ -1198,7 +1361,8 @@
      "chance_this_round": null,
      "chance_next_round": 0,
      "news": "Hamstring injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Conor Bradley",
@@ -1206,7 +1370,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Giovanni Leoni",
@@ -1214,7 +1379,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Calvin Ramsay",
@@ -1222,7 +1388,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined St Mirren on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Dominik Szoboszlai",
@@ -1230,7 +1397,8 @@
      "chance_this_round": 25,
      "chance_next_round": 0,
      "news": "Hamstring injury - Unknown return date",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "MID"
     },
     {
      "player": "Ryan Gravenberch",
@@ -1238,7 +1406,8 @@
      "chance_this_round": 0,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Curtis Jones",
@@ -1246,7 +1415,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Internazionale permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Stefan Bajčetić Maquieira",
@@ -1254,7 +1424,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Celta Vigo permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Hugo Ekitiké",
@@ -1262,7 +1433,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Achilles injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Harvey Elliott",
@@ -1270,7 +1442,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Valencia on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     }
    ],
    "doubtful": [
@@ -1280,7 +1453,8 @@
      "chance_this_round": 25,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "MID"
     },
     {
      "player": "Alexander Isak",
@@ -1288,10 +1462,13 @@
      "chance_this_round": 25,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "FWD"
     }
    ],
-   "key_absences": 3
+   "key_absences": 3,
+   "drag_att": 0.2831,
+   "drag_def": 0.0
   },
   "Man City": {
    "out": [
@@ -1301,7 +1478,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Burnley on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Rodrigo 'Rodri' Hernandez Cascante",
@@ -1309,7 +1487,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Barcelona permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Tijjani Reijnders",
@@ -1317,7 +1496,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Al Qadsiah permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Claudio Echeverri",
@@ -1325,7 +1505,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Benfica on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Kalvin Phillips",
@@ -1333,7 +1514,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Sheffield United on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Divine Mukasa",
@@ -1341,7 +1523,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "has joined West Ham on loan for the rest of the seaon.",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Jeremy Monga",
@@ -1349,7 +1532,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Swansea City on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     }
    ],
    "doubtful": [
@@ -1359,10 +1543,13 @@
      "chance_this_round": 100,
      "chance_next_round": 75,
      "news": "Knee injury - 75% chance of playing",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "MID"
     }
    ],
-   "key_absences": 1
+   "key_absences": 1,
+   "drag_att": 0.0,
+   "drag_def": 0.0
   },
   "Man United": {
    "out": [
@@ -1372,7 +1559,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Celta Vigo on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Tom Heaton",
@@ -1380,7 +1568,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Patrick Dorgu",
@@ -1388,7 +1577,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Expected back 25 Oct",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Tyler Fredricson",
@@ -1396,7 +1586,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Lausanne-Sport permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Manuel Ugarte Ribeiro",
@@ -1404,7 +1595,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Toby Collyer",
@@ -1412,7 +1604,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined West Brom permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Benjamin Sesko",
@@ -1420,7 +1613,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Shin injury - Expected back 18 Oct",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Chido Obi",
@@ -1428,7 +1622,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Willem II on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     }
    ],
    "doubtful": [
@@ -1438,7 +1633,8 @@
      "chance_this_round": 100,
      "chance_next_round": 75,
      "news": "Thigh injury - 75% chance of playing",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "DEF"
     },
     {
      "player": "Noussair Mazraoui",
@@ -1446,7 +1642,8 @@
      "chance_this_round": 25,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Luke Shaw",
@@ -1454,7 +1651,8 @@
      "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Unspecified injury - 75% chance of playing",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "DEF"
     },
     {
      "player": "Kobbie Mainoo",
@@ -1462,10 +1660,13 @@
      "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Unspecified injury - 75% chance of playing",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "MID"
     }
    ],
-   "key_absences": 3
+   "key_absences": 3,
+   "drag_att": 0.0168,
+   "drag_def": 0.0185
   },
   "Newcastle": {
    "out": [
@@ -1475,7 +1676,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Tino Livramento",
@@ -1483,7 +1685,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Unspecified injury - Expected back 2 Nov",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Alex Murphy",
@@ -1491,7 +1694,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined FC Kaiserslautern on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Anthony Elanga",
@@ -1499,7 +1703,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Unspecified injury - Expected back 25 Oct",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Jacob Ramsey",
@@ -1507,7 +1712,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Thigh injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Nick Woltemade",
@@ -1515,7 +1721,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Juventus on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Sean Neave",
@@ -1523,7 +1730,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Wolves on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Leo Shahar",
@@ -1531,7 +1739,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "has joined Arouca on loan for the rest of the seaon.",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     }
    ],
    "doubtful": [
@@ -1541,10 +1750,13 @@
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     }
    ],
-   "key_absences": 0
+   "key_absences": 0,
+   "drag_att": 0.0,
+   "drag_def": 0.0
   },
   "Nott'm Forest": {
    "out": [
@@ -1554,7 +1766,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined West Ham on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Nicolò Savona",
@@ -1562,7 +1775,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Zach Abbott",
@@ -1570,7 +1784,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Southampton on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Tyler Bindon",
@@ -1578,7 +1793,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Charlton Athletic on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Omari Hutchinson",
@@ -1586,7 +1802,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined AC Milan on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Dilane Bakwa",
@@ -1594,7 +1811,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Lille on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Igor Jesus Maciel da Cruz",
@@ -1602,7 +1820,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Calf injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     }
    ],
    "doubtful": [
@@ -1612,7 +1831,8 @@
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Morgan Gibbs-White",
@@ -1620,10 +1840,13 @@
      "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Muscular injury - 75% chance of playing",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "MID"
     }
    ],
-   "key_absences": 1
+   "key_absences": 1,
+   "drag_att": 0.0392,
+   "drag_def": 0.0118
   },
   "Sunderland": {
    "out": [
@@ -1633,7 +1856,8 @@
      "chance_this_round": null,
      "chance_next_round": 0,
      "news": "Suspended until 31 Oct",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Anthony Patterson",
@@ -1641,7 +1865,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Wrexham permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Daniel Ballard",
@@ -1649,7 +1874,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Unknown return date",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "DEF"
     },
     {
      "player": "Jenson Seelt",
@@ -1657,7 +1883,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Swansea City on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Leo Fuhr Hjelde",
@@ -1665,7 +1892,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined KV Mechelen on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Arthur Masuaku",
@@ -1673,7 +1901,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Konyaspor permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Simon Adingra",
@@ -1681,7 +1910,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Ajax on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Romaine Mundle",
@@ -1689,7 +1919,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     }
    ],
    "doubtful": [
@@ -1699,7 +1930,8 @@
      "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Groin injury - 75% chance of playing",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "DEF"
     },
     {
      "player": "Wilson Isidor",
@@ -1707,10 +1939,13 @@
      "chance_this_round": 50,
      "chance_next_round": 50,
      "news": "Knock - 50% chance of playing",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     }
    ],
-   "key_absences": 2
+   "key_absences": 2,
+   "drag_att": 0.0,
+   "drag_def": 0.1676
   },
   "Tottenham": {
    "out": [
@@ -1720,7 +1955,8 @@
      "chance_this_round": 100,
      "chance_next_round": 0,
      "news": "Muscular injury - Expected back 7 Nov",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "MID"
     },
     {
      "player": "Guglielmo Vicario",
@@ -1728,7 +1964,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Juventus on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "GK"
     },
     {
      "player": "Pedro Porro Sauceda",
@@ -1736,7 +1973,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Expected back 24 Oct",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Cristian Romero",
@@ -1744,7 +1982,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Atletico Madrid permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Djed Spence",
@@ -1752,7 +1991,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Internazionale permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Ashley Phillips",
@@ -1760,7 +2000,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Middlesbrough permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "João Victor de Souza Menezes",
@@ -1768,7 +2009,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined FC Porto on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "DEF"
     },
     {
      "player": "Xavi Simons",
@@ -1776,7 +2018,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Rodrigo Bentancur",
@@ -1784,7 +2027,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Suspended until 7 Nov",
-     "regular_starter": true
+     "regular_starter": true,
+     "position": "MID"
     },
     {
      "player": "Wilson Odobert",
@@ -1792,7 +2036,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Pape Matar Sarr",
@@ -1800,7 +2045,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Juventus on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Lucas Bergvall",
@@ -1808,7 +2054,8 @@
      "chance_this_round": null,
      "chance_next_round": 0,
      "news": "Knee injury - Expected back 7 Nov",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Dejan Kulusevski",
@@ -1816,7 +2063,8 @@
      "chance_this_round": 0,
      "chance_next_round": 75,
      "news": "Knee injury - 75% chance of playing",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Mikey Moore",
@@ -1824,7 +2072,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined FC Köln on loan for the rest of the season",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Richarlison de Andrade",
@@ -1832,7 +2081,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "not included in squad.",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Dane Scarlett",
@@ -1840,7 +2090,8 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Leyton Orient permanently",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "FWD"
     },
     {
      "player": "Mykhailo Mudryk",
@@ -1848,11 +2099,14 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Ankle injury - Unknown return date",
-     "regular_starter": false
+     "regular_starter": false,
+     "position": "MID"
     }
    ],
    "doubtful": [],
-   "key_absences": 2
+   "key_absences": 2,
+   "drag_att": 0.0986,
+   "drag_def": 0.0
   }
  }
 }

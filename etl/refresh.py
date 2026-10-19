@@ -80,10 +80,8 @@ def _fixture_row_total() -> int:
 
 def _refresh(args: argparse.Namespace) -> tuple[int, str]:
     """Run the pipeline body. Returns (exit_code, notes)."""
-    # Steps 1-3: fresh pulls (extract handles FPL + CSVs + European + lineups;
-    # players/team_news refresh their keyless sources).
-    for mod in (["extract"], ["players"], ["team_news"]):
-        run_module(mod)
+    # Pull latest fixtures.
+    run_module(["extract"])
 
     new_hash = finished_hash()
     state_path = settings.data_dir / "last_refresh.json"
@@ -94,7 +92,9 @@ def _refresh(args: argparse.Namespace) -> tuple[int, str]:
 
     log.info("refresh_changed", old_hash=old.get("finished_hash"),
              new_hash=new_hash)
-    for step in PIPELINE[3:]:  # extract already ran above
+    # Full rebuild in dependency order:
+    # validate -> features -> h2h -> players -> team_news -> fit -> simulate -> ai_forecaster -> build_site
+    for step in PIPELINE[1:]:
         run_module(step[0])
 
     state_path.write_text(json.dumps({

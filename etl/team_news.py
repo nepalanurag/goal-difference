@@ -39,6 +39,7 @@ from .team_names import canonicalize
 log = get_logger(__name__)
 
 SEASON_LABEL = "2026/27"
+FPL_POSITIONS = {1: "GK", 2: "DEF", 3: "MID", 4: "FWD"}
 
 
 def _now_iso() -> str:
@@ -83,31 +84,73 @@ def build_team_news_pl(bootstrap: dict) -> dict:
     for team in sorted(by_team):
         squad = by_team[team]
         # Regular starters: top-11 by minutes this season.
-        starters = {el["id"] for el in
-                    sorted(squad, key=lambda e: e.get("minutes") or 0,
-                           reverse=True)[:11]}
+        sorted_squad = sorted(squad, key=lambda e: e.get("minutes") or 0,
+                              reverse=True)
+        starters = {el["id"] for el in sorted_squad[:11]}
+        starter_mins = sum(el.get("minutes") or 0 for el in sorted_squad[:11]) or 1.0
+        team_goals = sum(el.get("goals_scored") or 0 for el in squad) or 1.0
+        team_assists = sum(el.get("assists") or 0 for el in squad) or 1.0
+
         out, doubtful = [], []
+        drag_att = 0.0
+        drag_def = 0.0
+
         for el in squad:
             flag = _flagged(el)
             if flag is None:
                 continue
             name = f"{el.get('first_name', '')} {el.get('second_name', '')}".strip()
+            is_starter = el.get("id") in starters
+            pos = FPL_POSITIONS.get(el.get("element_type"), "?")
             entry = {
                 "player": name,
                 "status": el.get("status"),
                 "chance_this_round": el.get("chance_of_playing_this_round"),
                 "chance_next_round": el.get("chance_of_playing_next_round"),
                 "news": (el.get("news") or "").strip(),
-                "regular_starter": el.get("id") in starters,
+                "regular_starter": is_starter,
+                "position": pos,
             }
             (out if flag == "out" else doubtful).append(entry)
+
+            # Absence probability q in [0, 1]
+            chance = el.get("chance_of_playing_this_round")
+            if flag == "out" or chance == 0:
+                q = 1.0
+            elif chance is not None:
+                try:
+                    q = max(0.0, 1.0 - (float(chance) / 100.0))
+                except (ValueError, TypeError):
+                    q = 0.5
+            else:
+                q = 0.5
+
+            mins = el.get("minutes") or 0
+            m_share = min(0.15, mins / starter_mins)
+            goals = el.get("goals_scored") or 0
+            assists = el.get("assists") or 0
+            goal_share = (goals + assists) / (team_goals + team_assists)
+
+            if pos in ("MID", "FWD") and (is_starter or mins >= 270):
+                p_drag_att = q * (0.6 * m_share + 0.4 * min(0.25, goal_share))
+                drag_att += p_drag_att
+            if pos in ("GK", "DEF") and (is_starter or mins >= 270):
+                p_drag_def = q * m_share
+                drag_def += p_drag_def
+
         key_absences = sum(1 for e in out + doubtful if e["regular_starter"])
         total_out += len(out)
         total_doubtful += len(doubtful)
+        # Cap drag factors to maximum plausible values [0.0, 0.40]
+        drag_att = float(min(0.40, max(0.0, drag_att)))
+        drag_def = float(min(0.40, max(0.0, drag_def)))
+
         team_news[team] = {
             "out": out,
             "doubtful": doubtful,
             "key_absences": key_absences,
+            "drag_att": round(drag_att, 4),
+            "drag_def": round(drag_def, 4),
         }
 
     return {
@@ -118,7 +161,8 @@ def build_team_news_pl(bootstrap: dict) -> dict:
         "notes": ("Injury and suspension flags come from FPL status, "
                   "chance-of-playing and news fields. key_absences counts "
                   "flagged players who are in their team's top-11 by "
-                  "minutes this season."),
+                  "minutes this season. drag_att and drag_def estimate "
+                  "Value-Over-Replacement attacking and defensive drop-offs."),
         "teams": team_news,
     }
 

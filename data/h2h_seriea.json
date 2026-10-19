@@ -1050,6 +1050,14 @@
   "Atalanta vs Milan": {
     "last5": [
       {
+        "date": "2026-10-18",
+        "venue": "A",
+        "home": "Milan",
+        "away": "Atalanta",
+        "home_goals": 3,
+        "away_goals": 2
+      },
+      {
         "date": "2026-05-10",
         "venue": "A",
         "home": "Milan",
@@ -1079,25 +1087,25 @@
         "home": "Atalanta",
         "away": "Milan",
         "home_goals": 2,
-        "away_goals": 1
-      },
-      {
-        "date": "2024-02-25",
-        "venue": "A",
-        "home": "Milan",
-        "away": "Atalanta",
-        "home_goals": 1,
         "away_goals": 1
       }
     ],
     "alltime": {
       "w": 4,
       "d": 2,
-      "l": 0
+      "l": 1
     }
   },
   "Milan vs Atalanta": {
     "last5": [
+      {
+        "date": "2026-10-18",
+        "venue": "H",
+        "home": "Milan",
+        "away": "Atalanta",
+        "home_goals": 3,
+        "away_goals": 2
+      },
       {
         "date": "2026-05-10",
         "venue": "H",
@@ -1129,18 +1137,10 @@
         "away": "Milan",
         "home_goals": 2,
         "away_goals": 1
-      },
-      {
-        "date": "2024-02-25",
-        "venue": "H",
-        "home": "Milan",
-        "away": "Atalanta",
-        "home_goals": 1,
-        "away_goals": 1
       }
     ],
     "alltime": {
-      "w": 0,
+      "w": 1,
       "d": 2,
       "l": 4
     }
@@ -14486,6 +14486,14 @@
   "Juventus vs Lazio": {
     "last5": [
       {
+        "date": "2026-10-18",
+        "venue": "H",
+        "home": "Juventus",
+        "away": "Lazio",
+        "home_goals": 0,
+        "away_goals": 3
+      },
+      {
         "date": "2026-02-08",
         "venue": "H",
         "home": "Juventus",
@@ -14514,14 +14522,6 @@
         "venue": "H",
         "home": "Juventus",
         "away": "Lazio",
-        "home_goals": 1,
-        "away_goals": 0
-      },
-      {
-        "date": "2024-03-30",
-        "venue": "A",
-        "home": "Lazio",
-        "away": "Juventus",
         "home_goals": 1,
         "away_goals": 0
       }
@@ -14529,11 +14529,19 @@
     "alltime": {
       "w": 2,
       "d": 2,
-      "l": 2
+      "l": 3
     }
   },
   "Lazio vs Juventus": {
     "last5": [
+      {
+        "date": "2026-10-18",
+        "venue": "A",
+        "home": "Juventus",
+        "away": "Lazio",
+        "home_goals": 0,
+        "away_goals": 3
+      },
       {
         "date": "2026-02-08",
         "venue": "A",
@@ -14565,18 +14573,10 @@
         "away": "Lazio",
         "home_goals": 1,
         "away_goals": 0
-      },
-      {
-        "date": "2024-03-30",
-        "venue": "H",
-        "home": "Lazio",
-        "away": "Juventus",
-        "home_goals": 1,
-        "away_goals": 0
       }
     ],
     "alltime": {
-      "w": 2,
+      "w": 3,
       "d": 2,
       "l": 2
     }

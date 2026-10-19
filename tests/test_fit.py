@@ -162,3 +162,23 @@ def test_calibration_buckets_cover_all_samples():
         if b["n"]:
             assert 0 <= b["observed_rate"] <= 1
             assert b["lo"] <= b["mean_pred"] <= b["hi"] + 1e-9
+
+
+def test_predict_upcoming_injury_scaling():
+    """Scheduled fixtures must scale xG and recompute probabilities when injury drag is present."""
+    from etl.fit import predict_upcoming
+    df = predict_upcoming("pl")
+    assert not df.empty
+    assert "xg_home" in df.columns
+    assert "xg_away" in df.columns
+    assert "p_home_ens" in df.columns
+    assert "p_away_ens" in df.columns
+    # Probabilities must be valid and sum to ~1.0
+    for _, r in df.head(10).iterrows():
+        tot_ens = r["p_home_ens"] + r["p_draw_ens"] + r["p_away_ens"]
+        assert abs(tot_ens - 1.0) < 1e-4
+        tot_pois = r["p_home_poisson"] + r["p_draw_poisson"] + r["p_away_poisson"]
+        assert abs(tot_pois - 1.0) < 1e-4
+        assert r["xg_home"] >= 0.0
+        assert r["xg_away"] >= 0.0
+

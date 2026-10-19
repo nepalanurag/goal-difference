@@ -95,37 +95,48 @@ def _parse_event(event: dict, competition: str) -> dict | None:
     }
 
 
+def _months_between(start_date: str, end_date: str) -> list[str]:
+    """Return sorted distinct 'YYYYMM' strings spanning [start_date, end_date]."""
+    start = date.fromisoformat(start_date)
+    end = date.fromisoformat(end_date)
+    cur = start.replace(day=1)
+    months = []
+    while cur <= end:
+        months.append(cur.strftime("%Y%m"))
+        cur = (cur.replace(day=28) + timedelta(days=4)).replace(day=1)
+    return months
+
+
 def fetch_espn_uefa(start_date: str, end_date: str) -> list[dict]:
-    """Fetch UEFA fixtures for every day in [start_date, end_date].
+    """Fetch UEFA fixtures for [start_date, end_date] via batch monthly queries.
 
     Dates are YYYY-MM-DD strings. Returns one dict per fixture with keys:
     fixture_id ("espn-<event id>"), date, competition ("UCL"/"UEL"/"UECL"),
     home, away (canonical team names), home_goals, away_goals (int or None),
     status ("finished"/"scheduled"). HTTP failures log a warning and the
-    day/competition is skipped.
+    competition is skipped.
     """
     rows: list[dict] = []
-    start = date.fromisoformat(start_date)
-    end = date.fromisoformat(end_date)
-    day = start
-    while day <= end:
-        stamp = day.strftime("%Y%m%d")
+    seen: set[str] = set()
+    months = _months_between(start_date, end_date)
+    for ym in months:
         for comp, slug in ESPN_SLUGS.items():
-            data = _get_json(f"{_BASE}/{slug}/scoreboard?dates={stamp}")
-            time.sleep(1)
+            data = _get_json(f"{_BASE}/{slug}/scoreboard?dates={ym}&limit=100")
             if not data:
                 continue
             for event in data.get("events", []):
                 row = _parse_event(event, comp)
-                if row and row["date"]:
+                if (row and row["date"] and start_date <= row["date"] <= end_date
+                        and row["fixture_id"] not in seen):
+                    seen.add(row["fixture_id"])
                     rows.append(row)
-        day += timedelta(days=1)
+    rows.sort(key=lambda r: r["date"])
     log.info("espn_uefa_fetched", start=start_date, end=end_date, n=len(rows))
     return rows
 
 
 def fetch_espn_league(league: str, start_date: str, end_date: str) -> list[dict]:
-    """Fetch real fixtures for a domestic league via ESPN scoreboard.
+    """Fetch real fixtures for a domestic league via batch monthly ESPN scoreboard queries.
 
     Dates are YYYY-MM-DD strings. Returns one dict per fixture with keys:
     fixture_id ("espn-<event id>"), date, competition (league slug),
@@ -140,19 +151,19 @@ def fetch_espn_league(league: str, start_date: str, end_date: str) -> list[dict]
         raise ValueError(f"no ESPN slug for league {league}")
     known = CANONICAL.get(league, set())
     rows: list[dict] = []
-    start = date.fromisoformat(start_date)
-    end = date.fromisoformat(end_date)
-    day = start
-    while day <= end:
-        stamp = day.strftime("%Y%m%d")
-        data = _get_json(f"{_BASE}/{slug}/scoreboard?dates={stamp}")
-        time.sleep(1)
+    seen: set[str] = set()
+    months = _months_between(start_date, end_date)
+    for ym in months:
+        data = _get_json(f"{_BASE}/{slug}/scoreboard?dates={ym}&limit=100")
         if data:
             for event in data.get("events", []):
                 row = _parse_event(event, slug)
-                if row and row["date"] and row["home"] in known and row["away"] in known:
+                if (row and row["date"] and start_date <= row["date"] <= end_date
+                        and row["home"] in known and row["away"] in known
+                        and row["fixture_id"] not in seen):
+                    seen.add(row["fixture_id"])
                     rows.append(row)
-        day += timedelta(days=1)
+    rows.sort(key=lambda r: r["date"])
     log.info("espn_league_fetched", league=league, start=start_date,
              end=end_date, n=len(rows))
     return rows

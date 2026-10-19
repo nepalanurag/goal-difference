@@ -194,12 +194,15 @@ def load_devigged_odds(league: str) -> dict[tuple[str, str, str], tuple[float, f
 
 
 # Model feature columns: everything the GBM / GLM trains on.
-EXTRA_MODEL_COLS = ["h2h_edge", "elo_diff",
+EXTRA_MODEL_COLS = ["h2h_edge", "elo_diff", "effective_elo_diff", "injury_drag_diff",
                     "odds_p_home", "odds_p_draw", "odds_p_away", "odds_available"]
 
 # Neutral fill for columns where a column mean is meaningless.
 NEUTRAL_DEFAULTS = {"odds_p_home": 1.0 / 3.0, "odds_p_draw": 1.0 / 3.0,
-                    "odds_p_away": 1.0 / 3.0}
+                    "odds_p_away": 1.0 / 3.0,
+                    "h_injury_drag_att": 0.0, "h_injury_drag_def": 0.0,
+                    "a_injury_drag_att": 0.0, "a_injury_drag_def": 0.0,
+                    "injury_drag_diff": 0.0, "effective_elo_diff": 0.0}
 
 
 def feature_columns(df: pd.DataFrame) -> list[str]:
@@ -297,17 +300,33 @@ def load_european() -> dict[str, list[dict]]:
     return per_team
 
 
-def load_key_absences() -> dict[str, int]:
-    """Key-absence counts per team (Premier League, from team_news_pl.json)."""
-    path = settings.data_dir / "team_news_pl.json"
+def load_injury_drags(league: str) -> dict[str, dict[str, float]]:
+    """Per-team attacking and defensive injury drag factors from team_news_{league}.json.
+
+    Returns dict mapping team -> {"drag_att": float, "drag_def": float, "key_absences": int}.
+    Defaults to 0.0 drag and 0 absences if missing or for leagues without an injury feed.
+    """
+    path = settings.data_dir / f"team_news_{league}.json"
     if not path.exists():
         return {}
     try:
         data = json.loads(path.read_text())
     except json.JSONDecodeError:
         return {}
-    return {team: info.get("key_absences", 0)
-            for team, info in data.get("teams", {}).items()}
+    out: dict[str, dict[str, float]] = {}
+    for team, info in data.get("teams", {}).items():
+        out[team] = {
+            "drag_att": float(info.get("drag_att", 0.0)),
+            "drag_def": float(info.get("drag_def", 0.0)),
+            "key_absences": int(info.get("key_absences", 0)),
+        }
+    return out
+
+
+def load_key_absences() -> dict[str, int]:
+    """Key-absence counts per team (Premier League, from team_news_pl.json)."""
+    drags = load_injury_drags("pl")
+    return {team: int(info.get("key_absences", 0)) for team, info in drags.items()}
 
 
 def load_h2h_dated(league: str) -> dict[str, list[dict]]:
@@ -359,7 +378,7 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
 
     h2h_idx = load_h2h_dated(league)
     euro = load_european()
-    absences = load_key_absences() if league == "pl" else {}
+    injury_drags = load_injury_drags(league)
     odds_map = load_devigged_odds(league)
 
     histories: dict[str, TeamHistory] = {}
@@ -419,7 +438,7 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
                 row[f"{prefix}euro_days_since"] = gap
                 row[f"{prefix}euro_midweek"] = 1 if gap <= 4 else 0
                 season_euro = [e for e in played
-                               if e["date"] >= f"{row['season']}-07-01"]
+                                if e["date"] >= f"{row['season']}-07-01"]
                 row[f"{prefix}euro_ppg"] = (
                     sum(e["pts"] for e in season_euro) / len(season_euro))
                 row[f"{prefix}euro_gd"] = sum(e["gf"] - e["ga"] for e in season_euro)
@@ -428,14 +447,37 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
                 row[f"{prefix}euro_midweek"] = 0
                 row[f"{prefix}euro_ppg"] = 1.0
                 row[f"{prefix}euro_gd"] = 0
-        row["h_key_absences"] = absences.get(home, 0)
-        row["a_key_absences"] = absences.get(away, 0)
+
+        # Player availability and injury drags: pre-match signals only.
+        if mode == "predict":
+            h_drag = injury_drags.get(home, {})
+            a_drag = injury_drags.get(away, {})
+            h_att = float(h_drag.get("drag_att", 0.0))
+            h_def = float(h_drag.get("drag_def", 0.0))
+            a_att = float(a_drag.get("drag_att", 0.0))
+            a_def = float(a_drag.get("drag_def", 0.0))
+            row["h_key_absences"] = int(h_drag.get("key_absences", 0))
+            row["a_key_absences"] = int(a_drag.get("key_absences", 0))
+        else:
+            # Zero lookahead leakage: historical matches did not have today's injury report
+            h_att = h_def = a_att = a_def = 0.0
+            row["h_key_absences"] = 0
+            row["a_key_absences"] = 0
+
+        row["h_injury_drag_att"] = h_att
+        row["h_injury_drag_def"] = h_def
+        row["a_injury_drag_att"] = a_att
+        row["a_injury_drag_def"] = a_def
+        row["injury_drag_diff"] = (h_att + h_def) - (a_att + a_def)
+
         # Elo: pre-match ratings only (chronological, no leakage).
         rh = elo_ratings.get(home, ELO_START)
         ra = elo_ratings.get(away, ELO_START)
         row["h_elo"] = rh
         row["a_elo"] = ra
         row["elo_diff"] = rh - ra
+        row["effective_elo_diff"] = row["elo_diff"] - 150.0 * row["injury_drag_diff"]
+
         # De-vigged market odds (closing odds, known pre-kickoff).
         probs = odds_map.get((home, away, datestr))
         if probs is not None:
@@ -469,16 +511,21 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
         last_date[away] = datestr
 
     feats_df = pd.DataFrame(rows)
-    # Neutral imputation for teams with no history yet (early rows): column
-    # means. Shot/foul-based columns are labeled shot-based, never true xG.
-    # Odds columns with no data at all (predict mode) get 1/3 each.
+    # Neutral imputation for teams with no history yet (early rows):
+    # in train mode, use expanding mean forward in time to prevent lookahead;
+    # in predict mode, use neutral defaults.
     for col in feature_columns(feats_df):
         if feats_df[col].isna().any():
             default = NEUTRAL_DEFAULTS.get(col)
             if default is None:
-                mean = feats_df[col].mean()
-                default = mean if pd.notna(mean) else 0.0
-            feats_df[col] = feats_df[col].fillna(default)
+                if mode == "train":
+                    feats_df[col] = feats_df[col].fillna(
+                        feats_df[col].expanding().mean()
+                    ).bfill().fillna(0.0)
+                else:
+                    feats_df[col] = feats_df[col].fillna(0.0)
+            else:
+                feats_df[col] = feats_df[col].fillna(default)
 
     data_hash = hashlib.sha1(
         pd.read_csv(fixtures_path, usecols=["fixture_id", "home_goals", "away_goals"])

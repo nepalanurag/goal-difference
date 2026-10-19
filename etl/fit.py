@@ -758,17 +758,40 @@ def predict_upcoming(league: str) -> pd.DataFrame:
     if pred_df.empty:
         return pred_df
     X = pred_df[feature_cols]
-    p_poisson = poisson_model.predict_proba_df(pred_df, feature_cols)
     p_ml = np.clip(ml_model.predict_proba(X), EPS, 1 - EPS)
-    p_ens = blend_ensemble(p_poisson, p_ml)
     xg_h, xg_a = poisson_model.expected_goals_df(pred_df, feature_cols)
+
+    # Scale expected goals by pre-match player availability / injury drag
+    # Attacking drag reduces scoring potency; opponent defensive drag increases scoring opportunity.
+    h_drag_att = np.clip(pred_df.get("h_injury_drag_att", 0.0).fillna(0.0).to_numpy(dtype=float), 0.0, 0.40)
+    h_drag_def = np.clip(pred_df.get("h_injury_drag_def", 0.0).fillna(0.0).to_numpy(dtype=float), 0.0, 0.40)
+    a_drag_att = np.clip(pred_df.get("a_injury_drag_att", 0.0).fillna(0.0).to_numpy(dtype=float), 0.0, 0.40)
+    a_drag_def = np.clip(pred_df.get("a_injury_drag_def", 0.0).fillna(0.0).to_numpy(dtype=float), 0.0, 0.40)
+
+    xg_h_adj = xg_h * (1.0 - h_drag_att) * (1.0 + a_drag_def)
+    xg_a_adj = xg_a * (1.0 - a_drag_att) * (1.0 + h_drag_def)
+
+    # Recompute Poisson 1X2 probabilities with adjusted xG
+    p_pois_list = []
+    for lh, la in zip(xg_h_adj, xg_a_adj):
+        pa, pd_, ph = scoreline_to_1x2(lh, la)
+        p_pois_list.append([pa, pd_, ph])
+    p_poisson = np.array(p_pois_list)
+
+    p_ens = blend_ensemble(p_poisson, p_ml)
+
     out = pred_df[["fixture_id", "date", "home", "away"]].copy()
     out["p_away_poisson"], out["p_draw_poisson"], out["p_home_poisson"] = p_poisson.T
     out["p_away_ml"], out["p_draw_ml"], out["p_home_ml"] = p_ml.T
     out["p_away_ens"], out["p_draw_ens"], out["p_home_ens"] = p_ens.T
-    out["xg_home"], out["xg_away"] = xg_h, xg_a
+    out["xg_home"], out["xg_away"] = xg_h_adj, xg_a_adj
     out["model_version"] = params["model_version"]
     return out
+
+
+def _fit_league_worker(task: tuple[str, bool]) -> None:
+    league, skip_wf = task
+    fit_league(league, skip_walkforward=skip_wf)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -777,8 +800,15 @@ def main(argv: list[str] | None = None) -> int:
                         choices=settings.league_order)
     parser.add_argument("--skip-walkforward", action="store_true")
     args = parser.parse_args(argv)
-    for league in args.leagues:
-        fit_league(league, skip_walkforward=args.skip_walkforward)
+    if len(args.leagues) > 1:
+        import concurrent.futures
+        workers = min(len(args.leagues), 4)
+        tasks = [(lg, args.skip_walkforward) for lg in args.leagues]
+        with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as executor:
+            list(executor.map(_fit_league_worker, tasks))
+    else:
+        for league in args.leagues:
+            fit_league(league, skip_walkforward=args.skip_walkforward)
     return 0
 
 

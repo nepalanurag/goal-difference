@@ -123,20 +123,25 @@ def fetch_csv(league: str, season: str) -> pd.DataFrame:
     cache_name = f"csv_{league}_{season}.csv"
     path = cached(cache_name)
     provenance = "csv_cached"
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            raw = resp.read()
-        # Strip UTF-8 BOM; the site redirects (handled by urlopen).
-        text = raw.decode("utf-8-sig")
-        cache_raw(cache_name, text)
-        path = settings.raw_dir / cache_name
-        provenance = "csv_download"
-    except Exception as exc:
-        if path is None:
-            raise RuntimeError(f"CSV download failed for {url}: {exc}") from exc
-        log.warning("csv_download_failed_using_cache", league=league,
-                    season=season, error=str(exc)[:200])
+
+    # Completed historical seasons never change; reuse local cache directly
+    if season in settings.historical_seasons and path is not None:
+        pass
+    else:
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        try:
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                raw = resp.read()
+            # Strip UTF-8 BOM; the site redirects (handled by urlopen).
+            text = raw.decode("utf-8-sig")
+            cache_raw(cache_name, text)
+            path = settings.raw_dir / cache_name
+            provenance = "csv_download"
+        except Exception as exc:
+            if path is None:
+                raise RuntimeError(f"CSV download failed for {url}: {exc}") from exc
+            log.warning("csv_download_failed_using_cache", league=league,
+                        season=season, error=str(exc)[:200])
     df = pd.read_csv(path, encoding="utf-8-sig")
     rows = []
     for _, r in df.iterrows():

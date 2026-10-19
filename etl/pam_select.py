@@ -52,7 +52,7 @@ log = get_logger(__name__)
 # removed); h2h_edge / elo_diff / odds_* match on the full name.
 # ----------------------------------------------------------------------------
 GROUP_RULES: list[tuple[str, set[str]]] = [
-    ("elo", {"elo", "elo_diff"}),
+    ("elo", {"elo", "elo_diff", "effective_elo_diff"}),
     ("odds", {"odds_p_home", "odds_p_draw", "odds_p_away", "odds_available"}),
     ("form", {"w5", "d5", "l5", "ppg_l5", "momentum"}),
     ("venue", {"ppg", "home_ppg", "away_ppg", "home_gf_pg", "home_ga_pg",
@@ -64,7 +64,7 @@ GROUP_RULES: list[tuple[str, set[str]]] = [
     ("h2h", {"h2h_edge"}),
     ("rest_travel", {"rest_days", "travel_km"}),
     ("european", {"euro_days_since", "euro_midweek", "euro_ppg", "euro_gd"}),
-    ("absences", {"key_absences"}),
+    ("absences", {"key_absences", "injury_drag_att", "injury_drag_def", "injury_drag_diff"}),
 ]
 
 GROUP_ORDER = [name for name, _ in GROUP_RULES]
@@ -80,7 +80,7 @@ GROUP_LABELS = {
     "h2h": "Head-to-head edge",
     "rest_travel": "Rest and travel",
     "european": "European congestion",
-    "absences": "Key absences",
+    "absences": "Key absences and injury drag",
 }
 
 
@@ -93,7 +93,7 @@ def strip_side(col: str) -> str:
 
 def assign_group(col: str) -> str:
     """Map one feature column to its group. Raises KeyError if unmapped."""
-    key = col if col in ("h2h_edge", "elo_diff") or col.startswith("odds_") else strip_side(col)
+    key = col if col in ("h2h_edge", "elo_diff", "effective_elo_diff", "injury_drag_diff") or col.startswith("odds_") else strip_side(col)
     for name, members in GROUP_RULES:
         if key in members:
             return name
