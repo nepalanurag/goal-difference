@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-19T23:29:03.621285+00:00",
+ "fetched_at": "2026-10-20T18:26:48.417397+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -108,10 +108,10 @@
     },
     {
      "player": "Ian Maatsen",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Ankle injury - Unknown return date",
+     "chance_next_round": 75,
+     "news": "Ankle injury - 75% chance of playing",
      "regular_starter": true,
      "position": "DEF"
     },
@@ -165,7 +165,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Hamstring injury - Unknown return date",
+     "news": "Hamstring injury - Expected back 2 Jan",
      "regular_starter": false,
      "position": "DEF"
     },
@@ -177,6 +177,15 @@
      "news": "Has joined Oxford United on loan until January",
      "regular_starter": false,
      "position": "MID"
+    },
+    {
+     "player": "Aaron Wan-Bissaka",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Expected back 21 Nov",
+     "regular_starter": false,
+     "position": "DEF"
     }
    ],
    "doubtful": [
@@ -215,20 +224,11 @@
      "news": "",
      "regular_starter": false,
      "position": "FWD"
-    },
-    {
-     "player": "Aaron Wan-Bissaka",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
-     "regular_starter": false,
-     "position": "DEF"
     }
    ],
    "key_absences": 3,
    "drag_att": 0.0179,
-   "drag_def": 0.0899
+   "drag_def": 0.116
   },
   "Bournemouth": {
    "out": [
