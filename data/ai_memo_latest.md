@@ -1,4 +1,4 @@
-# Weekly AI forecast memo — 2026-10-20
+# Weekly AI forecast memo — 2026-10-21
 
 > AI-generated. All numbers below come from the fitted models and
 > real fixture results; nothing here was invented by the AI.
@@ -7,11 +7,11 @@
 
 | league | model version | poisson | ML (chosen) | ensemble | baseline |
 | --- | --- | --- | --- | --- | --- |
-| pl | v2026-10-20 | 1.0028 | 1.0310 (xgb_tiny) | 0.9990 | 1.0826 |
-| laliga | v2026-10-20 | 0.9933 | 1.0300 (xgb_tiny) | 0.9903 | 1.0661 |
-| bundesliga | v2026-10-20 | 1.0496 | 1.0358 (xgb_reg) | 1.0083 | 1.0822 |
-| seriea | v2026-10-20 | 1.0030 | 1.0405 (xgb_tiny) | 1.0030 | 1.0941 |
-| ligue1 | v2026-10-20 | 1.0725 | 1.0510 (xgb_tiny) | 1.0263 | 1.0712 |
+| pl | v2026-10-21 | 1.0028 | 1.0310 (xgb_tiny) | 0.9990 | 1.0826 |
+| laliga | v2026-10-21 | 0.9933 | 1.0300 (xgb_tiny) | 0.9903 | 1.0661 |
+| bundesliga | v2026-10-21 | 1.0496 | 1.0358 (xgb_reg) | 1.0083 | 1.0822 |
+| seriea | v2026-10-21 | 1.0030 | 1.0405 (xgb_tiny) | 1.0030 | 1.0941 |
+| ligue1 | v2026-10-21 | 1.0725 | 1.0510 (xgb_tiny) | 1.0263 | 1.0712 |
 
 ## 2. Ledger scoring this run
 
