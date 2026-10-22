@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-21T18:30:23.665079+00:00",
+ "fetched_at": "2026-10-22T18:25:14.849828+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -82,6 +82,15 @@
    ],
    "doubtful": [
     {
+     "player": "Bukayo Saka",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 50,
+     "news": "Thigh injury - 50% chance of playing",
+     "regular_starter": true,
+     "position": "MID"
+    },
+    {
      "player": "Martín Zubimendi Ibáñez",
      "status": "a",
      "chance_this_round": 75,
@@ -91,8 +100,8 @@
      "position": "MID"
     }
    ],
-   "key_absences": 1,
-   "drag_att": 0.0759,
+   "key_absences": 2,
+   "drag_att": 0.1355,
    "drag_def": 0.0
   },
   "Aston Villa": {
@@ -857,16 +866,16 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Calf injury - Expected back 25 Oct",
+     "news": "Calf injury - Expected back 8 Nov",
      "regular_starter": false,
      "position": "DEF"
     },
     {
      "player": "Ben Chilwell",
-     "status": "i",
+     "status": "a",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Unspecified injury - Unknown return date",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "DEF"
     }
@@ -880,10 +889,19 @@
      "news": "Foot injury - 50% chance of playing",
      "regular_starter": true,
      "position": "GK"
+    },
+    {
+     "player": "Quinten Timber",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "MID"
     }
    ],
-   "key_absences": 1,
-   "drag_att": 0.0,
+   "key_absences": 2,
+   "drag_att": 0.0331,
    "drag_def": 0.0247
   },
   "Everton": {
@@ -1186,6 +1204,15 @@
   "Ipswich Town": {
    "out": [
     {
+     "player": "Saša Lukić",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Groin injury - Expected back 23 Oct",
+     "regular_starter": true,
+     "position": "MID"
+    },
+    {
      "player": "Ben Johnson",
      "status": "u",
      "chance_this_round": 0,
@@ -1258,19 +1285,9 @@
      "position": "MID"
     }
    ],
-   "doubtful": [
-    {
-     "player": "Saša Lukić",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Groin injury - 75% chance of playing",
-     "regular_starter": true,
-     "position": "MID"
-    }
-   ],
+   "doubtful": [],
    "key_absences": 1,
-   "drag_att": 0.0368,
+   "drag_att": 0.0737,
    "drag_def": 0.0
   },
   "Leeds": {

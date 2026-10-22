@@ -1,4 +1,4 @@
-# Weekly AI forecast memo — 2026-10-21
+# Weekly AI forecast memo — 2026-10-22
 
 > AI-generated. All numbers below come from the fitted models and
 > real fixture results; nothing here was invented by the AI.
@@ -7,18 +7,18 @@
 
 | league | model version | poisson | ML (chosen) | ensemble | baseline |
 | --- | --- | --- | --- | --- | --- |
-| pl | v2026-10-21 | 1.0028 | 1.0310 (xgb_tiny) | 0.9990 | 1.0826 |
-| laliga | v2026-10-21 | 0.9933 | 1.0300 (xgb_tiny) | 0.9903 | 1.0661 |
-| bundesliga | v2026-10-21 | 1.0496 | 1.0358 (xgb_reg) | 1.0083 | 1.0822 |
-| seriea | v2026-10-21 | 1.0030 | 1.0405 (xgb_tiny) | 1.0030 | 1.0941 |
-| ligue1 | v2026-10-21 | 1.0725 | 1.0510 (xgb_tiny) | 1.0263 | 1.0712 |
+| pl | v2026-10-22 | 1.0028 | 1.0310 (xgb_tiny) | 0.9990 | 1.0826 |
+| laliga | v2026-10-22 | 0.9933 | 1.0300 (xgb_tiny) | 0.9903 | 1.0661 |
+| bundesliga | v2026-10-22 | 1.0496 | 1.0358 (xgb_reg) | 1.0083 | 1.0822 |
+| seriea | v2026-10-22 | 1.0030 | 1.0405 (xgb_tiny) | 1.0030 | 1.0941 |
+| ligue1 | v2026-10-22 | 1.0725 | 1.0510 (xgb_tiny) | 1.0263 | 1.0712 |
 
 ## 2. Ledger scoring this run
 
 | league | newly scored | logloss poisson | logloss ML | logloss ensemble |
 | --- | --- | --- | --- | --- |
 | pl | 20 | 1.0826 | 1.0883 | 1.0514 |
-| laliga | 19 | 0.9142 | 1.0263 | 0.9503 |
+| laliga | 20 | 0.9109 | 1.0951 | 0.9772 |
 | bundesliga | 18 | 1.0300 | 1.1561 | 1.0865 |
 | seriea | 20 | 0.9367 | 1.2100 | 1.0501 |
 | ligue1 | 18 | 0.7882 | 0.9857 | 0.8333 |
@@ -40,7 +40,7 @@
 | --- | --- | --- | --- |
 | 0.3-0.4 | 3 | 0.367 | 0.333 |
 | 0.4-0.5 | 8 | 0.445 | 0.375 |
-| 0.5-0.6 | 1 | 0.576 | 0.000 |
+| 0.5-0.6 | 2 | 0.588 | 0.000 |
 | 0.6-0.7 | 2 | 0.634 | 0.500 |
 | 0.7-0.8 | 3 | 0.776 | 0.667 |
 | 0.8-0.9 | 2 | 0.838 | 1.000 |
@@ -77,7 +77,7 @@
 Compares the ledger's overall ensemble log-loss against the walk-forward ensemble log-loss. Flagged when the ledger is worse by more than 0.05.
 
 - pl: ledger 1.0514 vs walk-forward 0.9990 (delta +0.0524, n=20) — DECAY FLAG.
-- laliga: ledger 0.9503 vs walk-forward 0.9903 (delta -0.0400, n=19) — ok.
+- laliga: ledger 0.9772 vs walk-forward 0.9903 (delta -0.0131, n=20) — ok.
 - bundesliga: ledger 1.0865 vs walk-forward 1.0083 (delta +0.0782, n=18) — DECAY FLAG.
 - seriea: ledger 1.0501 vs walk-forward 1.0030 (delta +0.0471, n=20) — ok.
 - ligue1: ledger 0.8333 vs walk-forward 1.0263 (delta -0.1930, n=18) — ok.

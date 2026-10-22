@@ -1,5 +1,5 @@
 {
- "total": 588,
+ "total": 589,
  "player_stats": [
   {
    "id": 35219,
@@ -49,7 +49,7 @@
    "stats": [
     {
      "name": "aerial_duels",
-     "stat": 5
+     "stat": 8
     },
     {
      "name": "aerial_duels_lost",
@@ -57,19 +57,19 @@
     },
     {
      "name": "aerial_duels_won",
-     "stat": 2
+     "stat": 5
     },
     {
      "name": "appearances",
-     "stat": 6
+     "stat": 7
     },
     {
      "name": "backward_passes",
-     "stat": 30
+     "stat": 32
     },
     {
      "name": "carries",
-     "stat": 22
+     "stat": 24
     },
     {
      "name": "corners_taken_incl_short_corners",
@@ -77,47 +77,47 @@
     },
     {
      "name": "duels",
-     "stat": 35
+     "stat": 41
     },
     {
      "name": "duels_lost",
-     "stat": 17
+     "stat": 20
     },
     {
      "name": "duels_won",
-     "stat": 18
+     "stat": 21
     },
     {
      "name": "final_third_touches",
-     "stat": 38
+     "stat": 44
     },
     {
      "name": "forward_passes",
-     "stat": 35
+     "stat": 42
     },
     {
      "name": "foul_attempted_tackle",
-     "stat": 4
+     "stat": 5
     },
     {
      "name": "games_played",
-     "stat": 6
+     "stat": 7
     },
     {
      "name": "goals_conceded",
-     "stat": 1
+     "stat": 3
     },
     {
      "name": "goals_conceded_inside_box",
-     "stat": 1
+     "stat": 3
     },
     {
      "name": "ground_duels",
-     "stat": 30
+     "stat": 33
     },
     {
      "name": "ground_duels_lost",
-     "stat": 14
+     "stat": 17
     },
     {
      "name": "ground_duels_won",
@@ -125,7 +125,7 @@
     },
     {
      "name": "interceptions",
-     "stat": 6
+     "stat": 7
     },
     {
      "name": "key_passes_attempt_assists",
@@ -133,35 +133,39 @@
     },
     {
      "name": "leftside_passes",
-     "stat": 43
+     "stat": 49
     },
     {
      "name": "open_play_passes",
-     "stat": 148
+     "stat": 166
     },
     {
      "name": "progressive_carries",
-     "stat": 12
+     "stat": 13
     },
     {
      "name": "putthrough_blocked_distribution",
-     "stat": 6
+     "stat": 8
     },
     {
      "name": "putthrough_blocked_distribution_won",
-     "stat": 3
+     "stat": 4
     },
     {
      "name": "recoveries",
-     "stat": 16
+     "stat": 19
     },
     {
      "name": "rightside_passes",
-     "stat": 45
+     "stat": 49
     },
     {
      "name": "shots_created",
      "stat": 1
+    },
+    {
+     "name": "shots_off_target_inc_woodwork",
+     "stat": 2
     },
     {
      "name": "shots_on_target_inc_goals",
@@ -169,11 +173,11 @@
     },
     {
      "name": "starts",
-     "stat": 2
+     "stat": 3
     },
     {
      "name": "substitute_off",
-     "stat": 2
+     "stat": 3
     },
     {
      "name": "substitute_on",
@@ -197,19 +201,19 @@
     },
     {
      "name": "successful_open_play_passes",
-     "stat": 127
+     "stat": 140
     },
     {
      "name": "successful_passes_opposition_half",
-     "stat": 72
+     "stat": 80
     },
     {
      "name": "successful_passes_own_half",
-     "stat": 59
+     "stat": 65
     },
     {
      "name": "successful_short_passes",
-     "stat": 123
+     "stat": 137
     },
     {
      "name": "tackles_lost",
@@ -221,11 +225,11 @@
     },
     {
      "name": "time_played",
-     "stat": 257
+     "stat": 302
     },
     {
      "name": "times_tackled",
-     "stat": 1
+     "stat": 3
     },
     {
      "name": "total_clearances",
@@ -233,7 +237,7 @@
     },
     {
      "name": "total_fouls_conceded",
-     "stat": 5
+     "stat": 7
     },
     {
      "name": "total_fouls_won",
@@ -241,19 +245,19 @@
     },
     {
      "name": "total_losses_of_possession",
-     "stat": 34
+     "stat": 41
     },
     {
      "name": "total_passes",
-     "stat": 153
+     "stat": 172
     },
     {
      "name": "total_shots",
-     "stat": 2
+     "stat": 4
     },
     {
      "name": "total_successful_passes_excl_crosses_corners",
-     "stat": 131
+     "stat": 145
     },
     {
      "name": "total_tackles",
@@ -265,11 +269,11 @@
     },
     {
      "name": "total_unsuccessful_passes_excl_crosses_corners",
-     "stat": 22
+     "stat": 27
     },
     {
      "name": "touches",
-     "stat": 197
+     "stat": 223
     },
     {
      "name": "unsuccessful_corners_into_box",
@@ -285,7 +289,7 @@
     },
     {
      "name": "unsuccessful_dribbles",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "unsuccessful_launches",
@@ -297,15 +301,19 @@
     },
     {
      "name": "unsuccessful_passes_opposition_half",
-     "stat": 19
+     "stat": 22
     },
     {
      "name": "unsuccessful_passes_own_half",
-     "stat": 7
+     "stat": 9
     },
     {
      "name": "unsuccessful_short_passes",
-     "stat": 18
+     "stat": 23
+    },
+    {
+     "name": "unsuccessful_layoffs",
+     "stat": 1
     },
     {
      "name": "winning_goal",
@@ -313,7 +321,7 @@
     },
     {
      "name": "team_games_played",
-     "stat": 8
+     "stat": 9
     }
    ],
    "photos": {
@@ -2771,11 +2779,11 @@
     },
     {
      "name": "appearances",
-     "stat": 7
+     "stat": 8
     },
     {
      "name": "backward_passes",
-     "stat": 24
+     "stat": 25
     },
     {
      "name": "blocks",
@@ -2783,7 +2791,7 @@
     },
     {
      "name": "carries",
-     "stat": 35
+     "stat": 36
     },
     {
      "name": "corners_won",
@@ -2803,11 +2811,11 @@
     },
     {
      "name": "final_third_touches",
-     "stat": 54
+     "stat": 56
     },
     {
      "name": "forward_passes",
-     "stat": 47
+     "stat": 49
     },
     {
      "name": "foul_attempted_tackle",
@@ -2815,7 +2823,7 @@
     },
     {
      "name": "games_played",
-     "stat": 7
+     "stat": 8
     },
     {
      "name": "goals_conceded",
@@ -2847,7 +2855,7 @@
     },
     {
      "name": "interceptions",
-     "stat": 5
+     "stat": 6
     },
     {
      "name": "key_passes_attempt_assists",
@@ -2855,11 +2863,11 @@
     },
     {
      "name": "leftside_passes",
-     "stat": 54
+     "stat": 56
     },
     {
      "name": "open_play_passes",
-     "stat": 131
+     "stat": 136
     },
     {
      "name": "penalties_conceded",
@@ -2867,7 +2875,7 @@
     },
     {
      "name": "progressive_carries",
-     "stat": 18
+     "stat": 19
     },
     {
      "name": "putthrough_blocked_distribution",
@@ -2907,15 +2915,15 @@
     },
     {
      "name": "substitute_on",
-     "stat": 2
+     "stat": 3
     },
     {
      "name": "successful_crosses_corners",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "successful_crosses_open_play",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "successful_dribbles",
@@ -2931,19 +2939,19 @@
     },
     {
      "name": "successful_open_play_passes",
-     "stat": 98
+     "stat": 103
     },
     {
      "name": "successful_passes_opposition_half",
-     "stat": 42
+     "stat": 45
     },
     {
      "name": "successful_passes_own_half",
-     "stat": 59
+     "stat": 62
     },
     {
      "name": "successful_short_passes",
-     "stat": 91
+     "stat": 96
     },
     {
      "name": "tackles_lost",
@@ -2963,7 +2971,7 @@
     },
     {
      "name": "time_played",
-     "stat": 372
+     "stat": 379
     },
     {
      "name": "times_tackled",
@@ -2975,7 +2983,7 @@
     },
     {
      "name": "total_clearances",
-     "stat": 21
+     "stat": 23
     },
     {
      "name": "total_fouls_conceded",
@@ -2991,7 +2999,7 @@
     },
     {
      "name": "total_passes",
-     "stat": 133
+     "stat": 138
     },
     {
      "name": "total_shots",
@@ -2999,7 +3007,7 @@
     },
     {
      "name": "total_successful_passes_excl_crosses_corners",
-     "stat": 100
+     "stat": 105
     },
     {
      "name": "total_tackles",
@@ -3007,7 +3015,7 @@
     },
     {
      "name": "total_touches_in_opposition_box",
-     "stat": 4
+     "stat": 5
     },
     {
      "name": "total_unsuccessful_passes_excl_crosses_corners",
@@ -3015,7 +3023,7 @@
     },
     {
      "name": "touches",
-     "stat": 239
+     "stat": 248
     },
     {
      "name": "unsuccessful_crosses_corners",
@@ -3055,7 +3063,7 @@
     },
     {
      "name": "team_games_played",
-     "stat": 8
+     "stat": 9
     }
    ],
    "photos": {
@@ -5521,7 +5529,7 @@
     },
     {
      "name": "team_games_played",
-     "stat": 8
+     "stat": 9
     }
    ],
    "photos": {
@@ -5614,11 +5622,11 @@
     },
     {
      "name": "appearances",
-     "stat": 6
+     "stat": 7
     },
     {
      "name": "backward_passes",
-     "stat": 34
+     "stat": 35
     },
     {
      "name": "blocked_shots",
@@ -5626,7 +5634,7 @@
     },
     {
      "name": "carries",
-     "stat": 84
+     "stat": 88
     },
     {
      "name": "clean_sheets",
@@ -5634,15 +5642,15 @@
     },
     {
      "name": "corners_taken_incl_short_corners",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "corners_won",
-     "stat": 5
+     "stat": 6
     },
     {
      "name": "duels",
-     "stat": 48
+     "stat": 50
     },
     {
      "name": "duels_lost",
@@ -5650,11 +5658,11 @@
     },
     {
      "name": "duels_won",
-     "stat": 18
+     "stat": 20
     },
     {
      "name": "final_third_touches",
-     "stat": 162
+     "stat": 166
     },
     {
      "name": "forward_passes",
@@ -5670,7 +5678,7 @@
     },
     {
      "name": "games_played",
-     "stat": 6
+     "stat": 7
     },
     {
      "name": "goals",
@@ -5678,11 +5686,11 @@
     },
     {
      "name": "goals_conceded",
-     "stat": 2
+     "stat": 3
     },
     {
      "name": "goals_conceded_inside_box",
-     "stat": 2
+     "stat": 3
     },
     {
      "name": "goals_openplay",
@@ -5694,7 +5702,7 @@
     },
     {
      "name": "ground_duels",
-     "stat": 44
+     "stat": 46
     },
     {
      "name": "ground_duels_lost",
@@ -5702,7 +5710,7 @@
     },
     {
      "name": "ground_duels_won",
-     "stat": 16
+     "stat": 18
     },
     {
      "name": "headed_goals",
@@ -5714,7 +5722,7 @@
     },
     {
      "name": "key_passes_attempt_assists",
-     "stat": 7
+     "stat": 8
     },
     {
      "name": "leftside_passes",
@@ -5726,7 +5734,7 @@
     },
     {
      "name": "open_play_passes",
-     "stat": 131
+     "stat": 136
     },
     {
      "name": "overruns",
@@ -5738,11 +5746,11 @@
     },
     {
      "name": "progressive_carries",
-     "stat": 55
+     "stat": 59
     },
     {
      "name": "putthrough_blocked_distribution",
-     "stat": 14
+     "stat": 15
     },
     {
      "name": "putthrough_blocked_distribution_won",
@@ -5750,19 +5758,19 @@
     },
     {
      "name": "recoveries",
-     "stat": 17
+     "stat": 18
     },
     {
      "name": "rightside_passes",
-     "stat": 54
+     "stat": 58
     },
     {
      "name": "shots_created",
-     "stat": 7
+     "stat": 8
     },
     {
      "name": "shots_off_target_inc_woodwork",
-     "stat": 9
+     "stat": 10
     },
     {
      "name": "shots_on_target_inc_goals",
@@ -5778,11 +5786,15 @@
     },
     {
      "name": "substitute_on",
-     "stat": 2
+     "stat": 3
+    },
+    {
+     "name": "successful_corners_into_box",
+     "stat": 1
     },
     {
      "name": "successful_crosses_corners",
-     "stat": 5
+     "stat": 6
     },
     {
      "name": "successful_crosses_open_play",
@@ -5790,23 +5802,23 @@
     },
     {
      "name": "successful_dribbles",
-     "stat": 6
+     "stat": 7
     },
     {
      "name": "successful_open_play_passes",
-     "stat": 97
+     "stat": 100
     },
     {
      "name": "successful_passes_opposition_half",
-     "stat": 78
+     "stat": 80
     },
     {
      "name": "successful_passes_own_half",
-     "stat": 25
+     "stat": 27
     },
     {
      "name": "successful_short_passes",
-     "stat": 98
+     "stat": 101
     },
     {
      "name": "tackles_lost",
@@ -5822,7 +5834,7 @@
     },
     {
      "name": "time_played",
-     "stat": 364
+     "stat": 373
     },
     {
      "name": "times_tackled",
@@ -5850,23 +5862,23 @@
     },
     {
      "name": "total_fouls_won",
-     "stat": 2
+     "stat": 3
     },
     {
      "name": "total_losses_of_possession",
-     "stat": 80
+     "stat": 82
     },
     {
      "name": "total_passes",
-     "stat": 132
+     "stat": 137
     },
     {
      "name": "total_shots",
-     "stat": 11
+     "stat": 12
     },
     {
      "name": "total_successful_passes_excl_crosses_corners",
-     "stat": 98
+     "stat": 101
     },
     {
      "name": "total_tackles",
@@ -5874,15 +5886,15 @@
     },
     {
      "name": "total_touches_in_opposition_box",
-     "stat": 37
+     "stat": 38
     },
     {
      "name": "total_unsuccessful_passes_excl_crosses_corners",
-     "stat": 34
+     "stat": 36
     },
     {
      "name": "touches",
-     "stat": 241
+     "stat": 250
     },
     {
      "name": "unsuccessful_crosses_corners",
@@ -5906,7 +5918,7 @@
     },
     {
      "name": "unsuccessful_passes_opposition_half",
-     "stat": 46
+     "stat": 48
     },
     {
      "name": "unsuccessful_passes_own_half",
@@ -5914,7 +5926,7 @@
     },
     {
      "name": "unsuccessful_short_passes",
-     "stat": 33
+     "stat": 35
     },
     {
      "name": "home_goals",
@@ -5930,7 +5942,7 @@
     },
     {
      "name": "team_games_played",
-     "stat": 8
+     "stat": 9
     }
    ],
    "photos": {
@@ -7865,7 +7877,7 @@
     },
     {
      "name": "team_games_played",
-     "stat": 8
+     "stat": 9
     }
    ],
    "photos": {
@@ -8705,11 +8717,11 @@
    "stats": [
     {
      "name": "aerial_duels",
-     "stat": 10
+     "stat": 11
     },
     {
      "name": "aerial_duels_lost",
-     "stat": 5
+     "stat": 6
     },
     {
      "name": "aerial_duels_won",
@@ -8717,11 +8729,11 @@
     },
     {
      "name": "appearances",
-     "stat": 8
+     "stat": 9
     },
     {
      "name": "backward_passes",
-     "stat": 44
+     "stat": 46
     },
     {
      "name": "blocks",
@@ -8729,7 +8741,7 @@
     },
     {
      "name": "carries",
-     "stat": 59
+     "stat": 63
     },
     {
      "name": "clean_sheets",
@@ -8741,23 +8753,23 @@
     },
     {
      "name": "duels",
-     "stat": 43
-    },
-    {
-     "name": "duels_lost",
-     "stat": 26
-    },
-    {
-     "name": "duels_won",
-     "stat": 17
-    },
-    {
-     "name": "final_third_touches",
      "stat": 45
     },
     {
+     "name": "duels_lost",
+     "stat": 27
+    },
+    {
+     "name": "duels_won",
+     "stat": 18
+    },
+    {
+     "name": "final_third_touches",
+     "stat": 47
+    },
+    {
      "name": "forward_passes",
-     "stat": 68
+     "stat": 72
     },
     {
      "name": "foul_attempted_tackle",
@@ -8765,7 +8777,7 @@
     },
     {
      "name": "games_played",
-     "stat": 8
+     "stat": 9
     },
     {
      "name": "goals_conceded",
@@ -8777,7 +8789,7 @@
     },
     {
      "name": "ground_duels",
-     "stat": 33
+     "stat": 34
     },
     {
      "name": "ground_duels_lost",
@@ -8785,11 +8797,11 @@
     },
     {
      "name": "ground_duels_won",
-     "stat": 12
+     "stat": 13
     },
     {
      "name": "interceptions",
-     "stat": 3
+     "stat": 4
     },
     {
      "name": "key_passes_attempt_assists",
@@ -8797,15 +8809,15 @@
     },
     {
      "name": "leftside_passes",
-     "stat": 67
+     "stat": 71
     },
     {
      "name": "open_play_passes",
-     "stat": 233
+     "stat": 246
     },
     {
      "name": "progressive_carries",
-     "stat": 28
+     "stat": 29
     },
     {
      "name": "putthrough_blocked_distribution",
@@ -8817,11 +8829,11 @@
     },
     {
      "name": "recoveries",
-     "stat": 29
+     "stat": 31
     },
     {
      "name": "rightside_passes",
-     "stat": 73
+     "stat": 78
     },
     {
      "name": "shots_created",
@@ -8841,7 +8853,7 @@
     },
     {
      "name": "substitute_on",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "successful_launches",
@@ -8857,19 +8869,19 @@
     },
     {
      "name": "successful_open_play_passes",
-     "stat": 200
+     "stat": 210
     },
     {
      "name": "successful_passes_opposition_half",
-     "stat": 112
+     "stat": 116
     },
     {
      "name": "successful_passes_own_half",
-     "stat": 107
+     "stat": 114
     },
     {
      "name": "successful_short_passes",
-     "stat": 209
+     "stat": 220
     },
     {
      "name": "tackles_lost",
@@ -8877,7 +8889,7 @@
     },
     {
      "name": "tackles_won",
-     "stat": 5
+     "stat": 6
     },
     {
      "name": "through_balls",
@@ -8889,7 +8901,7 @@
     },
     {
      "name": "time_played",
-     "stat": 610
+     "stat": 628
     },
     {
      "name": "times_tackled",
@@ -8909,11 +8921,11 @@
     },
     {
      "name": "total_losses_of_possession",
-     "stat": 53
+     "stat": 57
     },
     {
      "name": "total_passes",
-     "stat": 252
+     "stat": 267
     },
     {
      "name": "total_shots",
@@ -8921,19 +8933,19 @@
     },
     {
      "name": "total_successful_passes_excl_crosses_corners",
-     "stat": 219
+     "stat": 230
     },
     {
      "name": "total_tackles",
-     "stat": 9
+     "stat": 10
     },
     {
      "name": "total_unsuccessful_passes_excl_crosses_corners",
-     "stat": 33
+     "stat": 37
     },
     {
      "name": "touches",
-     "stat": 327
+     "stat": 344
     },
     {
      "name": "unsuccessful_corners_into_box",
@@ -8953,23 +8965,27 @@
     },
     {
      "name": "unsuccessful_launches",
-     "stat": 7
-    },
-    {
-     "name": "unsuccessful_long_passes",
-     "stat": 11
-    },
-    {
-     "name": "unsuccessful_passes_opposition_half",
-     "stat": 28
-    },
-    {
-     "name": "unsuccessful_passes_own_half",
      "stat": 8
     },
     {
+     "name": "unsuccessful_long_passes",
+     "stat": 13
+    },
+    {
+     "name": "unsuccessful_passes_opposition_half",
+     "stat": 31
+    },
+    {
+     "name": "unsuccessful_passes_own_half",
+     "stat": 9
+    },
+    {
      "name": "unsuccessful_short_passes",
-     "stat": 22
+     "stat": 24
+    },
+    {
+     "name": "unsuccessful_layoffs",
+     "stat": 1
     },
     {
      "name": "winning_goal",
@@ -8977,7 +8993,7 @@
     },
     {
      "name": "team_games_played",
-     "stat": 8
+     "stat": 9
     }
    ],
    "photos": {
@@ -10184,7 +10200,7 @@
    "stats": [
     {
      "name": "team_games_played",
-     "stat": 8
+     "stat": 9
     }
    ],
    "photos": {
@@ -13333,7 +13349,7 @@
    "stats": [
     {
      "name": "appearances",
-     "stat": 4
+     "stat": 5
     },
     {
      "name": "backward_passes",
@@ -13341,11 +13357,11 @@
     },
     {
      "name": "carries",
-     "stat": 10
+     "stat": 13
     },
     {
      "name": "duels",
-     "stat": 8
+     "stat": 10
     },
     {
      "name": "duels_lost",
@@ -13353,19 +13369,19 @@
     },
     {
      "name": "duels_won",
-     "stat": 5
+     "stat": 7
     },
     {
      "name": "final_third_touches",
-     "stat": 14
+     "stat": 17
     },
     {
      "name": "forward_passes",
-     "stat": 1
+     "stat": 3
     },
     {
      "name": "games_played",
-     "stat": 4
+     "stat": 5
     },
     {
      "name": "goals_conceded",
@@ -13381,7 +13397,7 @@
     },
     {
      "name": "ground_duels",
-     "stat": 8
+     "stat": 10
     },
     {
      "name": "ground_duels_lost",
@@ -13389,7 +13405,7 @@
     },
     {
      "name": "ground_duels_won",
-     "stat": 5
+     "stat": 7
     },
     {
      "name": "leftside_passes",
@@ -13397,7 +13413,7 @@
     },
     {
      "name": "open_play_passes",
-     "stat": 16
+     "stat": 19
     },
     {
      "name": "overruns",
@@ -13405,7 +13421,7 @@
     },
     {
      "name": "progressive_carries",
-     "stat": 4
+     "stat": 7
     },
     {
      "name": "putthrough_blocked_distribution",
@@ -13413,11 +13429,15 @@
     },
     {
      "name": "recoveries",
-     "stat": 3
+     "stat": 5
     },
     {
      "name": "rightside_passes",
-     "stat": 7
+     "stat": 8
+    },
+    {
+     "name": "shots_off_target_inc_woodwork",
+     "stat": 1
     },
     {
      "name": "shots_on_target_inc_goals",
@@ -13433,7 +13453,15 @@
     },
     {
      "name": "substitute_on",
-     "stat": 3
+     "stat": 4
+    },
+    {
+     "name": "successful_crosses_corners",
+     "stat": 1
+    },
+    {
+     "name": "successful_crosses_open_play",
+     "stat": 1
     },
     {
      "name": "successful_dribbles",
@@ -13445,23 +13473,23 @@
     },
     {
      "name": "successful_open_play_passes",
-     "stat": 12
+     "stat": 14
     },
     {
      "name": "successful_passes_opposition_half",
-     "stat": 6
+     "stat": 8
     },
     {
      "name": "successful_passes_own_half",
-     "stat": 6
+     "stat": 7
     },
     {
      "name": "successful_short_passes",
-     "stat": 12
+     "stat": 14
     },
     {
      "name": "time_played",
-     "stat": 65
+     "stat": 70
     },
     {
      "name": "times_tackled",
@@ -13469,31 +13497,31 @@
     },
     {
      "name": "total_fouls_won",
-     "stat": 2
-    },
-    {
-     "name": "total_losses_of_possession",
-     "stat": 11
-    },
-    {
-     "name": "total_passes",
-     "stat": 16
-    },
-    {
-     "name": "total_shots",
-     "stat": 1
-    },
-    {
-     "name": "total_successful_passes_excl_crosses_corners",
-     "stat": 12
-    },
-    {
-     "name": "total_unsuccessful_passes_excl_crosses_corners",
      "stat": 4
     },
     {
+     "name": "total_losses_of_possession",
+     "stat": 14
+    },
+    {
+     "name": "total_passes",
+     "stat": 19
+    },
+    {
+     "name": "total_shots",
+     "stat": 2
+    },
+    {
+     "name": "total_successful_passes_excl_crosses_corners",
+     "stat": 14
+    },
+    {
+     "name": "total_unsuccessful_passes_excl_crosses_corners",
+     "stat": 5
+    },
+    {
      "name": "touches",
-     "stat": 30
+     "stat": 39
     },
     {
      "name": "unsuccessful_crosses_corners",
@@ -13508,8 +13536,16 @@
      "stat": 1
     },
     {
+     "name": "unsuccessful_launches",
+     "stat": 1
+    },
+    {
+     "name": "unsuccessful_long_passes",
+     "stat": 1
+    },
+    {
      "name": "unsuccessful_passes_opposition_half",
-     "stat": 3
+     "stat": 4
     },
     {
      "name": "unsuccessful_passes_own_half",
@@ -13525,7 +13561,7 @@
     },
     {
      "name": "team_games_played",
-     "stat": 8
+     "stat": 9
     }
    ],
    "photos": {
@@ -14336,7 +14372,7 @@
     },
     {
      "name": "yellow_cards",
-     "stat": 5
+     "stat": 4
     },
     {
      "name": "winning_goal",
@@ -16522,11 +16558,11 @@
    "stats": [
     {
      "name": "aerial_duels",
-     "stat": 5
+     "stat": 6
     },
     {
      "name": "aerial_duels_lost",
-     "stat": 4
+     "stat": 5
     },
     {
      "name": "aerial_duels_won",
@@ -16534,7 +16570,7 @@
     },
     {
      "name": "appearances",
-     "stat": 6
+     "stat": 7
     },
     {
      "name": "attempts_from_set_pieces",
@@ -16542,7 +16578,7 @@
     },
     {
      "name": "backward_passes",
-     "stat": 27
+     "stat": 30
     },
     {
      "name": "blocked_shots",
@@ -16550,7 +16586,7 @@
     },
     {
      "name": "carries",
-     "stat": 42
+     "stat": 74
     },
     {
      "name": "clean_sheets",
@@ -16566,75 +16602,75 @@
     },
     {
      "name": "duels",
-     "stat": 34
+     "stat": 39
     },
     {
      "name": "duels_lost",
-     "stat": 19
+     "stat": 23
     },
     {
      "name": "duels_won",
-     "stat": 15
-    },
-    {
-     "name": "final_third_touches",
-     "stat": 82
-    },
-    {
-     "name": "forward_passes",
-     "stat": 45
-    },
-    {
-     "name": "foul_attempted_tackle",
-     "stat": 2
-    },
-    {
-     "name": "games_played",
-     "stat": 6
-    },
-    {
-     "name": "goals_conceded",
-     "stat": 5
-    },
-    {
-     "name": "goals_conceded_inside_box",
-     "stat": 5
-    },
-    {
-     "name": "ground_duels",
-     "stat": 29
-    },
-    {
-     "name": "ground_duels_lost",
-     "stat": 15
-    },
-    {
-     "name": "ground_duels_won",
-     "stat": 14
-    },
-    {
-     "name": "interceptions",
-     "stat": 2
-    },
-    {
-     "name": "key_passes_attempt_assists",
-     "stat": 6
-    },
-    {
-     "name": "leftside_passes",
-     "stat": 49
-    },
-    {
-     "name": "open_play_passes",
-     "stat": 159
-    },
-    {
-     "name": "progressive_carries",
      "stat": 16
     },
     {
-     "name": "putthrough_blocked_distribution",
+     "name": "final_third_touches",
+     "stat": 87
+    },
+    {
+     "name": "forward_passes",
+     "stat": 52
+    },
+    {
+     "name": "foul_attempted_tackle",
+     "stat": 3
+    },
+    {
+     "name": "games_played",
+     "stat": 7
+    },
+    {
+     "name": "goals_conceded",
      "stat": 6
+    },
+    {
+     "name": "goals_conceded_inside_box",
+     "stat": 6
+    },
+    {
+     "name": "ground_duels",
+     "stat": 33
+    },
+    {
+     "name": "ground_duels_lost",
+     "stat": 18
+    },
+    {
+     "name": "ground_duels_won",
+     "stat": 15
+    },
+    {
+     "name": "interceptions",
+     "stat": 4
+    },
+    {
+     "name": "key_passes_attempt_assists",
+     "stat": 7
+    },
+    {
+     "name": "leftside_passes",
+     "stat": 55
+    },
+    {
+     "name": "open_play_passes",
+     "stat": 187
+    },
+    {
+     "name": "progressive_carries",
+     "stat": 32
+    },
+    {
+     "name": "putthrough_blocked_distribution",
+     "stat": 7
     },
     {
      "name": "putthrough_blocked_distribution_won",
@@ -16642,15 +16678,15 @@
     },
     {
      "name": "recoveries",
-     "stat": 11
+     "stat": 16
     },
     {
      "name": "rightside_passes",
-     "stat": 49
+     "stat": 61
     },
     {
      "name": "shots_created",
-     "stat": 6
+     "stat": 7
     },
     {
      "name": "shots_off_target_inc_woodwork",
@@ -16666,7 +16702,7 @@
     },
     {
      "name": "substitute_on",
-     "stat": 2
+     "stat": 3
     },
     {
      "name": "successful_corners_into_box",
@@ -16678,31 +16714,31 @@
     },
     {
      "name": "successful_dribbles",
-     "stat": 4
-    },
-    {
-     "name": "successful_layoffs",
      "stat": 5
     },
     {
+     "name": "successful_layoffs",
+     "stat": 6
+    },
+    {
      "name": "successful_long_passes",
-     "stat": 2
+     "stat": 5
     },
     {
      "name": "successful_open_play_passes",
-     "stat": 137
+     "stat": 160
     },
     {
      "name": "successful_passes_opposition_half",
-     "stat": 87
+     "stat": 106
     },
     {
      "name": "successful_passes_own_half",
-     "stat": 60
+     "stat": 64
     },
     {
      "name": "successful_short_passes",
-     "stat": 144
+     "stat": 164
     },
     {
      "name": "tackles_won",
@@ -16714,11 +16750,11 @@
     },
     {
      "name": "time_played",
-     "stat": 335
+     "stat": 380
     },
     {
      "name": "times_tackled",
-     "stat": 11
+     "stat": 12
     },
     {
      "name": "total_big_chances_created",
@@ -16730,7 +16766,7 @@
     },
     {
      "name": "total_fouls_conceded",
-     "stat": 2
+     "stat": 3
     },
     {
      "name": "total_fouls_won",
@@ -16738,11 +16774,11 @@
     },
     {
      "name": "total_losses_of_possession",
-     "stat": 44
+     "stat": 50
     },
     {
      "name": "total_passes",
-     "stat": 170
+     "stat": 198
     },
     {
      "name": "total_shots",
@@ -16750,7 +16786,7 @@
     },
     {
      "name": "total_successful_passes_excl_crosses_corners",
-     "stat": 146
+     "stat": 169
     },
     {
      "name": "total_tackles",
@@ -16762,11 +16798,11 @@
     },
     {
      "name": "total_unsuccessful_passes_excl_crosses_corners",
-     "stat": 24
+     "stat": 29
     },
     {
      "name": "touches",
-     "stat": 221
+     "stat": 255
     },
     {
      "name": "unsuccessful_corners_into_box",
@@ -16786,23 +16822,23 @@
     },
     {
      "name": "unsuccessful_launches",
-     "stat": 1
+     "stat": 3
     },
     {
      "name": "unsuccessful_long_passes",
-     "stat": 3
+     "stat": 5
     },
     {
      "name": "unsuccessful_passes_opposition_half",
-     "stat": 27
+     "stat": 31
     },
     {
      "name": "unsuccessful_passes_own_half",
-     "stat": 3
+     "stat": 4
     },
     {
      "name": "unsuccessful_short_passes",
-     "stat": 21
+     "stat": 24
     },
     {
      "name": "winning_goal",
@@ -16810,7 +16846,7 @@
     },
     {
      "name": "team_games_played",
-     "stat": 8
+     "stat": 9
     }
    ],
    "photos": {
@@ -18256,19 +18292,19 @@
    "stats": [
     {
      "name": "aerial_duels",
-     "stat": 8
+     "stat": 13
     },
     {
      "name": "aerial_duels_lost",
-     "stat": 5
+     "stat": 8
     },
     {
      "name": "aerial_duels_won",
-     "stat": 3
+     "stat": 5
     },
     {
      "name": "appearances",
-     "stat": 4
+     "stat": 5
     },
     {
      "name": "assists_intentional",
@@ -18276,7 +18312,7 @@
     },
     {
      "name": "backward_passes",
-     "stat": 12
+     "stat": 18
     },
     {
      "name": "blocked_shots",
@@ -18284,31 +18320,31 @@
     },
     {
      "name": "carries",
-     "stat": 5
-    },
-    {
-     "name": "duels",
-     "stat": 19
-    },
-    {
-     "name": "duels_lost",
-     "stat": 11
-    },
-    {
-     "name": "duels_won",
      "stat": 8
     },
     {
+     "name": "duels",
+     "stat": 27
+    },
+    {
+     "name": "duels_lost",
+     "stat": 16
+    },
+    {
+     "name": "duels_won",
+     "stat": 11
+    },
+    {
      "name": "final_third_touches",
-     "stat": 20
+     "stat": 23
     },
     {
      "name": "forward_passes",
-     "stat": 4
+     "stat": 7
     },
     {
      "name": "games_played",
-     "stat": 4
+     "stat": 5
     },
     {
      "name": "goal_assists",
@@ -18316,11 +18352,11 @@
     },
     {
      "name": "goals_conceded",
-     "stat": 5
+     "stat": 6
     },
     {
      "name": "goals_conceded_inside_box",
-     "stat": 4
+     "stat": 5
     },
     {
      "name": "goals_conceded_outside_box",
@@ -18328,15 +18364,15 @@
     },
     {
      "name": "ground_duels",
-     "stat": 11
+     "stat": 14
     },
     {
      "name": "ground_duels_lost",
-     "stat": 6
+     "stat": 8
     },
     {
      "name": "ground_duels_won",
-     "stat": 5
+     "stat": 6
     },
     {
      "name": "interceptions",
@@ -18344,27 +18380,35 @@
     },
     {
      "name": "leftside_passes",
-     "stat": 4
+     "stat": 6
     },
     {
      "name": "open_play_passes",
-     "stat": 19
+     "stat": 29
     },
     {
-     "name": "penalty_goals_conceded",
+     "name": "overruns",
      "stat": 1
     },
     {
-     "name": "progressive_carries",
+     "name": "penalty_goals_conceded",
      "stat": 2
     },
     {
+     "name": "progressive_carries",
+     "stat": 4
+    },
+    {
      "name": "putthrough_blocked_distribution",
+     "stat": 3
+    },
+    {
+     "name": "putthrough_blocked_distribution_won",
      "stat": 1
     },
     {
      "name": "recoveries",
-     "stat": 4
+     "stat": 5
     },
     {
      "name": "rightside_passes",
@@ -18380,11 +18424,11 @@
     },
     {
      "name": "starts",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "substitute_off",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "substitute_on",
@@ -18392,35 +18436,39 @@
     },
     {
      "name": "successful_dribbles",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "successful_layoffs",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "successful_open_play_passes",
-     "stat": 13
-    },
-    {
-     "name": "successful_passes_opposition_half",
-     "stat": 10
-    },
-    {
-     "name": "successful_passes_own_half",
-     "stat": 9
-    },
-    {
-     "name": "successful_short_passes",
      "stat": 19
     },
     {
+     "name": "successful_passes_opposition_half",
+     "stat": 13
+    },
+    {
+     "name": "successful_passes_own_half",
+     "stat": 13
+    },
+    {
+     "name": "successful_short_passes",
+     "stat": 26
+    },
+    {
      "name": "time_played",
-     "stat": 120
+     "stat": 192
     },
     {
      "name": "times_tackled",
-     "stat": 4
+     "stat": 6
+    },
+    {
+     "name": "total_clearances",
+     "stat": 2
     },
     {
      "name": "total_fouls_won",
@@ -18428,11 +18476,11 @@
     },
     {
      "name": "total_losses_of_possession",
-     "stat": 17
+     "stat": 24
     },
     {
      "name": "total_passes",
-     "stat": 25
+     "stat": 36
     },
     {
      "name": "total_shots",
@@ -18440,31 +18488,31 @@
     },
     {
      "name": "total_successful_passes_excl_crosses_corners",
-     "stat": 19
+     "stat": 26
     },
     {
      "name": "total_touches_in_opposition_box",
-     "stat": 7
+     "stat": 8
     },
     {
      "name": "total_unsuccessful_passes_excl_crosses_corners",
-     "stat": 6
+     "stat": 10
     },
     {
      "name": "touches",
-     "stat": 48
+     "stat": 67
     },
     {
      "name": "unsuccessful_passes_opposition_half",
-     "stat": 3
+     "stat": 6
     },
     {
      "name": "unsuccessful_passes_own_half",
-     "stat": 3
+     "stat": 4
     },
     {
      "name": "unsuccessful_short_passes",
-     "stat": 6
+     "stat": 10
     },
     {
      "name": "unsuccessful_layoffs",
@@ -18476,7 +18524,7 @@
     },
     {
      "name": "team_games_played",
-     "stat": 8
+     "stat": 9
     }
    ],
    "photos": {
@@ -25029,11 +25077,11 @@
     },
     {
      "name": "appearances",
-     "stat": 7
+     "stat": 8
     },
     {
      "name": "backward_passes",
-     "stat": 30
+     "stat": 34
     },
     {
      "name": "blocked_shots",
@@ -25041,7 +25089,7 @@
     },
     {
      "name": "carries",
-     "stat": 58
+     "stat": 93
     },
     {
      "name": "clean_sheets",
@@ -25049,7 +25097,7 @@
     },
     {
      "name": "corners_taken_incl_short_corners",
-     "stat": 8
+     "stat": 10
     },
     {
      "name": "corners_won",
@@ -25057,27 +25105,27 @@
     },
     {
      "name": "duels",
-     "stat": 37
+     "stat": 45
     },
     {
      "name": "duels_lost",
-     "stat": 20
+     "stat": 24
     },
     {
      "name": "duels_won",
-     "stat": 17
+     "stat": 21
     },
     {
      "name": "final_third_touches",
-     "stat": 123
+     "stat": 149
     },
     {
      "name": "forward_passes",
-     "stat": 40
+     "stat": 44
     },
     {
      "name": "games_played",
-     "stat": 7
+     "stat": 8
     },
     {
      "name": "goals",
@@ -25085,11 +25133,11 @@
     },
     {
      "name": "goals_conceded",
-     "stat": 2
+     "stat": 4
     },
     {
      "name": "goals_conceded_inside_box",
-     "stat": 2
+     "stat": 4
     },
     {
      "name": "goals_openplay",
@@ -25101,15 +25149,15 @@
     },
     {
      "name": "ground_duels",
-     "stat": 32
+     "stat": 40
     },
     {
      "name": "ground_duels_lost",
-     "stat": 15
+     "stat": 19
     },
     {
      "name": "ground_duels_won",
-     "stat": 17
+     "stat": 21
     },
     {
      "name": "hit_woodwork",
@@ -25121,7 +25169,7 @@
     },
     {
      "name": "key_passes_attempt_assists",
-     "stat": 7
+     "stat": 10
     },
     {
      "name": "left_foot_goals",
@@ -25129,11 +25177,11 @@
     },
     {
      "name": "leftside_passes",
-     "stat": 48
+     "stat": 59
     },
     {
      "name": "open_play_passes",
-     "stat": 142
+     "stat": 168
     },
     {
      "name": "overruns",
@@ -25145,19 +25193,19 @@
     },
     {
      "name": "progressive_carries",
-     "stat": 34
+     "stat": 54
     },
     {
      "name": "putthrough_blocked_distribution",
-     "stat": 10
+     "stat": 11
     },
     {
      "name": "putthrough_blocked_distribution_won",
-     "stat": 5
+     "stat": 6
     },
     {
      "name": "recoveries",
-     "stat": 20
+     "stat": 21
     },
     {
      "name": "right_foot_goals",
@@ -25165,11 +25213,11 @@
     },
     {
      "name": "rightside_passes",
-     "stat": 31
+     "stat": 38
     },
     {
      "name": "shots_created",
-     "stat": 7
+     "stat": 10
     },
     {
      "name": "shots_off_target_inc_woodwork",
@@ -25177,15 +25225,15 @@
     },
     {
      "name": "shots_on_target_inc_goals",
-     "stat": 6
+     "stat": 7
     },
     {
      "name": "starts",
-     "stat": 6
+     "stat": 7
     },
     {
      "name": "substitute_off",
-     "stat": 4
+     "stat": 5
     },
     {
      "name": "substitute_on",
@@ -25193,11 +25241,11 @@
     },
     {
      "name": "successful_corners_into_box",
-     "stat": 5
+     "stat": 6
     },
     {
      "name": "successful_crosses_corners",
-     "stat": 8
+     "stat": 9
     },
     {
      "name": "successful_crosses_open_play",
@@ -25205,7 +25253,7 @@
     },
     {
      "name": "successful_dribbles",
-     "stat": 6
+     "stat": 7
     },
     {
      "name": "successful_layoffs",
@@ -25217,23 +25265,23 @@
     },
     {
      "name": "successful_open_play_passes",
-     "stat": 117
+     "stat": 140
     },
     {
      "name": "successful_passes_opposition_half",
-     "stat": 101
+     "stat": 120
     },
     {
      "name": "successful_passes_own_half",
-     "stat": 30
+     "stat": 35
     },
     {
      "name": "successful_short_passes",
-     "stat": 122
+     "stat": 145
     },
     {
      "name": "tackles_lost",
-     "stat": 4
+     "stat": 5
     },
     {
      "name": "tackles_won",
@@ -25241,19 +25289,19 @@
     },
     {
      "name": "through_balls",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "throw_ins_to_own_player",
-     "stat": 3
+     "stat": 4
     },
     {
      "name": "time_played",
-     "stat": 432
+     "stat": 513
     },
     {
      "name": "times_tackled",
-     "stat": 12
+     "stat": 14
     },
     {
      "name": "total_big_chances_missed",
@@ -25264,56 +25312,64 @@
      "stat": 2
     },
     {
+     "name": "total_clearances",
+     "stat": 2
+    },
+    {
      "name": "total_fouls_conceded",
      "stat": 1
     },
     {
      "name": "total_fouls_won",
-     "stat": 3
+     "stat": 5
     },
     {
      "name": "total_losses_of_possession",
-     "stat": 65
+     "stat": 72
     },
     {
      "name": "total_passes",
-     "stat": 149
+     "stat": 175
     },
     {
      "name": "total_shots",
-     "stat": 8
+     "stat": 9
     },
     {
      "name": "total_successful_passes_excl_crosses_corners",
-     "stat": 123
+     "stat": 146
     },
     {
      "name": "total_tackles",
-     "stat": 8
+     "stat": 9
     },
     {
      "name": "total_touches_in_opposition_box",
-     "stat": 25
+     "stat": 27
     },
     {
      "name": "total_unsuccessful_passes_excl_crosses_corners",
-     "stat": 26
+     "stat": 29
     },
     {
      "name": "touches",
-     "stat": 249
+     "stat": 291
+    },
+    {
+     "name": "unsuccessful_corners_into_box",
+     "stat": 1
     },
     {
      "name": "unsuccessful_crosses_corners",
-     "stat": 13
+     "stat": 15
     },
     {
      "name": "unsuccessful_crosses_open_play",
-     "stat": 10
+     "stat": 11
     },
     {
      "name": "unsuccessful_dribbles",
-     "stat": 9
+     "stat": 10
     },
     {
      "name": "unsuccessful_launches",
@@ -25321,11 +25377,11 @@
     },
     {
      "name": "unsuccessful_long_passes",
-     "stat": 5
+     "stat": 6
     },
     {
      "name": "unsuccessful_passes_opposition_half",
-     "stat": 35
+     "stat": 40
     },
     {
      "name": "unsuccessful_passes_own_half",
@@ -25333,7 +25389,7 @@
     },
     {
      "name": "unsuccessful_short_passes",
-     "stat": 21
+     "stat": 23
     },
     {
      "name": "yellow_cards",
@@ -25353,7 +25409,7 @@
     },
     {
      "name": "team_games_played",
-     "stat": 8
+     "stat": 9
     }
    ],
    "photos": {
@@ -27740,11 +27796,11 @@
    "stats": [
     {
      "name": "aerial_duels",
-     "stat": 25
+     "stat": 29
     },
     {
      "name": "aerial_duels_lost",
-     "stat": 16
+     "stat": 20
     },
     {
      "name": "aerial_duels_won",
@@ -27752,7 +27808,7 @@
     },
     {
      "name": "appearances",
-     "stat": 7
+     "stat": 8
     },
     {
      "name": "assists_intentional",
@@ -27760,7 +27816,7 @@
     },
     {
      "name": "backward_passes",
-     "stat": 34
+     "stat": 39
     },
     {
      "name": "blocked_shots",
@@ -27772,7 +27828,7 @@
     },
     {
      "name": "carries",
-     "stat": 44
+     "stat": 51
     },
     {
      "name": "clean_sheets",
@@ -27784,23 +27840,23 @@
     },
     {
      "name": "duels",
-     "stat": 71
+     "stat": 76
     },
     {
      "name": "duels_lost",
-     "stat": 39
+     "stat": 43
     },
     {
      "name": "duels_won",
-     "stat": 32
+     "stat": 33
     },
     {
      "name": "final_third_touches",
-     "stat": 103
+     "stat": 111
     },
     {
      "name": "forward_passes",
-     "stat": 33
+     "stat": 37
     },
     {
      "name": "foul_attempted_tackle",
@@ -27808,7 +27864,7 @@
     },
     {
      "name": "games_played",
-     "stat": 7
+     "stat": 8
     },
     {
      "name": "goal_assists",
@@ -27816,15 +27872,15 @@
     },
     {
      "name": "goals",
-     "stat": 3
+     "stat": 5
     },
     {
      "name": "goals_conceded",
-     "stat": 13
+     "stat": 14
     },
     {
      "name": "goals_conceded_inside_box",
-     "stat": 12
+     "stat": 13
     },
     {
      "name": "goals_conceded_outside_box",
@@ -27832,15 +27888,15 @@
     },
     {
      "name": "goals_openplay",
-     "stat": 2
+     "stat": 4
     },
     {
      "name": "goals_from_inside_box",
-     "stat": 3
+     "stat": 5
     },
     {
      "name": "ground_duels",
-     "stat": 46
+     "stat": 47
     },
     {
      "name": "ground_duels_lost",
@@ -27848,7 +27904,7 @@
     },
     {
      "name": "ground_duels_won",
-     "stat": 23
+     "stat": 24
     },
     {
      "name": "headed_goals",
@@ -27860,7 +27916,7 @@
     },
     {
      "name": "interceptions",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "key_passes_attempt_assists",
@@ -27868,27 +27924,27 @@
     },
     {
      "name": "left_foot_goals",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "leftside_passes",
-     "stat": 38
+     "stat": 44
     },
     {
      "name": "open_play_passes",
-     "stat": 116
+     "stat": 131
     },
     {
      "name": "penalty_goals_conceded",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "progressive_carries",
-     "stat": 16
+     "stat": 19
     },
     {
      "name": "putthrough_blocked_distribution",
-     "stat": 14
+     "stat": 15
     },
     {
      "name": "putthrough_blocked_distribution_won",
@@ -27896,11 +27952,11 @@
     },
     {
      "name": "recoveries",
-     "stat": 19
+     "stat": 21
     },
     {
      "name": "right_foot_goals",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "rightside_passes",
@@ -27916,15 +27972,15 @@
     },
     {
      "name": "shots_on_target_inc_goals",
-     "stat": 6
+     "stat": 8
     },
     {
      "name": "starts",
-     "stat": 7
+     "stat": 8
     },
     {
      "name": "substitute_off",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "successful_dribbles",
@@ -27940,23 +27996,23 @@
     },
     {
      "name": "successful_long_passes",
-     "stat": 4
+     "stat": 6
     },
     {
      "name": "successful_open_play_passes",
-     "stat": 88
+     "stat": 99
     },
     {
      "name": "successful_passes_opposition_half",
-     "stat": 52
+     "stat": 58
     },
     {
      "name": "successful_passes_own_half",
-     "stat": 36
+     "stat": 41
     },
     {
      "name": "successful_short_passes",
-     "stat": 84
+     "stat": 93
     },
     {
      "name": "tackles_lost",
@@ -27976,7 +28032,7 @@
     },
     {
      "name": "time_played",
-     "stat": 624
+     "stat": 696
     },
     {
      "name": "times_tackled",
@@ -27992,11 +28048,11 @@
     },
     {
      "name": "total_big_chances_scored",
-     "stat": 2
+     "stat": 3
     },
     {
      "name": "total_clearances",
-     "stat": 4
+     "stat": 7
     },
     {
      "name": "total_fouls_conceded",
@@ -28004,23 +28060,23 @@
     },
     {
      "name": "total_fouls_won",
-     "stat": 7
+     "stat": 8
     },
     {
      "name": "total_losses_of_possession",
-     "stat": 68
+     "stat": 76
     },
     {
      "name": "total_passes",
-     "stat": 116
+     "stat": 131
     },
     {
      "name": "total_shots",
-     "stat": 15
+     "stat": 17
     },
     {
      "name": "total_successful_passes_excl_crosses_corners",
-     "stat": 88
+     "stat": 99
     },
     {
      "name": "total_tackles",
@@ -28028,23 +28084,23 @@
     },
     {
      "name": "total_touches_in_opposition_box",
-     "stat": 31
+     "stat": 36
     },
     {
      "name": "total_unsuccessful_passes_excl_crosses_corners",
-     "stat": 28
+     "stat": 32
     },
     {
      "name": "touches",
-     "stat": 228
+     "stat": 254
     },
     {
      "name": "unsuccessful_crosses_corners",
-     "stat": 14
+     "stat": 15
     },
     {
      "name": "unsuccessful_crosses_open_play",
-     "stat": 14
+     "stat": 15
     },
     {
      "name": "unsuccessful_dribbles",
@@ -28060,19 +28116,19 @@
     },
     {
      "name": "unsuccessful_passes_opposition_half",
-     "stat": 38
+     "stat": 42
     },
     {
      "name": "unsuccessful_passes_own_half",
-     "stat": 4
+     "stat": 5
     },
     {
      "name": "unsuccessful_short_passes",
-     "stat": 25
+     "stat": 29
     },
     {
      "name": "home_goals",
-     "stat": 3
+     "stat": 5
     },
     {
      "name": "away_goals",
@@ -28080,11 +28136,11 @@
     },
     {
      "name": "winning_goal",
-     "stat": 1
+     "stat": 2
     },
     {
      "name": "team_games_played",
-     "stat": 8
+     "stat": 9
     }
    ],
    "photos": {
