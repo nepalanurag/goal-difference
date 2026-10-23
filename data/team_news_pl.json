@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-22T18:25:14.849828+00:00",
+ "fetched_at": "2026-10-23T18:11:49.768677+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -17,13 +17,13 @@
      "position": "DEF"
     },
     {
-     "player": "Piero Hincapié",
-     "status": "d",
+     "player": "Bukayo Saka",
+     "status": "i",
      "chance_this_round": 0,
-     "chance_next_round": 75,
-     "news": "Ankle injury - 75% chance of playing",
-     "regular_starter": false,
-     "position": "DEF"
+     "chance_next_round": 0,
+     "news": "Thigh injury - Unknown return date",
+     "regular_starter": true,
+     "position": "MID"
     },
     {
      "player": "Gabriel Martinelli Silva",
@@ -82,26 +82,17 @@
    ],
    "doubtful": [
     {
-     "player": "Bukayo Saka",
+     "player": "Piero Hincapié",
      "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 50,
-     "news": "Thigh injury - 50% chance of playing",
-     "regular_starter": true,
-     "position": "MID"
-    },
-    {
-     "player": "Martín Zubimendi Ibáñez",
-     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
+     "chance_next_round": 75,
+     "news": "Ankle injury - 75% chance of playing",
      "regular_starter": false,
-     "position": "MID"
+     "position": "DEF"
     }
    ],
    "key_absences": 2,
-   "drag_att": 0.1355,
+   "drag_att": 0.1952,
    "drag_def": 0.0
   },
   "Aston Villa": {
@@ -116,18 +107,9 @@
      "position": "DEF"
     },
     {
-     "player": "Ian Maatsen",
-     "status": "a",
-     "chance_this_round": 0,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": true,
-     "position": "DEF"
-    },
-    {
      "player": "Andrés García",
      "status": "u",
-     "chance_this_round": null,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Getafe on loan for the rest of the season",
      "regular_starter": false,
@@ -199,7 +181,7 @@
     {
      "player": "Aaron Wan-Bissaka",
      "status": "i",
-     "chance_this_round": null,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Expected back 21 Nov",
      "regular_starter": false,
@@ -208,45 +190,18 @@
    ],
    "doubtful": [
     {
-     "player": "Ross Barkley",
-     "status": "a",
-     "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": true,
-     "position": "MID"
-    },
-    {
-     "player": "George Hemmings",
-     "status": "a",
-     "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": true,
-     "position": "MID"
-    },
-    {
      "player": "Johan Manzambi",
      "status": "d",
-     "chance_this_round": 100,
+     "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Calf injury - 75% chance of playing",
      "regular_starter": false,
      "position": "MID"
-    },
-    {
-     "player": "Brian Madjo",
-     "status": "a",
-     "chance_this_round": 50,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
-     "position": "FWD"
     }
    ],
-   "key_absences": 3,
-   "drag_att": 0.0179,
-   "drag_def": 0.116
+   "key_absences": 0,
+   "drag_att": 0.0,
+   "drag_def": 0.0521
   },
   "Bournemouth": {
    "out": [
@@ -264,7 +219,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Thigh injury - Expected back 8 Nov",
+     "news": "Thigh injury - Expected back 31 Oct",
      "regular_starter": false,
      "position": "DEF"
     },
@@ -287,11 +242,11 @@
      "position": "MID"
     },
     {
-     "player": "Junior Kroupi",
-     "status": "d",
+     "player": "Alex Tóth",
+     "status": "i",
      "chance_this_round": 0,
-     "chance_next_round": 50,
-     "news": "Foot injury - 50% chance of playing",
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Unknown return date",
      "regular_starter": false,
      "position": "MID"
     },
@@ -305,7 +260,17 @@
      "position": "FWD"
     }
    ],
-   "doubtful": [],
+   "doubtful": [
+    {
+     "player": "Junior Kroupi",
+     "status": "d",
+     "chance_this_round": 75,
+     "chance_next_round": 75,
+     "news": "Foot injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "MID"
+    }
+   ],
    "key_absences": 1,
    "drag_att": 0.1295,
    "drag_def": 0.0
@@ -315,7 +280,7 @@
     {
      "player": "Vitaly Janelt",
      "status": "s",
-     "chance_this_round": null,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Suspended until 31 Oct",
      "regular_starter": true,
@@ -333,7 +298,7 @@
     {
      "player": "Yehor Yarmoliuk",
      "status": "s",
-     "chance_this_round": null,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Suspended until 8 Nov",
      "regular_starter": true,
@@ -360,15 +325,6 @@
    ],
    "doubtful": [
     {
-     "player": "Nathan Collins",
-     "status": "a",
-     "chance_this_round": 50,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
      "player": "Jannik Schuster",
      "status": "d",
      "chance_this_round": 75,
@@ -376,28 +332,10 @@
      "news": "Ankle injury - 75% chance of playing",
      "regular_starter": true,
      "position": "DEF"
-    },
-    {
-     "player": "Kevin Schade",
-     "status": "a",
-     "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": true,
-     "position": "MID"
-    },
-    {
-     "player": "Mikkel Damsgaard",
-     "status": "a",
-     "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
-     "position": "MID"
     }
    ],
-   "key_absences": 4,
-   "drag_att": 0.2151,
+   "key_absences": 3,
+   "drag_att": 0.1684,
    "drag_def": 0.0134
   },
   "Brighton": {
@@ -421,15 +359,6 @@
      "position": "MID"
     },
     {
-     "player": "Yankuba Minteh",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Leg injury - Expected back 28 Nov",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
      "player": "Facundo Buonanotte",
      "status": "u",
      "chance_this_round": 0,
@@ -437,15 +366,6 @@
      "news": "Has joined Elche on loan for the rest of the season",
      "regular_starter": false,
      "position": "MID"
-    },
-    {
-     "player": "Mats Wieffer",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Knee injury - Unknown return date",
-     "regular_starter": false,
-     "position": "DEF"
     },
     {
      "player": "Harry Howell",
@@ -513,6 +433,24 @@
    ],
    "doubtful": [
     {
+     "player": "Yankuba Minteh",
+     "status": "d",
+     "chance_this_round": 50,
+     "chance_next_round": 50,
+     "news": "Leg injury - 50% chance of playing",
+     "regular_starter": false,
+     "position": "MID"
+    },
+    {
+     "player": "Mats Wieffer",
+     "status": "d",
+     "chance_this_round": 25,
+     "chance_next_round": 25,
+     "news": "Knee injury - 25% chance of playing",
+     "regular_starter": false,
+     "position": "DEF"
+    },
+    {
      "player": "Pascal Struijk",
      "status": "d",
      "chance_this_round": 75,
@@ -531,7 +469,7 @@
     {
      "player": "Emiliano Martínez Romero",
      "status": "i",
-     "chance_this_round": null,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Head injury - Unknown return date",
      "regular_starter": true,
@@ -626,31 +564,21 @@
      "news": "Hamstring injury - Unknown return date",
      "regular_starter": false,
      "position": "FWD"
-    }
-   ],
-   "doubtful": [
-    {
-     "player": "Malo Gusto",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Illness - 75% chance of playing",
-     "regular_starter": false,
-     "position": "DEF"
     },
     {
      "player": "Pep Chavarría",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Expected back 31 Oct",
      "regular_starter": true,
      "position": "DEF"
     }
    ],
+   "doubtful": [],
    "key_absences": 2,
    "drag_att": 0.0,
-   "drag_def": 0.2118
+   "drag_def": 0.2141
   },
   "Coventry City": {
    "out": [
@@ -754,32 +682,13 @@
      "position": "FWD"
     }
    ],
-   "doubtful": [
-    {
-     "player": "Kaine Kesler-Hayden",
-     "status": "a",
-     "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
-     "position": "DEF"
-    }
-   ],
+   "doubtful": [],
    "key_absences": 1,
    "drag_att": 0.0,
    "drag_def": 0.0659
   },
   "Crystal Palace": {
    "out": [
-    {
-     "player": "Axel Disasi",
-     "status": "a",
-     "chance_this_round": 0,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
-     "position": "DEF"
-    },
     {
      "player": "Borna Sosa",
      "status": "u",
@@ -844,15 +753,6 @@
      "position": "DEF"
     },
     {
-     "player": "Jean-Philippe Mateta",
-     "status": "a",
-     "chance_this_round": 0,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
-     "position": "FWD"
-    },
-    {
      "player": "Christantus Uche",
      "status": "u",
      "chance_this_round": 0,
@@ -869,15 +769,6 @@
      "news": "Calf injury - Expected back 8 Nov",
      "regular_starter": false,
      "position": "DEF"
-    },
-    {
-     "player": "Ben Chilwell",
-     "status": "a",
-     "chance_this_round": 0,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
-     "position": "DEF"
     }
    ],
    "doubtful": [
@@ -891,17 +782,26 @@
      "position": "GK"
     },
     {
+     "player": "Jørgen Strand Larsen",
+     "status": "d",
+     "chance_this_round": 75,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "FWD"
+    },
+    {
      "player": "Quinten Timber",
      "status": "d",
-     "chance_this_round": null,
+     "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Hamstring injury - 75% chance of playing",
      "regular_starter": true,
      "position": "MID"
     }
    ],
-   "key_absences": 2,
-   "drag_att": 0.0331,
+   "key_absences": 3,
+   "drag_att": 0.0404,
    "drag_def": 0.0247
   },
   "Everton": {
@@ -934,29 +834,10 @@
      "position": "FWD"
     }
    ],
-   "doubtful": [
-    {
-     "player": "Jarrad Branthwaite",
-     "status": "a",
-     "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": true,
-     "position": "DEF"
-    },
-    {
-     "player": "Vitalii Mykolenko",
-     "status": "a",
-     "chance_this_round": 50,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": true,
-     "position": "DEF"
-    }
-   ],
-   "key_absences": 2,
+   "doubtful": [],
+   "key_absences": 0,
    "drag_att": 0.0,
-   "drag_def": 0.0739
+   "drag_def": 0.0
   },
   "Fulham": {
    "out": [
@@ -972,7 +853,7 @@
     {
      "player": "Ryan Sessegnon",
      "status": "s",
-     "chance_this_round": 100,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Suspended until 7 Nov",
      "regular_starter": false,
@@ -990,36 +871,18 @@
    ],
    "doubtful": [
     {
-     "player": "Antonee Robinson",
-     "status": "a",
-     "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": true,
-     "position": "DEF"
-    },
-    {
-     "player": "Tom Cairney",
-     "status": "a",
-     "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
-     "player": "Hugo Larsson",
+     "player": "Emile Smith Rowe",
      "status": "d",
-     "chance_this_round": 25,
-     "chance_next_round": 25,
-     "news": "Groin injury - 25% chance of playing",
+     "chance_this_round": 75,
+     "chance_next_round": 75,
+     "news": "Knock - 75% chance of playing",
      "regular_starter": false,
      "position": "MID"
     }
    ],
-   "key_absences": 1,
+   "key_absences": 0,
    "drag_att": 0.0,
-   "drag_def": 0.0221
+   "drag_def": 0.0
   },
   "Hull City": {
    "out": [
@@ -1159,24 +1022,6 @@
      "position": "DEF"
     },
     {
-     "player": "Lucas Gourna-Douath",
-     "status": "d",
-     "chance_this_round": 0,
-     "chance_next_round": 50,
-     "news": "Calf injury - 50% chance of playing",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
-     "player": "Mohamed-Ali Cho",
-     "status": "d",
-     "chance_this_round": 0,
-     "chance_next_round": 50,
-     "news": "Unspecified injury - 50% chance of playing",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
      "player": "Ilyas Ansah",
      "status": "i",
      "chance_this_round": 0,
@@ -1188,9 +1033,27 @@
    ],
    "doubtful": [
     {
+     "player": "Lucas Gourna-Douath",
+     "status": "d",
+     "chance_this_round": 75,
+     "chance_next_round": 75,
+     "news": "Calf injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "MID"
+    },
+    {
+     "player": "Mohamed-Ali Cho",
+     "status": "d",
+     "chance_this_round": 75,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "MID"
+    },
+    {
      "player": "Robinio Vaz",
      "status": "d",
-     "chance_this_round": null,
+     "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Achilles injury - 75% chance of playing",
      "regular_starter": false,
@@ -1206,7 +1069,7 @@
     {
      "player": "Saša Lukić",
      "status": "i",
-     "chance_this_round": null,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Groin injury - Expected back 23 Oct",
      "regular_starter": true,
@@ -1358,17 +1221,35 @@
    ],
    "doubtful": [
     {
-     "player": "Daniel James",
+     "player": "Anton Stach",
      "status": "d",
      "chance_this_round": 50,
      "chance_next_round": 50,
-     "news": "Back injury - 50% chance of playing",
-     "regular_starter": false,
+     "news": "Foot injury - 50% chance of playing",
+     "regular_starter": true,
      "position": "MID"
+    },
+    {
+     "player": "Noah Okafor",
+     "status": "d",
+     "chance_this_round": 50,
+     "chance_next_round": 50,
+     "news": "Thigh injury - 50% chance of playing",
+     "regular_starter": true,
+     "position": "MID"
+    },
+    {
+     "player": "Dominic Calvert-Lewin",
+     "status": "d",
+     "chance_this_round": 50,
+     "chance_next_round": 50,
+     "news": "Foot injury - 50% chance of playing",
+     "regular_starter": true,
+     "position": "FWD"
     }
    ],
-   "key_absences": 0,
-   "drag_att": 0.0,
+   "key_absences": 3,
+   "drag_att": 0.1577,
    "drag_def": 0.0
   },
   "Liverpool": {
@@ -1394,7 +1275,7 @@
     {
      "player": "Jeremie Frimpong",
      "status": "i",
-     "chance_this_round": null,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Unknown return date",
      "regular_starter": false,
@@ -1430,19 +1311,10 @@
     {
      "player": "Dominik Szoboszlai",
      "status": "i",
-     "chance_this_round": 25,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Unknown return date",
      "regular_starter": true,
-     "position": "MID"
-    },
-    {
-     "player": "Ryan Gravenberch",
-     "status": "a",
-     "chance_this_round": 0,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
      "position": "MID"
     },
     {
@@ -1484,35 +1356,17 @@
    ],
    "doubtful": [
     {
-     "player": "Cody Gakpo",
-     "status": "a",
-     "chance_this_round": 25,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": true,
-     "position": "MID"
-    },
-    {
      "player": "Victor Munoz",
      "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Knee injury - 75% chance of playing",
+     "chance_this_round": 25,
+     "chance_next_round": 25,
+     "news": "Knee injury - 25% chance of playing",
      "regular_starter": true,
      "position": "MID"
-    },
-    {
-     "player": "Alexander Isak",
-     "status": "a",
-     "chance_this_round": 25,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": true,
-     "position": "FWD"
     }
    ],
-   "key_absences": 4,
-   "drag_att": 0.3391,
+   "key_absences": 2,
+   "drag_att": 0.1565,
    "drag_def": 0.0
   },
   "Man City": {
@@ -1529,7 +1383,7 @@
     {
      "player": "Antoine Semenyo",
      "status": "i",
-     "chance_this_round": 100,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
      "regular_starter": true,
@@ -1594,7 +1448,7 @@
     {
      "player": "Nico O'Reilly",
      "status": "d",
-     "chance_this_round": 100,
+     "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Back injury - 75% chance of playing",
      "regular_starter": false,
@@ -1603,7 +1457,7 @@
     {
      "player": "Matheus Nunes",
      "status": "d",
-     "chance_this_round": 100,
+     "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": true,
@@ -1612,7 +1466,7 @@
     {
      "player": "Mateo Kovačić",
      "status": "d",
-     "chance_this_round": null,
+     "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": false,
@@ -1621,7 +1475,7 @@
    ],
    "key_absences": 2,
    "drag_att": 0.1103,
-   "drag_def": 0.0
+   "drag_def": 0.0289
   },
   "Man United": {
    "out": [
@@ -1631,15 +1485,6 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Celta Vigo on loan for the rest of the season",
-     "regular_starter": false,
-     "position": "GK"
-    },
-    {
-     "player": "Tom Heaton",
-     "status": "a",
-     "chance_this_round": 0,
-     "chance_next_round": 100,
-     "news": "",
      "regular_starter": false,
      "position": "GK"
     },
@@ -1655,7 +1500,7 @@
     {
      "player": "Luke Shaw",
      "status": "i",
-     "chance_this_round": 75,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Unspecified injury - Unknown return date",
      "regular_starter": true,
@@ -1673,7 +1518,7 @@
     {
      "player": "Kobbie Mainoo",
      "status": "i",
-     "chance_this_round": 75,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Unspecified injury - Expected back 8 Nov",
      "regular_starter": true,
@@ -1720,34 +1565,16 @@
     {
      "player": "Lisandro Martínez",
      "status": "d",
-     "chance_this_round": 100,
+     "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Thigh injury - 75% chance of playing",
      "regular_starter": true,
      "position": "DEF"
     },
     {
-     "player": "Ayden Heaven",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Illness - 75% chance of playing",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
-     "player": "Noussair Mazraoui",
-     "status": "a",
-     "chance_this_round": 25,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
      "player": "Marcus Rashford",
      "status": "d",
-     "chance_this_round": 100,
+     "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Hip injury - 75% chance of playing",
      "regular_starter": true,
@@ -1755,8 +1582,8 @@
     }
    ],
    "key_absences": 4,
-   "drag_att": 0.0674,
-   "drag_def": 0.0739
+   "drag_att": 0.0766,
+   "drag_def": 0.0955
   },
   "Newcastle": {
    "out": [
@@ -1786,15 +1613,6 @@
      "news": "Has joined FC Kaiserslautern on loan for the rest of the season",
      "regular_starter": false,
      "position": "DEF"
-    },
-    {
-     "player": "Anthony Elanga",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Unspecified injury - Expected back 25 Oct",
-     "regular_starter": false,
-     "position": "MID"
     },
     {
      "player": "Jacob Ramsey",
@@ -1835,17 +1653,26 @@
    ],
    "doubtful": [
     {
-     "player": "Bazoumana Touré",
-     "status": "a",
+     "player": "Anthony Elanga",
+     "status": "d",
      "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
      "regular_starter": false,
      "position": "MID"
+    },
+    {
+     "player": "Matias Fernandez-Pardo",
+     "status": "d",
+     "chance_this_round": 75,
+     "chance_next_round": 75,
+     "news": "Illness - 75% chance of playing",
+     "regular_starter": true,
+     "position": "FWD"
     }
    ],
-   "key_absences": 0,
-   "drag_att": 0.0,
+   "key_absences": 1,
+   "drag_att": 0.0079,
    "drag_def": 0.0
   },
   "Nott'm Forest": {
@@ -1914,36 +1741,17 @@
      "position": "FWD"
     }
    ],
-   "doubtful": [
-    {
-     "player": "Nikola Milenković",
-     "status": "a",
-     "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
-     "player": "Morgan Gibbs-White",
-     "status": "a",
-     "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": true,
-     "position": "MID"
-    }
-   ],
-   "key_absences": 1,
-   "drag_att": 0.0392,
-   "drag_def": 0.0118
+   "doubtful": [],
+   "key_absences": 0,
+   "drag_att": 0.0,
+   "drag_def": 0.0
   },
   "Sunderland": {
    "out": [
     {
      "player": "Kevin Danso",
      "status": "s",
-     "chance_this_round": null,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Suspended until 31 Oct",
      "regular_starter": false,
@@ -2026,7 +1834,7 @@
     {
      "player": "Brian Brobbey",
      "status": "d",
-     "chance_this_round": 100,
+     "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Hamstring injury - 75% chance of playing",
      "regular_starter": true,
@@ -2043,7 +1851,7 @@
     }
    ],
    "key_absences": 3,
-   "drag_att": 0.0,
+   "drag_att": 0.0357,
    "drag_def": 0.1676
   },
   "Tottenham": {
@@ -2051,7 +1859,7 @@
     {
      "player": "Sávio Moreira de Oliveira",
      "status": "i",
-     "chance_this_round": 100,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Muscular injury - Expected back 7 Nov",
      "regular_starter": true,
@@ -2065,15 +1873,6 @@
      "news": "Has joined Juventus on loan for the rest of the season",
      "regular_starter": false,
      "position": "GK"
-    },
-    {
-     "player": "Pedro Porro Sauceda",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Hamstring injury - Expected back 24 Oct",
-     "regular_starter": false,
-     "position": "DEF"
     },
     {
      "player": "Cristian Romero",
@@ -2090,6 +1889,15 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Internazionale permanently",
+     "regular_starter": false,
+     "position": "DEF"
+    },
+    {
+     "player": "Destiny Udogie",
+     "status": "i",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
      "regular_starter": false,
      "position": "DEF"
     },
@@ -2150,18 +1958,9 @@
     {
      "player": "Lucas Bergvall",
      "status": "i",
-     "chance_this_round": null,
+     "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Expected back 31 Oct",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
-     "player": "Dejan Kulusevski",
-     "status": "a",
-     "chance_this_round": 0,
-     "chance_next_round": 100,
-     "news": "",
      "regular_starter": false,
      "position": "MID"
     },
@@ -2204,45 +2003,18 @@
    ],
    "doubtful": [
     {
-     "player": "Tosin Adarabioyo",
+     "player": "James Maddison",
      "status": "d",
-     "chance_this_round": null,
+     "chance_this_round": 75,
      "chance_next_round": 75,
-     "news": "Calf injury - 75% chance of playing",
+     "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": false,
-     "position": "DEF"
-    },
-    {
-     "player": "Omar Marmoush",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Calf injury - 75% chance of playing",
-     "regular_starter": true,
-     "position": "FWD"
-    },
-    {
-     "player": "Andrew Robertson",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Foot injury - 75% chance of playing",
-     "regular_starter": true,
-     "position": "DEF"
-    },
-    {
-     "player": "Destiny Udogie",
-     "status": "d",
-     "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Knee injury - 75% chance of playing",
-     "regular_starter": false,
-     "position": "DEF"
+     "position": "MID"
     }
    ],
-   "key_absences": 4,
-   "drag_att": 0.1281,
-   "drag_def": 0.0431
+   "key_absences": 2,
+   "drag_att": 0.0847,
+   "drag_def": 0.0
   }
  }
 }
