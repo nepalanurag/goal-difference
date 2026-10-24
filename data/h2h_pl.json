@@ -706,6 +706,14 @@
   "Arsenal vs Everton": {
     "last5": [
       {
+        "date": "2026-10-24",
+        "venue": "H",
+        "home": "Arsenal",
+        "away": "Everton",
+        "home_goals": 2,
+        "away_goals": 0
+      },
+      {
         "date": "2026-03-14",
         "venue": "H",
         "home": "Arsenal",
@@ -736,18 +744,10 @@
         "away": "Everton",
         "home_goals": 0,
         "away_goals": 0
-      },
-      {
-        "date": "2024-05-19",
-        "venue": "H",
-        "home": "Arsenal",
-        "away": "Everton",
-        "home_goals": 2,
-        "away_goals": 1
       }
     ],
     "alltime": {
-      "w": 4,
+      "w": 5,
       "d": 2,
       "l": 0
     }
@@ -755,6 +755,14 @@
   "Everton vs Arsenal": {
     "last5": [
       {
+        "date": "2026-10-24",
+        "venue": "A",
+        "home": "Arsenal",
+        "away": "Everton",
+        "home_goals": 2,
+        "away_goals": 0
+      },
+      {
         "date": "2026-03-14",
         "venue": "A",
         "home": "Arsenal",
@@ -785,20 +793,12 @@
         "away": "Everton",
         "home_goals": 0,
         "away_goals": 0
-      },
-      {
-        "date": "2024-05-19",
-        "venue": "A",
-        "home": "Arsenal",
-        "away": "Everton",
-        "home_goals": 2,
-        "away_goals": 1
       }
     ],
     "alltime": {
       "w": 0,
       "d": 2,
-      "l": 4
+      "l": 5
     }
   },
   "Arsenal vs Fulham": {
@@ -3168,6 +3168,14 @@
   "Aston Villa vs Man City": {
     "last5": [
       {
+        "date": "2026-10-24",
+        "venue": "H",
+        "home": "Aston Villa",
+        "away": "Man City",
+        "home_goals": 2,
+        "away_goals": 1
+      },
+      {
         "date": "2026-05-24",
         "venue": "A",
         "home": "Man City",
@@ -3198,18 +3206,10 @@
         "away": "Man City",
         "home_goals": 2,
         "away_goals": 1
-      },
-      {
-        "date": "2024-04-03",
-        "venue": "A",
-        "home": "Man City",
-        "away": "Aston Villa",
-        "home_goals": 4,
-        "away_goals": 1
       }
     ],
     "alltime": {
-      "w": 4,
+      "w": 5,
       "d": 0,
       "l": 2
     }
@@ -3217,6 +3217,14 @@
   "Man City vs Aston Villa": {
     "last5": [
       {
+        "date": "2026-10-24",
+        "venue": "A",
+        "home": "Aston Villa",
+        "away": "Man City",
+        "home_goals": 2,
+        "away_goals": 1
+      },
+      {
         "date": "2026-05-24",
         "venue": "H",
         "home": "Man City",
@@ -3247,20 +3255,12 @@
         "away": "Man City",
         "home_goals": 2,
         "away_goals": 1
-      },
-      {
-        "date": "2024-04-03",
-        "venue": "H",
-        "home": "Man City",
-        "away": "Aston Villa",
-        "home_goals": 4,
-        "away_goals": 1
       }
     ],
     "alltime": {
       "w": 2,
       "d": 0,
-      "l": 4
+      "l": 5
     }
   },
   "Aston Villa vs Man United": {
@@ -11879,6 +11879,40 @@
       "l": 4
     }
   },
+  "Coventry City vs Fulham": {
+    "last5": [
+      {
+        "date": "2026-10-24",
+        "venue": "H",
+        "home": "Coventry City",
+        "away": "Fulham",
+        "home_goals": 0,
+        "away_goals": 1
+      }
+    ],
+    "alltime": {
+      "w": 0,
+      "d": 0,
+      "l": 1
+    }
+  },
+  "Fulham vs Coventry City": {
+    "last5": [
+      {
+        "date": "2026-10-24",
+        "venue": "A",
+        "home": "Coventry City",
+        "away": "Fulham",
+        "home_goals": 0,
+        "away_goals": 1
+      }
+    ],
+    "alltime": {
+      "w": 1,
+      "d": 0,
+      "l": 0
+    }
+  },
   "Coventry City vs Hull City": {
     "last5": [
       {
@@ -16262,6 +16296,14 @@
   "Ipswich Town vs Nott'm Forest": {
     "last5": [
       {
+        "date": "2026-10-23",
+        "venue": "H",
+        "home": "Ipswich Town",
+        "away": "Nott'm Forest",
+        "home_goals": 1,
+        "away_goals": 1
+      },
+      {
         "date": "2025-03-15",
         "venue": "H",
         "home": "Ipswich Town",
@@ -16280,12 +16322,20 @@
     ],
     "alltime": {
       "w": 0,
-      "d": 0,
+      "d": 1,
       "l": 2
     }
   },
   "Nott'm Forest vs Ipswich Town": {
     "last5": [
+      {
+        "date": "2026-10-23",
+        "venue": "A",
+        "home": "Ipswich Town",
+        "away": "Nott'm Forest",
+        "home_goals": 1,
+        "away_goals": 1
+      },
       {
         "date": "2025-03-15",
         "venue": "A",
@@ -16305,7 +16355,7 @@
     ],
     "alltime": {
       "w": 2,
-      "d": 0,
+      "d": 1,
       "l": 0
     }
   },

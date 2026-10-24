@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-23T18:11:49.768677+00:00",
+ "fetched_at": "2026-10-24T17:18:29.287623+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -83,16 +83,16 @@
    "doubtful": [
     {
      "player": "Piero Hincapié",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Ankle injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "DEF"
     }
    ],
    "key_absences": 2,
-   "drag_att": 0.1952,
+   "drag_att": 0.1699,
    "drag_def": 0.0
   },
   "Aston Villa": {
@@ -191,17 +191,17 @@
    "doubtful": [
     {
      "player": "Johan Manzambi",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Calf injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "MID"
     }
    ],
    "key_absences": 0,
-   "drag_att": 0.0,
-   "drag_def": 0.0521
+   "drag_att": 0.0303,
+   "drag_def": 0.0458
   },
   "Bournemouth": {
    "out": [
@@ -571,14 +571,24 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Unspecified injury - Expected back 31 Oct",
-     "regular_starter": true,
+     "regular_starter": false,
      "position": "DEF"
     }
    ],
-   "doubtful": [],
+   "doubtful": [
+    {
+     "player": "João Pedro Junqueira de Jesus",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "FWD"
+    }
+   ],
    "key_absences": 2,
    "drag_att": 0.0,
-   "drag_def": 0.2141
+   "drag_def": 0.2034
   },
   "Coventry City": {
    "out": [
@@ -682,10 +692,20 @@
      "position": "FWD"
     }
    ],
-   "doubtful": [],
-   "key_absences": 1,
+   "doubtful": [
+    {
+     "player": "Bobby Thomas",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "DEF"
+    }
+   ],
+   "key_absences": 2,
    "drag_att": 0.0,
-   "drag_def": 0.0659
+   "drag_def": 0.1123
   },
   "Crystal Palace": {
    "out": [
@@ -834,7 +854,17 @@
      "position": "FWD"
     }
    ],
-   "doubtful": [],
+   "doubtful": [
+    {
+     "player": "Jack Grealish",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Illness - 75% chance of playing",
+     "regular_starter": false,
+     "position": "MID"
+    }
+   ],
    "key_absences": 0,
    "drag_att": 0.0,
    "drag_def": 0.0
@@ -1071,7 +1101,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Groin injury - Expected back 23 Oct",
+     "news": "Groin injury - Unknown return date",
      "regular_starter": true,
      "position": "MID"
     },
@@ -1150,7 +1180,7 @@
    ],
    "doubtful": [],
    "key_absences": 1,
-   "drag_att": 0.0737,
+   "drag_att": 0.067,
    "drag_def": 0.0
   },
   "Leeds": {
@@ -1447,10 +1477,10 @@
    "doubtful": [
     {
      "player": "Nico O'Reilly",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Back injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "DEF"
     },
@@ -1465,17 +1495,17 @@
     },
     {
      "player": "Mateo Kovačić",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "MID"
     }
    ],
    "key_absences": 2,
-   "drag_att": 0.1103,
-   "drag_def": 0.0289
+   "drag_att": 0.1014,
+   "drag_def": 0.0258
   },
   "Man United": {
    "out": [
@@ -1741,8 +1771,27 @@
      "position": "FWD"
     }
    ],
-   "doubtful": [],
-   "key_absences": 0,
+   "doubtful": [
+    {
+     "player": "Neco Williams",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Arm injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "DEF"
+    },
+    {
+     "player": "Nicolás Domínguez",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Muscular injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "MID"
+    }
+   ],
+   "key_absences": 1,
    "drag_att": 0.0,
    "drag_def": 0.0
   },
@@ -2004,16 +2053,16 @@
    "doubtful": [
     {
      "player": "James Maddison",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "MID"
     }
    ],
    "key_absences": 2,
-   "drag_att": 0.0847,
+   "drag_att": 0.0799,
    "drag_def": 0.0
   }
  }
