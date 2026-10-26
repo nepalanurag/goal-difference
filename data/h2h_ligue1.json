@@ -476,6 +476,14 @@
   "Angers vs Lorient": {
     "last5": [
       {
+        "date": "2026-10-25",
+        "venue": "H",
+        "home": "Angers",
+        "away": "Lorient",
+        "home_goals": 0,
+        "away_goals": 0
+      },
+      {
         "date": "2026-02-15",
         "venue": "A",
         "home": "Lorient",
@@ -494,13 +502,21 @@
     ],
     "alltime": {
       "w": 1,
-      "d": 0,
+      "d": 1,
       "l": 1
     }
   },
   "Lorient vs Angers": {
     "last5": [
       {
+        "date": "2026-10-25",
+        "venue": "A",
+        "home": "Angers",
+        "away": "Lorient",
+        "home_goals": 0,
+        "away_goals": 0
+      },
+      {
         "date": "2026-02-15",
         "venue": "H",
         "home": "Lorient",
@@ -519,7 +535,7 @@
     ],
     "alltime": {
       "w": 1,
-      "d": 0,
+      "d": 1,
       "l": 1
     }
   },
@@ -1771,6 +1787,40 @@
       "w": 3,
       "d": 1,
       "l": 1
+    }
+  },
+  "Auxerre vs Le Mans": {
+    "last5": [
+      {
+        "date": "2026-10-25",
+        "venue": "H",
+        "home": "Auxerre",
+        "away": "Le Mans",
+        "home_goals": 1,
+        "away_goals": 1
+      }
+    ],
+    "alltime": {
+      "w": 0,
+      "d": 1,
+      "l": 0
+    }
+  },
+  "Le Mans vs Auxerre": {
+    "last5": [
+      {
+        "date": "2026-10-25",
+        "venue": "A",
+        "home": "Auxerre",
+        "away": "Le Mans",
+        "home_goals": 1,
+        "away_goals": 1
+      }
+    ],
+    "alltime": {
+      "w": 0,
+      "d": 1,
+      "l": 0
     }
   },
   "Auxerre vs Lens": {
@@ -5906,6 +5956,14 @@
   "Le Havre vs Marseille": {
     "last5": [
       {
+        "date": "2026-10-25",
+        "venue": "A",
+        "home": "Marseille",
+        "away": "Le Havre",
+        "home_goals": 4,
+        "away_goals": 3
+      },
+      {
         "date": "2026-05-10",
         "venue": "H",
         "home": "Le Havre",
@@ -5936,24 +5994,24 @@
         "away": "Le Havre",
         "home_goals": 5,
         "away_goals": 1
-      },
-      {
-        "date": "2024-05-19",
-        "venue": "H",
-        "home": "Le Havre",
-        "away": "Marseille",
-        "home_goals": 1,
-        "away_goals": 2
       }
     ],
     "alltime": {
       "w": 0,
       "d": 0,
-      "l": 6
+      "l": 7
     }
   },
   "Marseille vs Le Havre": {
     "last5": [
+      {
+        "date": "2026-10-25",
+        "venue": "H",
+        "home": "Marseille",
+        "away": "Le Havre",
+        "home_goals": 4,
+        "away_goals": 3
+      },
       {
         "date": "2026-05-10",
         "venue": "A",
@@ -5985,18 +6043,10 @@
         "away": "Le Havre",
         "home_goals": 5,
         "away_goals": 1
-      },
-      {
-        "date": "2024-05-19",
-        "venue": "A",
-        "home": "Le Havre",
-        "away": "Marseille",
-        "home_goals": 1,
-        "away_goals": 2
       }
     ],
     "alltime": {
-      "w": 6,
+      "w": 7,
       "d": 0,
       "l": 0
     }
@@ -17854,6 +17904,14 @@
   "Rennes vs Strasbourg": {
     "last5": [
       {
+        "date": "2026-10-25",
+        "venue": "H",
+        "home": "Rennes",
+        "away": "Strasbourg",
+        "home_goals": 3,
+        "away_goals": 0
+      },
+      {
         "date": "2026-04-19",
         "venue": "A",
         "home": "Strasbourg",
@@ -17884,18 +17942,10 @@
         "away": "Rennes",
         "home_goals": 3,
         "away_goals": 1
-      },
-      {
-        "date": "2024-03-31",
-        "venue": "A",
-        "home": "Strasbourg",
-        "away": "Rennes",
-        "home_goals": 2,
-        "away_goals": 0
       }
     ],
     "alltime": {
-      "w": 3,
+      "w": 4,
       "d": 1,
       "l": 2
     }
@@ -17903,6 +17953,14 @@
   "Strasbourg vs Rennes": {
     "last5": [
       {
+        "date": "2026-10-25",
+        "venue": "A",
+        "home": "Rennes",
+        "away": "Strasbourg",
+        "home_goals": 3,
+        "away_goals": 0
+      },
+      {
         "date": "2026-04-19",
         "venue": "H",
         "home": "Strasbourg",
@@ -17933,20 +17991,12 @@
         "away": "Rennes",
         "home_goals": 3,
         "away_goals": 1
-      },
-      {
-        "date": "2024-03-31",
-        "venue": "H",
-        "home": "Strasbourg",
-        "away": "Rennes",
-        "home_goals": 2,
-        "away_goals": 0
       }
     ],
     "alltime": {
       "w": 2,
       "d": 1,
-      "l": 3
+      "l": 4
     }
   },
   "Rennes vs Toulouse": {
@@ -18277,6 +18327,40 @@
       "w": 0,
       "d": 0,
       "l": 1
+    }
+  },
+  "Toulouse vs Troyes": {
+    "last5": [
+      {
+        "date": "2026-10-25",
+        "venue": "H",
+        "home": "Toulouse",
+        "away": "Troyes",
+        "home_goals": 0,
+        "away_goals": 0
+      }
+    ],
+    "alltime": {
+      "w": 0,
+      "d": 1,
+      "l": 0
+    }
+  },
+  "Troyes vs Toulouse": {
+    "last5": [
+      {
+        "date": "2026-10-25",
+        "venue": "A",
+        "home": "Toulouse",
+        "away": "Troyes",
+        "home_goals": 0,
+        "away_goals": 0
+      }
+    ],
+    "alltime": {
+      "w": 0,
+      "d": 1,
+      "l": 0
     }
   }
 }
