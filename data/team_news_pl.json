@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-27T19:19:32.242476+00:00",
+ "fetched_at": "2026-10-28T19:25:17.450127+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -31,6 +31,15 @@
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Has joined Al Hilal permanently",
+     "regular_starter": false,
+     "position": "MID"
+    },
+    {
+     "player": "Max Dowman",
+     "status": "s",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Suspended until 29 Nov",
      "regular_starter": false,
      "position": "MID"
     },
@@ -98,9 +107,27 @@
      "news": "",
      "regular_starter": false,
      "position": "DEF"
+    },
+    {
+     "player": "Declan Rice",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "MID"
+    },
+    {
+     "player": "Noni Madueke",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Ankle injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "MID"
     }
    ],
-   "key_absences": 3,
+   "key_absences": 4,
    "drag_att": 0.1699,
    "drag_def": 0.0476
   },
@@ -461,19 +488,19 @@
     },
     {
      "player": "Yankuba Minteh",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 75,
-     "news": "Leg injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "MID"
     },
     {
      "player": "Mats Wieffer",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 25,
-     "chance_next_round": 75,
-     "news": "Knee injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "DEF"
     },
@@ -850,7 +877,7 @@
      "status": "d",
      "chance_this_round": 75,
      "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
+     "news": "Ankle injury - 75% chance of playing",
      "regular_starter": true,
      "position": "FWD"
     },
