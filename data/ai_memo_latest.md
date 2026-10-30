@@ -1,4 +1,4 @@
-# Weekly AI forecast memo — 2026-10-29
+# Weekly AI forecast memo — 2026-10-30
 
 > AI-generated. All numbers below come from the fitted models and
 > real fixture results; nothing here was invented by the AI.
@@ -7,11 +7,11 @@
 
 | league | model version | poisson | ML (chosen) | ensemble | baseline |
 | --- | --- | --- | --- | --- | --- |
-| pl | v2026-10-29 | 1.0028 | 1.0310 (xgb_tiny) | 0.9990 | 1.0826 |
-| laliga | v2026-10-29 | 0.9933 | 1.0300 (xgb_tiny) | 0.9903 | 1.0661 |
-| bundesliga | v2026-10-29 | 1.0496 | 1.0358 (xgb_reg) | 1.0083 | 1.0822 |
-| seriea | v2026-10-29 | 1.0030 | 1.0405 (xgb_tiny) | 1.0030 | 1.0941 |
-| ligue1 | v2026-10-29 | 1.0725 | 1.0510 (xgb_tiny) | 1.0263 | 1.0712 |
+| pl | v2026-10-30 | 1.0028 | 1.0310 (xgb_tiny) | 0.9990 | 1.0826 |
+| laliga | v2026-10-30 | 0.9933 | 1.0300 (xgb_tiny) | 0.9903 | 1.0661 |
+| bundesliga | v2026-10-30 | 1.0496 | 1.0358 (xgb_reg) | 1.0083 | 1.0822 |
+| seriea | v2026-10-30 | 1.0030 | 1.0405 (xgb_tiny) | 1.0030 | 1.0941 |
+| ligue1 | v2026-10-30 | 1.0725 | 1.0510 (xgb_tiny) | 1.0263 | 1.0712 |
 
 ## 2. Ledger scoring this run
 
@@ -20,7 +20,7 @@
 | pl | 30 | 1.0872 | 1.0492 | 1.0416 |
 | laliga | 30 | 0.9361 | 1.0649 | 0.9774 |
 | bundesliga | 27 | 1.0456 | 1.1147 | 1.0647 |
-| seriea | 38 | 0.8639 | 1.0735 | 0.9511 |
+| seriea | 40 | 0.8651 | 1.0689 | 0.9451 |
 | ligue1 | 27 | 0.8766 | 0.9374 | 0.8551 |
 
 ## 3. Calibration (all scored fixtures)
@@ -58,7 +58,7 @@
 | band | n | mean P(predicted outcome) | hit rate |
 | --- | --- | --- | --- |
 | 0.3-0.4 | 6 | 0.390 | 0.333 |
-| 0.4-0.5 | 10 | 0.446 | 0.500 |
+| 0.4-0.5 | 12 | 0.444 | 0.583 |
 | 0.5-0.6 | 10 | 0.556 | 0.400 |
 | 0.6-0.7 | 9 | 0.625 | 0.889 |
 | 0.7-0.8 | 3 | 0.743 | 1.000 |
@@ -79,7 +79,7 @@ Compares the ledger's overall ensemble log-loss against the walk-forward ensembl
 - pl: ledger 1.0416 vs walk-forward 0.9990 (delta +0.0426, n=30) — ok.
 - laliga: ledger 0.9774 vs walk-forward 0.9903 (delta -0.0129, n=30) — ok.
 - bundesliga: ledger 1.0647 vs walk-forward 1.0083 (delta +0.0564, n=27) — DECAY FLAG.
-- seriea: ledger 0.9511 vs walk-forward 1.0030 (delta -0.0519, n=38) — ok.
+- seriea: ledger 0.9451 vs walk-forward 1.0030 (delta -0.0579, n=40) — ok.
 - ligue1: ledger 0.8551 vs walk-forward 1.0263 (delta -0.1713, n=27) — ok.
 
 One or more leagues are flagged. The weekly memo should investigate before the next refresh: check for distribution shift (new season, promoted teams) or stale features.
