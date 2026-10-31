@@ -544,6 +544,14 @@
   "Augsburg vs Freiburg": {
     "last5": [
       {
+        "date": "2026-10-31",
+        "venue": "H",
+        "home": "Augsburg",
+        "away": "Freiburg",
+        "home_goals": 1,
+        "away_goals": 2
+      },
+      {
         "date": "2026-01-18",
         "venue": "H",
         "home": "Augsburg",
@@ -573,25 +581,25 @@
         "home": "Freiburg",
         "away": "Augsburg",
         "home_goals": 3,
-        "away_goals": 1
-      },
-      {
-        "date": "2024-02-25",
-        "venue": "H",
-        "home": "Augsburg",
-        "away": "Freiburg",
-        "home_goals": 2,
         "away_goals": 1
       }
     ],
     "alltime": {
       "w": 2,
       "d": 2,
-      "l": 2
+      "l": 3
     }
   },
   "Freiburg vs Augsburg": {
     "last5": [
+      {
+        "date": "2026-10-31",
+        "venue": "A",
+        "home": "Augsburg",
+        "away": "Freiburg",
+        "home_goals": 1,
+        "away_goals": 2
+      },
       {
         "date": "2026-01-18",
         "venue": "A",
@@ -623,18 +631,10 @@
         "away": "Augsburg",
         "home_goals": 3,
         "away_goals": 1
-      },
-      {
-        "date": "2024-02-25",
-        "venue": "A",
-        "home": "Augsburg",
-        "away": "Freiburg",
-        "home_goals": 2,
-        "away_goals": 1
       }
     ],
     "alltime": {
-      "w": 2,
+      "w": 3,
       "d": 2,
       "l": 2
     }
@@ -8455,6 +8455,40 @@
       "l": 1
     }
   },
+  "Elversberg vs Mainz": {
+    "last5": [
+      {
+        "date": "2026-10-30",
+        "venue": "H",
+        "home": "Elversberg",
+        "away": "Mainz",
+        "home_goals": 4,
+        "away_goals": 1
+      }
+    ],
+    "alltime": {
+      "w": 1,
+      "d": 0,
+      "l": 0
+    }
+  },
+  "Mainz vs Elversberg": {
+    "last5": [
+      {
+        "date": "2026-10-30",
+        "venue": "A",
+        "home": "Elversberg",
+        "away": "Mainz",
+        "home_goals": 4,
+        "away_goals": 1
+      }
+    ],
+    "alltime": {
+      "w": 0,
+      "d": 0,
+      "l": 1
+    }
+  },
   "Elversberg vs RB Leipzig": {
     "last5": [
       {
@@ -13322,6 +13356,14 @@
   "Hoffenheim vs Werder Bremen": {
     "last5": [
       {
+        "date": "2026-10-31",
+        "venue": "A",
+        "home": "Werder Bremen",
+        "away": "Hoffenheim",
+        "home_goals": 2,
+        "away_goals": 0
+      },
+      {
         "date": "2026-05-09",
         "venue": "H",
         "home": "Hoffenheim",
@@ -13352,24 +13394,24 @@
         "away": "Werder Bremen",
         "home_goals": 3,
         "away_goals": 4
-      },
-      {
-        "date": "2024-03-03",
-        "venue": "H",
-        "home": "Hoffenheim",
-        "away": "Werder Bremen",
-        "home_goals": 2,
-        "away_goals": 1
       }
     ],
     "alltime": {
       "w": 5,
       "d": 0,
-      "l": 1
+      "l": 2
     }
   },
   "Werder Bremen vs Hoffenheim": {
     "last5": [
+      {
+        "date": "2026-10-31",
+        "venue": "H",
+        "home": "Werder Bremen",
+        "away": "Hoffenheim",
+        "home_goals": 2,
+        "away_goals": 0
+      },
       {
         "date": "2026-05-09",
         "venue": "A",
@@ -13401,18 +13443,10 @@
         "away": "Werder Bremen",
         "home_goals": 3,
         "away_goals": 4
-      },
-      {
-        "date": "2024-03-03",
-        "venue": "A",
-        "home": "Hoffenheim",
-        "away": "Werder Bremen",
-        "home_goals": 2,
-        "away_goals": 1
       }
     ],
     "alltime": {
-      "w": 1,
+      "w": 2,
       "d": 0,
       "l": 5
     }
@@ -14344,6 +14378,14 @@
   "Leverkusen vs Stuttgart": {
     "last5": [
       {
+        "date": "2026-10-31",
+        "venue": "H",
+        "home": "Leverkusen",
+        "away": "Stuttgart",
+        "home_goals": 2,
+        "away_goals": 4
+      },
+      {
         "date": "2026-05-09",
         "venue": "A",
         "home": "Stuttgart",
@@ -14374,24 +14416,24 @@
         "away": "Stuttgart",
         "home_goals": 0,
         "away_goals": 0
-      },
-      {
-        "date": "2024-04-27",
-        "venue": "H",
-        "home": "Leverkusen",
-        "away": "Stuttgart",
-        "home_goals": 2,
-        "away_goals": 2
       }
     ],
     "alltime": {
       "w": 1,
       "d": 3,
-      "l": 2
+      "l": 3
     }
   },
   "Stuttgart vs Leverkusen": {
     "last5": [
+      {
+        "date": "2026-10-31",
+        "venue": "A",
+        "home": "Leverkusen",
+        "away": "Stuttgart",
+        "home_goals": 2,
+        "away_goals": 4
+      },
       {
         "date": "2026-05-09",
         "venue": "H",
@@ -14423,18 +14465,10 @@
         "away": "Stuttgart",
         "home_goals": 0,
         "away_goals": 0
-      },
-      {
-        "date": "2024-04-27",
-        "venue": "A",
-        "home": "Leverkusen",
-        "away": "Stuttgart",
-        "home_goals": 2,
-        "away_goals": 2
       }
     ],
     "alltime": {
-      "w": 2,
+      "w": 3,
       "d": 3,
       "l": 1
     }
@@ -14829,6 +14863,40 @@
       "w": 2,
       "d": 4,
       "l": 1
+    }
+  },
+  "M'gladbach vs Paderborn": {
+    "last5": [
+      {
+        "date": "2026-10-31",
+        "venue": "H",
+        "home": "M'gladbach",
+        "away": "Paderborn",
+        "home_goals": 0,
+        "away_goals": 0
+      }
+    ],
+    "alltime": {
+      "w": 0,
+      "d": 1,
+      "l": 0
+    }
+  },
+  "Paderborn vs M'gladbach": {
+    "last5": [
+      {
+        "date": "2026-10-31",
+        "venue": "A",
+        "home": "M'gladbach",
+        "away": "Paderborn",
+        "home_goals": 0,
+        "away_goals": 0
+      }
+    ],
+    "alltime": {
+      "w": 0,
+      "d": 1,
+      "l": 0
     }
   },
   "M'gladbach vs RB Leipzig": {
@@ -16109,6 +16177,40 @@
       "w": 0,
       "d": 1,
       "l": 0
+    }
+  },
+  "RB Leipzig vs Schalke 04": {
+    "last5": [
+      {
+        "date": "2026-10-31",
+        "venue": "A",
+        "home": "Schalke 04",
+        "away": "RB Leipzig",
+        "home_goals": 0,
+        "away_goals": 2
+      }
+    ],
+    "alltime": {
+      "w": 1,
+      "d": 0,
+      "l": 0
+    }
+  },
+  "Schalke 04 vs RB Leipzig": {
+    "last5": [
+      {
+        "date": "2026-10-31",
+        "venue": "H",
+        "home": "Schalke 04",
+        "away": "RB Leipzig",
+        "home_goals": 0,
+        "away_goals": 2
+      }
+    ],
+    "alltime": {
+      "w": 0,
+      "d": 0,
+      "l": 1
     }
   },
   "RB Leipzig vs St Pauli": {
