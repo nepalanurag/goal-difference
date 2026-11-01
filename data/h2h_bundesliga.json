@@ -1970,6 +1970,14 @@
   "Bayern Munich vs Dortmund": {
     "last5": [
       {
+        "date": "2026-10-31",
+        "venue": "H",
+        "home": "Bayern Munich",
+        "away": "Dortmund",
+        "home_goals": 2,
+        "away_goals": 2
+      },
+      {
         "date": "2026-02-28",
         "venue": "A",
         "home": "Dortmund",
@@ -2000,25 +2008,25 @@
         "away": "Bayern Munich",
         "home_goals": 1,
         "away_goals": 1
-      },
-      {
-        "date": "2024-03-30",
-        "venue": "H",
-        "home": "Bayern Munich",
-        "away": "Dortmund",
-        "home_goals": 0,
-        "away_goals": 2
       }
     ],
     "alltime": {
       "w": 3,
-      "d": 2,
+      "d": 3,
       "l": 1
     }
   },
   "Dortmund vs Bayern Munich": {
     "last5": [
       {
+        "date": "2026-10-31",
+        "venue": "A",
+        "home": "Bayern Munich",
+        "away": "Dortmund",
+        "home_goals": 2,
+        "away_goals": 2
+      },
+      {
         "date": "2026-02-28",
         "venue": "H",
         "home": "Dortmund",
@@ -2049,19 +2057,11 @@
         "away": "Bayern Munich",
         "home_goals": 1,
         "away_goals": 1
-      },
-      {
-        "date": "2024-03-30",
-        "venue": "A",
-        "home": "Bayern Munich",
-        "away": "Dortmund",
-        "home_goals": 0,
-        "away_goals": 2
       }
     ],
     "alltime": {
       "w": 1,
-      "d": 2,
+      "d": 3,
       "l": 3
     }
   },
@@ -7228,6 +7228,14 @@
   "Ein Frankfurt vs Hamburg": {
     "last5": [
       {
+        "date": "2026-11-01",
+        "venue": "H",
+        "home": "Ein Frankfurt",
+        "away": "Hamburg",
+        "home_goals": 3,
+        "away_goals": 1
+      },
+      {
         "date": "2026-05-02",
         "venue": "H",
         "home": "Ein Frankfurt",
@@ -7245,13 +7253,21 @@
       }
     ],
     "alltime": {
-      "w": 0,
+      "w": 1,
       "d": 1,
       "l": 1
     }
   },
   "Hamburg vs Ein Frankfurt": {
     "last5": [
+      {
+        "date": "2026-11-01",
+        "venue": "A",
+        "home": "Ein Frankfurt",
+        "away": "Hamburg",
+        "home_goals": 3,
+        "away_goals": 1
+      },
       {
         "date": "2026-05-02",
         "venue": "A",
@@ -7272,7 +7288,7 @@
     "alltime": {
       "w": 1,
       "d": 1,
-      "l": 0
+      "l": 1
     }
   },
   "Ein Frankfurt vs Heidenheim": {
@@ -9448,6 +9464,14 @@
   "FC Koln vs Union Berlin": {
     "last5": [
       {
+        "date": "2026-11-01",
+        "venue": "A",
+        "home": "Union Berlin",
+        "away": "FC Koln",
+        "home_goals": 1,
+        "away_goals": 1
+      },
+      {
         "date": "2026-05-02",
         "venue": "A",
         "home": "Union Berlin",
@@ -9482,12 +9506,20 @@
     ],
     "alltime": {
       "w": 1,
-      "d": 1,
+      "d": 2,
       "l": 2
     }
   },
   "Union Berlin vs FC Koln": {
     "last5": [
+      {
+        "date": "2026-11-01",
+        "venue": "H",
+        "home": "Union Berlin",
+        "away": "FC Koln",
+        "home_goals": 1,
+        "away_goals": 1
+      },
       {
         "date": "2026-05-02",
         "venue": "H",
@@ -9523,7 +9555,7 @@
     ],
     "alltime": {
       "w": 2,
-      "d": 1,
+      "d": 2,
       "l": 1
     }
   },

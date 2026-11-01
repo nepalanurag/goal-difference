@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-10-31T18:19:58.488554+00:00",
+ "fetched_at": "2026-11-01T18:50:24.012907+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -83,44 +83,44 @@
    "doubtful": [
     {
      "player": "Riccardo Calafiori",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Hip injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true,
      "position": "DEF"
     },
     {
      "player": "Declan Rice",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true,
      "position": "MID"
     },
     {
      "player": "Noni Madueke",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Ankle injury - 50% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "MID"
     },
     {
      "player": "Christos Tzolis",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true,
      "position": "MID"
     }
    ],
    "key_absences": 4,
-   "drag_att": 0.1522,
-   "drag_def": 0.0238
+   "drag_att": 0.1676,
+   "drag_def": 0.0245
   },
   "Aston Villa": {
    "out": [
@@ -131,6 +131,15 @@
      "chance_next_round": 0,
      "news": "Has joined Paris Saint-Germain permanently",
      "regular_starter": false,
+     "position": "DEF"
+    },
+    {
+     "player": "Matty Cash",
+     "status": "s",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Suspended until 21 Nov",
+     "regular_starter": true,
      "position": "DEF"
     },
     {
@@ -216,9 +225,9 @@
     }
    ],
    "doubtful": [],
-   "key_absences": 0,
+   "key_absences": 1,
    "drag_att": 0.0,
-   "drag_def": 0.0458
+   "drag_def": 0.1398
   },
   "Bournemouth": {
    "out": [
@@ -854,7 +863,7 @@
     }
    ],
    "key_absences": 2,
-   "drag_att": 0.0368,
+   "drag_att": 0.0359,
    "drag_def": 0.0
   },
   "Everton": {
@@ -915,10 +924,10 @@
     },
     {
      "player": "Ryan Sessegnon",
-     "status": "s",
+     "status": "a",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Suspended until 7 Nov",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "DEF"
     },
@@ -1264,9 +1273,18 @@
      "news": "",
      "regular_starter": true,
      "position": "MID"
+    },
+    {
+     "player": "Noah Okafor",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Thigh injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "MID"
     }
    ],
-   "key_absences": 1,
+   "key_absences": 2,
    "drag_att": 0.0392,
    "drag_def": 0.0
   },
@@ -1366,25 +1384,25 @@
    "doubtful": [
     {
      "player": "Dominik Szoboszlai",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Hamstring injury - 50% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true,
      "position": "MID"
     },
     {
      "player": "Victor Munoz",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Knee injury - 50% chance of playing",
-     "regular_starter": true,
+     "chance_next_round": 100,
+     "news": "",
+     "regular_starter": false,
      "position": "MID"
     }
    ],
-   "key_absences": 2,
-   "drag_att": 0.0802,
+   "key_absences": 1,
+   "drag_att": 0.0768,
    "drag_def": 0.0
   },
   "Man City": {
@@ -1845,9 +1863,18 @@
      "status": "d",
      "chance_this_round": 75,
      "chance_next_round": 75,
-     "news": "Knock - 75% chance of playing",
+     "news": "Concussion - 75% chance of playing",
      "regular_starter": true,
      "position": "DEF"
+    },
+    {
+     "player": "Habib Diarra",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Muscular injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "MID"
     },
     {
      "player": "Wilson Isidor",
@@ -1939,10 +1966,10 @@
     },
     {
      "player": "Rodrigo Bentancur",
-     "status": "s",
+     "status": "a",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Suspended until 7 Nov",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "MID"
     },
@@ -2012,7 +2039,7 @@
    ],
    "doubtful": [],
    "key_absences": 0,
-   "drag_att": 0.0688,
+   "drag_att": 0.0645,
    "drag_def": 0.0
   }
  }
