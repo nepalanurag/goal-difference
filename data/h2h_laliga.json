@@ -4480,6 +4480,14 @@
   "Ath Bilbao vs Real Sociedad": {
     "last5": [
       {
+        "date": "2026-11-01",
+        "venue": "H",
+        "home": "Ath Bilbao",
+        "away": "Real Sociedad",
+        "home_goals": 2,
+        "away_goals": 1
+      },
+      {
         "date": "2026-02-01",
         "venue": "H",
         "home": "Ath Bilbao",
@@ -4510,18 +4518,10 @@
         "away": "Real Sociedad",
         "home_goals": 1,
         "away_goals": 0
-      },
-      {
-        "date": "2024-01-13",
-        "venue": "H",
-        "home": "Ath Bilbao",
-        "away": "Real Sociedad",
-        "home_goals": 2,
-        "away_goals": 1
       }
     ],
     "alltime": {
-      "w": 2,
+      "w": 3,
       "d": 2,
       "l": 2
     }
@@ -4529,6 +4529,14 @@
   "Real Sociedad vs Ath Bilbao": {
     "last5": [
       {
+        "date": "2026-11-01",
+        "venue": "A",
+        "home": "Ath Bilbao",
+        "away": "Real Sociedad",
+        "home_goals": 2,
+        "away_goals": 1
+      },
+      {
         "date": "2026-02-01",
         "venue": "A",
         "home": "Ath Bilbao",
@@ -4559,20 +4567,12 @@
         "away": "Real Sociedad",
         "home_goals": 1,
         "away_goals": 0
-      },
-      {
-        "date": "2024-01-13",
-        "venue": "A",
-        "home": "Ath Bilbao",
-        "away": "Real Sociedad",
-        "home_goals": 2,
-        "away_goals": 1
       }
     ],
     "alltime": {
       "w": 2,
       "d": 2,
-      "l": 2
+      "l": 3
     }
   },
   "Ath Bilbao vs Sevilla": {
@@ -13102,6 +13102,14 @@
   "Elche vs Valencia": {
     "last5": [
       {
+        "date": "2026-11-01",
+        "venue": "H",
+        "home": "Elche",
+        "away": "Valencia",
+        "home_goals": 0,
+        "away_goals": 1
+      },
+      {
         "date": "2026-04-11",
         "venue": "H",
         "home": "Elche",
@@ -13121,11 +13129,19 @@
     "alltime": {
       "w": 1,
       "d": 1,
-      "l": 0
+      "l": 1
     }
   },
   "Valencia vs Elche": {
     "last5": [
+      {
+        "date": "2026-11-01",
+        "venue": "A",
+        "home": "Elche",
+        "away": "Valencia",
+        "home_goals": 0,
+        "away_goals": 1
+      },
       {
         "date": "2026-04-11",
         "venue": "A",
@@ -13144,7 +13160,7 @@
       }
     ],
     "alltime": {
-      "w": 0,
+      "w": 1,
       "d": 1,
       "l": 1
     }
@@ -17413,6 +17429,40 @@
       "w": 0,
       "d": 1,
       "l": 0
+    }
+  },
+  "La Coruna vs Osasuna": {
+    "last5": [
+      {
+        "date": "2026-11-02",
+        "venue": "H",
+        "home": "La Coruna",
+        "away": "Osasuna",
+        "home_goals": 2,
+        "away_goals": 1
+      }
+    ],
+    "alltime": {
+      "w": 1,
+      "d": 0,
+      "l": 0
+    }
+  },
+  "Osasuna vs La Coruna": {
+    "last5": [
+      {
+        "date": "2026-11-02",
+        "venue": "A",
+        "home": "La Coruna",
+        "away": "Osasuna",
+        "home_goals": 2,
+        "away_goals": 1
+      }
+    ],
+    "alltime": {
+      "w": 0,
+      "d": 0,
+      "l": 1
     }
   },
   "La Coruna vs Real Sociedad": {

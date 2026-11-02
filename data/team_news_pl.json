@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-11-01T18:50:24.012907+00:00",
+ "fetched_at": "2026-11-02T22:41:05.171687+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -899,17 +899,17 @@
    "doubtful": [
     {
      "player": "Jarrad Branthwaite",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Concussion - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true,
      "position": "DEF"
     }
    ],
    "key_absences": 1,
    "drag_att": 0.0,
-   "drag_def": 0.0237
+   "drag_def": 0.0236
   },
   "Fulham": {
    "out": [
@@ -1632,6 +1632,15 @@
      "position": "DEF"
     },
     {
+     "player": "Jacob Ramsey",
+     "status": "s",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Suspended until 21 Nov",
+     "regular_starter": false,
+     "position": "MID"
+    },
+    {
      "player": "Nick Woltemade",
      "status": "u",
      "chance_this_round": 0,
@@ -1671,10 +1680,10 @@
     },
     {
      "player": "William Osula",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Ankle injury - 50% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "FWD"
     },
@@ -1689,7 +1698,7 @@
     }
    ],
    "key_absences": 1,
-   "drag_att": 0.0203,
+   "drag_att": 0.0187,
    "drag_def": 0.0
   },
   "Nott'm Forest": {

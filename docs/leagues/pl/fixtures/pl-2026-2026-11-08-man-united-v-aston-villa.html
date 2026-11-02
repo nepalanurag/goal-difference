@@ -11,7 +11,7 @@
 <div class="topbar"><div class="wrap">
 <div class="brand"><a href="/goal-difference/" class="brand-link">Goal <b>Difference</b></a></div>
 <nav class="nav"><a href="/goal-difference/">Home</a><div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span><div class="dropdown-content"><a href="/goal-difference/leagues/pl/">Premier League</a><a href="/goal-difference/leagues/laliga/">LaLiga</a><a href="/goal-difference/leagues/bundesliga/">Bundesliga</a><a href="/goal-difference/leagues/seriea/">Serie A</a><a href="/goal-difference/leagues/ligue1/">Ligue 1</a></div></div><a href="/goal-difference/track-record.html">Track record</a><a href="/goal-difference/methodology.html">Methodology</a><a href="/goal-difference/model-insights.html">Model insights</a></nav></div></div>
-<div class="wrap"><div class="meta-strip"><span class="pill-badge">Model update 2026-11-01</span></div><div class="hero"><p class="cond muted">Premier League
+<div class="wrap"><div class="meta-strip"><span class="pill-badge">Model update 2026-11-02</span></div><div class="hero"><p class="cond muted">Premier League
 &middot; <span class="mono">2026-11-08</span></p>
 <h1>Man United <span class="faint">v</span> Aston Villa</h1></div>
 <h2>How they're playing</h2>
@@ -46,7 +46,7 @@
 <tr><td class="muted">Discipline</td><td class="num">10.0 fouls</td>
 <td class="muted">cards / game</td><td class="num">1.6</td></tr>
 </table></div></div>
-
+<div class='card'><h3>European congestion</h3><p class='small'>Man United played in Europe 5 days ago.<br>Aston Villa played in Europe 5 days ago.</p></div>
 <h2>Head to head</h2><div class="card"><div class="h2h-summary">
   <div class="h2h-pill win">
     <span class="count">4</span>
@@ -119,18 +119,18 @@
 <tr><td>Poisson</td><td class="num">46%</td>
 <td class="num">24%</td><td class="num">30%</td></tr>
 <tr><td>Gradient boosting</td><td class="num">48%</td>
-<td class="num">30%</td><td class="num">21%</td></tr>
+<td class="num">29%</td><td class="num">23%</td></tr>
 <tr><td><b>Ensemble</b></td><td class="num"><b>47%</b></td>
-<td class="num"><b>28%</b></td><td class="num"><b>25%</b></td></tr>
+<td class="num"><b>27%</b></td><td class="num"><b>26%</b></td></tr>
 </table>
 <div class="probview" data-view="poisson" hidden>
-<div class="probbar"><span class="seg home" style="width:46.1%">46%</span><span class="seg draw" style="width:24.1%">24%</span><span class="seg away" style="width:29.9%">30%</span></div>
+<div class="probbar"><span class="seg home" style="width:46.0%">46%</span><span class="seg draw" style="width:24.1%">24%</span><span class="seg away" style="width:29.9%">30%</span></div>
 <p class="small muted" style="margin-top:4px">Poisson (Dixon-Coles) only.</p></div>
 <div class="probview" data-view="ml" hidden>
-<div class="probbar"><span class="seg home" style="width:48.4%">48%</span><span class="seg draw" style="width:30.1%">30%</span><span class="seg away" style="width:21.4%">21%</span></div>
+<div class="probbar"><span class="seg home" style="width:47.9%">48%</span><span class="seg draw" style="width:29.3%">29%</span><span class="seg away" style="width:22.7%">23%</span></div>
 <p class="small muted" style="margin-top:4px">Gradient boosting only.</p></div>
 <div class="probview" data-view="ensemble">
-<div class="probbar"><span class="seg home" style="width:47.5%">47%</span><span class="seg draw" style="width:27.7%">28%</span><span class="seg away" style="width:24.8%">25%</span></div>
+<div class="probbar"><span class="seg home" style="width:47.2%">47%</span><span class="seg draw" style="width:27.2%">27%</span><span class="seg away" style="width:25.6%">26%</span></div>
 <div class="legend"><span class="sw home"></span>Man United <span class="sw draw"></span>Draw <span class="sw away"></span>Aston Villa</div>
 <p class="small muted">Expected goals: <span class="mono">1.66 - 1.29</span>.
 Each row sums to 100%.</p></div></div><div class="card"><h3>What to expect</h3><table class="small">
@@ -145,7 +145,7 @@ vs Aston Villa <span class="mono">-0.2</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>Man United
 <span class="mono">75%</span> points expectation (W + 0.5&times;D)</td></tr>
-<tr><td class="muted">Rest &amp; turnaround</td><td><b>Man United:</b> 7 days rest <span class="faint">(8d gap &middot; 2026-10-31 at Chelsea (L 0&ndash;2))</span><br><b>Aston Villa:</b> 7 days rest <span class="faint">(8d gap &middot; 2026-10-31 vs Fulham (D 1&ndash;1))</span></td></tr>
+<tr><td class="muted">Rest &amp; turnaround</td><td><b>Man United:</b> 4 days rest <span class="faint">(5d gap &middot; 2026-11-03 UCL vs Roma (sched))</span><br><b>Aston Villa:</b> 4 days rest <span class="faint">(5d gap &middot; 2026-11-03 UCL at Barcelona (sched))</span></td></tr>
 </table></div></div>
 <h2>Players to watch</h2><div class="card"><p class='muted'>No scorer data for this fixture.</p></div>
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not
@@ -158,6 +158,6 @@ leagues show absences detected from lineups, labeled "reason unconfirmed",
 or state plainly when no data is published.</div>
 <div class="footer">Goal Difference &middot; weekly model-driven matchday
 analysis for Europe's top 5 leagues &middot; Poisson + gradient-boosted
-models, refit weekly &middot; updated 2026-11-01 &middot;
+models, refit weekly &middot; updated 2026-11-02 &middot;
 <a href="/goal-difference/methodology.html">How the models work</a></div>
 </div><script src="/goal-difference/app.js" defer></script></body></html>
