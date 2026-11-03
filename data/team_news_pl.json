@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-11-02T22:41:05.171687+00:00",
+ "fetched_at": "2026-11-03T20:30:12.169707+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -1392,6 +1392,15 @@
      "position": "MID"
     },
     {
+     "player": "Ryan Gravenberch",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Foot injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "MID"
+    },
+    {
      "player": "Victor Munoz",
      "status": "a",
      "chance_this_round": 50,
@@ -1577,15 +1586,6 @@
      "chance_next_round": 75,
      "news": "Hip injury - 75% chance of playing",
      "regular_starter": true,
-     "position": "MID"
-    },
-    {
-     "player": "Amad Diallo",
-     "status": "d",
-     "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Calf injury - 75% chance of playing",
-     "regular_starter": false,
      "position": "MID"
     },
     {
