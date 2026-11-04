@@ -2,17 +2,17 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-11-03T20:30:12.169707+00:00",
+ "fetched_at": "2026-11-04T20:45:10.817537+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
    "out": [
     {
      "player": "William Saliba",
-     "status": "i",
+     "status": "a",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Back injury - Unknown return date",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "DEF"
     },
@@ -1579,6 +1579,15 @@
     }
    ],
    "doubtful": [
+    {
+     "player": "Carlos Baleba",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 50,
+     "news": "Hamstring injury - 50% chance of playing",
+     "regular_starter": false,
+     "position": "MID"
+    },
     {
      "player": "Marcus Rashford",
      "status": "d",
