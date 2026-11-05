@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-11-04T20:45:10.817537+00:00",
+ "fetched_at": "2026-11-05T21:00:57.506069+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -109,6 +109,15 @@
      "position": "MID"
     },
     {
+     "player": "Ezri Konsa Ngoyo",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Knee injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "DEF"
+    },
+    {
      "player": "Christos Tzolis",
      "status": "a",
      "chance_this_round": 75,
@@ -118,7 +127,7 @@
      "position": "MID"
     }
    ],
-   "key_absences": 4,
+   "key_absences": 5,
    "drag_att": 0.1676,
    "drag_def": 0.0245
   },
@@ -331,10 +340,10 @@
     },
     {
      "player": "Josh Dasilva",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Hamstring injury - Unknown return date",
+     "chance_next_round": 25,
+     "news": "Hamstring injury - 25% chance of playing",
      "regular_starter": false,
      "position": "MID"
     },
@@ -727,6 +736,15 @@
    ],
    "doubtful": [
     {
+     "player": "Frank Onyeka",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 50,
+     "news": "Groin injury - 50% chance of playing",
+     "regular_starter": true,
+     "position": "MID"
+    },
+    {
      "player": "Bobby Thomas",
      "status": "d",
      "chance_this_round": 50,
@@ -736,7 +754,7 @@
      "position": "DEF"
     }
    ],
-   "key_absences": 2,
+   "key_absences": 3,
    "drag_att": 0.0,
    "drag_def": 0.1029
   },
@@ -845,19 +863,19 @@
    "doubtful": [
     {
      "player": "Jørgen Strand Larsen",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Ankle injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true,
      "position": "FWD"
     },
     {
      "player": "Quinten Timber",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true,
      "position": "MID"
     }
@@ -899,10 +917,10 @@
    "doubtful": [
     {
      "player": "Jarrad Branthwaite",
-     "status": "a",
+     "status": "d",
      "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": true,
      "position": "DEF"
     }
@@ -1040,10 +1058,10 @@
     },
     {
      "player": "Darko Gyabi",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Thigh injury - Unknown return date",
+     "chance_next_round": 75,
+     "news": "Thigh injury - 75% chance of playing",
      "regular_starter": false,
      "position": "MID"
     },
@@ -1075,6 +1093,15 @@
      "position": "DEF"
     },
     {
+     "player": "Hidemasa Morita",
+     "status": "i",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Groin injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID"
+    },
+    {
      "player": "Ilyas Ansah",
      "status": "i",
      "chance_this_round": 0,
@@ -1087,10 +1114,10 @@
    "doubtful": [
     {
      "player": "Jack Butland",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Arm injury - 50% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "GK"
     },
@@ -1211,10 +1238,10 @@
     },
     {
      "player": "Joe Rodon",
-     "status": "i",
+     "status": "a",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Hamstring injury - Expected back 21 Nov",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "DEF"
     },
@@ -1267,10 +1294,10 @@
    "doubtful": [
     {
      "player": "Anton Stach",
-     "status": "a",
+     "status": "d",
      "chance_this_round": 50,
-     "chance_next_round": 100,
-     "news": "",
+     "chance_next_round": 50,
+     "news": "Foot injury - 50% chance of playing",
      "regular_starter": true,
      "position": "MID"
     },
@@ -1278,13 +1305,22 @@
      "player": "Noah Okafor",
      "status": "d",
      "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Thigh injury - 75% chance of playing",
+     "chance_next_round": 50,
+     "news": "Thigh injury - 50% chance of playing",
      "regular_starter": true,
      "position": "MID"
+    },
+    {
+     "player": "Dominic Calvert-Lewin",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Foot injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "FWD"
     }
    ],
-   "key_absences": 2,
+   "key_absences": 3,
    "drag_att": 0.0392,
    "drag_def": 0.0
   },
@@ -1650,6 +1686,15 @@
      "position": "MID"
     },
     {
+     "player": "Joelinton Cássio Apolinário de Lira",
+     "status": "i",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID"
+    },
+    {
      "player": "Nick Woltemade",
      "status": "u",
      "chance_this_round": 0,
@@ -1682,8 +1727,8 @@
      "player": "Lewis Miley",
      "status": "d",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Muscular injury - 75% chance of playing",
+     "chance_next_round": 50,
+     "news": "Muscular injury - 50% chance of playing",
      "regular_starter": true,
      "position": "MID"
     },
@@ -1707,7 +1752,7 @@
     }
    ],
    "key_absences": 1,
-   "drag_att": 0.0187,
+   "drag_att": 0.0433,
    "drag_def": 0.0
   },
   "Nott'm Forest": {
@@ -1767,11 +1812,20 @@
      "position": "MID"
     },
     {
-     "player": "Igor Jesus Maciel da Cruz",
+     "player": "Nicolás Domínguez",
      "status": "i",
-     "chance_this_round": 0,
+     "chance_this_round": 75,
      "chance_next_round": 0,
-     "news": "Calf injury - Unknown return date",
+     "news": "Muscular injury - Expected back 30 Dec",
+     "regular_starter": false,
+     "position": "MID"
+    },
+    {
+     "player": "Igor Jesus Maciel da Cruz",
+     "status": "d",
+     "chance_this_round": 0,
+     "chance_next_round": 75,
+     "news": "Calf injury - 75% chance of playing",
      "regular_starter": false,
      "position": "FWD"
     }
@@ -1784,15 +1838,6 @@
      "chance_next_round": 100,
      "news": "",
      "regular_starter": true,
-     "position": "MID"
-    },
-    {
-     "player": "Nicolás Domínguez",
-     "status": "d",
-     "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Muscular injury - 75% chance of playing",
-     "regular_starter": false,
      "position": "MID"
     }
    ],
@@ -1857,6 +1902,15 @@
      "position": "DEF"
     },
     {
+     "player": "Habib Diarra",
+     "status": "i",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Muscular injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID"
+    },
+    {
      "player": "Simon Adingra",
      "status": "u",
      "chance_this_round": 0,
@@ -1884,15 +1938,6 @@
      "news": "Concussion - 75% chance of playing",
      "regular_starter": true,
      "position": "DEF"
-    },
-    {
-     "player": "Habib Diarra",
-     "status": "d",
-     "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Muscular injury - 75% chance of playing",
-     "regular_starter": false,
-     "position": "MID"
     },
     {
      "player": "Wilson Isidor",
