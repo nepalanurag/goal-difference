@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-11-08T18:44:52.106622+00:00",
+ "fetched_at": "2026-11-09T23:21:59.503620+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -89,10 +89,10 @@
     },
     {
      "player": "Matty Cash",
-     "status": "s",
+     "status": "a",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Suspended until 21 Nov",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true,
      "position": "DEF"
     },
@@ -906,19 +906,9 @@
      "position": "DEF"
     }
    ],
-   "doubtful": [
-    {
-     "player": "Josh King",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Groin injury - 75% chance of playing",
-     "regular_starter": true,
-     "position": "MID"
-    }
-   ],
-   "key_absences": 1,
-   "drag_att": 0.0681,
+   "doubtful": [],
+   "key_absences": 0,
+   "drag_att": 0.0,
    "drag_def": 0.0
   },
   "Hull City": {
@@ -1357,6 +1347,15 @@
    ],
    "doubtful": [
     {
+     "player": "Virgil van Dijk",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "DEF"
+    },
+    {
      "player": "Ryan Gravenberch",
      "status": "d",
      "chance_this_round": 75,
@@ -1366,9 +1365,9 @@
      "position": "MID"
     }
    ],
-   "key_absences": 0,
+   "key_absences": 1,
    "drag_att": 0.0099,
-   "drag_def": 0.0
+   "drag_def": 0.0549
   },
   "Man City": {
    "out": [
@@ -1491,10 +1490,10 @@
     },
     {
      "player": "Lisandro Martínez",
-     "status": "s",
+     "status": "a",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Suspended until 22 Nov",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true,
      "position": "DEF"
     },
@@ -1856,7 +1855,7 @@
      "status": "d",
      "chance_this_round": null,
      "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
+     "news": "Calf injury - 75% chance of playing",
      "regular_starter": true,
      "position": "MID"
     }
