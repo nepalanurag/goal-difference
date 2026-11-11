@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-11-10T20:47:05.187574+00:00",
+ "fetched_at": "2026-11-11T21:09:34.612292+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -826,8 +826,18 @@
      "position": "DEF"
     }
    ],
-   "doubtful": [],
-   "key_absences": 0,
+   "doubtful": [
+    {
+     "player": "Jørgen Strand Larsen",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Ankle injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "FWD"
+    }
+   ],
+   "key_absences": 1,
    "drag_att": 0.0,
    "drag_def": 0.0
   },
@@ -1579,11 +1589,20 @@
      "news": "",
      "regular_starter": false,
      "position": "MID"
+    },
+    {
+     "player": "Harry Maguire",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Back injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "DEF"
     }
    ],
-   "key_absences": 2,
+   "key_absences": 3,
    "drag_att": 0.028,
-   "drag_def": 0.1336
+   "drag_def": 0.1903
   },
   "Newcastle": {
    "out": [
