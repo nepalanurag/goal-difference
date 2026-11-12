@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-11-11T21:09:34.612292+00:00",
+ "fetched_at": "2026-11-12T21:24:10.448770+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -171,6 +171,15 @@
    ],
    "doubtful": [
     {
+     "player": "Johan Manzambi",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Calf injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "MID"
+    },
+    {
      "player": "Aaron Wan-Bissaka",
      "status": "d",
      "chance_this_round": 50,
@@ -180,7 +189,7 @@
      "position": "DEF"
     }
    ],
-   "key_absences": 1,
+   "key_absences": 2,
    "drag_att": 0.0,
    "drag_def": 0.1083
   },
