@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-11-13T20:50:45.865605+00:00",
+ "fetched_at": "2026-11-14T19:02:28.609065+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -439,9 +439,27 @@
      "news": "",
      "regular_starter": true,
      "position": "DEF"
+    },
+    {
+     "player": "Jaouen Hadjam",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "DEF"
+    },
+    {
+     "player": "José María Andrés Baixauli",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Hip injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "MID"
     }
    ],
-   "key_absences": 1,
+   "key_absences": 2,
    "drag_att": 0.0,
    "drag_def": 0.0155
   },
@@ -1592,10 +1610,10 @@
    "doubtful": [
     {
      "player": "Patrick Dorgu",
-     "status": "a",
+     "status": "d",
      "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
      "regular_starter": false,
      "position": "MID"
     },
