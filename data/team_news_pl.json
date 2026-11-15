@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-11-14T19:02:28.609065+00:00",
+ "fetched_at": "2026-11-15T19:40:01.735007+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -89,10 +89,10 @@
     },
     {
      "player": "Matty Cash",
-     "status": "a",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 100,
-     "news": "",
+     "chance_next_round": 75,
+     "news": "Concussion - 75% chance of playing",
      "regular_starter": true,
      "position": "DEF"
     },
@@ -1805,10 +1805,19 @@
      "news": "",
      "regular_starter": false,
      "position": "FWD"
+    },
+    {
+     "player": "Xaver Schlager",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Thigh injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "MID"
     }
    ],
-   "key_absences": 0,
-   "drag_att": 0.0,
+   "key_absences": 1,
+   "drag_att": 0.0399,
    "drag_def": 0.0
   },
   "Sunderland": {
