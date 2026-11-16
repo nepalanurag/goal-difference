@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-11-15T19:40:01.735007+00:00",
+ "fetched_at": "2026-11-16T23:18:33.131075+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -71,7 +71,17 @@
      "position": "FWD"
     }
    ],
-   "doubtful": [],
+   "doubtful": [
+    {
+     "player": "Martín Zubimendi Ibáñez",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Hamstring injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "MID"
+    }
+   ],
    "key_absences": 1,
    "drag_att": 0.0876,
    "drag_def": 0.0
@@ -314,6 +324,15 @@
     }
    ],
    "doubtful": [
+    {
+     "player": "Nathan Collins",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Knee injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "DEF"
+    },
     {
      "player": "Josh Dasilva",
      "status": "d",
@@ -1106,6 +1125,15 @@
      "position": "MID"
     },
     {
+     "player": "Nobel Mendy",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Knee injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "DEF"
+    },
+    {
      "player": "Lucas Gourna-Douath",
      "status": "a",
      "chance_this_round": 75,
@@ -1115,7 +1143,7 @@
      "position": "MID"
     }
    ],
-   "key_absences": 2,
+   "key_absences": 3,
    "drag_att": 0.1052,
    "drag_def": 0.0
   },
@@ -1798,6 +1826,15 @@
    ],
    "doubtful": [
     {
+     "player": "Neco Williams",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Ankle injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "DEF"
+    },
+    {
      "player": "Igor Jesus Maciel da Cruz",
      "status": "a",
      "chance_this_round": 75,
@@ -1816,7 +1853,7 @@
      "position": "MID"
     }
    ],
-   "key_absences": 1,
+   "key_absences": 2,
    "drag_att": 0.0399,
    "drag_def": 0.0
   },
