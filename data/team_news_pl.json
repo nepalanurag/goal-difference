@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-11-18T21:47:47.015299+00:00",
+ "fetched_at": "2026-11-19T22:03:43.101176+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -641,10 +641,10 @@
     },
     {
      "player": "Moisés Caicedo Corozo",
-     "status": "a",
+     "status": "d",
      "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": false,
      "position": "MID"
     }
@@ -732,7 +732,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Thigh injury - Unknown return date",
+     "news": "Lack of match fitness - Unknown return date",
      "regular_starter": false,
      "position": "FWD"
     },
@@ -760,8 +760,8 @@
      "player": "Frank Onyeka",
      "status": "d",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Groin injury - 50% chance of playing",
+     "chance_next_round": 75,
+     "news": "Groin injury - 75% chance of playing",
      "regular_starter": false,
      "position": "MID"
     },
@@ -769,14 +769,32 @@
      "player": "Bobby Thomas",
      "status": "d",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Calf injury - 50% chance of playing",
+     "chance_next_round": 75,
+     "news": "Calf injury - 75% chance of playing",
      "regular_starter": true,
      "position": "DEF"
+    },
+    {
+     "player": "Ephron Mason-Clark",
+     "status": "d",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Knee injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "MID"
+    },
+    {
+     "player": "Caleb Yirenkyi",
+     "status": "d",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "MID"
     }
    ],
-   "key_absences": 1,
-   "drag_att": 0.0153,
+   "key_absences": 2,
+   "drag_att": 0.0414,
    "drag_def": 0.0938
   },
   "Crystal Palace": {
@@ -1295,20 +1313,11 @@
    ],
    "doubtful": [
     {
-     "player": "Gabriel Gudmundsson",
-     "status": "d",
-     "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
-     "regular_starter": true,
-     "position": "DEF"
-    },
-    {
      "player": "Anton Stach",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Foot injury - 50% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": true,
      "position": "MID"
     },
@@ -1331,7 +1340,7 @@
      "position": "FWD"
     }
    ],
-   "key_absences": 4,
+   "key_absences": 3,
    "drag_att": 0.1158,
    "drag_def": 0.0
   },
@@ -1806,6 +1815,15 @@
      "position": "DEF"
     },
     {
+     "player": "Callum Hudson-Odoi",
+     "status": "i",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID"
+    },
+    {
      "player": "Omari Hutchinson",
      "status": "u",
      "chance_this_round": 0,
@@ -1932,6 +1950,15 @@
      "position": "MID"
     },
     {
+     "player": "Granit Xhaka",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Calf injury - Unknown return date",
+     "regular_starter": true,
+     "position": "MID"
+    },
+    {
      "player": "Simon Adingra",
      "status": "u",
      "chance_this_round": 0,
@@ -1948,6 +1975,15 @@
      "news": "Knee injury - Unknown return date",
      "regular_starter": false,
      "position": "MID"
+    },
+    {
+     "player": "Brian Brobbey",
+     "status": "i",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Muscular injury - Unknown return date",
+     "regular_starter": true,
+     "position": "FWD"
     }
    ],
    "doubtful": [
@@ -1959,28 +1995,10 @@
      "news": "",
      "regular_starter": true,
      "position": "DEF"
-    },
-    {
-     "player": "Granit Xhaka",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Calf injury - 75% chance of playing",
-     "regular_starter": true,
-     "position": "MID"
-    },
-    {
-     "player": "Brian Brobbey",
-     "status": "d",
-     "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Muscular injury - 75% chance of playing",
-     "regular_starter": true,
-     "position": "FWD"
     }
    ],
    "key_absences": 4,
-   "drag_att": 0.0444,
+   "drag_att": 0.2372,
    "drag_def": 0.081
   },
   "Tottenham": {
