@@ -1,4 +1,4 @@
-# Weekly AI forecast memo — 2026-11-19
+# Weekly AI forecast memo — 2026-11-20
 
 > AI-generated. All numbers below come from the fitted models and
 > real fixture results; nothing here was invented by the AI.
@@ -7,11 +7,11 @@
 
 | league | model version | poisson | ML (chosen) | ensemble | baseline |
 | --- | --- | --- | --- | --- | --- |
-| pl | v2026-11-19 | 1.0028 | 1.0310 (xgb_tiny) | 0.9990 | 1.0826 |
-| laliga | v2026-11-19 | 0.9933 | 1.0300 (xgb_tiny) | 0.9903 | 1.0661 |
-| bundesliga | v2026-11-19 | 1.0496 | 1.0358 (xgb_reg) | 1.0083 | 1.0822 |
-| seriea | v2026-11-19 | 1.0030 | 1.0405 (xgb_tiny) | 1.0030 | 1.0941 |
-| ligue1 | v2026-11-19 | 1.0725 | 1.0510 (xgb_tiny) | 1.0263 | 1.0712 |
+| pl | v2026-11-20 | 1.0028 | 1.0310 (xgb_tiny) | 0.9990 | 1.0826 |
+| laliga | v2026-11-20 | 0.9933 | 1.0300 (xgb_tiny) | 0.9903 | 1.0661 |
+| bundesliga | v2026-11-20 | 1.0496 | 1.0358 (xgb_reg) | 1.0083 | 1.0822 |
+| seriea | v2026-11-20 | 1.0030 | 1.0405 (xgb_tiny) | 1.0030 | 1.0941 |
+| ligue1 | v2026-11-20 | 1.0725 | 1.0510 (xgb_tiny) | 1.0263 | 1.0712 |
 
 ## 2. Ledger scoring this run
 
@@ -19,9 +19,9 @@
 | --- | --- | --- | --- | --- |
 | pl | 50 | 1.0805 | 1.1569 | 1.0896 |
 | laliga | 50 | 0.9110 | 1.0847 | 0.9766 |
-| bundesliga | 45 | 0.9796 | 1.1657 | 1.0397 |
+| bundesliga | 46 | 1.0195 | 1.1783 | 1.0617 |
 | seriea | 60 | 0.8757 | 1.0315 | 0.9327 |
-| ligue1 | 45 | 0.8919 | 0.9065 | 0.8556 |
+| ligue1 | 46 | 0.8983 | 0.9124 | 0.8627 |
 
 ## 3. Calibration (all scored fixtures)
 
@@ -53,6 +53,7 @@
 | 0.5-0.6 | 7 | 0.558 | 0.857 |
 | 0.6-0.7 | 8 | 0.642 | 0.375 |
 | 0.7-0.8 | 3 | 0.750 | 0.667 |
+| 0.8-0.9 | 1 | 0.827 | 0.000 |
 
 ### seriea
 | band | n | mean P(predicted outcome) | hit rate |
@@ -67,7 +68,7 @@
 | band | n | mean P(predicted outcome) | hit rate |
 | --- | --- | --- | --- |
 | 0.3-0.4 | 3 | 0.377 | 0.333 |
-| 0.4-0.5 | 15 | 0.450 | 0.467 |
+| 0.4-0.5 | 16 | 0.450 | 0.438 |
 | 0.5-0.6 | 10 | 0.554 | 0.200 |
 | 0.6-0.7 | 10 | 0.651 | 1.000 |
 | 0.7-0.8 | 7 | 0.733 | 1.000 |
@@ -78,9 +79,9 @@ Compares the ledger's overall ensemble log-loss against the walk-forward ensembl
 
 - pl: ledger 1.0896 vs walk-forward 0.9990 (delta +0.0906, n=50) — DECAY FLAG.
 - laliga: ledger 0.9766 vs walk-forward 0.9903 (delta -0.0138, n=50) — ok.
-- bundesliga: ledger 1.0397 vs walk-forward 1.0083 (delta +0.0314, n=45) — ok.
+- bundesliga: ledger 1.0617 vs walk-forward 1.0083 (delta +0.0534, n=46) — DECAY FLAG.
 - seriea: ledger 0.9327 vs walk-forward 1.0030 (delta -0.0703, n=60) — ok.
-- ligue1: ledger 0.8556 vs walk-forward 1.0263 (delta -0.1707, n=45) — ok.
+- ligue1: ledger 0.8627 vs walk-forward 1.0263 (delta -0.1636, n=46) — ok.
 
 One or more leagues are flagged. The weekly memo should investigate before the next refresh: check for distribution shift (new season, promoted teams) or stale features.
 
