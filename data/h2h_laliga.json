@@ -8518,6 +8518,14 @@
   "Barcelona vs Villarreal": {
     "last5": [
       {
+        "date": "2026-11-22",
+        "venue": "H",
+        "home": "Barcelona",
+        "away": "Villarreal",
+        "home_goals": 3,
+        "away_goals": 2
+      },
+      {
         "date": "2026-02-28",
         "venue": "H",
         "home": "Barcelona",
@@ -8548,18 +8556,10 @@
         "away": "Barcelona",
         "home_goals": 1,
         "away_goals": 5
-      },
-      {
-        "date": "2024-01-27",
-        "venue": "H",
-        "home": "Barcelona",
-        "away": "Villarreal",
-        "home_goals": 3,
-        "away_goals": 5
       }
     ],
     "alltime": {
-      "w": 4,
+      "w": 5,
       "d": 0,
       "l": 2
     }
@@ -8567,6 +8567,14 @@
   "Villarreal vs Barcelona": {
     "last5": [
       {
+        "date": "2026-11-22",
+        "venue": "A",
+        "home": "Barcelona",
+        "away": "Villarreal",
+        "home_goals": 3,
+        "away_goals": 2
+      },
+      {
         "date": "2026-02-28",
         "venue": "A",
         "home": "Barcelona",
@@ -8597,20 +8605,12 @@
         "away": "Barcelona",
         "home_goals": 1,
         "away_goals": 5
-      },
-      {
-        "date": "2024-01-27",
-        "venue": "A",
-        "home": "Barcelona",
-        "away": "Villarreal",
-        "home_goals": 3,
-        "away_goals": 5
       }
     ],
     "alltime": {
       "w": 2,
       "d": 0,
-      "l": 4
+      "l": 5
     }
   },
   "Betis vs Cadiz": {
@@ -11928,6 +11928,14 @@
   "Celta vs Real Madrid": {
     "last5": [
       {
+        "date": "2026-11-21",
+        "venue": "A",
+        "home": "Real Madrid",
+        "away": "Celta",
+        "home_goals": 2,
+        "away_goals": 1
+      },
+      {
         "date": "2026-03-06",
         "venue": "H",
         "home": "Celta",
@@ -11958,24 +11966,24 @@
         "away": "Real Madrid",
         "home_goals": 1,
         "away_goals": 2
-      },
-      {
-        "date": "2024-03-10",
-        "venue": "A",
-        "home": "Real Madrid",
-        "away": "Celta",
-        "home_goals": 4,
-        "away_goals": 0
       }
     ],
     "alltime": {
       "w": 1,
       "d": 0,
-      "l": 5
+      "l": 6
     }
   },
   "Real Madrid vs Celta": {
     "last5": [
+      {
+        "date": "2026-11-21",
+        "venue": "H",
+        "home": "Real Madrid",
+        "away": "Celta",
+        "home_goals": 2,
+        "away_goals": 1
+      },
       {
         "date": "2026-03-06",
         "venue": "A",
@@ -12007,18 +12015,10 @@
         "away": "Real Madrid",
         "home_goals": 1,
         "away_goals": 2
-      },
-      {
-        "date": "2024-03-10",
-        "venue": "H",
-        "home": "Real Madrid",
-        "away": "Celta",
-        "home_goals": 4,
-        "away_goals": 0
       }
     ],
     "alltime": {
-      "w": 5,
+      "w": 6,
       "d": 0,
       "l": 1
     }
@@ -19471,6 +19471,40 @@
       "l": 0
     }
   },
+  "Malaga vs Osasuna": {
+    "last5": [
+      {
+        "date": "2026-11-22",
+        "venue": "A",
+        "home": "Osasuna",
+        "away": "Malaga",
+        "home_goals": 1,
+        "away_goals": 0
+      }
+    ],
+    "alltime": {
+      "w": 0,
+      "d": 0,
+      "l": 1
+    }
+  },
+  "Osasuna vs Malaga": {
+    "last5": [
+      {
+        "date": "2026-11-22",
+        "venue": "H",
+        "home": "Osasuna",
+        "away": "Malaga",
+        "home_goals": 1,
+        "away_goals": 0
+      }
+    ],
+    "alltime": {
+      "w": 1,
+      "d": 0,
+      "l": 0
+    }
+  },
   "Malaga vs Real Madrid": {
     "last5": [
       {
@@ -22463,6 +22497,40 @@
       "w": 0,
       "d": 1,
       "l": 6
+    }
+  },
+  "Real Sociedad vs Santander": {
+    "last5": [
+      {
+        "date": "2026-11-22",
+        "venue": "A",
+        "home": "Santander",
+        "away": "Real Sociedad",
+        "home_goals": 3,
+        "away_goals": 2
+      }
+    ],
+    "alltime": {
+      "w": 0,
+      "d": 0,
+      "l": 1
+    }
+  },
+  "Santander vs Real Sociedad": {
+    "last5": [
+      {
+        "date": "2026-11-22",
+        "venue": "H",
+        "home": "Santander",
+        "away": "Real Sociedad",
+        "home_goals": 3,
+        "away_goals": 2
+      }
+    ],
+    "alltime": {
+      "w": 1,
+      "d": 0,
+      "l": 0
     }
   },
   "Real Sociedad vs Sevilla": {

@@ -1446,6 +1446,14 @@
   "Arsenal vs Newcastle": {
     "last5": [
       {
+        "date": "2026-11-21",
+        "venue": "A",
+        "home": "Newcastle",
+        "away": "Arsenal",
+        "home_goals": 2,
+        "away_goals": 2
+      },
+      {
         "date": "2026-04-25",
         "venue": "H",
         "home": "Arsenal",
@@ -1476,25 +1484,25 @@
         "away": "Arsenal",
         "home_goals": 1,
         "away_goals": 0
-      },
-      {
-        "date": "2024-02-24",
-        "venue": "H",
-        "home": "Arsenal",
-        "away": "Newcastle",
-        "home_goals": 4,
-        "away_goals": 1
       }
     ],
     "alltime": {
       "w": 4,
-      "d": 0,
+      "d": 1,
       "l": 2
     }
   },
   "Newcastle vs Arsenal": {
     "last5": [
       {
+        "date": "2026-11-21",
+        "venue": "H",
+        "home": "Newcastle",
+        "away": "Arsenal",
+        "home_goals": 2,
+        "away_goals": 2
+      },
+      {
         "date": "2026-04-25",
         "venue": "A",
         "home": "Arsenal",
@@ -1525,19 +1533,11 @@
         "away": "Arsenal",
         "home_goals": 1,
         "away_goals": 0
-      },
-      {
-        "date": "2024-02-24",
-        "venue": "A",
-        "home": "Arsenal",
-        "away": "Newcastle",
-        "home_goals": 4,
-        "away_goals": 1
       }
     ],
     "alltime": {
       "w": 2,
-      "d": 0,
+      "d": 1,
       "l": 4
     }
   },
@@ -8181,6 +8181,40 @@
       "w": 3,
       "d": 2,
       "l": 1
+    }
+  },
+  "Brighton vs Hull City": {
+    "last5": [
+      {
+        "date": "2026-11-22",
+        "venue": "A",
+        "home": "Hull City",
+        "away": "Brighton",
+        "home_goals": 2,
+        "away_goals": 0
+      }
+    ],
+    "alltime": {
+      "w": 0,
+      "d": 0,
+      "l": 1
+    }
+  },
+  "Hull City vs Brighton": {
+    "last5": [
+      {
+        "date": "2026-11-22",
+        "venue": "H",
+        "home": "Hull City",
+        "away": "Brighton",
+        "home_goals": 2,
+        "away_goals": 0
+      }
+    ],
+    "alltime": {
+      "w": 1,
+      "d": 0,
+      "l": 0
     }
   },
   "Brighton vs Ipswich Town": {
@@ -18024,6 +18058,14 @@
   "Liverpool vs Man United": {
     "last5": [
       {
+        "date": "2026-11-22",
+        "venue": "H",
+        "home": "Liverpool",
+        "away": "Man United",
+        "home_goals": 4,
+        "away_goals": 0
+      },
+      {
         "date": "2026-05-03",
         "venue": "A",
         "home": "Man United",
@@ -18054,18 +18096,10 @@
         "away": "Liverpool",
         "home_goals": 0,
         "away_goals": 3
-      },
-      {
-        "date": "2024-04-07",
-        "venue": "A",
-        "home": "Man United",
-        "away": "Liverpool",
-        "home_goals": 2,
-        "away_goals": 2
       }
     ],
     "alltime": {
-      "w": 1,
+      "w": 2,
       "d": 3,
       "l": 2
     }
@@ -18073,6 +18107,14 @@
   "Man United vs Liverpool": {
     "last5": [
       {
+        "date": "2026-11-22",
+        "venue": "A",
+        "home": "Liverpool",
+        "away": "Man United",
+        "home_goals": 4,
+        "away_goals": 0
+      },
+      {
         "date": "2026-05-03",
         "venue": "H",
         "home": "Man United",
@@ -18103,20 +18145,12 @@
         "away": "Liverpool",
         "home_goals": 0,
         "away_goals": 3
-      },
-      {
-        "date": "2024-04-07",
-        "venue": "H",
-        "home": "Man United",
-        "away": "Liverpool",
-        "home_goals": 2,
-        "away_goals": 2
       }
     ],
     "alltime": {
       "w": 2,
       "d": 3,
-      "l": 1
+      "l": 2
     }
   },
   "Liverpool vs Newcastle": {

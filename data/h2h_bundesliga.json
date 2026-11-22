@@ -1134,6 +1134,14 @@
   "Augsburg vs Mainz": {
     "last5": [
       {
+        "date": "2026-11-22",
+        "venue": "H",
+        "home": "Augsburg",
+        "away": "Mainz",
+        "home_goals": 3,
+        "away_goals": 1
+      },
+      {
         "date": "2026-02-07",
         "venue": "A",
         "home": "Mainz",
@@ -1164,18 +1172,10 @@
         "away": "Mainz",
         "home_goals": 2,
         "away_goals": 3
-      },
-      {
-        "date": "2024-02-17",
-        "venue": "A",
-        "home": "Mainz",
-        "away": "Augsburg",
-        "home_goals": 1,
-        "away_goals": 0
       }
     ],
     "alltime": {
-      "w": 1,
+      "w": 2,
       "d": 1,
       "l": 4
     }
@@ -1183,6 +1183,14 @@
   "Mainz vs Augsburg": {
     "last5": [
       {
+        "date": "2026-11-22",
+        "venue": "A",
+        "home": "Augsburg",
+        "away": "Mainz",
+        "home_goals": 3,
+        "away_goals": 1
+      },
+      {
         "date": "2026-02-07",
         "venue": "H",
         "home": "Mainz",
@@ -1213,20 +1221,12 @@
         "away": "Mainz",
         "home_goals": 2,
         "away_goals": 3
-      },
-      {
-        "date": "2024-02-17",
-        "venue": "H",
-        "home": "Mainz",
-        "away": "Augsburg",
-        "home_goals": 1,
-        "away_goals": 0
       }
     ],
     "alltime": {
       "w": 4,
       "d": 1,
-      "l": 1
+      "l": 2
     }
   },
   "Augsburg vs RB Leipzig": {
@@ -11670,6 +11670,14 @@
   "Hamburg vs Werder Bremen": {
     "last5": [
       {
+        "date": "2026-11-22",
+        "venue": "A",
+        "home": "Werder Bremen",
+        "away": "Hamburg",
+        "home_goals": 4,
+        "away_goals": 0
+      },
+      {
         "date": "2026-04-18",
         "venue": "A",
         "home": "Werder Bremen",
@@ -11689,11 +11697,19 @@
     "alltime": {
       "w": 1,
       "d": 0,
-      "l": 1
+      "l": 2
     }
   },
   "Werder Bremen vs Hamburg": {
     "last5": [
+      {
+        "date": "2026-11-22",
+        "venue": "H",
+        "home": "Werder Bremen",
+        "away": "Hamburg",
+        "home_goals": 4,
+        "away_goals": 0
+      },
       {
         "date": "2026-04-18",
         "venue": "H",
@@ -11712,7 +11728,7 @@
       }
     ],
     "alltime": {
-      "w": 1,
+      "w": 2,
       "d": 0,
       "l": 1
     }
