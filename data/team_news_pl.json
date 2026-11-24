@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-11-24T01:33:58.923629+00:00",
+ "fetched_at": "2026-11-24T23:28:11.960052+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -188,20 +188,10 @@
      "position": "MID"
     }
    ],
-   "doubtful": [
-    {
-     "player": "Victor Lindelöf",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Illness - 75% chance of playing",
-     "regular_starter": true,
-     "position": "DEF"
-    }
-   ],
-   "key_absences": 2,
+   "doubtful": [],
+   "key_absences": 1,
    "drag_att": 0.0,
-   "drag_def": 0.14
+   "drag_def": 0.083
   },
   "Bournemouth": {
    "out": [
@@ -1304,7 +1294,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Knee injury - Unknown return date",
+     "news": "Knee injury - Expected back 12 Dec",
      "regular_starter": false,
      "position": "DEF"
     },
@@ -1313,7 +1303,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Knee injury - Unknown return date",
+     "news": "Knee injury - Expected back 12 Dec",
      "regular_starter": false,
      "position": "DEF"
     },
@@ -1525,20 +1515,11 @@
      "position": "GK"
     },
     {
-     "player": "Leny Yoro",
-     "status": "s",
-     "chance_this_round": null,
-     "chance_next_round": 0,
-     "news": "Suspended until 2 Dec",
-     "regular_starter": true,
-     "position": "DEF"
-    },
-    {
      "player": "Luke Shaw",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Unspecified injury - Unknown return date",
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
      "regular_starter": true,
      "position": "DEF"
     },
@@ -1635,9 +1616,9 @@
      "position": "DEF"
     }
    ],
-   "key_absences": 3,
+   "key_absences": 2,
    "drag_att": 0.0258,
-   "drag_def": 0.1347
+   "drag_def": 0.0801
   },
   "Newcastle": {
    "out": [
