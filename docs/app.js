@@ -1,12 +1,6 @@
 (function () {
   'use strict';
 
-  function on(selector, event, fn) {
-    document.querySelectorAll(selector).forEach(function (el) {
-      el.addEventListener(event, fn);
-    });
-  }
-
   // ---- Sortable tables: click a <th> to sort by that column (toggle asc/desc).
   function cellValue(td) {
     var t = td.textContent.trim().replace('%', '').replace(/,/g, '');
