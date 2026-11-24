@@ -85,6 +85,24 @@ MIGRATIONS: list[tuple[str, str]] = [
             evaluated_at   TEXT NOT NULL
         );
     """),
+    ("9.6.1", """
+        CREATE TABLE IF NOT EXISTS model_registry_v2 (
+            model_version       TEXT NOT NULL,
+            league              TEXT NOT NULL,
+            git_sha             TEXT,
+            feature_set_version TEXT,
+            data_hash           TEXT,
+            created_at          TEXT NOT NULL,
+            stage               TEXT NOT NULL DEFAULT 'staging',
+            PRIMARY KEY (league, model_version)
+        );
+        INSERT OR IGNORE INTO model_registry_v2
+            (model_version, league, git_sha, feature_set_version, data_hash, created_at, stage)
+            SELECT model_version, league, git_sha, feature_set_version, data_hash, created_at, stage
+            FROM model_registry;
+        DROP TABLE model_registry;
+        ALTER TABLE model_registry_v2 RENAME TO model_registry;
+    """),
 ]
 
 
@@ -261,7 +279,7 @@ def upsert_model_registry(model_version: str, league: str,
             "INSERT INTO model_registry (model_version, league, git_sha,"
             " feature_set_version, data_hash, created_at, stage)"
             " VALUES (?, ?, ?, ?, ?, ?, ?)"
-            " ON CONFLICT(model_version) DO UPDATE SET"
+            " ON CONFLICT(league, model_version) DO UPDATE SET"
             " git_sha = excluded.git_sha,"
             " feature_set_version = excluded.feature_set_version,"
             " data_hash = excluded.data_hash,"
@@ -284,7 +302,7 @@ def promote_model(league: str, version: str,
     caller decides after comparing walk-forward metrics.
 
     Returns True when the version existed in the registry."""
-    con = sqlite3.connect(Path(path) if path else ops_db_path())
+    con = sqlite3.connect(Path(path) if path else ops_db_path(), timeout=30.0)
     try:
         row = con.execute(
             "SELECT model_version FROM model_registry"

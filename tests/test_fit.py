@@ -196,3 +196,63 @@ def test_score_normalizes_and_silences_warning():
     assert 0.0 <= res["accuracy"] <= 1.0
 
 
+def test_predict_upcoming_preserves_dc_rho(tmp_path, monkeypatch):
+    import json
+    import joblib
+    from etl import config as cfg
+    from etl.fit import make_ml, predict_upcoming
+
+    df = _synthetic_league()
+    # Map A/B/C/D into valid PL structure with features + 1 scheduled fixture.
+    fx_rows = []
+    for i, r in df.iterrows():
+        fx_rows.append({
+            "fixture_id": f"f-{i}", "date": r["date"].date().isoformat(), "season": "2026",
+            "league": "pl", "home": r["home"], "away": r["away"],
+            "home_goals": r["home_goals"], "away_goals": r["away_goals"],
+            "status": "finished", "provenance": "csv_cached", "api_fixture_id": None,
+            "hs": None, "as_": None, "hst": None, "ast": None,
+            "hf": None, "af": None, "hy": None, "ay": None, "hr": None, "ar": None,
+        })
+    fx_rows.append({
+        "fixture_id": "f-sched", "date": "2026-12-01", "season": "2026",
+        "league": "pl", "home": "A", "away": "B",
+        "home_goals": None, "away_goals": None,
+        "status": "scheduled", "provenance": "fpl_api", "api_fixture_id": None,
+        "hs": None, "as_": None, "hst": None, "ast": None,
+        "hf": None, "af": None, "hy": None, "ay": None, "hr": None, "ar": None,
+    })
+    pd.DataFrame(fx_rows).to_csv(tmp_path / "fixtures_pl.csv", index=False)
+    monkeypatch.setattr(cfg.settings, "data_dir", tmp_path)
+    monkeypatch.setattr(cfg.settings, "raw_dir", tmp_path)
+
+    from etl.features import build_features, feature_columns
+    train_df, _ = build_features("pl", mode="train")
+    fcols = feature_columns(train_df)
+    ml = make_ml("xgb_tiny").fit(train_df[fcols], train_df["result"].to_numpy())
+    models_dir = tmp_path / "models"
+    models_dir.mkdir()
+    joblib.dump(ml, models_dir / "pl_xgb_tiny.joblib")
+    joblib.dump(fcols, models_dir / "pl_features.joblib")
+
+    dc_params = {
+        "teams": ["A", "B", "C", "D"],
+        "attack": {"A": 0.2, "B": 0.0, "C": -0.1, "D": -0.1},
+        "defense": {"A": -0.1, "B": 0.0, "C": 0.1, "D": 0.0},
+        "home_adv": 0.25,
+        "rho": -0.12,
+        "xi": 0.0018,
+    }
+    (tmp_path / "params_pl.json").write_text(json.dumps({
+        "league": "pl", "model_version": "vtest", "chosen_ml": "xgb_tiny", "dc": dc_params,
+    }))
+
+    out = predict_upcoming("pl")
+    assert len(out) == 1
+    lh, la = out.iloc[0]["xg_home"], out.iloc[0]["xg_away"]
+    expected = grid_to_1x2(dc_scoreline_grid(lh, la, -0.12))
+    indep = scoreline_to_1x2(lh, la)
+    assert np.isclose(out.iloc[0]["p_draw_poisson"], expected[1], atol=1e-6)
+    assert abs(out.iloc[0]["p_draw_poisson"] - indep[1]) > 1e-3
+
+

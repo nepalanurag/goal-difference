@@ -448,12 +448,15 @@ def walkforward(league: str, df: pd.DataFrame,
     pam_ll: list[float] = []
     use_pam_compare = bool(pam_cols) and set(pam_cols) < set(feature_cols)
     odds_rows = 0
-    cal_y: list[np.ndarray] = []
-    cal_p: list[np.ndarray] = []
+    folds: list[tuple[np.ndarray, np.ndarray, np.ndarray]] = []
+    p_dc_folds: list[np.ndarray] = []
+    p_ml_folds: dict[str, list[np.ndarray]] = {k: [] for k in ML_CONFIGS}
+    p_pam_folds: list[np.ndarray] = []
     for tr, te in tscv.split(X):
         Xtr, Xte = X.iloc[tr], X.iloc[te]
         yte = y[te]
         w = recency_weights(df["date"].iloc[tr])
+        folds.append((tr, te, w))
 
         dc = DixonColesModel()
         if dc.fit(df.iloc[tr], xi=xi):
@@ -462,6 +465,7 @@ def walkforward(league: str, df: pd.DataFrame,
             log.warning("dc_fit_failed_fallback_glm", league=league)
             pm = PoissonModel().fit(Xtr, yh[tr], ya[tr], sample_weight=w)
             p_poisson = pm.predict_proba(Xte)
+        p_dc_folds.append(p_poisson)
 
         p_ml = {}
         for kind in ML_CONFIGS:
@@ -469,27 +473,22 @@ def walkforward(league: str, df: pd.DataFrame,
             clf.fit(Xtr, y[tr], sample_weight=w)
             pred = np.clip(clf.predict_proba(Xte), EPS, 1 - EPS)
             p_ml[kind] = pred / pred.sum(axis=1, keepdims=True)
+            p_ml_folds[kind].append(p_ml[kind])
 
         if use_pam_compare:
             clf_pam = make_ml("xgb_tiny")
             clf_pam.fit(Xtr[pam_cols], y[tr], sample_weight=w)
             p_pam = np.clip(clf_pam.predict_proba(Xte[pam_cols]), EPS, 1 - EPS)
             p_pam = p_pam / p_pam.sum(axis=1, keepdims=True)
+            p_pam_folds.append(p_pam)
             pam_ll.append(float(log_loss(yte, p_pam, labels=LABELS)))
 
         rates = np.bincount(y[tr], minlength=3) / len(tr)
         p_base = np.tile(rates, (len(te), 1))
 
-        # Ensemble: GBM-dominant blend. The best ML config on the train
-        # folds so far is unknown; use xgb_tiny (most regularized).
-        p_ens = blend_ensemble(p_poisson, p_ml["xgb_tiny"])
-        p_ens = p_ens / p_ens.sum(axis=1, keepdims=True)
-        cal_y.append(yte)
-        cal_p.append(p_ens)
-
         for name, probs in (("poisson", p_poisson),
                             *[(k, p_ml[k]) for k in ML_CONFIGS],
-                            ("ensemble", p_ens), ("baseline", p_base)):
+                            ("baseline", p_base)):
             for m, v in _score(probs, yte).items():
                 agg[name][m].append(v)
 
@@ -510,19 +509,47 @@ def walkforward(league: str, df: pd.DataFrame,
     summary["always_home_accuracy"] = float(np.mean(y == 2))
     ml_best = min(ML_CONFIGS, key=lambda k: summary[k]["logloss"])
     summary["chosen_ml"] = ml_best
+
+    pam_wins = False
     if use_pam_compare:
         full_ll = float(np.mean([v for v in agg["xgb_tiny"]["logloss"]]))
         pam_mean = float(np.mean(pam_ll))
+        pam_wins = pam_mean < full_ll
         summary["pam_compare"] = {
             "pam_logloss": pam_mean,
             "full_logloss": full_ll,
-            "pam_wins": pam_mean < full_ll,
+            "pam_wins": pam_wins,
             "n_pam_features": len(pam_cols),
             "n_full_features": len(feature_cols),
         }
         log.info("pam_compare", league=league,
                  pam_logloss=round(pam_mean, 4), full_logloss=round(full_ll, 4),
-                 pam_wins=pam_mean < full_ll)
+                 pam_wins=pam_wins)
+
+    # Score the ensemble using the actual deployed ML config and feature set.
+    if pam_wins and ml_best == "xgb_tiny":
+        active_ml_folds = p_pam_folds
+    elif pam_wins:
+        active_ml_folds = []
+        for tr, te, w in folds:
+            clf_act = make_ml(ml_best)
+            clf_act.fit(X.iloc[tr][pam_cols], y[tr], sample_weight=w)
+            pred = np.clip(clf_act.predict_proba(X.iloc[te][pam_cols]), EPS, 1 - EPS)
+            active_ml_folds.append(pred / pred.sum(axis=1, keepdims=True))
+    else:
+        active_ml_folds = p_ml_folds[ml_best]
+
+    cal_y: list[np.ndarray] = []
+    cal_p: list[np.ndarray] = []
+    for (_, te, _), p_poisson, p_act in zip(folds, p_dc_folds, active_ml_folds):
+        yte = y[te]
+        p_ens = blend_ensemble(p_poisson, p_act)
+        p_ens = p_ens / p_ens.sum(axis=1, keepdims=True)
+        cal_y.append(yte)
+        cal_p.append(p_ens)
+        for m, v in _score(p_ens, yte).items():
+            agg["ensemble"][m].append(v)
+    summary["ensemble"] = {m: float(np.mean(v)) for m, v in agg["ensemble"].items()}
     log.info("walkforward", league=league, **{k: round(v["logloss"], 4)
                for k, v in summary.items() if isinstance(v, dict)
                and v.get("logloss") is not None})
@@ -762,11 +789,12 @@ def load_models(league: str):
     return poisson_model, ml_model, feature_cols, params
 
 
-def predict_upcoming(league: str) -> pd.DataFrame:
+def predict_upcoming(league: str, pred_df: pd.DataFrame | None = None) -> pd.DataFrame:
     """1X2 probabilities (+ expected goals) for every scheduled fixture."""
     from .features import build_features  # deferred: needs fitted artifacts only
     poisson_model, ml_model, feature_cols, params = load_models(league)
-    pred_df, _ = build_features(league, mode="predict")
+    if pred_df is None:
+        pred_df, _ = build_features(league, mode="predict")
     if pred_df.empty:
         return pred_df
     X = pred_df[feature_cols]
@@ -790,10 +818,15 @@ def predict_upcoming(league: str) -> pd.DataFrame:
     xg_h_adj = np.clip(xg_h * (1.0 - h_drag_att) * (1.0 + a_drag_def), 0.0, None)
     xg_a_adj = np.clip(xg_a * (1.0 - a_drag_att) * (1.0 + h_drag_def), 0.0, None)
 
-    # Recompute Poisson 1X2 probabilities with adjusted xG
+    # Recompute Poisson 1X2 probabilities with adjusted xG (keeping DC rho).
+    is_dc = isinstance(poisson_model, DixonColesModel)
+    rho = float(poisson_model.params["rho"]) if is_dc else 0.0
     p_pois_list = []
     for lh, la in zip(xg_h_adj, xg_a_adj):
-        pa, pd_, ph = scoreline_to_1x2(lh, la)
+        if is_dc:
+            pa, pd_, ph = grid_to_1x2(dc_scoreline_grid(lh, la, rho))
+        else:
+            pa, pd_, ph = scoreline_to_1x2(lh, la)
         p_pois_list.append([pa, pd_, ph])
     p_poisson = np.array(p_pois_list)
     p_poisson = p_poisson / p_poisson.sum(axis=1, keepdims=True)

@@ -126,6 +126,7 @@ def _check_dates_non_decreasing(df: pd.DataFrame):
 
 
 FRESHNESS_WINDOW_DAYS = 10
+BREAK_TOLERANCE_DAYS = 35
 ROW_COUNT_BAND = 0.20
 GOAL_MEAN_LO, GOAL_MEAN_HI = 0.5, 3.0
 
@@ -134,11 +135,15 @@ def _check_freshness(df: pd.DataFrame, league: str):
     """The live season must cover the present within the freshness window.
 
     Nearest fixture date (played or scheduled) to today must be within
-    FRESHNESS_WINDOW_DAYS. Dataset-level check: no rows are quarantined.
+    FRESHNESS_WINDOW_DAYS, or within BREAK_TOLERANCE_DAYS when scheduled future
+    fixtures exist (winter breaks). Skipped once the live season is complete.
     """
     live = df[df["season"] == settings.live_season]
     if live.empty:
         return True, "skipped: no live-season rows", pd.Index([])
+    n_teams = int(settings.leagues[league]["n_teams"])
+    if int((live["status"] == "finished").sum()) >= n_teams * (n_teams - 1):
+        return True, "skipped: live season complete", pd.Index([])
     today = date.today()
     dates = pd.to_datetime(live["date"], errors="coerce").dt.date
     past = dates[dates <= today]
@@ -150,6 +155,9 @@ def _check_freshness(df: pd.DataFrame, league: str):
     if nearest is not None and nearest <= FRESHNESS_WINDOW_DAYS:
         side = "ago" if gap_past == nearest else "ahead"
         return True, (f"nearest live fixture {nearest}d {side} of today, ok"), \
+            pd.Index([])
+    if gap_future is not None and (gap_past is None or gap_past <= BREAK_TOLERANCE_DAYS):
+        return True, (f"scheduled break (last {gap_past}d ago, next {gap_future}d ahead), ok"), \
             pd.Index([])
     detail = (f"no live-season fixture within {FRESHNESS_WINDOW_DAYS}d of today")
     if gap_past is not None:

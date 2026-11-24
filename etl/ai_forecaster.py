@@ -24,7 +24,6 @@ import argparse
 import json
 import sys
 from datetime import date
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -63,17 +62,57 @@ def _finished_results(league: str) -> pd.DataFrame:
     return fin[["fixture_date", "home", "away", "result"]].copy()
 
 
-def forecast_league(league: str, dry_run: bool = False) -> int:
-    """Predict upcoming fixtures with the fitted models; append to ledger."""
+def _prune_orphaned_unscored(league: str, led: pd.DataFrame) -> pd.DataFrame:
+    """Drop unscored ledger rows whose scheduled fixture moved to a new date."""
+    fx_path = settings.data_dir / f"fixtures_{league}.csv"
+    if led.empty or not fx_path.exists():
+        return led
+    fx = pd.read_csv(fx_path, dtype={"date": str, "season": str})
+    fx_dates = pd.to_datetime(fx["date"]).dt.strftime("%Y-%m-%d")
+    valid_keys = set(zip(fx_dates, fx["home"].astype(str), fx["away"].astype(str)))
+    live_pairs = set(zip(
+        fx.loc[fx["season"] == settings.live_season, "home"].astype(str),
+        fx.loc[fx["season"] == settings.live_season, "away"].astype(str),
+    ))
+    res_num = (pd.to_numeric(led["result"], errors="coerce")
+               if "result" in led.columns else pd.Series(np.nan, index=led.index))
+    keep = []
+    for idx, r in led.iterrows():
+        if pd.notna(res_num.loc[idx]):
+            keep.append(True)
+            continue
+        k = (str(r["fixture_date"]), str(r["home"]), str(r["away"]))
+        if k in valid_keys or (str(r["home"]), str(r["away"])) not in live_pairs:
+            keep.append(True)
+        else:
+            keep.append(False)
+    dropped = len(led) - sum(keep)
+    if dropped > 0:
+        cleaned = led[keep].copy()
+        cleaned.to_csv(settings.data_dir / f"predictions_ledger_{league}.csv", index=False)
+        log.info("ledger_pruned_orphans", league=league, dropped=dropped)
+        return cleaned
+    return led
+
+
+def forecast_league(league: str, dry_run: bool = False,
+                    horizon_days: int = 7) -> int:
+    """Predict the upcoming matchweek's fixtures; append idempotently."""
     preds = fit.predict_upcoming(league)
     if preds.empty:
         log.info("forecaster_no_upcoming", league=league)
         return 0
     preds = preds.copy()
+    pred_dates = pd.to_datetime(preds["date"])
+    if horizon_days is not None and not pred_dates.empty:
+        cutoff = pred_dates.min() + pd.Timedelta(days=horizon_days)
+        preds = preds[pred_dates <= cutoff].copy()
     preds["fixture_date"] = pd.to_datetime(preds["date"]).dt.strftime("%Y-%m-%d")
 
     existing = _ledger_df(league)
     if existing is not None and not existing.empty:
+        if not dry_run:
+            existing = _prune_orphaned_unscored(league, existing)
         have = set(zip(existing["fixture_date"], existing["home"],
                        existing["away"]))
         preds = preds[[(r.fixture_date, r.home, r.away) not in have
@@ -115,10 +154,15 @@ def score_unscored(league: str, dry_run: bool = False) -> dict:
         log.warning("forecaster_no_finished", league=league)
         return {"newly_scored": 0}
 
-    keys_before = set(zip(led["fixture_date"], led["home"], led["away"]))
-    match = results[[tuple(k) in keys_before
-                     for k in zip(results["fixture_date"],
-                                  results["home"], results["away"])]]
+    keys_unscored = set(zip(unscored["fixture_date"].astype(str),
+                            unscored["home"].astype(str),
+                            unscored["away"].astype(str)))
+    match = results[[tuple(k) in keys_unscored
+                     for k in zip(results["fixture_date"].astype(str),
+                                  results["home"].astype(str),
+                                  results["away"].astype(str))]]
+    if match.empty:
+        return {"newly_scored": 0}
     if dry_run:
         log.info("forecaster_dry_run_score", league=league,
                  n_matches=len(match))

@@ -65,3 +65,61 @@ def test_finished_hash_includes_scheduled_calendar(tmp_path, monkeypatch):
 
     h2 = finished_hash()
     assert h1 != h2, "finished_hash must detect scheduled calendar updates"
+
+
+def test_latest_team_features_includes_latest_finished_match(tmp_path, monkeypatch):
+    rows = [
+        {"fixture_id": "f1", "date": "2026-10-10", "season": "2026",
+         "home": "Arsenal", "away": "Chelsea", "home_goals": 3, "away_goals": 0, "status": "finished"},
+    ]
+    pd.DataFrame(rows).to_csv(tmp_path / "fixtures_pl.csv", index=False)
+    pd.DataFrame({"fixture_id": []}).to_csv(tmp_path / "features_pl.csv", index=False)
+    (tmp_path / "h2h_pl.json").write_text("{}")
+    monkeypatch.setattr(cfg.settings, "data_dir", tmp_path)
+    ld = LeagueData("pl")
+    assert ld.latest_team_features("Arsenal")["gf_pg"] == 3.0
+    assert ld.latest_team_features("Chelsea")["ga_pg"] == 3.0
+
+
+def test_build_players_renders_risers_edge_and_bundesliga_ligue1(tmp_path, monkeypatch):
+    from etl import build_site
+    monkeypatch.setattr(cfg.settings, "data_dir", tmp_path)
+    (tmp_path / "players_pl.json").write_text(json.dumps({
+        "players": [{"name": "Bukayo Saka", "web_name": "Saka", "team": "Arsenal", "position": "MID",
+                     "form": 8.0, "total_points": 40, "goals": 4, "assists": 2, "minutes": 360,
+                     "ict_index": 30.0, "now_cost": 10.0, "points_per_million": 4.0}],
+        "in_form_xi": {"MID": [{"name": "Bukayo Saka", "team": "Arsenal", "form": 8.0}]},
+        "risers": [{"name": "Bukayo Saka", "team": "Arsenal", "edge": 2.45}],
+    }))
+    (tmp_path / "player_rankings_official_bundesliga.json").write_text(json.dumps({
+        "goals": [{"player": "Harry Kane", "club_id": "DFL-CLU-00000G", "value": 6}],
+        "assists": [{"player": "Harry Kane", "club_id": "DFL-CLU-00000G", "value": 3}],
+    }))
+    (tmp_path / "player_rankings_official_ligue1.json").write_text(json.dumps({
+        "scorers": [{"player": "Ousmane Dembele", "club": "Paris SG", "goals": 5, "assists": 2, "minutes": 400}],
+        "assists": [],
+    }))
+    html = build_site.build_players({}, pd.DataFrame(), "2026-10-19")
+    assert "+2.45" in html
+    assert "Harry Kane" in html
+    assert "Ousmane Dembele" in html
+
+
+def test_team_news_ignores_departed_status_u():
+    from etl.team_news import build_team_news_pl
+    boot = {
+        "teams": [{"id": 1, "name": "Arsenal"}],
+        "elements": [
+            {"id": 10, "first_name": "Ethan", "second_name": "Nwaneri", "team": 1,
+             "element_type": 3, "status": "u", "minutes": 0,
+             "chance_of_playing_this_round": 0,
+             "news": "Has joined Borussia Dortmund on loan for the rest of the season"},
+            {"id": 11, "first_name": "William", "second_name": "Saliba", "team": 1,
+             "element_type": 2, "status": "i", "minutes": 450,
+             "chance_of_playing_this_round": 0, "news": "Back injury"},
+        ],
+    }
+    tn = build_team_news_pl(boot)["teams"]["Arsenal"]
+    names = [p["player"] for p in tn["out"]]
+    assert "William Saliba" in names
+    assert "Ethan Nwaneri" not in names

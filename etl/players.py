@@ -57,7 +57,10 @@ UA = {
     )
 }
 FPL_BOOTSTRAP_URL = "https://fantasy.premierleague.com/api/bootstrap-static/"
-SEASON_LABEL = "2026/27"
+_LIVE_Y0 = int(settings.live_season)
+SEASON_LABEL = f"{_LIVE_Y0}/{str(_LIVE_Y0 + 1)[-2:]}"
+LALIGA_SEASON = f"{_LIVE_Y0}-{_LIVE_Y0 + 1}"
+SERIEA_SEASON = f"{_LIVE_Y0}/{_LIVE_Y0 + 1}"
 TOPSCORERS_SEASON_LABEL = "2024/25"
 
 FPL_POSITIONS = {1: "GK", 2: "DEF", 3: "MID", 4: "FWD"}
@@ -169,6 +172,7 @@ def build_players_pl(bootstrap: dict) -> dict:
         total_points = el.get("total_points") or 0
         minutes = el.get("minutes") or 0
         players.append({
+            "id": el.get("id"),
             "name": f"{el.get('first_name', '')} {el.get('second_name', '')}".strip(),
             "web_name": el.get("web_name"),
             "team": canonicalize(team_raw, "pl", source="fpl"),
@@ -356,9 +360,9 @@ def fetch_laliga(session: requests.Session) -> dict:
                                                    subs.get("data", []))
     if not isinstance(items, list) or not items:
         raise RuntimeError("no subscriptions returned")
-    current = next((s for s in items if s.get("season") == "2026-2027"), None)
+    current = next((s for s in items if s.get("season") == LALIGA_SEASON), None)
     if current is None:
-        raise RuntimeError("no 2026-2027 subscription found")
+        raise RuntimeError(f"no {LALIGA_SEASON} subscription found")
     slug = current["slug"]
     log.info("laliga_slug", slug=slug)
 
@@ -462,7 +466,7 @@ def fetch_seriea(session: requests.Session) -> dict:
         f"/{comp}/seasons").get("seasons", [])
     if not seasons:
         raise RuntimeError("no seasons returned")
-    newest = next((s for s in seasons if s.get("seasonName") == "2026/2027"),
+    newest = next((s for s in seasons if s.get("seasonName") == SERIEA_SEASON),
                   seasons[0])
     season_id = urllib.parse.quote(newest["seasonId"], safe="")
     log.info("seriea_season", season=newest.get("seasonName"))

@@ -242,3 +242,17 @@ def test_goal_distribution_fails_on_absurd_means(tmp_path):
     (ok, checks, _), _, _, _ = _run(df, tmp_path)
     assert ok is False
     assert checks["goal_distribution"]["ok"] is False
+
+
+def test_freshness_tolerates_winter_break_with_future_schedule(tmp_path):
+    df = _live_frame(last_played_offset=20, next_offset=15, scheduled=True)
+    (ok, checks, _), _, _, _ = _run(df, tmp_path)
+    assert ok is True
+    assert checks["freshness"]["ok"] is True
+
+
+def test_freshness_skips_when_live_season_complete(tmp_path):
+    df = make_season_df(LEAGUE, settings.live_season, start="2025-01-01")
+    (ok, checks, _), _, _, _ = _run(df, tmp_path)
+    assert ok is True
+    assert "complete" in checks["freshness"]["detail"]

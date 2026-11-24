@@ -126,7 +126,7 @@ CSV_ALIASES: dict[str, dict[str, str]] = {
         "Bayern M\u00fcnchen": "Bayern Munich",
         "Borussia M\u00f6nchengladbach": "M'gladbach",
     },
-    "pl": {"Ipswich": "Ipswich Town"},
+    "pl": {"Ipswich": "Ipswich Town", "Coventry": "Coventry City", "Hull": "Hull City"},
     "seriea": {},
     "ligue1": {},
 }
@@ -156,6 +156,7 @@ ESPN_ALIASES: dict[str, dict[str, str]] = {
         "Deportivo Alaves": "Alaves", "Alavés": "Alaves",
         "Racing Santander": "Santander", "Deportivo": "La Coruna",
         "Deportivo La Coruña": "La Coruna", "Deportivo La Coruna": "La Coruna",
+        "Málaga": "Malaga",
     },
     "bundesliga": {
         "Borussia Dortmund": "Dortmund", "Bayer Leverkusen": "Leverkusen",

@@ -13,12 +13,12 @@ import html
 import json
 import re
 from datetime import date
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
 from .config import settings
+from .features import TeamHistory
 from .logging_setup import get_logger
 from .scorer_probs import BUNDESLIGA_CLUB_MAP, normalize_laliga_team
 from .team_names import CANONICAL, canonicalize
@@ -60,6 +60,13 @@ def dash(v: object) -> str:
     except Exception:
         pass
     return esc(v)
+
+
+def _fmt(v: object, spec: str) -> str:
+    """Format a float stat cleanly, returning '-' when None or NaN."""
+    if v is None or pd.isna(v):
+        return "-"
+    return format(float(v), spec)
 
 
 def prob_bar(ph: float, pd_: float, pa: float, labels: bool = True) -> str:
@@ -692,12 +699,6 @@ APP_JS = """
 (function () {
   'use strict';
 
-  function on(selector, event, fn) {
-    document.querySelectorAll(selector).forEach(function (el) {
-      el.addEventListener(event, fn);
-    });
-  }
-
   // ---- Sortable tables: click a <th> to sort by that column (toggle asc/desc).
   function cellValue(td) {
     var t = td.textContent.trim().replace('%', '').replace(/,/g, '');
@@ -1030,28 +1031,37 @@ class LeagueData:
         return m.sort_values("date", ascending=False).head(5)
 
     def latest_team_features(self, team: str) -> dict:
-        """Most recent feature row for a team (h_ or a_ side as appropriate)."""
-        f = self.features
-        rows = f[((f.home == team) | (f.away == team))]
-        if rows.empty:
-            return {}
-        r = rows.sort_values("date").iloc[-1]
-        side = "h_" if r["home"] == team else "a_"
-        opp_side = "a_" if side == "h_" else "h_"
-        out = {"_side": side}
-        for c in f.columns:
-            if c.startswith(side):
-                out[c[len(side):]] = r[c]
-            elif c.startswith(opp_side):
-                out["opp_" + c[len(opp_side):]] = r[c]
-        out["h2h_edge"] = r["h2h_edge"] if side == "h_" else 1 - r["h2h_edge"]
-        return out
+        """Up-to-date TeamHistory features across all finished fixtures."""
+        if not hasattr(self, "_team_states"):
+            histories: dict[str, TeamHistory] = {}
+            num = lambda v: None if pd.isna(v) else float(v)
+            for _, r in self.finished.sort_values("date").iterrows():
+                datestr = str(r["date"])[:10]
+                hg, ag = int(r["home_goals"]), int(r["away_goals"])
+                h_stats = {
+                    "shots": num(r.get("hs")), "shots_conc": num(r.get("as_")),
+                    "sot": num(r.get("hst")), "fouls": num(r.get("hf")),
+                    "cards": (num(r.get("hy")) or 0.0) + (num(r.get("hr")) or 0.0) * 2.0
+                    if pd.notna(r.get("hy")) or pd.notna(r.get("hr")) else None,
+                }
+                a_stats = {
+                    "shots": num(r.get("as_")), "shots_conc": num(r.get("hs")),
+                    "sot": num(r.get("ast")), "fouls": num(r.get("af")),
+                    "cards": (num(r.get("ay")) or 0.0) + (num(r.get("ar")) or 0.0) * 2.0
+                    if pd.notna(r.get("ay")) or pd.notna(r.get("ar")) else None,
+                }
+                histories.setdefault(r["home"], TeamHistory()).add(
+                    datestr, "H", hg, ag, h_stats, r["away"])
+                histories.setdefault(r["away"], TeamHistory()).add(
+                    datestr, "A", ag, hg, a_stats, r["home"])
+            self._team_states = {t: h.features() for t, h in histories.items()}
+        return dict(self._team_states.get(team, {}))
 
 
-def load_predictions(league: str) -> pd.DataFrame:
+def load_predictions(league: str, pred_df: pd.DataFrame | None = None) -> pd.DataFrame:
     from .fit import predict_upcoming
     try:
-        return predict_upcoming(league)
+        return predict_upcoming(league, pred_df=pred_df)
     except Exception as exc:
         log.warning("predictions_failed", league=league, error=str(exc)[:160])
         return pd.DataFrame()
@@ -1090,6 +1100,72 @@ def momentum_word(m: float) -> tuple[str, str]:
     return "steady", "muted"
 
 
+def _official_player_rows(league: str, data: dict) -> list[dict]:
+    """Normalize official backend player payloads for tables across all 4 leagues."""
+    if league == "laliga":
+        ps = list(data.get("players", []))
+        ps.sort(key=lambda p: (-(p.get("goals") or 0), -(p.get("appearances") or 0)))
+        return [{
+            "name": p.get("nickname") or p.get("name"),
+            "team": normalize_laliga_team(p.get("team")) or p.get("team"),
+            "goals": p.get("goals"),
+            "assists": p.get("assists"),
+            "apps_or_min": p.get("appearances", p.get("minutes")),
+            "minutes": p.get("minutes") or 0,
+        } for p in ps]
+    if league == "bundesliga":
+        agg: dict[str, dict] = {}
+        for e in data.get("goals", []):
+            a = agg.setdefault(e["player"], {"goals": 0, "assists": 0, "club_id": e.get("club_id")})
+            a["goals"] = e.get("value") or 0
+        for e in data.get("assists", []):
+            a = agg.setdefault(e["player"], {"goals": 0, "assists": 0, "club_id": e.get("club_id")})
+            a["assists"] = e.get("value") or 0
+        ps = sorted(agg.items(), key=lambda kv: (-(kv[1]["goals"] + kv[1]["assists"]), -kv[1]["goals"]))
+        return [{
+            "name": name,
+            "team": BUNDESLIGA_CLUB_MAP.get(a["club_id"]),
+            "goals": a["goals"],
+            "assists": a["assists"],
+            "apps_or_min": None,
+            "minutes": 0,
+        } for name, a in ps]
+    if league == "seriea":
+        ps = list(data.get("players", []))
+        ps.sort(key=lambda p: (-((p.get("goals") or 0) + (p.get("assists") or 0)), -(p.get("minutes") or 0)))
+        rows = []
+        for p in ps:
+            team = canonicalize(p.get("team") or "", "seriea", source="any")
+            if team not in CANONICAL["seriea"]:
+                team = p.get("team_short") or p.get("team")
+            rows.append({
+                "name": p.get("name"),
+                "team": team,
+                "goals": p.get("goals"),
+                "assists": p.get("assists"),
+                "apps_or_min": p.get("appearances", p.get("minutes")),
+                "minutes": p.get("minutes") or 0,
+            })
+        return rows
+    if league == "ligue1":
+        agg = {}
+        for e in data.get("scorers", []) + data.get("assists", []):
+            a = agg.setdefault(e["player"], {"goals": 0, "assists": 0, "minutes": 0, "club": e.get("club")})
+            a["goals"] = max(a["goals"], e.get("goals") or 0)
+            a["assists"] = max(a["assists"], e.get("assists") or 0)
+            a["minutes"] = max(a["minutes"], e.get("minutes") or 0)
+        ps = sorted(agg.items(), key=lambda kv: (-(kv[1]["goals"] + kv[1]["assists"]), -kv[1]["goals"], kv[1]["minutes"]))
+        return [{
+            "name": name,
+            "team": a["club"],
+            "goals": a["goals"],
+            "assists": a["assists"],
+            "apps_or_min": a["minutes"],
+            "minutes": a["minutes"],
+        } for name, a in ps]
+    return []
+
+
 # ------------------------------------------------- 8.1 player leaderboards
 def _leaderboard_rows(league: str) -> tuple[list[dict], str, str]:
     """Top-10 rows for a league: (rows, stat label, note).
@@ -1101,7 +1177,10 @@ def _leaderboard_rows(league: str) -> tuple[list[dict], str, str]:
     """
     d = settings.data_dir
     if league == "pl":
-        pl = json.loads((d / "players_pl.json").read_text())
+        p = d / "players_pl.json"
+        if not p.exists():
+            return [], "", ""
+        pl = json.loads(p.read_text())
         ps = [p for p in pl.get("players", []) if (p.get("minutes") or 0) >= 90]
         ps.sort(key=lambda p: float(p.get("form") or 0), reverse=True)
         rows = [{"name": p.get("name"), "team": p.get("team"),
@@ -1109,8 +1188,10 @@ def _leaderboard_rows(league: str) -> tuple[list[dict], str, str]:
                  "assists": p.get("assists")} for p in ps[:10]]
         return rows, "Form", "Ranked by FPL form (last 30 days)."
     if league == "laliga":
-        data = json.loads(
-            (d / "player_rankings_official_laliga.json").read_text())
+        p = d / "player_rankings_official_laliga.json"
+        if not p.exists():
+            return [], "", ""
+        data = json.loads(p.read_text())
         ps = [p for p in data.get("players", []) if (p.get("minutes") or 0) >= 90]
         for p in ps:
             p["_inv"] = (p.get("goals") or 0) + (p.get("assists") or 0)
@@ -1122,8 +1203,10 @@ def _leaderboard_rows(league: str) -> tuple[list[dict], str, str]:
         return (rows, "G+A",
                 "Goal involvements. The feed publishes no assists data, so this is goals.")
     if league == "bundesliga":
-        data = json.loads(
-            (d / "player_rankings_official_bundesliga.json").read_text())
+        p = d / "player_rankings_official_bundesliga.json"
+        if not p.exists():
+            return [], "", ""
+        data = json.loads(p.read_text())
         agg: dict[str, dict] = {}
         for e in data.get("goals", []):
             a = agg.setdefault(e["player"],
@@ -1141,8 +1224,10 @@ def _leaderboard_rows(league: str) -> tuple[list[dict], str, str]:
         return (rows, "G+A",
                 "Goal involvements. The feed publishes no minutes, so no 90-minute filter applies.")
     if league == "seriea":
-        data = json.loads(
-            (d / "player_rankings_official_seriea.json").read_text())
+        p = d / "player_rankings_official_seriea.json"
+        if not p.exists():
+            return [], "", ""
+        data = json.loads(p.read_text())
         ps = [p for p in data.get("players", []) if (p.get("minutes") or 0) >= 90]
         for p in ps:
             p["_inv"] = (p.get("goals") or 0) + (p.get("assists") or 0)
@@ -1156,8 +1241,10 @@ def _leaderboard_rows(league: str) -> tuple[list[dict], str, str]:
                          "goals": p.get("goals"), "assists": p.get("assists")})
         return rows, "G+A", "Goal involvements, tiebreak fewer minutes."
     if league == "ligue1":
-        data = json.loads(
-            (d / "player_rankings_official_ligue1.json").read_text())
+        p = d / "player_rankings_official_ligue1.json"
+        if not p.exists():
+            return [], "", ""
+        data = json.loads(p.read_text())
         agg = {}
         for e in data.get("scorers", []) + data.get("assists", []):
             a = agg.setdefault(e["player"], {"goals": 0, "assists": 0,
@@ -1223,9 +1310,10 @@ def _load_scorers() -> pd.DataFrame:
     return _scorers_cache
 
 
-def watch_html(fixture_id: str, n: int = 3) -> str:
+def watch_html(fixture_id: str, n: int = 3,
+               scorers: pd.DataFrame | None = None) -> str:
     """'Players to watch' line for a fixture card, from scorer probabilities."""
-    sc = _load_scorers()
+    sc = _load_scorers() if scorers is None else scorers
     if sc.empty:
         return ""
     top = sc[sc.fixture_id == fixture_id].sort_values("prob", ascending=False).head(n)
@@ -1479,7 +1567,7 @@ refit every matchday. Numbers first.</p>
 
 # ---------------------------------------------------------------- league page
 def build_league(league: str, ld: LeagueData, pred: pd.DataFrame,
-                 updated: str) -> str:
+                 updated: str, scorers: pd.DataFrame | None = None) -> str:
     t = ld.table()
     rows = []
     for pos, r in t.iterrows():
@@ -1520,7 +1608,7 @@ href="{SITE_BASE}/leagues/{league}/fixtures/{r.fixture_id}.html">{esc(r.home)} v
 {prob_bar(r.p_home_ens, r.p_draw_ens, r.p_away_ens)}
 {prob_legend(r.home, r.away)}
 <div class="small muted" style="margin-top:6px">xG {r.xg_home:.2f} - {r.xg_away:.2f}</div>
-{watch_html(r.fixture_id)}
+{watch_html(r.fixture_id, scorers=scorers)}
 </div>""")
         fix_html = f"<h2>This matchday</h2><div class='grid g2'>{''.join(cards)}</div>"
     else:
@@ -1600,7 +1688,8 @@ def euro_note(league: str, ld: LeagueData, home: str, away: str,
 
 
 def build_fixture(league: str, ld: LeagueData, row: pd.Series,
-                  feats: dict, updated: str) -> str:
+                  feats: dict, updated: str,
+                  scorers: pd.DataFrame | None = None) -> str:
     home, away = row.home, row.away
     hf = ld.latest_team_features(home)
     af = ld.latest_team_features(away)
@@ -1611,18 +1700,18 @@ def build_fixture(league: str, ld: LeagueData, row: pd.Series,
         return f"""<div class="card"><h3>{esc(team)}</h3>
 {form_badges(l5, team)}{last5_scores(l5, team)}
 <table class="small">
-<tr><td class="muted">Attack (goals/game)</td><td class="num">{f.get('gf_pg', 0):.2f}</td>
-<td class="muted">last-5</td><td class="num">{f.get('gf_pg_l5', 0):.2f}</td></tr>
-<tr><td class="muted">Defense (conceded/game)</td><td class="num">{f.get('ga_pg', 0):.2f}</td>
-<td class="muted">last-5</td><td class="num">{f.get('ga_pg_l5', 0):.2f}</td></tr>
-<tr><td class="muted">Shot dominance / game</td><td class="num">{f.get('shot_diff_pg', 0):+.1f}</td>
-<td class="muted">on target / game</td><td class="num">{f.get('sot_pg', 0):.1f}</td></tr>
+<tr><td class="muted">Attack (goals/game)</td><td class="num">{_fmt(f.get('gf_pg', 0), '.2f')}</td>
+<td class="muted">last-5</td><td class="num">{_fmt(f.get('gf_pg_l5', 0), '.2f')}</td></tr>
+<tr><td class="muted">Defense (conceded/game)</td><td class="num">{_fmt(f.get('ga_pg', 0), '.2f')}</td>
+<td class="muted">last-5</td><td class="num">{_fmt(f.get('ga_pg_l5', 0), '.2f')}</td></tr>
+<tr><td class="muted">Shot dominance / game</td><td class="num">{_fmt(f.get('shot_diff_pg'), '+.1f')}</td>
+<td class="muted">on target / game</td><td class="num">{_fmt(f.get('sot_pg'), '.1f')}</td></tr>
 <tr><td class="muted">Clean sheets</td><td class="num">{pct(f.get('cs_rate', 0))}</td>
 <td class="muted">Failed to score</td><td class="num">{pct(f.get('fts_rate', 0))}</td></tr>
 <tr><td class="muted">Momentum</td><td colspan="3" class="num"><span class="{cls}">{mw}</span>
-<span class="faint">({f.get('momentum', 0):+.2f} PPG vs season)</span></td></tr>
-<tr><td class="muted">Discipline</td><td class="num">{f.get('fouls_pg', 0):.1f} fouls</td>
-<td class="muted">cards / game</td><td class="num">{f.get('cards_pg', 0):.1f}</td></tr>
+<span class="faint">({_fmt(f.get('momentum', 0), '+.2f')} PPG vs avg)</span></td></tr>
+<tr><td class="muted">Discipline</td><td class="num">{_fmt(f.get('fouls_pg'), '.1f')} fouls</td>
+<td class="muted">cards / game</td><td class="num">{_fmt(f.get('cards_pg'), '.1f')}</td></tr>
 </table></div>"""
 
     # H2H.
@@ -1727,8 +1816,8 @@ Each row sums to 100%.</p></div></div>"""
 <tr><td class="muted">Attack vs defense</td><td>{esc(home)} score
 <span class="mono">{hf.get('gf_pg_l5', 0):.2f}</span>/game lately; {esc(away)} concede
 <span class="mono">{af.get('ga_pg_l5', 0):.2f}</span>/game lately</td></tr>
-<tr><td class="muted">Shot dominance</td><td>{esc(home)} <span class="mono">{hf.get('shot_diff_pg', 0):+.1f}</span>
-vs {esc(away)} <span class="mono">{af.get('shot_diff_pg', 0):+.1f}</span> per game
+<tr><td class="muted">Shot dominance</td><td>{esc(home)} <span class="mono">{_fmt(hf.get('shot_diff_pg'), '+.1f')}</span>
+vs {esc(away)} <span class="mono">{_fmt(af.get('shot_diff_pg'), '+.1f')}</span> per game
 <span class="faint">(shot-based)</span></td></tr>
 <tr><td class="muted">Head-to-head edge</td><td>{esc(home)}
 <span class="mono">{pct(edge)}</span> points expectation (W + 0.5&times;D)</td></tr>
@@ -1744,7 +1833,7 @@ vs {esc(away)} <span class="mono">{af.get('shot_diff_pg', 0):+.1f}</span> per ga
 <h2>Head to head</h2><div class="card">{h2h_html}</div>
 {team_news_box(league, ld, home, away)}
 <h2>Prediction</h2><div class="grid g2">{probs}{expect}</div>
-<h2>Players to watch</h2><div class="card">{watch_html(row.fixture_id, n=5) or "<p class='muted'>No scorer data for this fixture.</p>"}</div>"""
+<h2>Players to watch</h2><div class="card">{watch_html(row.fixture_id, n=5, scorers=scorers) or "<p class='muted'>No scorer data for this fixture.</p>"}</div>"""
     return page_shell(f"{home} v {away}", body, league=league, updated=updated)
 
 
@@ -1788,11 +1877,16 @@ def build_team(league: str, ld: LeagueData, team: str,
         rec = [ _json.loads(l) for l in ej.read_text().splitlines() if l.strip()] \
             if ej.exists() else []
         mine = [m for m in rec if m["home"] == team or m["away"] == team]
-        if mine:
-            w = sum(1 for m in mine if (m["home"] == team and (m["home_goals"] or 0) > (m["away_goals"] or 0)) or
-                     (m["away"] == team and (m["away_goals"] or 0) > (m["home_goals"] or 0)))
+        fin_mine = [m for m in mine if m.get("status") == "finished"
+                    and m.get("home_goals") is not None and m.get("away_goals") is not None]
+        if fin_mine:
+            w = sum(1 for m in fin_mine if (m["home"] == team and m["home_goals"] > m["away_goals"]) or
+                    (m["away"] == team and m["away_goals"] > m["home_goals"]))
             euro_html = (f"<div class='card'><h3>Europe this season</h3>"
-                         f"<p>{w}W in {len(mine)} European fixtures tracked.</p></div>")
+                         f"<p>{w}W in {len(fin_mine)} finished European fixtures tracked.</p></div>")
+        elif mine:
+            euro_html = (f"<div class='card'><h3>Europe this season</h3>"
+                         f"<p>{len(mine)} upcoming European fixtures tracked.</p></div>")
     except Exception:
         pass
 
@@ -1838,16 +1932,15 @@ def build_team(league: str, ld: LeagueData, team: str,
 <td class="muted">Away</td><td class="num">{f.get('away_gf_pg', 0):.2f} / {f.get('away_ga_pg', 0):.2f}</td></tr>
 </table></div>
 <div class="card stat-toggle"><h3>Attack / defense</h3><table class="small">
-<tr><td class="muted">Scored / game</td><td class="num" data-stat="season">{f.get('gf_pg', 0):.2f}</td>
-<td class="muted" data-stat="last5">last-5</td><td class="num" data-stat="last5">{f.get('gf_pg_l5', 0):.2f}</td></tr>
-<tr><td class="muted">Conceded / game</td><td class="num" data-stat="season">{f.get('ga_pg', 0):.2f}</td>
-<td class="muted" data-stat="last5">last-5</td><td class="num" data-stat="last5">{f.get('ga_pg_l5', 0):.2f}</td></tr>
-<tr><td class="muted">Shot dominance</td><td class="num" data-stat="season">{f.get('shot_diff_pg', 0):+.1f}</td>
-<td class="muted" data-stat="last5">shots on target</td><td class="num" data-stat="last5">{f.get('sot_pg', 0):.1f}</td></tr>
-<tr><td class="muted">Clean sheets</td><td class="num" data-stat="season">{pct(f.get('cs_rate', 0))}</td>
-<td class="muted" data-stat="last5">Failed to score</td><td class="num" data-stat="last5">{pct(f.get('fts_rate', 0))}</td></tr>
-<tr><td class="muted">Discipline</td><td class="num" data-stat="season">{f.get('fouls_pg', 0):.1f} fouls/g</td>
-<td class="muted" data-stat="last5">cards</td><td class="num" data-stat="last5">{f.get('cards_pg', 0):.1f}/g</td></tr>
+<tr><td class="muted">Scored / game</td><td class="num" data-stat="season">{_fmt(f.get('gf_pg', 0), '.2f')}</td>
+<td class="num" data-stat="last5">{_fmt(f.get('gf_pg_l5', 0), '.2f')}</td></tr>
+<tr><td class="muted">Conceded / game</td><td class="num" data-stat="season">{_fmt(f.get('ga_pg', 0), '.2f')}</td>
+<td class="num" data-stat="last5">{_fmt(f.get('ga_pg_l5', 0), '.2f')}</td></tr>
+<tr><td class="muted">Shot dominance</td><td class="num">{_fmt(f.get('shot_diff_pg'), '+.1f')}</td></tr>
+<tr><td class="muted">Shots on target</td><td class="num">{_fmt(f.get('sot_pg'), '.1f')}/g</td></tr>
+<tr><td class="muted">Clean sheets</td><td class="num">{pct(f.get('cs_rate', 0))}</td></tr>
+<tr><td class="muted">Failed to score</td><td class="num">{pct(f.get('fts_rate', 0))}</td></tr>
+<tr><td class="muted">Discipline</td><td class="num">{_fmt(f.get('fouls_pg'), '.1f')} fouls/g &middot; {_fmt(f.get('cards_pg'), '.1f')} cards/g</td></tr>
 </table></div></div>
 <div class="grid g2">{next_opp}{difficulty}</div>
 {_depth_html(team, f, depth.get(team, {}) if depth else {})}
@@ -1893,7 +1986,7 @@ def build_players(datas: dict[str, LeagueData], scorers: pd.DataFrame,
             for k, v in xi.items() if v)
         risers = "".join(
             f"<div class='small'>{esc(r.get('name', ''))} "
-            f"<span class='positive'>+{r.get('form_change', '')}</span></div>"
+            f"<span class='positive'>{_fmt(r.get('edge'), '+.2f')}</span></div>"
             for r in pl.get("risers", [])[:8])
         sections.append(f"""<div class="league-panel" data-league="pl">
 <h2 id="pl">Premier League &mdash; form watch</h2>
@@ -1922,13 +2015,13 @@ Click a column header to sort.</p>
                             f"2024/25 topscorers below are the fallback.</p>")
             continue
         data = json.loads(p.read_text())
-        players = data.get("players") or data.get("rankings") or []
+        players = _official_player_rows(league, data)
         rows = "".join(
             f"<tr><td>{esc(x.get('name', ''))}</td>"
             f"<td class='muted'>{dash(x.get('team'))}</td>"
             f"<td class='num'>{dash(x.get('goals'))}</td>"
             f"<td class='num'>{dash(x.get('assists'))}</td>"
-            f"<td class='num'>{dash(x.get('appearances', x.get('minutes')))}</td></tr>"
+            f"<td class='num'>{dash(x.get('apps_or_min'))}</td></tr>"
             for x in players[:25])
         backend_sections.append(f"""<div class="league-panel" data-league="{league}">
 <h2 id="{league}">{name} &mdash; current season</h2>
@@ -2037,12 +2130,9 @@ Lower log-loss is better. {esc(verdict)}</p>
             # result encoding: 0=away, 1=draw, 2=home.
             if scored > 0:
                 s = df[df["result"].notna()].copy()
-                probs = s[["p_home_ens", "p_draw_ens", "p_away_ens"]].astype(float)
-                # argmax -> 0/1/2 mapping: away=0, draw=1, home=2
-                pred = probs.values.argmax(axis=1)
-                # probs columns are [home, draw, away], need [away, draw, home] -> [0,1,2]
-                pred = [2 if i == 0 else (1 if i == 1 else 0) for i in pred]
-                actual = s["result"].astype(int).values
+                probs = s[["p_away_ens", "p_draw_ens", "p_home_ens"]].astype(float)
+                pred = probs.to_numpy().argmax(axis=1)
+                actual = s["result"].astype(int).to_numpy()
                 correct = int((pred == actual).sum())
                 acc = correct / scored if scored else 0
                 live_acc.append(
@@ -2277,8 +2367,11 @@ are not betting advice.</li>
 
 # ---------------------------------------------------------------- main
 def main() -> int:
+    global _scorers_cache
     from .features import build_features
-    from .fit import predict_upcoming
+
+    _scorers_cache = None
+    _depth_cache.clear()
 
     docs = settings.docs_dir
     docs.mkdir(parents=True, exist_ok=True)
@@ -2287,9 +2380,10 @@ def main() -> int:
     updated = date.today().isoformat()
 
     datas = {lg: LeagueData(lg) for lg in settings.league_order}
-    preds = {lg: load_predictions(lg) for lg in settings.league_order}
     feat_pred = {lg: build_features(lg, mode="predict")[0]
                  for lg in settings.league_order}
+    preds = {lg: load_predictions(lg, pred_df=feat_pred[lg])
+             for lg in settings.league_order}
     players_pl = {}
     p = settings.data_dir / "players_pl.json"
     if p.exists():
@@ -2304,6 +2398,7 @@ def main() -> int:
 
     (docs / "index.html").write_text(build_index(datas, preds, scorers, updated))
 
+    n_team_pages = 0
     for league in settings.league_order:
         ld = datas[league]
         ldir = docs / "leagues" / league
@@ -2316,7 +2411,8 @@ def main() -> int:
             for stale in subdir.glob("*.html"):
                 stale.unlink()
         (ldir / "index.html").write_text(build_league(league, ld,
-                                                      preds[league], updated))
+                                                      preds[league], updated,
+                                                      scorers=scorers))
         pr = preds[league]
         fp = feat_pred[league].set_index("fixture_id") \
             if not feat_pred[league].empty else None
@@ -2325,9 +2421,11 @@ def main() -> int:
             if fp is not None and r.fixture_id in fp.index:
                 feats = fp.loc[r.fixture_id].to_dict()
             (ldir / "fixtures" / f"{r.fixture_id}.html").write_text(
-                build_fixture(league, ld, r, feats, updated))
+                build_fixture(league, ld, r, feats, updated, scorers=scorers))
         live_teams = ld.fixtures[ld.fixtures.season == settings.live_season]
-        for team in sorted(set(live_teams.home) | set(live_teams.away)):
+        teams = sorted(set(live_teams.home) | set(live_teams.away))
+        n_team_pages += len(teams)
+        for team in teams:
             (ldir / "teams" / f"{slug(team)}.html").write_text(
                 build_team(league, ld, team, players_pl, depth[league], updated))
 
@@ -2337,11 +2435,9 @@ def main() -> int:
     (docs / "model-insights.html").write_text(
         build_model_insights(datas, updated))
 
-    n_pages = (1 + len(settings.league_order)
+    n_pages = (5 + len(settings.league_order)
                + sum(len(preds[lg]) for lg in settings.league_order)
-               + sum(len(set(datas[lg].fixtures.home) |
-                         set(datas[lg].fixtures.away))
-                     for lg in settings.league_order) + 2)
+               + n_team_pages)
     log.info("site_built", pages=n_pages, docs=str(docs))
     return 0
 

@@ -122,7 +122,7 @@ fixtures strictly before the fixture date count.
 
 | Feature | Definition |
 |---|---|
-| h_key_absences, a_key_absences | Count of key absent players from `data/team_news_pl.json` (`load_key_absences()`) |
+| h_key_absences, a_key_absences | Count of key absent players from `data/team_news_pl.json` (`load_injury_drags()`) |
 
 Other leagues: always 0.
 

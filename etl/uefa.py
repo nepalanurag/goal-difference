@@ -1,9 +1,7 @@
-"""UEFA competition fixtures via ESPN's hidden scoreboard API.
+"""UEFA competition and league fixtures via ESPN's hidden scoreboard API.
 
 Free, no key. Replaces the api-football European accumulator (the free tier
-blocks the current season). Day-by-day fetches: the API rejects the
-hypothetical ?dates=A-B range syntax with a 400, so each day is fetched
-individually with a 1s pause between requests.
+blocks the current season). Uses batch monthly ?dates=YYYYMM queries.
 
 Team names are ESPN display names ("Atlético Madrid", "Internazionale");
 they are canonicalized via team_names.canonicalize_espn so European
@@ -14,7 +12,6 @@ from __future__ import annotations
 
 import gzip
 import json
-import time
 import urllib.request
 from datetime import date, timedelta
 

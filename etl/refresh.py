@@ -21,28 +21,49 @@ import hashlib
 import json
 import subprocess
 import sys
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, timezone
 
 import pandas as pd
 
 from .config import settings
 from .logging_setup import get_logger
+from .manifest import write_manifest
 from .storage import finish_ingest_run, init_ops_db, start_ingest_run
 
 log = get_logger(__name__)
+
+WALKFORWARD_REFRESH_DAYS = 7
 
 PIPELINE = [
     (["extract"], "extract"),
     (["validate"], "validate"),
     (["features"], "features"),
     (["h2h"], "h2h"),
-    (["players"], "players"),
+    (["players", "--parts", "a", "c"], "players"),
     (["team_news"], "team_news"),
-    (["fit", "--skip-walkforward"], "fit"),
+    (["fit"], "fit"),
     (["simulate"], "simulate"),
     (["ai_forecaster"], "ai_forecaster"),  # appends to ledgers + scores + memo
     (["build_site"], "build_site"),
 ]
+
+
+def _calibration_is_fresh(max_age_days: int = WALKFORWARD_REFRESH_DAYS) -> bool:
+    """True when every league's calibration file exists and is < max_age_days old."""
+    now = datetime.now(timezone.utc)
+    for league in settings.league_order:
+        p = settings.data_dir / f"calibration_{league}.json"
+        if not p.exists():
+            return False
+        try:
+            computed = datetime.fromisoformat(json.loads(p.read_text())["computed_at"])
+            if computed.tzinfo is None:
+                computed = computed.replace(tzinfo=timezone.utc)
+            if (now - computed).total_seconds() >= max_age_days * 86400:
+                return False
+        except Exception:
+            return False
+    return True
 
 
 def finished_hash() -> str:
@@ -93,10 +114,15 @@ def _refresh(args: argparse.Namespace) -> tuple[int, str]:
 
     log.info("refresh_changed", old_hash=old.get("finished_hash"),
              new_hash=new_hash)
+    write_manifest()
     # Full rebuild in dependency order:
     # validate -> features -> h2h -> players -> team_news -> fit -> simulate -> ai_forecaster -> build_site
+    skip_wf = _calibration_is_fresh()
     for step in PIPELINE[1:]:
-        run_module(step[0])
+        cmd = list(step[0])
+        if cmd[0] == "fit" and skip_wf:
+            cmd.append("--skip-walkforward")
+        run_module(cmd)
 
     state_path.write_text(json.dumps({
         "finished_hash": new_hash,

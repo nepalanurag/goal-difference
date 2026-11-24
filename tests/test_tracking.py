@@ -104,6 +104,22 @@ def test_registry_upsert_and_promote(tmp_path):
     assert storage.promote_model("pl", "nope", path=db) is False
 
 
+def test_registry_allows_same_version_across_leagues(tmp_path):
+    db = tmp_path / "ops.sqlite"
+    storage.init_ops_db(db)
+    storage.upsert_model_registry("v2026-10-19", "pl", "sha1", "fv1", "dh1", path=db)
+    storage.upsert_model_registry("v2026-10-19", "laliga", "sha1", "fv1", "dh2", path=db)
+    assert storage.promote_model("pl", "v2026-10-19", path=db) is True
+    con = _con(db)
+    try:
+        rows = dict(con.execute(
+            "SELECT league, stage FROM model_registry WHERE model_version = 'v2026-10-19'"
+        ).fetchall())
+    finally:
+        con.close()
+    assert rows == {"pl": "production", "laliga": "staging"}
+
+
 def test_versioned_feature_path_naming():
     p = storage.features_lake_versioned_path("pl", "deadbeef")
     assert p.name == "features_vdeadbeef.parquet"

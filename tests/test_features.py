@@ -251,3 +251,57 @@ def test_predict_mode_advances_rest_days_calendar(tmp_path, monkeypatch):
     assert r3["h_rest_days"] == 14, f"Expected 14 days, got {r3['h_rest_days']}"
 
 
+def test_load_european_skips_scheduled_fixtures(tmp_path, monkeypatch):
+    import json
+    from etl import config as cfg
+    monkeypatch.setattr(cfg.settings, "data_dir", tmp_path)
+    rows = [
+        {"fixture_id": "e1", "date": "2026-09-09", "competition": "UCL",
+         "home": "Arsenal", "away": "Napoli", "home_goals": 2, "away_goals": 0, "status": "finished"},
+        {"fixture_id": "e2", "date": "2026-10-20", "competition": "UCL",
+         "home": "Arsenal", "away": "Roma", "home_goals": None, "away_goals": None, "status": "scheduled"},
+    ]
+    (tmp_path / "european_fixtures.jsonl").write_text("\n".join(json.dumps(r) for r in rows) + "\n")
+    euro = features.load_european()
+    assert len(euro["Arsenal"]) == 1
+    assert euro["Arsenal"][0]["pts"] == 3
+    assert "Roma" not in euro
+
+
+def test_predict_mode_imputes_missing_stats_with_league_mean(tmp_path, monkeypatch):
+    from etl import config as cfg
+    rows = [
+        {"fixture_id": "f1", "date": "2026-09-01", "season": "2026",
+         "league": "pl", "home": "Arsenal", "away": "Chelsea",
+         "home_goals": 2, "away_goals": 1, "status": "finished",
+         "provenance": "csv_download", "api_fixture_id": None,
+         "hs": 14.0, "as_": 10.0, "hst": 6.0, "ast": 4.0,
+         "hf": 9.0, "af": 11.0, "hy": 1.0, "ay": 2.0, "hr": 0.0, "ar": 0.0},
+        {"fixture_id": "f2", "date": "2026-09-10", "season": "2026",
+         "league": "pl", "home": "Coventry City", "away": "Arsenal",
+         "home_goals": None, "away_goals": None, "status": "scheduled",
+         "provenance": "fpl_api", "api_fixture_id": None,
+         "hs": None, "as_": None, "hst": None, "ast": None,
+         "hf": None, "af": None, "hy": None, "ay": None, "hr": None, "ar": None},
+    ]
+    pd.DataFrame(rows).to_csv(tmp_path / "fixtures_pl.csv", index=False)
+    monkeypatch.setattr(cfg.settings, "data_dir", tmp_path)
+    monkeypatch.setattr(cfg.settings, "raw_dir", tmp_path)
+    pred_df, _ = features.build_features("pl", mode="predict")
+    assert len(pred_df) == 1
+    assert pred_df.iloc[0]["h_shots_pg"] == 12.0  # mean of Arsenal (14) and Chelsea (10)
+    assert pred_df.iloc[0]["h_fouls_pg"] == 10.0  # mean of Arsenal (9) and Chelsea (11)
+
+
+def test_load_devigged_odds_uses_canonical_csv_aliases(tmp_path, monkeypatch):
+    from etl import config as cfg
+    csv_content = (
+        "Date,HomeTeam,AwayTeam,B365CH,B365CD,B365CA,B365H,B365D,B365A\n"
+        "16/08/2024,Ipswich,Chelsea,3.5,3.6,2.0,3.4,3.5,2.1\n"
+    )
+    (tmp_path / "csv_pl_2024.csv").write_text(csv_content)
+    monkeypatch.setattr(cfg.settings, "raw_dir", tmp_path)
+    odds = features.load_devigged_odds("pl")
+    assert ("Ipswich Town", "Chelsea", "2024-08-16") in odds
+
+

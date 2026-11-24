@@ -22,7 +22,7 @@ import argparse
 import hashlib
 import json
 import math
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import numpy as np
@@ -32,7 +32,7 @@ from .config import settings
 from .logging_setup import get_logger
 from .storage import (features_lake_path, features_lake_versioned_path,
                       write_parquet)
-from .team_names import CANONICAL
+from .team_names import canonicalize
 
 log = get_logger(__name__)
 
@@ -157,18 +157,11 @@ def elo_update(rh: float, ra: float, hg: int, ag: int) -> tuple[float, float]:
 # p = (1/odds) / sum(1/odds). Keyed by (home, away, date) with canonical
 # team names; rows without odds get NaN (imputed later) and odds_available=0.
 # ----------------------------------------------------------------------------
-RAW_CSV_ALIASES: dict[str, dict[str, str]] = {
-    # The 2025/26 LaLiga CSV uses shortened spellings.
-    "laliga": {"Espanol": "Espanyol", "Sociedad": "Real Sociedad",
-               "Vallecano": "Rayo Vallecano"},
-}
-
 ODDS_COLS = ("B365CH", "B365CD", "B365CA", "B365H", "B365D", "B365A")
 
 
 def load_devigged_odds(league: str) -> dict[tuple[str, str, str], tuple[float, float, float]]:
     """(home, away, date) -> de-vigged (p_home, p_draw, p_away)."""
-    aliases = RAW_CSV_ALIASES.get(league, {})
     out: dict[tuple[str, str, str], tuple[float, float, float]] = {}
     for path in sorted(settings.raw_dir.glob(f"csv_{league}_20*.csv")):
         try:
@@ -177,8 +170,8 @@ def load_devigged_odds(league: str) -> dict[tuple[str, str, str], tuple[float, f
         except (ValueError, FileNotFoundError):
             continue
         raw["datestr"] = pd.to_datetime(raw["Date"], dayfirst=True).dt.date.astype(str)
-        raw["home"] = raw["HomeTeam"].map(lambda t: aliases.get(t, t))
-        raw["away"] = raw["AwayTeam"].map(lambda t: aliases.get(t, t))
+        raw["home"] = raw["HomeTeam"].map(lambda t: canonicalize(str(t), league, "csv"))
+        raw["away"] = raw["AwayTeam"].map(lambda t: canonicalize(str(t), league, "csv"))
         for _, r in raw.iterrows():
             close = [r["B365CH"], r["B365CD"], r["B365CA"]]
             open_ = [r["B365H"], r["B365D"], r["B365A"]]
@@ -277,7 +270,7 @@ class TeamHistory:
 
 
 def load_european() -> dict[str, list[dict]]:
-    """Per-team European fixture history from the accumulated jsonl."""
+    """Per-team finished European fixture history from the accumulated jsonl."""
     path = settings.data_dir / "european_fixtures.jsonl"
     per_team: dict[str, list[dict]] = {}
     if not path.exists():
@@ -287,13 +280,15 @@ def load_european() -> dict[str, list[dict]]:
             fx = json.loads(line)
         except json.JSONDecodeError:
             continue
+        if fx.get("status") != "finished" or fx.get("home_goals") is None or fx.get("away_goals") is None:
+            continue
         for side, gf_key, ga_key in (("home", "home_goals", "away_goals"),
                                      ("away", "away_goals", "home_goals")):
             team = fx[side]
-            gf, ga = fx[gf_key], fx[ga_key]
-            pts = 3 if (gf or 0) > (ga or 0) else (1 if gf == ga else 0)
+            gf, ga = int(fx[gf_key]), int(fx[ga_key])
+            pts = 3 if gf > ga else (1 if gf == ga else 0)
             per_team.setdefault(team, []).append({
-                "date": fx["date"], "gf": gf or 0, "ga": ga or 0, "pts": pts,
+                "date": fx["date"], "gf": gf, "ga": ga, "pts": pts,
             })
     for v in per_team.values():
         v.sort(key=lambda x: x["date"])
@@ -323,10 +318,33 @@ def load_injury_drags(league: str) -> dict[str, dict[str, float]]:
     return out
 
 
-def load_key_absences() -> dict[str, int]:
-    """Key-absence counts per team (Premier League, from team_news_pl.json)."""
-    drags = load_injury_drags("pl")
-    return {team: int(info.get("key_absences", 0)) for team, info in drags.items()}
+def latest_team_states(league: str) -> dict[str, dict[str, float]]:
+    """Post-match TeamHistory features for every team after all finished fixtures."""
+    fixtures_path = settings.data_dir / f"fixtures_{league}.csv"
+    df = pd.read_csv(fixtures_path, parse_dates=["date"])
+    df = df[df["status"] == "finished"].sort_values("date")
+    histories: dict[str, TeamHistory] = {}
+    num = lambda v: None if pd.isna(v) else float(v)
+    for _, r in df.iterrows():
+        datestr = str(r["date"])[:10]
+        hg, ag = int(r["home_goals"]), int(r["away_goals"])
+        h_stats = {
+            "shots": num(r.get("hs")), "shots_conc": num(r.get("as_")),
+            "sot": num(r.get("hst")), "fouls": num(r.get("hf")),
+            "cards": (num(r.get("hy")) or 0.0) + (num(r.get("hr")) or 0.0) * 2.0
+            if pd.notna(r.get("hy")) or pd.notna(r.get("hr")) else None,
+        }
+        a_stats = {
+            "shots": num(r.get("as_")), "shots_conc": num(r.get("hs")),
+            "sot": num(r.get("ast")), "fouls": num(r.get("af")),
+            "cards": (num(r.get("ay")) or 0.0) + (num(r.get("ar")) or 0.0) * 2.0
+            if pd.notna(r.get("ay")) or pd.notna(r.get("ar")) else None,
+        }
+        histories.setdefault(r["home"], TeamHistory()).add(
+            datestr, "H", hg, ag, h_stats, r["away"])
+        histories.setdefault(r["away"], TeamHistory()).add(
+            datestr, "A", ag, hg, a_stats, r["home"])
+    return {team: hist.features() for team, hist in histories.items()}
 
 
 def load_h2h_dated(league: str) -> dict[str, list[dict]]:
@@ -512,8 +530,15 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
         row["elo_diff"] = rh - ra
         row["effective_elo_diff"] = row["elo_diff"] - 150.0 * row["injury_drag_diff"]
 
-        # De-vigged market odds (closing odds, known pre-kickoff).
+        # De-vigged market odds (closing odds, known pre-kickoff). Allow +-1d
+        # fallback for UTC vs local European kickoff date differences.
         probs = odds_map.get((home, away, datestr))
+        if probs is None:
+            dt = date.fromisoformat(datestr)
+            for off in (-1, 1):
+                probs = odds_map.get((home, away, (dt + timedelta(days=off)).isoformat()))
+                if probs is not None:
+                    break
         if probs is not None:
             row["odds_p_home"], row["odds_p_draw"], row["odds_p_away"] = probs
             row["odds_available"] = 1
@@ -549,7 +574,15 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
     feats_df = pd.DataFrame(rows)
     # Neutral imputation for teams with no history yet (early rows):
     # in train mode, use expanding mean forward in time to prevent lookahead;
-    # in predict mode, use neutral defaults.
+    # in predict mode, fill missing team-history metrics with league means from
+    # finished histories (preventing 0.0 distortion for promoted clubs).
+    hist_feats = [h.features() for h in histories.values() if h.matches] if mode != "train" else []
+    if hist_feats and not feats_df.empty:
+        for base_k in hist_feats[0]:
+            for prefix in ("h_", "a_"):
+                col = f"{prefix}{base_k}"
+                if col not in feats_df.columns:
+                    feats_df[col] = np.nan
     for col in feature_columns(feats_df):
         if feats_df[col].isna().any():
             default = NEUTRAL_DEFAULTS.get(col)
@@ -559,7 +592,11 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
                         feats_df[col].expanding().mean()
                     ).bfill().fillna(0.0)
                 else:
-                    feats_df[col] = feats_df[col].fillna(0.0)
+                    base_k = col[2:] if col.startswith(("h_", "a_")) else col
+                    vals = [float(hf[base_k]) for hf in hist_feats
+                            if base_k in hf and not pd.isna(hf[base_k])]
+                    fill_val = float(np.mean(vals)) if vals else 0.0
+                    feats_df[col] = feats_df[col].fillna(fill_val)
             else:
                 feats_df[col] = feats_df[col].fillna(default)
 

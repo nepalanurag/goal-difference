@@ -20,12 +20,8 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import csv
-import hashlib
-import io
 import json
 import re
-import time
 import urllib.request
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -242,7 +238,26 @@ def fetch_fpl() -> pd.DataFrame:
 # Live-season results for non-PL leagues via ESPN's public scoreboard API.
 # football-data.co.uk CSVs lag by weeks; ESPN has full-time scores same-day.
 ESPN_LEAGUES = ("laliga", "bundesliga", "seriea", "ligue1")
-ESPN_SEASON_START = "2026-08-01"
+ESPN_SEASON_START = f"{settings.live_season}-08-01"
+
+
+def _merge_csv_stats(live_df: pd.DataFrame, csv_df: pd.DataFrame) -> pd.DataFrame:
+    """Backfill shot/foul/card STAT_COLS from CSV onto matching live rows."""
+    if live_df.empty or csv_df.empty:
+        return live_df
+    fin_csv = csv_df[csv_df["status"] == "finished"]
+    by_pair = {(r["home"], r["away"]): r for _, r in fin_csv.iterrows()}
+    out = live_df.copy()
+    for idx, r in out.iterrows():
+        if r["status"] != "finished":
+            continue
+        match = by_pair.get((r["home"], r["away"]))
+        if match is None:
+            continue
+        for c in STAT_COLS:
+            if pd.isna(r[c]) and pd.notna(match[c]):
+                out.at[idx, c] = match[c]
+    return out
 
 
 def fetch_espn_results(league: str, season: str) -> pd.DataFrame:
@@ -252,7 +267,6 @@ def fetch_espn_results(league: str, season: str) -> pd.DataFrame:
     DataFrame with provenance="espn". Raises on total failure.
     """
     from .uefa import fetch_espn_league
-    from .team_names import canonicalize
     today = date.today().isoformat()
     rows = fetch_espn_league(league, ESPN_SEASON_START, today)
     if not rows:
@@ -287,18 +301,27 @@ def extract_league_season(league: str, season: str, prefer_csv: bool) -> pd.Data
         except Exception as exc:
             log.warning("api_failed_falling_back_to_csv", league=league,
                         season=season, error=str(exc)[:200])
-    if season == settings.live_season and league == "pl" and not prefer_csv:
-        try:
-            return fetch_fpl()
-        except Exception as exc:
-            log.warning("fpl_failed_falling_back_to_csv", error=str(exc)[:200])
-    if (season == settings.live_season and league in ESPN_LEAGUES
-            and not prefer_csv):
-        try:
-            return fetch_espn_results(league, season)
-        except Exception as exc:
-            log.warning("espn_failed_falling_back_to_csv", league=league,
-                        season=season, error=str(exc)[:200])
+    if season == settings.live_season and not prefer_csv:
+        live_df = None
+        if league == "pl":
+            try:
+                live_df = fetch_fpl()
+            except Exception as exc:
+                log.warning("fpl_failed_falling_back_to_csv", error=str(exc)[:200])
+        elif league in ESPN_LEAGUES:
+            try:
+                live_df = fetch_espn_results(league, season)
+            except Exception as exc:
+                log.warning("espn_failed_falling_back_to_csv", league=league,
+                            season=season, error=str(exc)[:200])
+        if live_df is not None:
+            try:
+                csv_df = fetch_csv(league, season)
+                live_df = _merge_csv_stats(live_df, csv_df)
+            except Exception as exc:
+                log.warning("live_csv_backfill_skipped", league=league,
+                            season=season, error=str(exc)[:200])
+            return live_df
     # CSV path: fallback when APIs fail.
     try:
         return fetch_csv(league, season)
@@ -365,79 +388,79 @@ def accumulate_european(dates: list[str]) -> Path:
     return out
 
 
-# ---------------------------------------------------------------- lineups
-def fetch_bundesliga_lineups(n_matchdays: int = 5) -> Path:
-    """Latest Bundesliga matchday lineups (for absence detection in team_news).
+def _reconstruct_missing_rounds(df: pd.DataFrame, league: str, season: str) -> pd.DataFrame:
+    """Fill remaining unscheduled ordered pairings in the live double round-robin.
 
-    Falls back gracefully: writes whatever the backend returns, never fails.
+    Uses the circle method so no team plays more than once per reconstructed
+    matchweek, anchored weekly after the latest known live fixture or today.
     """
-    out = settings.data_dir / "lineups_bundesliga.json"
-    base = ("https://bundesliga-web-prod.europe-west1.firebasedatabase.app"
-            "/all/DFL-COM-000001/seasons/DFL-SEA-0001KA")
-    result: dict = {"source": "bundesliga_official_firebase", "matchdays": []}
-    try:
-        req = urllib.request.Request(base + "/matchdays.json?shallow=true",
-                                     headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            md_ids = sorted(json.loads(resp.read()).keys())
-        for md_id in md_ids[-n_matchdays:]:
-            req = urllib.request.Request(f"{base}/matchdays/{md_id}.json",
-                                         headers={"User-Agent": "Mozilla/5.0"})
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                md = json.loads(resp.read())
-            matches = md if isinstance(md, list) else list(md.values())
-            day = {"matchday_id": md_id, "matches": []}
-            for m in matches:
-                try:
-                    lineup = m.get("lineup", {}) or {}
-                    day["matches"].append({
-                        "date": m.get("matchDateTimeUTC", "")[:10],
-                        "home": m.get("homeClubName") or m.get("homeTeamName"),
-                        "away": m.get("awayClubName") or m.get("awayTeamName"),
-                        "home_starters": [p.get("playerName") for p in
-                                          (lineup.get("home") or {}).get("startXI", [])],
-                        "away_starters": [p.get("playerName") for p in
-                                          (lineup.get("away") or {}).get("startXI", [])],
-                    })
-                except Exception:
-                    continue
-            result["matchdays"].append(day)
-        cache_raw("bundesliga_lineups.json", json.dumps(result))
-    except Exception as exc:
-        log.warning("bundesliga_lineups_failed", error=str(exc)[:200])
-        result["note"] = f"fetch failed: {exc}"
-    out.write_text(json.dumps(result, indent=1))
-    log.info("bundesliga_lineups", matchdays=len(result["matchdays"]), path=str(out))
-    return out
+    live = df[df["season"] == season]
+    teams = sorted(set(live["home"]) | set(live["away"]))
+    n = len(teams)
+    if n < 2 or n % 2 != 0:
+        return pd.DataFrame(columns=OUTPUT_COLS)
+    existing = set(zip(live["home"], live["away"]))
+    order = list(range(n))
+    first_half: list[list[tuple[str, str]]] = []
+    for _ in range(n - 1):
+        first_half.append([(teams[order[i]], teams[order[n - 1 - i]]) for i in range(n // 2)])
+        order = [order[0]] + [order[-1]] + order[1:-1]
+    all_rounds = first_half + [[(b, a) for a, b in rd] for rd in first_half]
+    missing_rounds = [
+        [(h, a) for h, a in rd if (h, a) not in existing]
+        for rd in all_rounds
+    ]
+    missing_rounds = [rd for rd in missing_rounds if rd]
+    if not missing_rounds:
+        return pd.DataFrame(columns=OUTPUT_COLS)
+    last_dt = pd.to_datetime(live["date"]).max().date() if not live.empty else date.today()
+    anchor = max(last_dt, date.today())
+    days_ahead = (5 - anchor.weekday()) % 7 or 7
+    start = anchor + timedelta(days=days_ahead)
+    rows = []
+    for wk, rd in enumerate(missing_rounds):
+        dt = (start + timedelta(weeks=wk)).isoformat()
+        for home, away in rd:
+            fid = slugify(f"{league}-{season}-{dt}-{home}-v-{away}")
+            rows.append({
+                "fixture_id": fid, "date": dt, "season": season, "league": league,
+                "home": home, "away": away, "home_goals": None, "away_goals": None,
+                "status": "scheduled", "provenance": "schedule_reconstructed",
+                "api_fixture_id": None, **{c: None for c in STAT_COLS},
+            })
+    log.info("schedule_reconstructed", league=league, remaining=len(rows),
+             from_date=start.isoformat())
+    return pd.DataFrame(rows, columns=OUTPUT_COLS)
 
 
 def append_reconstructed_schedules(leagues: list[str]) -> None:
-    """Replace reconstructed/scheduled rows with real ESPN fixtures.
+    """Refresh future ESPN fixtures through season end and fill missing pairings.
 
-    The old round-robin reconstruction guessed matchups; ESPN publishes the
-    real schedule. For each non-PL league: drop all schedule_reconstructed
-    and *scheduled* espn rows for the live season, fetch the next 60 days
-    from ESPN, and append with provenance="espn". Finished ESPN results
-    (from fetch_espn_results) are preserved.
+    For each non-PL league: drop old schedule_reconstructed and scheduled espn
+    rows for the live season, pull published scheduled fixtures from ESPN through
+    season end, then reconstruct any unscheduled round-robin pairings so full
+    season simulations always play all 34/38 rounds.
     """
     from .uefa import fetch_espn_league
-    from .team_names import canonicalize_espn
+    season = str(settings.live_season)
     today = date.today().isoformat()
-    end = (date.today() + timedelta(days=60)).isoformat()
+    end = f"{int(season) + 1}-06-30"
     for league in leagues:
         if league == "pl":
             continue  # PL has real scheduled fixtures from FPL
         path = settings.data_dir / f"fixtures_{league}.csv"
         df = pd.read_csv(path, dtype={"season": str})
-        season = str(settings.live_season)
-        # Drop old guessed rows (and previous ESPN *scheduled* pulls) for live
-        # season. Finished ESPN results are kept.
         mask = ~((df["season"] == season) &
                  (df["provenance"].isin(["schedule_reconstructed", "espn"])) &
                  (df["status"] == "scheduled"))
         df = df[mask]
         rows = []
-        for r in fetch_espn_league(league, today, end):
+        try:
+            espn_rows = fetch_espn_league(league, today, end)
+        except Exception as exc:
+            log.warning("espn_schedule_failed", league=league, error=str(exc)[:200])
+            espn_rows = []
+        for r in espn_rows:
             if r["status"] != "scheduled":
                 continue
             fid = slugify(f"{league}-{season}-{r['date']}-{r['home']}-v-{r['away']}")
@@ -451,44 +474,14 @@ def append_reconstructed_schedules(leagues: list[str]) -> None:
         if rows:
             df = pd.concat([df, pd.DataFrame(rows, columns=OUTPUT_COLS)],
                            ignore_index=True)
+        recon = _reconstruct_missing_rounds(df, league, season)
+        if not recon.empty:
+            df = pd.concat([df, recon], ignore_index=True)
         df = df.drop_duplicates(subset=["fixture_id"], keep="first")
         df = df.sort_values("date").reset_index(drop=True)
         df.to_csv(path, index=False)
-        log.info("espn_fixtures_written", league=league, n=len(rows))
-
-
-def write_lineup_sources() -> Path:
-    """Honest record of which leagues expose lineup data and which do not."""
-    out = settings.data_dir / "lineup_sources.json"
-    record = {
-        "bundesliga": {
-            "source": "bundesliga official Firebase (matchdays lineup nodes)",
-            "lineups_available": True,
-            "file": "lineups_bundesliga.json",
-        },
-        "pl": {
-            "source": "FPL API (injuries, chance_of_playing, news)",
-            "lineups_available": False,
-            "note": "PL availability comes from FPL injury/news flags, not lineups.",
-        },
-        "laliga": {
-            "source": "LaLiga apim public-service API",
-            "lineups_available": False,
-            "note": "No lineup endpoint found; player stats only.",
-        },
-        "seriea": {
-            "source": "Serie A api-sdp (Deltatre)",
-            "lineups_available": False,
-            "note": "Match detail carries no lineups; no lineup sub-endpoint.",
-        },
-        "ligue1": {
-            "source": "Ligue 1 ma-api",
-            "lineups_available": False,
-            "note": "No match/lineup endpoint found; statuses feed empty.",
-        },
-    }
-    out.write_text(json.dumps(record, indent=1))
-    return out
+        log.info("espn_fixtures_written", league=league, espn=len(rows),
+                 reconstructed=len(recon))
 
 
 # ---------------------------------------------------------------- main
@@ -518,8 +511,6 @@ def main(argv: list[str] | None = None) -> int:
         dates = [(today + timedelta(days=d)).isoformat() for d in (-1, 0, 1)]
         accumulate_european(dates)
 
-    fetch_bundesliga_lineups()
-    write_lineup_sources()
     append_reconstructed_schedules(args.leagues)
 
     # Parquet lake mirror of the final fixtures CSVs (CSVs stay canonical).

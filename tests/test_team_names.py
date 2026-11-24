@@ -30,3 +30,9 @@ def test_bundesliga_prefix_variants():
     assert canonicalize("1. FC Union Berlin", "bundesliga", "api") == "Union Berlin"
     assert canonicalize("SV Werder Bremen", "bundesliga", "api") == "Werder Bremen"
     assert canonicalize("FC Bayern München", "bundesliga", "api") == "Bayern Munich"
+
+
+def test_pl_2026_csv_short_names():
+    assert canonicalize("Coventry", "pl", "csv") == "Coventry City"
+    assert canonicalize("Hull", "pl", "csv") == "Hull City"
+    assert canonicalize("Málaga", "laliga", "espn") == "Malaga"

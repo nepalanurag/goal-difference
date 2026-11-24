@@ -29,7 +29,7 @@ from sklearn.model_selection import TimeSeriesSplit
 
 from . import fit
 from .config import settings
-from .features import build_features
+from .features import build_features, feature_columns
 from .logging_setup import get_logger
 
 log = get_logger(__name__)
@@ -116,21 +116,18 @@ CANDIDATES: dict[str, dict] = {
 }
 
 
-def short_walkforward_poisson(df: pd.DataFrame, feature_cols: list[str],
-                              n_splits: int = 2) -> float:
-    """Mean log-loss of the Poisson model over a short time-respecting split."""
+def short_walkforward_ml(df: pd.DataFrame, feature_cols: list[str],
+                         n_splits: int = 2) -> float:
+    """Mean log-loss of the baseline ML model over a short time-respecting split."""
     X = df[feature_cols]
     y = df["result"].to_numpy()
-    yh = df["home_goals"].to_numpy()
-    ya = df["away_goals"].to_numpy()
     tscv = TimeSeriesSplit(n_splits=n_splits)
     losses = []
     for tr, te in tscv.split(X):
         w = fit.recency_weights(df["date"].iloc[tr])
-        pm = fit.PoissonModel().fit(X.iloc[tr], yh[tr], ya[tr],
-                                    sample_weight=w)
-        probs = pm.predict_proba(X.iloc[te])
-        probs = np.clip(probs, 1e-15, 1.0 - 1e-15)
+        clf = fit.make_ml("xgb_tiny")
+        clf.fit(X.iloc[tr], y[tr], sample_weight=w)
+        probs = np.clip(clf.predict_proba(X.iloc[te]), 1e-15, 1.0 - 1e-15)
         probs = probs / probs.sum(axis=1, keepdims=True)
         losses.append(log_loss(y[te], probs, labels=LABELS))
     return float(np.mean(losses))
@@ -139,15 +136,14 @@ def short_walkforward_poisson(df: pd.DataFrame, feature_cols: list[str],
 def ablate(league: str, dry_run: bool = False) -> dict:
     """Run baseline + per-candidate ablations. Returns measured results."""
     df, _ = build_features(league, mode="train")
-    base_cols = [c for c in df.columns
-                 if c.startswith(("h_", "a_")) or c == "h2h_edge"]
+    base_cols = feature_columns(df)
     if dry_run:
         log.info("ai_features_dry_run", league=league,
                  rows=len(df), base_cols=len(base_cols),
                  candidates=list(CANDIDATES))
         return {"league": league, "baseline": None, "candidates": {}}
 
-    baseline = short_walkforward_poisson(df, base_cols)
+    baseline = short_walkforward_ml(df, base_cols)
     log.info("ai_features_baseline", league=league,
              logloss=round(baseline, 4))
     results: dict[str, dict] = {}
@@ -158,7 +154,7 @@ def ablate(league: str, dry_run: bool = False) -> dict:
         for col, series in new_cols.items():
             tmp[col] = series
             cols.append(col)
-        ll = short_walkforward_poisson(tmp, cols)
+        ll = short_walkforward_ml(tmp, cols)
         delta = ll - baseline
         if delta <= KEEP_THRESHOLD:
             verdict = "keep (recommend to human)"
@@ -186,16 +182,16 @@ def build_report(res: dict, run_date: date) -> str:
         "> until a human approves it.",
         "",
         "Protocol: short time-respecting walk-forward (2 splits) of the "
-        "Poisson model only. Delta log-loss = candidate minus baseline "
-        "(negative = better). All candidate inputs are shift(1)-lagged, so "
-        "there is no leakage.",
+        "xgb_tiny model on full features. Delta log-loss = candidate minus "
+        "baseline (negative = better). All candidate inputs are shift(1)-lagged, "
+        "so there is no leakage.",
         "",
     ]
     baseline = res.get("baseline")
     if baseline is None:
         lines.append("_Dry run: no ablations executed._")
     else:
-        lines.append(f"Baseline Poisson log-loss (2 splits): {baseline:.4f}")
+        lines.append(f"Baseline ML log-loss (2 splits): {baseline:.4f}")
     lines += ["", "| candidate | hypothesis | delta log-loss | verdict |",
               "| --- | --- | --- | --- |"]
     for name, cand in CANDIDATES.items():

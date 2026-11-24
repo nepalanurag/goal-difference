@@ -38,8 +38,9 @@ from .team_names import canonicalize
 
 log = get_logger(__name__)
 
-SEASON_LABEL = "2026/27"
+SEASON_LABEL = f"{settings.live_season}/{str(int(settings.live_season) + 1)[-2:]}"
 FPL_POSITIONS = {1: "GK", 2: "DEF", 3: "MID", 4: "FWD"}
+_TRANSFER_NEWS_WORDS = ("joined", "loan", "departed", "free agent", "transferred")
 
 
 def _now_iso() -> str:
@@ -59,6 +60,9 @@ def _write_json(path: Path, payload: Any) -> None:
 def _flagged(el: dict) -> str | None:
     """Return 'out' / 'doubtful' / None for one FPL element."""
     status = el.get("status")
+    news = (el.get("news") or "").lower()
+    if status == "u" and any(w in news for w in _TRANSFER_NEWS_WORDS):
+        return None
     this_round = el.get("chance_of_playing_this_round")
     next_round = el.get("chance_of_playing_next_round")
     if status in ("i", "s", "u") or this_round == 0:

@@ -30,11 +30,9 @@ Usage: python -m etl.scorer_probs
 from __future__ import annotations
 
 import json
-import logging
 import math
 import re
 import unicodedata
-from pathlib import Path
 
 import pandas as pd
 
@@ -169,16 +167,19 @@ def scorer_prob(shrunk_rate: float, x_minutes: float, team_xg: float,
 
 def _pl_pool() -> list[dict]:
     """PL players from players_pl.json plus starts/penalty data from the raw
-    FPL bootstrap (matched on web_name + canonical team)."""
+    FPL bootstrap (matched on id when available, fallback web_name + team)."""
     d = settings.data_dir
     pl = json.loads((d / "players_pl.json").read_text())
     raw_path = d / "raw" / "fpl_bootstrap_static.json"
+    extra_id: dict[int, dict] = {}
     extra: dict[tuple[str, str], dict] = {}
     if raw_path.exists():
         boot = json.loads(raw_path.read_text())
         teams = {t["id"]: canonicalize(t["name"], "pl", source="fpl")
                  for t in boot.get("teams", [])}
         for el in boot.get("elements", []):
+            if el.get("id") is not None:
+                extra_id[el["id"]] = el
             extra[(el.get("web_name"), teams.get(el.get("team")))] = el
     else:
         log.warning("fpl_bootstrap_missing", path=str(raw_path))
@@ -188,7 +189,8 @@ def _pl_pool() -> list[dict]:
             continue
         if (p.get("minutes") or 0) < MIN_MINUTES:
             continue
-        el = extra.get((p.get("web_name"), p.get("team")), {})
+        pid = p.get("id")
+        el = extra_id.get(pid) if pid in extra_id else extra.get((p.get("web_name"), p.get("team")), {})
         pool.append({
             "name": p.get("web_name") or p.get("name"),
             "team": p.get("team"),

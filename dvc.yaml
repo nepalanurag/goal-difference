@@ -43,17 +43,55 @@ stages:
       - data/features_bundesliga.csv
       - data/features_seriea.csv
       - data/features_ligue1.csv
+  h2h:
+    cmd: python -m etl.h2h
+    deps:
+      - etl/h2h.py
+      - etl/config.py
+      - data/validation_report.json
+    outs:
+      - data/h2h_pl.json
+      - data/h2h_laliga.json
+      - data/h2h_bundesliga.json
+      - data/h2h_seriea.json
+      - data/h2h_ligue1.json
+  players:
+    cmd: python -m etl.players --parts a c
+    deps:
+      - etl/players.py
+      - etl/team_names.py
+      - etl/config.py
+    outs:
+      - data/players_pl.json
+      - data/player_rankings_official_laliga.json
+      - data/player_rankings_official_bundesliga.json
+      - data/player_rankings_official_seriea.json
+      - data/player_rankings_official_ligue1.json
+  team_news:
+    cmd: python -m etl.team_news
+    deps:
+      - etl/team_news.py
+      - etl/players.py
+      - etl/config.py
+      - data/players_pl.json
+    outs:
+      - data/team_news_pl.json
+      - data/team_news_laliga.json
+      - data/team_news_bundesliga.json
+      - data/team_news_seriea.json
+      - data/team_news_ligue1.json
   fit:
     cmd: python -m etl.fit
     deps:
       - etl/fit.py
-      - etl/simulate.py
+      - etl/pam_select.py
       - etl/config.py
       - data/features_pl.csv
       - data/features_laliga.csv
       - data/features_bundesliga.csv
       - data/features_seriea.csv
       - data/features_ligue1.csv
+      - data/team_news_pl.json
     outs:
       - data/params_pl.json
       - data/params_laliga.json
@@ -65,13 +103,38 @@ stages:
       - data/calibration_bundesliga.json
       - data/calibration_seriea.json
       - data/calibration_ligue1.json
-      - data/predictions_ledger_pl.csv
-      - data/predictions_ledger_laliga.csv
-      - data/predictions_ledger_bundesliga.csv
-      - data/predictions_ledger_seriea.csv
-      - data/predictions_ledger_ligue1.csv
       - data/models/:
           persist: true
+  simulate:
+    cmd: python -m etl.simulate
+    deps:
+      - etl/simulate.py
+      - etl/fit.py
+      - etl/config.py
+      - data/params_pl.json
+      - data/params_laliga.json
+      - data/params_bundesliga.json
+      - data/params_seriea.json
+      - data/params_ligue1.json
+    outs:
+      - data/odds_pl.csv
+      - data/odds_laliga.csv
+      - data/odds_bundesliga.csv
+      - data/odds_seriea.csv
+      - data/odds_ligue1.csv
+  ai_forecaster:
+    cmd: python -m etl.ai_forecaster
+    deps:
+      - etl/ai_forecaster.py
+      - etl/ledger.py
+      - etl/fit.py
+      - data/params_pl.json
+      - data/params_laliga.json
+      - data/params_bundesliga.json
+      - data/params_seriea.json
+      - data/params_ligue1.json
+    outs:
+      - data/ai_memo_latest.md
   build_site:
     cmd: python -m etl.build_site
     deps:
@@ -83,5 +146,17 @@ stages:
       - data/params_bundesliga.json
       - data/params_seriea.json
       - data/params_ligue1.json
+      - data/h2h_pl.json
+      - data/h2h_laliga.json
+      - data/h2h_bundesliga.json
+      - data/h2h_seriea.json
+      - data/h2h_ligue1.json
+      - data/players_pl.json
+      - data/team_news_pl.json
+      - data/odds_pl.csv
+      - data/odds_laliga.csv
+      - data/odds_bundesliga.csv
+      - data/odds_seriea.csv
+      - data/odds_ligue1.csv
     outs:
       - docs/
