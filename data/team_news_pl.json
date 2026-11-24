@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API (unofficial)",
  "season_label": "2026/27",
- "fetched_at": "2026-11-22T20:40:56.017716+00:00",
+ "fetched_at": "2026-11-24T01:33:58.923629+00:00",
  "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
  "teams": {
   "Arsenal": {
@@ -85,8 +85,8 @@
      "player": "David Raya Martín",
      "status": "d",
      "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Shoulder injury - 75% chance of playing",
+     "chance_next_round": 50,
+     "news": "Shoulder injury - 50% chance of playing",
      "regular_starter": true,
      "position": "GK"
     }
@@ -108,10 +108,10 @@
     },
     {
      "player": "Matty Cash",
-     "status": "i",
+     "status": "d",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Concussion - Expected back 28 Nov",
+     "chance_next_round": 75,
+     "news": "Concussion - 75% chance of playing",
      "regular_starter": true,
      "position": "DEF"
     },
@@ -219,7 +219,7 @@
      "status": "i",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Thigh injury - Expected back 31 Oct",
+     "news": "Thigh injury - Unknown return date",
      "regular_starter": false,
      "position": "DEF"
     },
@@ -334,17 +334,17 @@
    "doubtful": [
     {
      "player": "Fábio Freitas Gouveia Carvalho",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Knock - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "MID"
     }
    ],
    "key_absences": 1,
-   "drag_att": 0.1314,
-   "drag_def": 0.0459
+   "drag_att": 0.1136,
+   "drag_def": 0.0421
   },
   "Brighton": {
    "out": [
@@ -430,6 +430,15 @@
      "position": "FWD"
     },
     {
+     "player": "Malick Yalcouyé",
+     "status": "i",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID"
+    },
+    {
      "player": "Amario Cozier-Duberry",
      "status": "u",
      "chance_this_round": 0,
@@ -451,7 +460,7 @@
     }
    ],
    "key_absences": 0,
-   "drag_att": 0.0,
+   "drag_att": 0.0382,
    "drag_def": 0.0485
   },
   "Chelsea": {
@@ -871,6 +880,15 @@
   "Everton": {
    "out": [
     {
+     "player": "James Tarkowski",
+     "status": "s",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Suspended until 13 Dec",
+     "regular_starter": true,
+     "position": "DEF"
+    },
+    {
      "player": "Nathan Patterson",
      "status": "u",
      "chance_this_round": 0,
@@ -899,9 +917,9 @@
     }
    ],
    "doubtful": [],
-   "key_absences": 0,
+   "key_absences": 1,
    "drag_att": 0.0,
-   "drag_def": 0.0
+   "drag_def": 0.1025
   },
   "Fulham": {
    "out": [
@@ -949,6 +967,15 @@
   },
   "Hull City": {
    "out": [
+    {
+     "player": "Tim Iroegbunam",
+     "status": "i",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID"
+    },
     {
      "player": "Harvey Cartwright",
      "status": "u",
@@ -1049,6 +1076,15 @@
      "position": "FWD"
     },
     {
+     "player": "Joe Gelhardt",
+     "status": "i",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Thigh injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID"
+    },
+    {
      "player": "Matt Targett",
      "status": "i",
      "chance_this_round": 0,
@@ -1078,15 +1114,6 @@
    ],
    "doubtful": [
     {
-     "player": "Tim Iroegbunam",
-     "status": "d",
-     "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Hamstring injury - 75% chance of playing",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
      "player": "Darko Gyabi",
      "status": "d",
      "chance_this_round": 75,
@@ -1097,7 +1124,7 @@
     }
    ],
    "key_absences": 0,
-   "drag_att": 0.0,
+   "drag_att": 0.059,
    "drag_def": 0.0
   },
   "Ipswich Town": {
@@ -1456,10 +1483,10 @@
     },
     {
      "player": "Matheus Nunes",
-     "status": "d",
+     "status": "a",
      "chance_this_round": 50,
-     "chance_next_round": 50,
-     "news": "Unspecified injury - 50% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
      "regular_starter": false,
      "position": "DEF"
     },

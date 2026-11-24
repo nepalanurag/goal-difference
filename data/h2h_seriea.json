@@ -674,6 +674,14 @@
   "Atalanta vs Inter": {
     "last5": [
       {
+        "date": "2026-11-22",
+        "venue": "H",
+        "home": "Atalanta",
+        "away": "Inter",
+        "home_goals": 4,
+        "away_goals": 4
+      },
+      {
         "date": "2026-03-14",
         "venue": "A",
         "home": "Inter",
@@ -699,14 +707,6 @@
       },
       {
         "date": "2024-08-30",
-        "venue": "A",
-        "home": "Inter",
-        "away": "Atalanta",
-        "home_goals": 4,
-        "away_goals": 0
-      },
-      {
-        "date": "2024-02-28",
         "venue": "A",
         "home": "Inter",
         "away": "Atalanta",
@@ -716,12 +716,20 @@
     ],
     "alltime": {
       "w": 0,
-      "d": 1,
+      "d": 2,
       "l": 5
     }
   },
   "Inter vs Atalanta": {
     "last5": [
+      {
+        "date": "2026-11-22",
+        "venue": "A",
+        "home": "Atalanta",
+        "away": "Inter",
+        "home_goals": 4,
+        "away_goals": 4
+      },
       {
         "date": "2026-03-14",
         "venue": "H",
@@ -753,19 +761,11 @@
         "away": "Atalanta",
         "home_goals": 4,
         "away_goals": 0
-      },
-      {
-        "date": "2024-02-28",
-        "venue": "H",
-        "home": "Inter",
-        "away": "Atalanta",
-        "home_goals": 4,
-        "away_goals": 0
       }
     ],
     "alltime": {
       "w": 5,
-      "d": 1,
+      "d": 2,
       "l": 0
     }
   },
@@ -10276,6 +10276,14 @@
   "Fiorentina vs Monza": {
     "last5": [
       {
+        "date": "2026-11-23",
+        "venue": "A",
+        "home": "Monza",
+        "away": "Fiorentina",
+        "home_goals": 3,
+        "away_goals": 0
+      },
+      {
         "date": "2025-01-13",
         "venue": "A",
         "home": "Monza",
@@ -10311,11 +10319,19 @@
     "alltime": {
       "w": 2,
       "d": 1,
-      "l": 1
+      "l": 2
     }
   },
   "Monza vs Fiorentina": {
     "last5": [
+      {
+        "date": "2026-11-23",
+        "venue": "H",
+        "home": "Monza",
+        "away": "Fiorentina",
+        "home_goals": 3,
+        "away_goals": 0
+      },
       {
         "date": "2025-01-13",
         "venue": "H",
@@ -10350,7 +10366,7 @@
       }
     ],
     "alltime": {
-      "w": 1,
+      "w": 2,
       "d": 1,
       "l": 2
     }
