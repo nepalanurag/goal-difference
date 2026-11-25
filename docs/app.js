@@ -47,8 +47,9 @@
 
   // ---- League tabs: containers holding .league-panel children get a tab bar.
   var LEAGUE_NAMES = {pl: 'Premier League', laliga: 'LaLiga',
-    bundesliga: 'Bundesliga', seriea: 'Serie A', ligue1: 'Ligue 1'};
-  ['leaderboards', 'backend-rankings'].forEach(function (id) {
+    bundesliga: 'Bundesliga', seriea: 'Serie A', ligue1: 'Ligue 1',
+    UCL: 'Champions League', UEL: 'Europa League'};
+  ['leaderboards', 'backend-rankings', 'europe-tabs'].forEach(function (id) {
     var box = document.getElementById(id);
     if (!box) return;
     var panels = box.querySelectorAll('.league-panel');
@@ -157,7 +158,8 @@
       }
       addFilter('all', 'All leagues');
       leagues.forEach(function (l) { addFilter(l, LEAGUE_NAMES[l] || l); });
-      sc.insertBefore(bar, sc.firstChild);
+      var scHeading = sc.querySelector('h2');
+      sc.insertBefore(bar, scHeading ? scHeading.nextSibling : sc.firstChild);
     }
   }
 })();

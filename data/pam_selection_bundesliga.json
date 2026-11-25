@@ -4,13 +4,14 @@
  "B": 20,
  "pi": 0.6,
  "seed": 42,
- "n_rows": 954,
- "computed_at": "2026-10-06T22:43:47.381598+00:00",
+ "n_rows": 3456,
+ "computed_at": "2026-11-25T08:41:57.854581+00:00",
  "groups": {
   "elo": [
    "h_elo",
    "a_elo",
-   "elo_diff"
+   "elo_diff",
+   "effective_elo_diff"
   ],
   "odds": [
    "odds_p_home",
@@ -81,13 +82,17 @@
    "a_cards_pg"
   ],
   "h2h": [
-   "h2h_edge"
+   "h2h_edge",
+   "h2h_recent_edge",
+   "h2h_venue_edge",
+   "h2h_meetings"
   ],
   "rest_travel": [
    "h_travel_km",
    "a_travel_km",
    "h_rest_days",
-   "a_rest_days"
+   "a_rest_days",
+   "rest_diff"
   ],
   "european": [
    "h_euro_days_since",
@@ -99,48 +104,61 @@
    "a_euro_ppg",
    "a_euro_gd"
   ],
+  "squad": [
+   "h_squad_top3_ga_l5",
+   "a_squad_top3_ga_l5"
+  ],
   "absences": [
    "h_key_absences",
-   "a_key_absences"
+   "a_key_absences",
+   "h_injury_drag_att",
+   "h_injury_drag_def",
+   "a_injury_drag_att",
+   "a_injury_drag_def",
+   "injury_drag_diff"
   ]
  },
  "selection_frequency": {
-  "elo": 0.5,
+  "elo": 0.8,
   "odds": 1.0,
-  "form": 0.3,
-  "venue": 0.05,
-  "attack_defense": 0.0,
-  "shots": 0.95,
-  "discipline": 1.0,
+  "form": 0.0,
+  "venue": 0.1,
+  "attack_defense": 0.25,
+  "shots": 0.1,
+  "discipline": 0.05,
   "h2h": 1.0,
   "rest_travel": 0.0,
-  "european": 0.0,
+  "european": 1.0,
+  "squad": 0.4,
   "absences": 0.0
  },
  "selected_groups": [
+  "elo",
   "odds",
-  "shots",
-  "discipline",
-  "h2h"
+  "h2h",
+  "european"
  ],
  "selected_features": [
+  "h_elo",
+  "a_elo",
+  "elo_diff",
+  "effective_elo_diff",
   "odds_p_home",
   "odds_p_draw",
   "odds_p_away",
   "odds_available",
-  "h_shots_pg",
-  "h_shots_conc_pg",
-  "h_sot_pg",
-  "h_shot_diff_pg",
-  "a_shots_pg",
-  "a_shots_conc_pg",
-  "a_sot_pg",
-  "a_shot_diff_pg",
-  "h_fouls_pg",
-  "h_cards_pg",
-  "a_fouls_pg",
-  "a_cards_pg",
-  "h2h_edge"
+  "h2h_edge",
+  "h2h_recent_edge",
+  "h2h_venue_edge",
+  "h2h_meetings",
+  "h_euro_days_since",
+  "h_euro_midweek",
+  "h_euro_ppg",
+  "h_euro_gd",
+  "a_euro_days_since",
+  "a_euro_midweek",
+  "a_euro_ppg",
+  "a_euro_gd"
  ],
  "jaccard_stability": 0.0,
  "stability_halves": {
@@ -148,8 +166,8 @@
   "second": [
    "elo",
    "odds",
-   "discipline",
-   "h2h"
+   "h2h",
+   "european"
   ]
  },
  "ml_model": "xgb_tiny",

@@ -37,7 +37,9 @@ from .team_names import canonicalize
 log = get_logger(__name__)
 
 CSV_BASE = "https://www.football-data.co.uk/mmz4281"
-CSV_SEASON_CODE = {"2023": "2324", "2024": "2425", "2025": "2526", "2026": "2627"}
+CSV_SEASON_CODE = {
+    str(y): f"{str(y)[-2:]}{str(y + 1)[-2:]}" for y in range(2015, 2027)
+}
 
 # Extra stat columns carried through from the CSVs (nullable for API rows).
 STAT_COLS = ["hs", "as_", "hst", "ast", "hf", "af", "hy", "ay", "hr", "ar"]
@@ -120,8 +122,9 @@ def fetch_csv(league: str, season: str) -> pd.DataFrame:
     path = cached(cache_name)
     provenance = "csv_cached"
 
-    # Completed historical seasons never change; reuse local cache directly
-    if season in settings.historical_seasons and path is not None:
+    # Completed seasons never change; reuse local cache directly
+    completed = set(settings.archive_seasons) | set(settings.historical_seasons) | {settings.csv_only_season}
+    if season in completed and path is not None:
         pass
     else:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
@@ -141,8 +144,11 @@ def fetch_csv(league: str, season: str) -> pd.DataFrame:
     df = pd.read_csv(path, encoding="utf-8-sig")
     rows = []
     for _, r in df.iterrows():
+        raw_date = r.get("Date")
+        if pd.isna(raw_date):
+            continue
         try:
-            dt = pd.to_datetime(r["Date"], dayfirst=True).date().isoformat()
+            dt = pd.to_datetime(raw_date, dayfirst=True, format="mixed").date().isoformat()
         except Exception:
             continue
         fthg, ftag = r.get("FTHG"), r.get("FTAG")
@@ -340,18 +346,18 @@ def extract_league(league: str, seasons: list[str], prefer_csv: bool) -> pd.Data
 
 
 # ---------------------------------------------------------------- European
-def accumulate_european(dates: list[str]) -> Path:
-    """Accumulate UEFA fixtures via ESPN's scoreboard API (free, no key).
+def accumulate_european(dates: list[str], top5_only: bool = True) -> Path:
+    """Accumulate UCL and UEL fixtures for Top-5 clubs via ESPN scoreboard API.
 
-    Fetches the full date range spanned by `dates` and appends new rows to
-    data/european_fixtures.jsonl, deduplicated by fixture_id. Rows first
-    seen as scheduled are upgraded in place once the finished result lands,
-    so stale scheduled rows never linger.
+    Fetches the full date range spanned by `dates`, filters to UCL/UEL matches
+    involving at least one canonical Top-5 league team, prunes stale non-UCL/UEL
+    (e.g. UECL) or non-Top-5 rows, and deduplicates by fixture_id sorted by date.
     """
-    from .uefa import fetch_espn_uefa
+    from .team_names import TOP5_TEAMS, canonicalize_espn
+    from .uefa import ESPN_SLUGS, fetch_espn_uefa
+
     out = settings.data_dir / "european_fixtures.jsonl"
-    lines: list[str] = []
-    index: dict[str, int] = {}
+    existing: dict[str, dict] = {}
     if out.exists():
         with open(out) as f:
             for line in f:
@@ -360,31 +366,50 @@ def accumulate_european(dates: list[str]) -> Path:
                     continue
                 try:
                     fx = json.loads(line)
-                    index[fx["fixture_id"]] = len(lines)
-                    lines.append(line)
+                    comp = fx.get("competition")
+                    if comp not in ESPN_SLUGS:
+                        continue
+                    fx["home"] = canonicalize_espn(fx.get("home", ""))
+                    fx["away"] = canonicalize_espn(fx.get("away", ""))
+                    if top5_only and fx["home"] not in TOP5_TEAMS and fx["away"] not in TOP5_TEAMS:
+                        continue
+                    existing[fx["fixture_id"]] = fx
                 except (json.JSONDecodeError, KeyError):
                     continue
+
+    # Backfill full UCL/UEL archive on first run or when pre-live seasons are absent.
+    live_start = f"{settings.live_season}-08-01"
+    has_history = any(fx.get("date", "") < live_start for fx in existing.values())
+    fetch_ranges: list[tuple[str, str]] = []
+    if not has_history:
+        earliest = f"{min(settings.all_seasons)}-08-01"
+        fetch_ranges.append((earliest, f"{int(settings.live_season) + 1}-06-30"))
+    elif dates:
+        fetch_ranges.append((min(dates), max(dates)))
+
     new = 0
     upgraded = 0
-    if dates:
-        rows = fetch_espn_uefa(min(dates), max(dates))
-        for r in rows:
+    for start_d, end_d in fetch_ranges:
+        for r in fetch_espn_uefa(start_d, end_d, top5_only=top5_only):
             fid = r["fixture_id"]
-            if fid not in index:
-                index[fid] = len(lines)
-                lines.append(json.dumps(r))
+            if fid not in existing:
+                existing[fid] = r
                 new += 1
             else:
-                old = json.loads(lines[index[fid]])
+                old = existing[fid]
                 if old.get("status") != "finished" and r["status"] == "finished":
-                    lines[index[fid]] = json.dumps(r)
+                    existing[fid] = r
                     upgraded += 1
-    if new or upgraded:
-        with open(out, "w") as f:
-            for line in lines:
-                f.write(line + "\n")
+                elif old.get("home") != r["home"] or old.get("away") != r["away"] or old.get("date") != r["date"]:
+                    existing[fid] = r
+                    upgraded += 1
+
+    rows_sorted = sorted(existing.values(), key=lambda x: (x.get("date", ""), x.get("fixture_id", "")))
+    with open(out, "w") as f:
+        for row in rows_sorted:
+            f.write(json.dumps(row) + "\n")
     log.info("european_accumulated", new=new, upgraded=upgraded,
-             total=len(lines), path=str(out))
+             total=len(rows_sorted), path=str(out))
     return out
 
 
@@ -490,8 +515,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--leagues", nargs="*", default=settings.league_order,
                         choices=settings.league_order)
     parser.add_argument("--seasons", nargs="*",
-                        default=settings.historical_seasons
-                        + [settings.csv_only_season, settings.live_season])
+                        default=settings.all_seasons)
     parser.add_argument("--prefer-csv", action="store_true",
                         help="Skip api-football/FPL and use CSVs everywhere.")
     parser.add_argument("--skip-europe", action="store_true",
@@ -507,8 +531,8 @@ def main(argv: list[str] | None = None) -> int:
                  finished=int((df["status"] == "finished").sum()), path=str(out))
 
     if not args.skip_europe and not args.prefer_csv:
-        today = date.today()
-        dates = [(today + timedelta(days=d)).isoformat() for d in (-1, 0, 1)]
+        live_y = int(settings.live_season)
+        dates = [f"{live_y}-08-01", f"{live_y + 1}-06-30"]
         accumulate_european(dates)
 
     append_reconstructed_schedules(args.leagues)

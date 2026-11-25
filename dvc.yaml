@@ -30,6 +30,44 @@ stages:
       - data/fixtures_ligue1.csv
     outs:
       - data/validation_report.json
+  players:
+    cmd: python -m etl.players --parts a c d e
+    deps:
+      - etl/players.py
+      - etl/team_names.py
+      - etl/storage.py
+      - etl/config.py
+      - data/validation_report.json
+    outs:
+      - data/players_pl.json
+      - data/player_rankings_official_laliga.json
+      - data/player_rankings_official_bundesliga.json
+      - data/player_rankings_official_seriea.json
+      - data/player_rankings_official_ligue1.json
+      - data/squad_players_pl.json
+      - data/squad_players_laliga.json
+      - data/squad_players_bundesliga.json
+      - data/squad_players_seriea.json
+      - data/squad_players_ligue1.json
+  team_news:
+    cmd: python -m etl.team_news
+    deps:
+      - etl/team_news.py
+      - etl/players.py
+      - etl/team_names.py
+      - etl/config.py
+      - data/players_pl.json
+      - data/squad_players_pl.json
+      - data/squad_players_laliga.json
+      - data/squad_players_bundesliga.json
+      - data/squad_players_seriea.json
+      - data/squad_players_ligue1.json
+    outs:
+      - data/team_news_pl.json
+      - data/team_news_laliga.json
+      - data/team_news_bundesliga.json
+      - data/team_news_seriea.json
+      - data/team_news_ligue1.json
   features:
     cmd: python -m etl.features
     deps:
@@ -37,6 +75,12 @@ stages:
       - etl/h2h.py
       - etl/config.py
       - data/validation_report.json
+      - data/european_fixtures.jsonl
+      - data/team_news_pl.json
+      - data/team_news_laliga.json
+      - data/team_news_bundesliga.json
+      - data/team_news_seriea.json
+      - data/team_news_ligue1.json
     outs:
       - data/features_pl.csv
       - data/features_laliga.csv
@@ -49,37 +93,13 @@ stages:
       - etl/h2h.py
       - etl/config.py
       - data/validation_report.json
+      - data/european_fixtures.jsonl
     outs:
       - data/h2h_pl.json
       - data/h2h_laliga.json
       - data/h2h_bundesliga.json
       - data/h2h_seriea.json
       - data/h2h_ligue1.json
-  players:
-    cmd: python -m etl.players --parts a c
-    deps:
-      - etl/players.py
-      - etl/team_names.py
-      - etl/config.py
-    outs:
-      - data/players_pl.json
-      - data/player_rankings_official_laliga.json
-      - data/player_rankings_official_bundesliga.json
-      - data/player_rankings_official_seriea.json
-      - data/player_rankings_official_ligue1.json
-  team_news:
-    cmd: python -m etl.team_news
-    deps:
-      - etl/team_news.py
-      - etl/players.py
-      - etl/config.py
-      - data/players_pl.json
-    outs:
-      - data/team_news_pl.json
-      - data/team_news_laliga.json
-      - data/team_news_bundesliga.json
-      - data/team_news_seriea.json
-      - data/team_news_ligue1.json
   fit:
     cmd: python -m etl.fit
     deps:

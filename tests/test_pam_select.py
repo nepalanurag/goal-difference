@@ -25,7 +25,7 @@ def _real_feature_cols() -> list[str]:
 
 def test_assign_group_covers_every_real_feature():
     cols = _real_feature_cols()
-    assert len(cols) == 80
+    assert len(cols) == 86
     groups = feature_groups(cols)
     assert set(groups) <= set(GROUP_ORDER)
     flat = [c for cs in groups.values() for c in cs]

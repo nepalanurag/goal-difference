@@ -61,9 +61,10 @@ GROUP_RULES: list[tuple[str, set[str]]] = [
                         "gf5", "ga5", "cs_rate", "fts_rate"}),
     ("shots", {"shots_pg", "shots_conc_pg", "sot_pg", "shot_diff_pg"}),
     ("discipline", {"fouls_pg", "cards_pg"}),
-    ("h2h", {"h2h_edge"}),
-    ("rest_travel", {"rest_days", "travel_km"}),
+    ("h2h", {"h2h_edge", "h2h_recent_edge", "h2h_venue_edge", "h2h_meetings"}),
+    ("rest_travel", {"rest_days", "rest_diff", "travel_km"}),
     ("european", {"euro_days_since", "euro_midweek", "euro_ppg", "euro_gd"}),
+    ("squad", {"squad_top3_ga_l5"}),
     ("absences", {"key_absences", "injury_drag_att", "injury_drag_def", "injury_drag_diff"}),
 ]
 
@@ -78,8 +79,9 @@ GROUP_LABELS = {
     "shots": "Shot dominance",
     "discipline": "Discipline",
     "h2h": "Head-to-head edge",
-    "rest_travel": "Rest and travel",
-    "european": "European congestion",
+    "rest_travel": "Rest diff and travel",
+    "european": "European congestion (UCL/UEL)",
+    "squad": "Squad recent attack form",
     "absences": "Key absences and injury drag",
 }
 

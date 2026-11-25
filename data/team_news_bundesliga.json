@@ -1,8 +1,2232 @@
 {
  "league": "bundesliga",
- "source": "bundesliga official Firebase",
+ "source": "SportsGambler + Transfermarkt",
  "season_label": "2026/27",
- "fetched_at": "2026-11-24T23:58:44.884735+00:00",
- "availability": "no current-season availability data published by the league backend",
- "teams": {}
+ "fetched_at": "2026-11-25T08:46:50.015956+00:00",
+ "notes": "Multi-source player availability combining SportsGambler (injured, suspended, doubtful), Transfermarkt (€M valuation and return dates), and FPL for Premier League.",
+ "teams": {
+  "Augsburg": {
+   "out": [
+    {
+     "player": "Kristijan Jakic",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Yellow cards",
+     "news": "Yellow cards",
+     "expected_return": "2026-12-21",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Manuel Baum",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "?",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Red card (direct)",
+     "news": "Red card (direct)",
+     "expected_return": "2026-12-05",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Chrislain Matsima",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 9,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Torn muscle fiber",
+     "news": "Muscle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 25.0
+    },
+    {
+     "player": "Noahkai Banks",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 4,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Torn lateral knee ligament",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 25.0
+    },
+    {
+     "player": "Han-Noah Massengo",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 9,
+     "goals": 1,
+     "assists": 1,
+     "reason": "muscular problems",
+     "news": "Muscle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 10.0
+    },
+    {
+     "player": "Calvin Brackelmann",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 7,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Head",
+     "news": "Head",
+     "expected_return": "2026-11-29",
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 4.0
+    },
+    {
+     "player": "Jeffrey Gouweleeuw",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 8,
+     "goals": 0,
+     "assists": 0,
+     "reason": "muscular problems",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 1.0
+    },
+    {
+     "player": "Steve Mounie",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "unknown injury",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 1.0
+    }
+   ],
+   "key_absences": 4,
+   "drag_att": 0.0368,
+   "drag_def": 0.1296
+  },
+  "Bayern Munich": {
+   "out": [
+    {
+     "player": "Harry Kane",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 10,
+     "goals": 4,
+     "assists": 7,
+     "reason": "Syndesmotic ligament tear",
+     "news": "Ankle",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 60.0
+    },
+    {
+     "player": "Serge Gnabry",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 5,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Hamstring injury",
+     "news": "Hamstring",
+     "expected_return": "2026-12-31",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 18.0
+    },
+    {
+     "player": "Manuel Neuer",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "GK",
+     "matches": 5,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Foot injury",
+     "news": "Foot",
+     "expected_return": "2027-01-02",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 4.0
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Michael Olise",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 10,
+     "goals": 6,
+     "assists": 3,
+     "reason": "Foot bruise",
+     "news": "Foot",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 180.0
+    },
+    {
+     "player": "Ismael Saibari",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 8,
+     "goals": 2,
+     "assists": 3,
+     "reason": "Syndesmotic ligament tear",
+     "news": "Ankle",
+     "expected_return": "2027-01-31",
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 55.0
+    },
+    {
+     "player": "Alphonso Davies",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 8,
+     "goals": 0,
+     "assists": 2,
+     "reason": "Torn muscle fiber",
+     "news": "Hamstring",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 45.0
+    },
+    {
+     "player": "Luis Diaz",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 6,
+     "goals": 4,
+     "assists": 1,
+     "reason": "Muscle",
+     "news": "Muscle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Tarek Buchmann",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Foot",
+     "news": "Foot",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 6,
+   "drag_att": 0.323,
+   "drag_def": 0.1029
+  },
+  "Dortmund": {
+   "out": [
+    {
+     "player": "G. Konstantelias",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 1,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Cruciate ligame",
+     "expected_return": "2027-06-01",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 22.0
+    },
+    {
+     "player": "Emre Can",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Cruciate ligame",
+     "expected_return": "2027-01-23",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 3.0
+    },
+    {
+     "player": "Mussa Kaba",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Shoulder injury",
+     "news": "Shoulder injury",
+     "expected_return": null,
+     "market_value_m": 0.2,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Samuele Inacio",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 2,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Meniscus injury",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 20.0
+    },
+    {
+     "player": "Justin Lerma",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Muscle injury",
+     "news": "Muscle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 3.2
+    }
+   ],
+   "key_absences": 2,
+   "drag_att": 0.0249,
+   "drag_def": 0.0
+  },
+  "Ein Frankfurt": {
+   "out": [
+    {
+     "player": "Elias Baum",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 9,
+     "goals": 0,
+     "assists": 1,
+     "reason": "2nd yellow (Red)",
+     "news": "2nd yellow (Red)",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Fousseny Doumbia",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Red card (direct)",
+     "news": "Red card (direct)",
+     "expected_return": "2026-12-12",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Can Uzun",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 8,
+     "goals": 2,
+     "assists": 1,
+     "reason": "Illness",
+     "news": "Illness",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 45.0
+    },
+    {
+     "player": "Jessic Ngankam",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Hamstring strain",
+     "news": "Thigh",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 0.7
+    }
+   ],
+   "key_absences": 2,
+   "drag_att": 0.0446,
+   "drag_def": 0.0806
+  },
+  "Elversberg": {
+   "out": [
+    {
+     "player": "Nicholas Mickelson",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 5,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Inner ligament injury",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 1.0
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Luis Seifert",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Syndesmosis ligament tear",
+     "news": "Foot",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 0.2
+    }
+   ],
+   "key_absences": 0,
+   "drag_att": 0.0,
+   "drag_def": 0.043
+  },
+  "FC Koln": {
+   "out": [
+    {
+     "player": "Thijs Dallinga",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 3,
+     "goals": 2,
+     "assists": 0,
+     "reason": "Cruciate ligament injury",
+     "news": "Cruciate ligament injury",
+     "expected_return": null,
+     "market_value_m": 9.0,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    },
+    {
+     "player": "Alessio Castro-Montes",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 8,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Calf injury",
+     "news": "Calf injury",
+     "expected_return": null,
+     "market_value_m": 2.5,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    },
+    {
+     "player": "Timo Hübers",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee injury",
+     "news": "Knee injury",
+     "expected_return": null,
+     "market_value_m": 1.5,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    },
+    {
+     "player": "Jusuf Gazibegovic",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Red card (direct)",
+     "news": "Red card (direct)",
+     "expected_return": "2026-12-05",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Timo Huebers",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Rav van den Berg",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Muscle injury",
+     "news": "Muscle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 5.0
+    },
+    {
+     "player": "Ellyes Skhiri",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 5,
+     "goals": 0,
+     "assists": 2,
+     "reason": "Syndesmotic ligament tear",
+     "news": "Ankle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 2.5
+    },
+    {
+     "player": "Imad Rondic",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 2,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Hamstring injury",
+     "news": "Hamstring",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 0.75
+    }
+   ],
+   "key_absences": 0,
+   "drag_att": 0.0994,
+   "drag_def": 0.0794
+  },
+  "Freiburg": {
+   "out": [
+    {
+     "player": "Berkay Yilmaz",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 1,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Red card (direct)",
+     "news": "Red card (direct)",
+     "expected_return": "2026-11-29",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Bruno Ogbus",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Muscle",
+     "news": "Muscle",
+     "expected_return": "2026-11-29",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Florent Muslija",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligame",
+     "news": "Cruciate ligame",
+     "expected_return": "2027-01-15",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Karl Steinmann",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Hamstring",
+     "news": "Hamstring",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 0,
+   "drag_att": 0.0,
+   "drag_def": 0.0
+  },
+  "Hamburg": {
+   "out": [
+    {
+     "player": "Nicolai Remberg",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 5,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Knee",
+     "expected_return": "2027-06-30",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 9.0
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Albert Sambi Lokonga",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 7,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Calf injury",
+     "news": "Calf",
+     "expected_return": "2026-12-31",
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 12.0
+    },
+    {
+     "player": "Miro Muheim",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 6,
+     "goals": 3,
+     "assists": 1,
+     "reason": "Calf injury",
+     "news": "Calf",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 4.0
+    },
+    {
+     "player": "Bilal Nadir",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 4,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Tendon tear",
+     "news": "Thigh",
+     "expected_return": "2026-12-31",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 8.0
+    },
+    {
+     "player": "Jordan Torunarigha",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 5,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Hip problems",
+     "news": "Hip",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 4.0
+    },
+    {
+     "player": "Shafiq Nandja",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 5,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Pelvic injury",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 1.5
+    },
+    {
+     "player": "Yussuf Poulsen",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 7,
+     "goals": 2,
+     "assists": 0,
+     "reason": "Calf injury",
+     "news": "Calf",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 1.0
+    }
+   ],
+   "key_absences": 3,
+   "drag_att": 0.1262,
+   "drag_def": 0.0866
+  },
+  "Hoffenheim": {
+   "out": [
+    {
+     "player": "Ozan Kabak",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 10,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Red card (direct)",
+     "news": "Red card (direct)",
+     "expected_return": "2027-01-09",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Valentin Gendrey",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 2,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Broken fibula",
+     "news": "Lower leg",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 6.0
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Nathan De Cat",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 2,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Meniscus injury",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 27.0
+    },
+    {
+     "player": "Albian Hajdari",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 4,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Meniscus injury",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 25.0
+    },
+    {
+     "player": "Robin Hranac",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 5,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee injury",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 10.0
+    }
+   ],
+   "key_absences": 3,
+   "drag_att": 0.0057,
+   "drag_def": 0.1389
+  },
+  "Leverkusen": {
+   "out": [
+    {
+     "player": "Lucas Vázquez",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 5,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knock",
+     "news": "Knock",
+     "expected_return": null,
+     "market_value_m": 1.5,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Kennet Eichhorn",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Illness",
+     "news": "Illness",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 20.0
+    },
+    {
+     "player": "Martin Terrier",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 2,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Hamstring injury",
+     "news": "Hamstring",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 8.0
+    },
+    {
+     "player": "Guela Doue",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 1,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Calf",
+     "news": "Calf",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 1,
+   "drag_att": 0.025,
+   "drag_def": 0.0425
+  },
+  "M'gladbach": {
+   "out": [
+    {
+     "player": "Enzo Leopold",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Cruciate ligame",
+     "expected_return": "2027-06-01",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 4.0
+    },
+    {
+     "player": "Jan Leszczyński",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 3,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee injury",
+     "news": "Knee injury",
+     "expected_return": null,
+     "market_value_m": 3.0,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    },
+    {
+     "player": "Daiki Hashioka",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 6,
+     "goals": 0,
+     "assists": 0,
+     "reason": "muscular problems",
+     "news": "muscular problems",
+     "expected_return": null,
+     "market_value_m": 1.5,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    },
+    {
+     "player": "Ko Itakura",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 6,
+     "goals": 0,
+     "assists": 0,
+     "reason": "2nd yellow (Red)",
+     "news": "2nd yellow (Red)",
+     "expected_return": "2026-11-27",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Hugo Bolin",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 7,
+     "goals": 2,
+     "assists": 0,
+     "reason": "Muscle",
+     "news": "Muscle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 7.5
+    },
+    {
+     "player": "Lukas Ullrich",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 8,
+     "goals": 0,
+     "assists": 2,
+     "reason": "Broken collarbone",
+     "news": "Shoulder",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 6.0
+    },
+    {
+     "player": "Tim Kleindienst",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 3,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Torn muscle fiber",
+     "news": "Muscle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 8.0
+    },
+    {
+     "player": "Jan Leszcynski",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 3,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 2,
+   "drag_att": 0.0511,
+   "drag_def": 0.219
+  },
+  "Mainz": {
+   "out": [
+    {
+     "player": "Silas",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Fitness",
+     "news": "Fitness",
+     "expected_return": null,
+     "market_value_m": 2.0,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    },
+    {
+     "player": "Silas Katompa Mvumpa",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Foot",
+     "news": "Foot",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Dominik Kohr",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 1,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Ankle injury",
+     "news": "Ankle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 2.0
+    },
+    {
+     "player": "Otto Ruoppi",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 3,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Knee",
+     "news": "Knee",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 0,
+   "drag_att": 0.0139,
+   "drag_def": 0.0
+  },
+  "Paderborn": {
+   "out": [],
+   "doubtful": [
+    {
+     "player": "Stefano Marino",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 10,
+     "goals": 2,
+     "assists": 0,
+     "reason": "Ankle",
+     "news": "Ankle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Marcel Hoffmeier",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Fitness",
+     "news": "Muscle",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 0.8
+    },
+    {
+     "player": "Timur Gayret",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 0.45
+    },
+    {
+     "player": "N. Awortwie-Grant",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee",
+     "news": "Knee",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Oliver Batista Meier",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 3,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee",
+     "news": "Knee",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Sebastian Klaas",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Groin",
+     "news": "Groin",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Sven Michel",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 1,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knock",
+     "news": "Knock",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 1,
+   "drag_att": 0.0626,
+   "drag_def": 0.0
+  },
+  "RB Leipzig": {
+   "out": [
+    {
+     "player": "F. Assan Ouedraogo",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 1,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Shoulder injury",
+     "news": "Shoulder",
+     "expected_return": "2026-12-25",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 22.0
+    },
+    {
+     "player": "Marc Guiu",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 1,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Hamstring",
+     "news": "Hamstring",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 12.0
+    },
+    {
+     "player": "Samba Konaté",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 2,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Adductor pain",
+     "news": "Adductor pain",
+     "expected_return": null,
+     "market_value_m": 5.0,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    },
+    {
+     "player": "Lukas Klostermann",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 1,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Yellow cards",
+     "news": "Yellow cards",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Castello Lukeba",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 7,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee bruise",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 50.0
+    },
+    {
+     "player": "Benno Kaltefleiter",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knock",
+     "news": "Knock",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ]
+    },
+    {
+     "player": "Viggo Gebel",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 2,
+   "drag_att": 0.0116,
+   "drag_def": 0.0339
+  },
+  "Schalke 04": {
+   "out": [
+    {
+     "player": "Maximilian Wöber",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 6,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Hamstring injury",
+     "news": "Hamstring injury",
+     "expected_return": "2026-12-31",
+     "market_value_m": 3.0,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    },
+    {
+     "player": "Emil Højlund",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Achilles tendon surgery",
+     "news": "Achilles tendon surgery",
+     "expected_return": null,
+     "market_value_m": 0.5,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Timo Becker",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 8,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Foot injury",
+     "news": "Foot",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 1.5
+    },
+    {
+     "player": "Ron Schallenberg",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 3,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Leg injury",
+     "news": "Lower leg",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 2.0
+    },
+    {
+     "player": "Luca Vozar",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 1,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Hamstring injury",
+     "news": "Thigh",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 0.8
+    },
+    {
+     "player": "Maximilian Woeber",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 6,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Thigh",
+     "news": "Thigh",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Mika Wallentowitz",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Muscle",
+     "news": "Muscle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 1,
+   "drag_att": 0.0085,
+   "drag_def": 0.1231
+  },
+  "Stuttgart": {
+   "out": [
+    {
+     "player": "Jeremy Arevalo",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Upper back",
+     "news": "Upper back",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Angelo Stiller",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 7,
+     "goals": 0,
+     "assists": 2,
+     "reason": "Adductor injury",
+     "news": "Groin",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 45.0
+    },
+    {
+     "player": "Luca Jaquez",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 2,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Rib fracture",
+     "news": "Rib",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 10.0
+    },
+    {
+     "player": "Leo Sauer",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 6,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Groin",
+     "news": "Groin",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Noah Darvich",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 5,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Hamstring",
+     "news": "Hamstring",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 1,
+   "drag_att": 0.0796,
+   "drag_def": 0.0
+  },
+  "Union Berlin": {
+   "out": [
+    {
+     "player": "Zeno Van Den Bosch",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 9,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Yellow cards",
+     "news": "Yellow cards",
+     "expected_return": "2026-12-05",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Stanley Nsoki",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Muscle injury",
+     "news": "Muscle injury",
+     "expected_return": null,
+     "market_value_m": 2.0,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    },
+    {
+     "player": "Andrik Markgraf",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Knee",
+     "expected_return": "2027-04-02",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 0.3
+    },
+    {
+     "player": "Derrick Koehn",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 5,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Yellow cards",
+     "news": "Yellow cards",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Stanley N'Soki",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Calf",
+     "news": "Calf",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Livan Burcu",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 8,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 4.0
+    },
+    {
+     "player": "Felix Uduokhai",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 6,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Hamstring injury",
+     "news": "Thigh",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 2.5
+    },
+    {
+     "player": "Josip Juranovic",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 3,
+     "goals": 0,
+     "assists": 2,
+     "reason": "Illness",
+     "news": "Illness",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 2.0
+    },
+    {
+     "player": "Robert Skov",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 1,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knock",
+     "news": "Knock",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 1.5
+    }
+   ],
+   "key_absences": 3,
+   "drag_att": 0.0805,
+   "drag_def": 0.1771
+  },
+  "Werder Bremen": {
+   "out": [
+    {
+     "player": "Marco Grüll",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 9,
+     "goals": 2,
+     "assists": 6,
+     "reason": "Calf injury",
+     "news": "Calf injury",
+     "expected_return": null,
+     "market_value_m": 5.0,
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "Transfermarkt"
+     ]
+    },
+    {
+     "player": "Jens Stage",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Fitness",
+     "news": "Thigh",
+     "expected_return": "2027-01-09",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 10.0
+    },
+    {
+     "player": "Moussa Ndiaye",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Groin problems",
+     "news": "Groin problems",
+     "expected_return": null,
+     "market_value_m": 4.0,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    },
+    {
+     "player": "Felix Agu",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Fitness",
+     "news": "Muscle",
+     "expected_return": "2026-11-27",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 3.5
+    },
+    {
+     "player": "Keke Topp",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligame",
+     "news": "Cruciate ligame",
+     "expected_return": "2027-02-05",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 3.0
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Senne Lynen",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 3,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Illness",
+     "news": "Illness",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 8.0
+    },
+    {
+     "player": "Mitchell Weiser",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 6,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Fitness",
+     "news": "Muscle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 3.0
+    },
+    {
+     "player": "Salim Musah",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 3,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Hamstring injury",
+     "news": "Hamstring",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 2.0
+    },
+    {
+     "player": "Skelly Alvero",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Calf injury",
+     "news": "Calf",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 1.0
+    },
+    {
+     "player": "Marco Gruell",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 9,
+     "goals": 2,
+     "assists": 6,
+     "reason": "Calf",
+     "news": "Calf",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Markus Kolke",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "GK",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 1,
+   "drag_att": 0.2213,
+   "drag_def": 0.0243
+  }
+ }
 }

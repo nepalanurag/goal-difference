@@ -92,11 +92,17 @@ the rating change caused by fixture N.
 
 ## Head-to-head
 
+Includes finished domestic fixtures (2015/16+) plus finished UCL/UEL meetings
+between domestic rivals.
+
 | Feature | Definition | Window |
 |---|---|---|
-| h2h_edge | Home team's all-time points share vs this opponent: (wins + 0.5 x draws) / total | All history in `data/h2h_{league}.json` |
+| h2h_edge | Home team's all-time points share vs this opponent: (wins + 0.5 x draws) / total | All prior meetings |
+| h2h_recent_edge | Home team's points share across the last 5 meetings | Last 5 meetings |
+| h2h_venue_edge | Home team's points share at this specific home stadium | Prior home meetings |
+| h2h_meetings | Total prior meetings (capped at 20) | All prior meetings |
 
-Null handling: 0.5 (neutral) when the teams have no recorded history.
+Null handling: 0.5 (neutral), 0 meetings when the teams have no recorded history.
 
 ## Travel and rest
 
@@ -104,27 +110,33 @@ Null handling: 0.5 (neutral) when the teams have no recorded history.
 |---|---|---|
 | h_travel_km | Always 0.0 (home team does not travel) | n/a |
 | a_travel_km | Haversine km between the two stadium cities (`CITY_COORDS`) | 0.0 when a city is missing |
-| h_rest_days, a_rest_days | Days since the team's previous fixture | 7 for a team's first fixture; capped at 30 |
+| h_rest_days, a_rest_days | Days since the team's previous domestic or UCL/UEL fixture | 7 for a team's first fixture; normalized at breaks (>30d -> 14d) |
+| rest_diff | h_rest_days minus a_rest_days | 0 when equal |
 
-## European congestion and strength
+## European congestion and strength (UCL/UEL Top-5 clubs)
 
-From `data/european_fixtures.jsonl` (`load_european()`). Only European
-fixtures strictly before the fixture date count.
+From `data/european_fixtures.jsonl` (`load_european()`, `load_european_calendar()`).
+Only UCL and UEL fixtures involving Top-5 league clubs strictly before the fixture date count.
 
 | Feature | Definition | Null handling |
 |---|---|---|
-| h_euro_days_since, a_euro_days_since | Days since the team's last European fixture | 999 when the team has none |
-| h_euro_midweek, a_euro_midweek | 1 when the last European fixture was within 4 days before kickoff | 0 when none |
-| h_euro_ppg, a_euro_ppg | Points per game in Europe this season (season starts July 1) | 1.0 when none |
-| h_euro_gd, a_euro_gd | Goal difference in Europe this season | 0 when none |
+| h_euro_days_since, a_euro_days_since | Days since the team's last UCL/UEL fixture | 999 when the team has none |
+| h_euro_midweek, a_euro_midweek | 1 when the last UCL/UEL fixture was within 4 days before kickoff | 0 when none |
+| h_euro_ppg, a_euro_ppg | Points per game in UCL/UEL this season (season starts July 1) | 1.0 when none |
+| h_euro_gd, a_euro_gd | Goal difference in UCL/UEL this season | 0 when none |
 
-## Key absences (Premier League only)
+## Squad form and key absences (all 5 leagues)
 
-| Feature | Definition |
-|---|---|
-| h_key_absences, a_key_absences | Count of key absent players from `data/team_news_pl.json` (`load_injury_drags()`) |
+| Feature | Definition | Source |
+|---|---|---|
+| h_squad_top3_ga_l5, a_squad_top3_ga_l5 | Goals + assists of each club's top-3 contributors over the last 5 finished matches | `lineups_{league}.parquet` (2023+) |
+| h_key_absences, a_key_absences | Count of regular starters unavailable or doubtful | `team_news_{league}.json` (predict mode) |
+| h_injury_drag_att/def, a_injury_drag_att/def, injury_drag_diff | Value-over-replacement attack and defense drag across FPL + SportsGambler + Transfermarkt | `team_news_{league}.json` (predict mode) |
+| effective_elo_diff | `elo_diff - 150 * injury_drag_diff` | Pre-match Elo minus absence penalty |
 
-Other leagues: always 0.
+Contextual display-only columns prefixed `ctx_` (`ctx_games14_home`, `ctx_games14_away`,
+`ctx_gk_save_home`, `ctx_gk_save_away`) are written to `features_{league}.csv` for site cards
+and excluded from `feature_columns()`.
 
 ## Market odds
 

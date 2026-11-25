@@ -35,9 +35,16 @@ class Settings(BaseSettings):
     league_order: List[str] = Field(default=["pl", "laliga", "bundesliga", "seriea", "ligue1"])
 
     # Seasons we model on. "2023" means 2023/24.
+    archive_seasons: List[str] = Field(
+        default=["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
+    )
     historical_seasons: List[str] = Field(default=["2023", "2024"])
     csv_only_season: str = Field(default="2025")  # 2025/26: api-football free tier blocks it
     live_season: str = Field(default="2026")  # 2026/27: FPL (PL) + current CSVs
+
+    @property
+    def all_seasons(self) -> List[str]:
+        return self.archive_seasons + self.historical_seasons + [self.csv_only_season, self.live_season]
 
     # Feature / model knobs.
     form_window: int = Field(default=5)

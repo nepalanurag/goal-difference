@@ -301,21 +301,70 @@ def _ligue1_pool() -> list[dict]:
     return pool
 
 
+def _bundesliga_pool() -> list[dict]:
+    """Bundesliga eligible attackers/midfielders from ESPN squad rosters."""
+    sq_path = settings.data_dir / "squad_players_bundesliga.json"
+    if not sq_path.exists():
+        log.info("bundesliga_scorers_skipped", reason="squad_players_bundesliga.json missing")
+        return []
+    d = json.loads(sq_path.read_text())
+    pool = []
+    for p in d.get("players", []):
+        if p.get("position") not in ("MID", "FWD"):
+            continue
+        mins = p.get("minutes_est") or 0
+        if mins < MIN_MINUTES:
+            continue
+        pool.append({
+            "name": p.get("name"),
+            "team": p.get("team"),
+            "goals": p.get("goals") or 0,
+            "minutes": mins,
+            "appearances": p.get("appearances"),
+            "starts": p.get("starts"),
+            "penalty": False,
+            "_league": "bundesliga",
+        })
+    return pool
+
+
 def load_player_pool(league: str) -> list[dict]:
-    """Eligible attackers/midfielders (90+ mins) for a league, or [] when the
-    feed cannot support per-90 rates (Bundesliga)."""
+    """Eligible attackers/midfielders (90+ mins) for all 5 leagues."""
     if league == "pl":
         return _pl_pool()
     if league == "laliga":
         return _laliga_pool()
+    if league == "bundesliga":
+        return _bundesliga_pool()
     if league == "seriea":
         return _seriea_pool()
     if league == "ligue1":
         return _ligue1_pool()
-    if league == "bundesliga":
-        log.info("bundesliga_scorers_skipped",
-                 reason="official feed has no minutes or positions")
     return []
+
+
+def _availability_modifiers(league: str) -> dict[tuple[str, str], float]:
+    """Per-(team, normalized_player) availability factor: 0.0 if out, 0.5 if doubtful."""
+    tn_path = settings.data_dir / f"team_news_{league}.json"
+    if not tn_path.exists():
+        return {}
+    try:
+        tn = json.loads(tn_path.read_text())
+    except Exception:
+        return {}
+
+    def _norm(s: str) -> str:
+        s2 = "".join(c for c in unicodedata.normalize("NFD", s or "") if unicodedata.category(c) != "Mn").lower()
+        return " ".join(re.sub(r"[^a-z0-9\s]", " ", s2).split())
+
+    mods: dict[tuple[str, str], float] = {}
+    for team, info in tn.get("teams", {}).items():
+        for e in info.get("out", []):
+            mods[(team, _norm(e.get("player", "")))] = 0.0
+        for e in info.get("doubtful", []):
+            key = (team, _norm(e.get("player", "")))
+            mods.setdefault(key, 0.5)
+    return mods
 
 
 # --- main computation -----------------------------------------------------------
@@ -326,11 +375,11 @@ def _this_week(pred: pd.DataFrame) -> pd.DataFrame:
 
 
 def compute_scorer_probs(preds: dict[str, pd.DataFrame]) -> pd.DataFrame:
-    """Anytime-scorer probabilities for this week's fixtures.
+    """Anytime-scorer probabilities for this week's fixtures, respecting team news."""
+    def _norm(s: str) -> str:
+        s2 = "".join(c for c in unicodedata.normalize("NFD", s or "") if unicodedata.category(c) != "Mn").lower()
+        return " ".join(re.sub(r"[^a-z0-9\s]", " ", s2).split())
 
-    preds: league -> predict_upcoming output. Returns one row per
-    player-fixture with the columns in SCORER_CSV_COLS.
-    """
     rows = []
     for league, pred in preds.items():
         if pred is None or pred.empty:
@@ -338,6 +387,7 @@ def compute_scorer_probs(preds: dict[str, pd.DataFrame]) -> pd.DataFrame:
         pool = load_player_pool(league)
         if not pool:
             continue
+        avail_mods = _availability_modifiers(league)
         week = _this_week(pred)
         lams = pd.concat([week["xg_home"], week["xg_away"]]).astype(float)
         league_avg = float(lams.mean()) if len(lams) else 1.0
@@ -348,9 +398,18 @@ def compute_scorer_probs(preds: dict[str, pd.DataFrame]) -> pd.DataFrame:
         for _, r in week.iterrows():
             for team, team_xg in ((r.home, r.xg_home), (r.away, r.xg_away)):
                 for p in by_team.get(team, []):
+                    nk = _norm(p["name"] or "")
+                    avail = avail_mods.get((team, nk))
+                    if avail is None and " " in nk:
+                        last = nk.split()[-1]
+                        matches = [v for (t, k), v in avail_mods.items() if t == team and k.split()[-1:] == [last]]
+                        if len(matches) == 1:
+                            avail = matches[0]
+                    if avail == 0.0:
+                        continue
                     minutes = p["minutes"]
                     rate = shrunk_per90(p["goals"], minutes)
-                    x_min = _expected_minutes(p)
+                    x_min = _expected_minutes(p) * (avail if avail is not None else 1.0)
                     prob = scorer_prob(rate, x_min, float(team_xg),
                                        league_avg, penalty=p["penalty"])
                     rows.append({

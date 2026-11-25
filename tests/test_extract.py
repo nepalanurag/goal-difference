@@ -51,3 +51,34 @@ def test_reconstruct_missing_rounds_completes_double_round_robin():
     for _, grp in recon.groupby("date"):
         played_on_day = list(grp["home"]) + list(grp["away"])
         assert len(played_on_day) == len(set(played_on_day))
+
+
+def test_uefa_filters_to_ucl_uel_and_top5_clubs(monkeypatch):
+    from etl import uefa
+    assert set(uefa.ESPN_SLUGS) == {"UCL", "UEL"}
+
+    fake_events = {
+        "uefa.champions": [
+            {"id": "1", "date": "2026-10-01T19:00Z", "competitions": [{
+                "competitors": [
+                    {"homeAway": "home", "team": {"displayName": "Arsenal"}, "score": "2"},
+                    {"homeAway": "away", "team": {"displayName": "FC Porto"}, "score": "0"},
+                ],
+                "status": {"type": {"name": "STATUS_FULL_TIME"}},
+            }]},
+            {"id": "2", "date": "2026-10-01T19:00Z", "competitions": [{
+                "competitors": [
+                    {"homeAway": "home", "team": {"displayName": "AEK Athens"}, "score": "1"},
+                    {"homeAway": "away", "team": {"displayName": "LASK Linz"}, "score": "0"},
+                ],
+                "status": {"type": {"name": "STATUS_FULL_TIME"}},
+            }]},
+        ],
+        "uefa.europa": [],
+    }
+    monkeypatch.setattr(uefa, "_get_json", lambda url, timeout=30: {
+        "events": fake_events["uefa.champions" if "champions" in url else "uefa.europa"]
+    })
+    rows = uefa.fetch_espn_uefa("2026-10-01", "2026-10-02", top5_only=True)
+    assert len(rows) == 1
+    assert rows[0]["home"] == "Arsenal" and rows[0]["competition"] == "UCL"

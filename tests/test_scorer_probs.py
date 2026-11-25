@@ -79,3 +79,35 @@ def test_normalize_laliga_team():
     assert normalize_laliga_team("RC Celta Fortuna") is None
     assert normalize_laliga_team("Strasbourg") is None
     assert normalize_laliga_team(None) is None
+
+
+def test_compute_scorer_probs_includes_bundesliga_and_excludes_injured(tmp_path, monkeypatch):
+    import json
+    import pandas as pd
+    from etl import config as cfg
+    from etl.scorer_probs import compute_scorer_probs
+
+    monkeypatch.setattr(cfg.settings, "data_dir", tmp_path)
+    (tmp_path / "squad_players_bundesliga.json").write_text(json.dumps({
+        "players": [
+            {"name": "Fit Striker", "team": "Bayern Munich", "position": "FWD",
+             "goals": 8, "minutes_est": 720, "appearances": 9, "starts": 8},
+            {"name": "Injured Star", "team": "Bayern Munich", "position": "FWD",
+             "goals": 10, "minutes_est": 720, "appearances": 9, "starts": 8},
+        ]
+    }))
+    (tmp_path / "team_news_bundesliga.json").write_text(json.dumps({
+        "teams": {
+            "Bayern Munich": {
+                "out": [{"player": "Injured Star", "kind": "injured"}],
+                "doubtful": [],
+            }
+        }
+    }))
+    pred = pd.DataFrame([{
+        "fixture_id": "b1", "date": "2026-11-28",
+        "home": "Bayern Munich", "away": "Dortmund",
+        "xg_home": 2.4, "xg_away": 1.1,
+    }])
+    df = compute_scorer_probs({"bundesliga": pred})
+    assert list(df["player"]) == ["Fit Striker"]

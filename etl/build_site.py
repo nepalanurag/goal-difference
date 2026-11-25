@@ -21,7 +21,7 @@ from .config import settings
 from .features import TeamHistory
 from .logging_setup import get_logger
 from .scorer_probs import BUNDESLIGA_CLUB_MAP, normalize_laliga_team
-from .team_names import CANONICAL, canonicalize
+from .team_names import CANONICAL, TOP5_TEAMS, canonicalize, team_league_map
 
 log = get_logger(__name__)
 
@@ -503,10 +503,20 @@ tr:hover td {
   color: #cbd5e1;
   border: 1px solid rgba(148, 163, 184, 0.3);
 }
-.badge.L {
+.badge.L, .badge.out, .badge.suspended {
   background: var(--away-soft);
   color: #fb7185;
   border: 1px solid rgba(244, 63, 94, 0.3);
+}
+.badge.doubtful {
+  background: rgba(245, 158, 11, 0.14);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+.badge.UCL, .badge.UEL {
+  background: rgba(56, 189, 248, 0.14);
+  color: #7dd3fc;
+  border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
 /* Head to Head Record */
@@ -745,8 +755,9 @@ APP_JS = """
 
   // ---- League tabs: containers holding .league-panel children get a tab bar.
   var LEAGUE_NAMES = {pl: 'Premier League', laliga: 'LaLiga',
-    bundesliga: 'Bundesliga', seriea: 'Serie A', ligue1: 'Ligue 1'};
-  ['leaderboards', 'backend-rankings'].forEach(function (id) {
+    bundesliga: 'Bundesliga', seriea: 'Serie A', ligue1: 'Ligue 1',
+    UCL: 'Champions League', UEL: 'Europa League'};
+  ['leaderboards', 'backend-rankings', 'europe-tabs'].forEach(function (id) {
     var box = document.getElementById(id);
     if (!box) return;
     var panels = box.querySelectorAll('.league-panel');
@@ -855,7 +866,8 @@ APP_JS = """
       }
       addFilter('all', 'All leagues');
       leagues.forEach(function (l) { addFilter(l, LEAGUE_NAMES[l] || l); });
-      sc.insertBefore(bar, sc.firstChild);
+      var scHeading = sc.querySelector('h2');
+      sc.insertBefore(bar, scHeading ? scHeading.nextSibling : sc.firstChild);
     }
   }
 })();
@@ -870,6 +882,7 @@ def page_shell(title: str, body: str, league: str | None = None,
     nav = ('<a href="{BASE}/">Home</a>'
            '<div class="dropdown"><span class="dropbtn" tabindex="0">Leagues</span>'
            f'<div class="dropdown-content">{league_links}</div></div>'
+           '<a href="{BASE}/europe.html">Europe</a>'
            '<a href="{BASE}/track-record.html">Track record</a>'
            '<a href="{BASE}/methodology.html">Methodology</a>'
            '<a href="{BASE}/model-insights.html">Model insights</a>')
@@ -892,13 +905,12 @@ def page_shell(title: str, body: str, league: str | None = None,
 <nav class="nav">{nav}</nav></div></div>
 <div class="wrap"><div class="meta-strip"><span class="pill-badge">Model update {esc(updated)}</span></div>{body}
 <div class="limit"><b>Honest limits.</b> Probabilities are model outputs, not
-betting advice. Live scores for non-PL leagues come from CSVs updated about a
-day after matches. The FPL API and the official league JSON backends are
-unofficial feeds with no SLA. Player coverage: Premier League from FPL;
-other leagues from official league backends, with 2024/25 topscorers as the
-labeled baseline. Team news: full injury data for the PL via FPL; other
-leagues show absences detected from lineups, labeled "reason unconfirmed",
-or state plainly when no data is published.</div>
+betting advice. Domestic results span 2015/16-2026/27 (CSVs, FPL API, ESPN);
+Champions League and Europa League coverage is filtered strictly to Top-5
+league clubs. Player squad stats combine FPL (PL), official backends, and
+ESPN team rosters/boxscores. Injury and suspension news aggregates FPL (PL),
+SportsGambler, and Transfermarkt across all 5 leagues (unofficial feeds with no
+SLA).</div>
 <div class="footer">Goal Difference &middot; weekly model-driven matchday
 analysis for Europe's top 5 leagues &middot; Poisson + gradient-boosted
 models, refit weekly &middot; updated {esc(updated)} &middot;
@@ -906,9 +918,9 @@ models, refit weekly &middot; updated {esc(updated)} &middot;
 </div><script src="{SITE_BASE}/app.js" defer></script></body></html>"""
 
 
-LIMITS_NOTE = ("Sources: api-football (2023/24-2024/25), football-data.co.uk "
-               "CSVs, FPL API (PL live, unofficial), official league JSON "
-               "backends (player stats). See the honest-limits box below.")
+LIMITS_NOTE = ("Sources: 2015/16-2026/27 CSVs, FPL API, ESPN scoreboards & "
+               "rosters (incl. Top-5 UCL/UEL), official league backends, and "
+               "SportsGambler/Transfermarkt availability feeds.")
 
 
 # ---------------------------------------------------------------- data access
@@ -1634,6 +1646,30 @@ and this matchday's fixtures with ensemble probabilities.</p>
 
 
 # ---------------------------------------------------------------- fixture page
+def _format_absence_line(p: object, default_status: str) -> str:
+    """Render one injured / suspended / doubtful entry with reason, return & metadata."""
+    if not isinstance(p, dict):
+        return f"<div class='small'><b>{esc(p)}</b> {esc(default_status)}</div>"
+    name = p.get("name", p.get("player", "?"))
+    kind = p.get("kind") or default_status
+    tag = "suspended" if kind == "suspended" else ("doubtful" if default_status == "doubtful" or kind == "doubtful" else "out")
+    reason = (p.get("reason") or p.get("news") or "").strip()
+    ret = p.get("expected_return")
+    mv = p.get("market_value_m")
+    meta_bits = []
+    if p.get("regular_starter"):
+        meta_bits.append("starter")
+    if p.get("position") and p.get("position") != "?":
+        meta_bits.append(p["position"])
+    if mv:
+        meta_bits.append(f"&euro;{mv:.1f}M" if mv >= 1 else f"&euro;{int(mv*1000)}K")
+    if ret:
+        meta_bits.append(f"ret {ret}")
+    meta_s = f" <span class='faint'>({', '.join(meta_bits)})</span>" if meta_bits else ""
+    reason_s = f" <span class='muted'>- {esc(reason[:120])}</span>" if reason else ""
+    return f"<div class='small'><b>{esc(name)}</b> <span class='badge {tag}'>{esc(tag)}</span>{meta_s}{reason_s}</div>"
+
+
 def team_news_box(league: str, ld: LeagueData, home: str, away: str) -> str:
     tn = ld.team_news
     if not tn:
@@ -1648,28 +1684,24 @@ def team_news_box(league: str, ld: LeagueData, home: str, away: str) -> str:
         out = info.get("out", [])
         doubtful = info.get("doubtful", [])
         absent = info.get("absent", [])
-        lines = []
-        def _nm(p):
-            return p.get("name", p.get("player", "?")) if isinstance(p, dict) else p
-        for p in out:
-            reason = (p.get("news") or p.get("reason") or "") if isinstance(p, dict) else ""
-            lines.append(f"<div class='small'><b>{esc(_nm(p))}</b> out"
-                         + (f" <span class='muted'>&mdash; {esc(reason[:120])}</span>" if reason else "") + "</div>")
-        for p in doubtful:
-            lines.append(f"<div class='small'><b>{esc(_nm(p))}</b> doubtful</div>")
-        for p in absent:
-            lines.append(f"<div class='small'><b>{esc(_nm(p))}</b> "
-                         f"<span class='muted'>absent &mdash; reason unconfirmed</span></div>")
+        lines = (
+            [_format_absence_line(p, "out") for p in out[:8]]
+            + [_format_absence_line(p, "doubtful") for p in doubtful[:6]]
+            + [_format_absence_line(p, "absent") for p in absent[:4]]
+        )
         if lines:
-            parts.append(f"<div><h3>{esc(team)}</h3>{''.join(lines)}</div>")
+            drag_att = info.get("drag_att", 0.0)
+            drag_def = info.get("drag_def", 0.0)
+            drag_s = f" <span class='small muted'>(att -{drag_att*100:.0f}%, def +{drag_def*100:.0f}%)</span>" if (drag_att or drag_def) else ""
+            parts.append(f"<div><h3>{esc(team)}{drag_s}</h3>{''.join(lines)}</div>")
     availability = tn.get("availability")
     inner = "".join(parts)
     if not inner and availability:
         inner = f"<p class='muted small'>{esc(availability)}</p>"
     if not inner:
         return ""
-    return (f"<h2>Team news</h2><div class='card'>{inner}"
-            f"<p class='small faint' style='margin-bottom:0'>Source: {source}</p></div>")
+    return (f"<h2>Team news</h2><div class='card'><div class='grid g2'>{inner}</div>"
+            f"<p class='small faint' style='margin-bottom:0'>Sources: {source}</p></div>")
 
 
 def euro_note(league: str, ld: LeagueData, home: str, away: str,
@@ -1746,6 +1778,8 @@ def build_fixture(league: str, ld: LeagueData, row: pd.Series,
                 outcome = "W" if ag > hg else ("D" if ag == hg else "L")
             h_style = "font-weight: 600;" if hg > ag else ("color: var(--text-muted);" if hg < ag else "")
             a_style = "font-weight: 600;" if ag > hg else ("color: var(--text-muted);" if ag < hg else "")
+            comp = m.get("competition", "League")
+            comp_badge = f" <span class='muted small'>[{esc(comp)}]</span>" if comp != "League" else ""
             m_rows.append(
                 f"""<div class="h2h-match-row">
   <span class="badge {outcome}" style="min-width: 24px; text-align: center; font-weight: 700;">{outcome}</span>
@@ -1753,12 +1787,14 @@ def build_fixture(league: str, ld: LeagueData, row: pd.Series,
   <span class="h2h-match-teams">
     <span style="{h_style}">{esc(m_home)}</span>
     <span class="scoreline mono" style="margin: 0 8px;">{hg}&ndash;{ag}</span>
-    <span style="{a_style}">{esc(m_away)}</span>
+    <span style="{a_style}">{esc(m_away)}</span>{comp_badge}
   </span>
 </div>"""
             )
 
         matches_list = "".join(m_rows)
+        vh = rec.get("at_home", {})
+        venue_txt = f" &middot; At {esc(home)}: {vh.get('w', 0)}W {vh.get('d', 0)}D {vh.get('l', 0)}L" if vh else ""
         h2h_html = f"""<div class="h2h-summary">
   <div class="h2h-pill win">
     <span class="count">{w}</span>
@@ -1773,7 +1809,7 @@ def build_fixture(league: str, ld: LeagueData, row: pd.Series,
     <span class="label">Losses</span>
   </div>
   <div class="small muted" style="margin-left: auto;">
-    All-time &middot; <b>{esc(home)}</b> perspective
+    2015+ ({tot} ties) &middot; <b>{esc(home)}</b> perspective{venue_txt}
   </div>
 </div>
 {bar_html}
@@ -1809,6 +1845,14 @@ Each row sums to 100%.</p></div></div>"""
     a_rest, a_turn, a_desc = ld.prev_match_info(away, str(row.date)[:10])
     h_rest_lbl = f"{h_rest} day{'s' if h_rest != 1 else ''} rest"
     a_rest_lbl = f"{a_rest} day{'s' if a_rest != 1 else ''} rest"
+    h_g14 = feats.get("ctx_games14_home")
+    a_g14 = feats.get("ctx_games14_away")
+    h_gk = feats.get("ctx_gk_save_home")
+    a_gk = feats.get("ctx_gk_save_away")
+    g14_h_s = str(int(h_g14)) if h_g14 is not None and not pd.isna(h_g14) else "-"
+    g14_a_s = str(int(a_g14)) if a_g14 is not None and not pd.isna(a_g14) else "-"
+    gk_h_s = f"{float(h_gk) * 100:.0f}%" if h_gk is not None and not pd.isna(h_gk) else "-"
+    gk_a_s = f"{float(a_gk) * 100:.0f}%" if a_gk is not None and not pd.isna(a_gk) else "-"
     expect = f"""<div class="card"><h3>What to expect</h3><table class="small">
 <tr><td class="muted">Headline</td><td><b>{esc(home if row.p_home_ens >= row.p_away_ens else away)}</b>
 <span class="muted">favored at</span> <b>{pct(max(row.p_home_ens, row.p_away_ens))}</b>
@@ -1822,6 +1866,8 @@ vs {esc(away)} <span class="mono">{_fmt(af.get('shot_diff_pg'), '+.1f')}</span> 
 <tr><td class="muted">Head-to-head edge</td><td>{esc(home)}
 <span class="mono">{pct(edge)}</span> points expectation (W + 0.5&times;D)</td></tr>
 <tr><td class="muted">Rest &amp; turnaround</td><td><b>{esc(home)}:</b> {h_rest_lbl} <span class="faint">({h_turn}d gap &middot; {h_desc})</span><br><b>{esc(away)}:</b> {a_rest_lbl} <span class="faint">({a_turn}d gap &middot; {a_desc})</span></td></tr>
+<tr><td class="muted">14-day load</td><td>{esc(home)} <span class="mono">{g14_h_s}</span> vs {esc(away)} <span class="mono">{g14_a_s}</span> matches <span class="faint">(incl. UCL/UEL)</span></td></tr>
+<tr><td class="muted">Squad top-3 G+A (L5)</td><td>{esc(home)} <span class="mono">{_fmt(feats.get('h_squad_top3_ga_l5'), '.0f')}</span> vs {esc(away)} <span class="mono">{_fmt(feats.get('a_squad_top3_ga_l5'), '.0f')}</span> &middot; GK save <span class="mono">{gk_h_s}</span> vs <span class="mono">{gk_a_s}</span></td></tr>
 </table></div>"""
 
     body = f"""<div class="hero"><p class="cond muted">{LEAGUE_NAMES[league]}
@@ -1869,55 +1915,90 @@ def build_team(league: str, ld: LeagueData, team: str,
                       f"<p class='small muted'>Opponents average "
                       f"<span class='mono'>{avg_pts:.1f}</span> points.</p></div>")
 
-    # European record this season.
+    # European record this season (UCL & UEL).
     euro_html = ""
     try:
-        import json as _json
         ej = settings.data_dir / "european_fixtures.jsonl"
-        rec = [ _json.loads(l) for l in ej.read_text().splitlines() if l.strip()] \
-            if ej.exists() else []
-        mine = [m for m in rec if m["home"] == team or m["away"] == team]
+        season_start = f"{settings.live_season}-07-01"
+        rec = [json.loads(l) for l in ej.read_text().splitlines() if l.strip()] if ej.exists() else []
+        mine = [m for m in rec if (m["home"] == team or m["away"] == team) and str(m.get("date", "")) >= season_start]
+        mine.sort(key=lambda x: str(x.get("date", "")))
         fin_mine = [m for m in mine if m.get("status") == "finished"
                     and m.get("home_goals") is not None and m.get("away_goals") is not None]
-        if fin_mine:
-            w = sum(1 for m in fin_mine if (m["home"] == team and m["home_goals"] > m["away_goals"]) or
-                    (m["away"] == team and m["away_goals"] > m["home_goals"]))
-            euro_html = (f"<div class='card'><h3>Europe this season</h3>"
-                         f"<p>{w}W in {len(fin_mine)} finished European fixtures tracked.</p></div>")
-        elif mine:
-            euro_html = (f"<div class='card'><h3>Europe this season</h3>"
-                         f"<p>{len(mine)} upcoming European fixtures tracked.</p></div>")
+        up_mine = [m for m in mine if m.get("status") != "finished"]
+        w = sum(1 for m in fin_mine if (m["home"] == team and m["home_goals"] > m["away_goals"]) or
+                (m["away"] == team and m["away_goals"] > m["home_goals"]))
+        d_ = sum(1 for m in fin_mine if m["home_goals"] == m["away_goals"])
+        l_ = len(fin_mine) - w - d_
+        if mine:
+            items = []
+            for m in (up_mine[:3] + list(reversed(fin_mine[-4:]))):
+                opp_e = m["away"] if m["home"] == team else m["home"]
+                ven_e = "vs" if m["home"] == team else "at"
+                comp_e = m.get("competition", "UCL")
+                if m.get("status") == "finished" and m.get("home_goals") is not None:
+                    sc_txt = f"<b>{int(m['home_goals'])}&ndash;{int(m['away_goals'])}</b>"
+                else:
+                    sc_txt = "<span class='muted'>sched</span>"
+                items.append(
+                    f"<div class='small'><span class='mono faint'>{esc(str(m.get('date', ''))[:10])}</span> "
+                    f"<b>{esc(comp_e)}</b> {ven_e} {esc(opp_e)} {sc_txt}</div>"
+                )
+            hdr = (f"{w}W {d_}D {l_}L in {len(fin_mine)} finished" if fin_mine else f"{len(up_mine)} upcoming")
+            euro_html = (f"<div class='card'><h3>Europe this season (UCL/UEL)</h3>"
+                         f"<p class='small muted'>{hdr}; {len(up_mine)} upcoming.</p>{''.join(items)}</div>")
     except Exception:
         pass
 
-    # Squad panel (PL only, from FPL): this team's in-form players.
+    # Squad panel (ALL 5 leagues): FPL for PL, ESPN squad rosters for all others.
     squad = ""
     if league == "pl" and players_pl:
         team_players = sorted(
             [p for p in players_pl.get("players", [])
              if p.get("team") == team and (p.get("minutes") or 0) >= 90],
-            key=lambda p: float(p.get("form") or 0), reverse=True)[:6]
+            key=lambda p: (float(p.get("form") or 0), p.get("goals") or 0), reverse=True)[:8]
         if team_players:
             rows = "".join(
-                f"<div class='small'>{esc(p.get('name', ''))} "
-                f"<span class='muted'>{esc(p.get('position', ''))}</span> "
-                f"<span class='num'><b>{p.get('form', '')}</b> form</span></div>"
+                f"<tr><td>{esc(p.get('name', ''))}</td><td class='muted'>{esc(p.get('position', ''))}</td>"
+                f"<td class='num'>{p.get('minutes', 0)}</td><td class='num'>{p.get('goals', 0)}</td>"
+                f"<td class='num'>{p.get('assists', 0)}</td><td class='num'><b>{p.get('form', '')}</b></td></tr>"
                 for p in team_players)
-            squad = (f"<h2>Squad watch</h2><div class='card'><h3>{esc(team)} in form</h3>{rows}"
-                     f"<p class='small faint'>From FPL form (unofficial).</p></div>")
+            squad = (f"<h2>Squad watch</h2><div class='card'><h3>{esc(team)} current form</h3>"
+                     f"<table class='small'><tr><th>Player</th><th>Pos</th><th class='num'>Min</th>"
+                     f"<th class='num'>G</th><th class='num'>A</th><th class='num'>Form</th></tr>{rows}</table>"
+                     f"<p class='small faint' style='margin-bottom:0'>From FPL (unofficial).</p></div>")
+    else:
+        sq_path = settings.data_dir / f"squad_players_{league}.json"
+        if sq_path.exists():
+            sq = json.loads(sq_path.read_text())
+            team_players = sorted(
+                [p for p in sq.get("players", [])
+                 if p.get("team") == team and (p.get("appearances") or 0) >= 1],
+                key=lambda p: (-((p.get("goals") or 0) + (p.get("assists") or 0)),
+                               -(p.get("starts") or 0), -(p.get("shots_on_target") or 0)))[:10]
+            if team_players:
+                rows = "".join(
+                    f"<tr><td>{esc(p.get('name', ''))}</td><td class='muted'>{esc(p.get('position', ''))}</td>"
+                    f"<td class='num'>{p.get('starts', 0)}/{p.get('appearances', 0)}</td>"
+                    f"<td class='num'>{p.get('goals', 0)}</td><td class='num'>{p.get('assists', 0)}</td>"
+                    f"<td class='num'>{p.get('shots_on_target', 0)}</td></tr>"
+                    for p in team_players)
+                squad = (f"<h2>Squad watch</h2><div class='card'><h3>{esc(team)} active squad</h3>"
+                         f"<table class='small'><tr><th>Player</th><th>Pos</th><th class='num'>Starts/Apps</th>"
+                         f"<th class='num'>G</th><th class='num'>A</th><th class='num'>SoT</th></tr>{rows}</table>"
+                         f"<p class='small faint' style='margin-bottom:0'>Source: {esc(sq.get('source', 'ESPN rosters'))}.</p></div>")
 
     tn = ld.team_news.get("teams", {}).get(team, {}) if ld.team_news else {}
     avail = ""
     if tn:
-        items = []
-        def _nm2(p):
-            return p.get("name", p.get("player", "?")) if isinstance(p, dict) else p
-        for p in tn.get("out", []):
-            items.append(f"<div class='small'><b>{esc(_nm2(p))}</b> out</div>")
-        for p in tn.get("doubtful", []):
-            items.append(f"<div class='small'><b>{esc(_nm2(p))}</b> doubtful</div>")
+        items = (
+            [_format_absence_line(p, "out") for p in tn.get("out", [])[:10]]
+            + [_format_absence_line(p, "doubtful") for p in tn.get("doubtful", [])[:8]]
+        )
         if items:
-            avail = f"<div class='card'><h3>Availability</h3>{''.join(items)}</div>"
+            src_lbl = esc(ld.team_news.get("source", ""))
+            avail = (f"<div class='card'><h3>Availability</h3>{''.join(items)}"
+                     f"<p class='small faint' style='margin-bottom:0'>Sources: {src_lbl}</p></div>")
 
     body = f"""<div class="hero"><p class="cond muted">{LEAGUE_NAMES[league]}</p>
 <h1>{esc(team)}</h1>
@@ -2039,6 +2120,138 @@ Click a column header to sort.</p>
     body = ('<div class="hero"><h1>Players</h1><p class="lede">Who is in form, '
             'per league, each source labeled.</p></div>' + "".join(sections))
     return page_shell("Players", body, updated=updated)
+
+
+# ---------------------------------------------------------------- europe page
+def build_europe(datas: dict[str, LeagueData], updated: str) -> str:
+    """Champions League & Europa League view filtered strictly to Top-5 clubs."""
+    ej = settings.data_dir / "european_fixtures.jsonl"
+    season_start = f"{settings.live_season}-07-01"
+    all_fx = [json.loads(l) for l in ej.read_text().splitlines() if l.strip()] if ej.exists() else []
+    fx_live = [
+        f for f in all_fx
+        if f.get("competition") in ("UCL", "UEL")
+        and str(f.get("date", "")) >= season_start
+        and (f.get("home") in TOP5_TEAMS or f.get("away") in TOP5_TEAMS)
+    ]
+    team_lg = team_league_map()
+
+    def _team_link(team: str) -> str:
+        lg = team_lg.get(team)
+        if lg:
+            return (f"<a href='{SITE_BASE}/leagues/{lg}/teams/{slug(team)}.html'>{esc(team)}</a>"
+                    f" <span class='faint small'>({esc(LEAGUE_NAMES[lg])})</span>")
+        return f"<span class='muted'>{esc(team)}</span>"
+
+    def _next_domestic_gap(team: str, euro_date: str) -> str:
+        lg = team_lg.get(team)
+        if not lg or lg not in datas:
+            return ""
+        up = datas[lg].upcoming
+        mine = up[((up["home"] == team) | (up["away"] == team)) & (up["date"] > euro_date)]
+        if mine.empty:
+            return ""
+        nxt = mine.sort_values("date").iloc[0]
+        gap = (date.fromisoformat(str(nxt["date"])[:10]) - date.fromisoformat(euro_date[:10])).days
+        opp = nxt["away"] if nxt["home"] == team else nxt["home"]
+        return f"{esc(team)}: {max(0, gap - 1)}d rest to {esc(opp)} ({esc(str(nxt['date'])[:10])})"
+
+    ucl_up = sum(1 for f in fx_live if f.get("competition") == "UCL" and f.get("status") != "finished")
+    uel_up = sum(1 for f in fx_live if f.get("competition") == "UEL" and f.get("status") != "finished")
+    ucl_fin = sum(1 for f in fx_live if f.get("competition") == "UCL" and f.get("status") == "finished")
+    uel_fin = sum(1 for f in fx_live if f.get("competition") == "UEL" and f.get("status") == "finished")
+
+    kpis = f"""<div class="grid g3">
+<div class="card"><h3>Champions League (UCL)</h3><div class="kpi">{ucl_fin} played<br><small>{ucl_up} upcoming Top-5 ties</small></div></div>
+<div class="card"><h3>Europa League (UEL)</h3><div class="kpi">{uel_fin} played<br><small>{uel_up} upcoming Top-5 ties</small></div></div>
+<div class="card"><h3>Archive depth</h3><div class="kpi">{len(all_fx):,} ties<br><small>2015/16-2026/27 Top-5 UCL/UEL history</small></div></div>
+</div>"""
+
+    panels = []
+    for comp, label in (("UCL", "Champions League"), ("UEL", "Europa League")):
+        comp_fx = sorted([f for f in fx_live if f.get("competition") == comp], key=lambda x: str(x.get("date", "")))
+        upcoming = [f for f in comp_fx if f.get("status") != "finished"]
+        finished = sorted([f for f in comp_fx if f.get("status") == "finished"
+                           and f.get("home_goals") is not None], key=lambda x: str(x.get("date", "")), reverse=True)
+
+        up_rows = []
+        for f in upcoming[:20]:
+            dt = str(f.get("date", ""))[:10]
+            gaps = [g for g in (_next_domestic_gap(f["home"], dt), _next_domestic_gap(f["away"], dt)) if g]
+            up_rows.append(
+                f"<tr><td class='mono small muted'>{esc(dt)}</td>"
+                f"<td>{_team_link(f['home'])}</td><td>v</td><td>{_team_link(f['away'])}</td>"
+                f"<td class='small muted'>{' &middot; '.join(gaps) or '-'}</td></tr>"
+            )
+        up_html = (f"<table class='sortable'><tr><th>Date</th><th>Home</th><th></th><th>Away</th><th>Next league turnaround</th></tr>"
+                   f"{''.join(up_rows)}</table>" if up_rows else "<p class='muted'>No upcoming Top-5 fixtures scheduled yet.</p>")
+
+        fin_rows = "".join(
+            f"<tr><td class='mono small muted'>{esc(str(f.get('date', ''))[:10])}</td>"
+            f"<td>{_team_link(f['home'])}</td>"
+            f"<td class='scoreline'>{int(f['home_goals'])} - {int(f['away_goals'])}</td>"
+            f"<td>{_team_link(f['away'])}</td></tr>"
+            for f in finished[:20]
+        )
+        fin_html = (f"<table>{fin_rows}</table>" if fin_rows else "<p class='muted'>No finished fixtures yet.</p>")
+
+        # Top-5 club records in this competition
+        club_rec: dict[str, dict] = {}
+        for f in comp_fx:
+            for side, opp_k, gf_k, ga_k in (("home", "away", "home_goals", "away_goals"),
+                                            ("away", "home", "away_goals", "home_goals")):
+                t = f[side]
+                if t not in TOP5_TEAMS:
+                    continue
+                rec = club_rec.setdefault(t, {"p": 0, "w": 0, "d": 0, "l": 0, "gf": 0, "ga": 0, "next": ""})
+                if f.get("status") == "finished" and f.get(gf_k) is not None and f.get(ga_k) is not None:
+                    gf_v, ga_v = int(f[gf_k]), int(f[ga_k])
+                    rec["p"] += 1
+                    rec["gf"] += gf_v
+                    rec["ga"] += ga_v
+                    if gf_v > ga_v:
+                        rec["w"] += 1
+                    elif gf_v == ga_v:
+                        rec["d"] += 1
+                    else:
+                        rec["l"] += 1
+                elif not rec["next"]:
+                    rec["next"] = f"{str(f.get('date', ''))[:10]} vs {f[opp_k]}"
+
+        club_rows = []
+        for t, r in sorted(club_rec.items(), key=lambda kv: (-(3 * kv[1]["w"] + kv[1]["d"]), -(kv[1]["gf"] - kv[1]["ga"]), kv[0])):
+            pts = 3 * r["w"] + r["d"]
+            gd = r["gf"] - r["ga"]
+            lg = team_lg.get(t, "")
+            club_rows.append(
+                f"<tr><td><a href='{SITE_BASE}/leagues/{lg}/teams/{slug(t)}.html'>{esc(t)}</a></td>"
+                f"<td class='muted small'>{esc(LEAGUE_NAMES.get(lg, lg))}</td>"
+                f"<td class='num'>{r['p']}</td><td class='num'>{r['w']}</td><td class='num'>{r['d']}</td>"
+                f"<td class='num'>{r['l']}</td><td class='num'>{gd:+d}</td><td class='num'><b>{pts}</b></td>"
+                f"<td class='small muted'>{esc(r['next'] or '-')}</td></tr>"
+            )
+        club_table = (
+            f"<table class='sortable'><tr><th>Club</th><th>League</th><th class='num'>P</th>"
+            f"<th class='num'>W</th><th class='num'>D</th><th class='num'>L</th>"
+            f"<th class='num'>GD</th><th class='num'>Pts</th><th>Next {comp} tie</th></tr>"
+            f"{''.join(club_rows)}</table>" if club_rows else "<p class='muted'>No clubs tracked.</p>"
+        )
+
+        panels.append(
+            f"<div class='league-panel' data-league='{comp}'>"
+            f"<h2>{label} &mdash; upcoming Top-5 club ties</h2>{up_html}"
+            f"<h2>Top-5 club {comp} tracker</h2>{club_table}"
+            f"<h2>Recent {comp} results</h2>{fin_html}</div>"
+        )
+
+    body = (
+        '<div class="hero"><h1>Champions League &amp; Europa League</h1>'
+        '<p class="lede">Midweek UCL and UEL fixtures involving Top-5 domestic clubs only. '
+        'Used directly for rest-day turnaround, 14-day congestion load, and European form features.</p></div>'
+        + kpis
+        + '<div id="europe-tabs">' + "".join(panels) + "</div>"
+    )
+    return page_shell("Europe (UCL / UEL)", body, updated=updated)
 
 
 # ------------------------------------------------- 8.7 calibration buckets
@@ -2330,10 +2543,11 @@ beat shuffled decoy copies. Config per league: {ml_note}.</li>
 
 <h2>Inputs</h2>
 <div class="card"><ul style="margin:0">{feat_items}</ul>
-<p class="small muted" style="margin-bottom:0">Team news: full injury data for
-the PL via FPL; other leagues use absences detected from lineups, labeled
-"reason unconfirmed". Forecasts freeze before kickoff; ledgers keep the
-misses.</p></div>
+<p class="small muted" style="margin-bottom:0">Team news aggregates FPL (PL),
+SportsGambler, and Transfermarkt across all 5 leagues; UCL and UEL histories
+feed rest days and 14-day congestion load; ESPN rosters/lineups track squad
+form and goalkeeper save rate. Forecasts freeze before kickoff; ledgers keep
+every miss.</p></div>
 
 <h2>Dixon-Coles parameters</h2>
 {dc_table}
@@ -2354,10 +2568,11 @@ tables and calibration by confidence bucket.</p>
 <li><b>The market is a hard benchmark.</b>
 {" ".join(esc(n) for n in notes) if notes else "The de-vigged market odds score close to the ensemble on most leagues."}
 Odds compilers see team sheets, weather and late money; this model does not.</li>
-<li><b>Feature selection is unstable.</b> PAM selection run on two halves of
-the data agrees on a Jaccard similarity of 0.0 for every league. The selected
-set still beat the full set walk-forward for most leagues, but treat the
-"kept" groups as one draw, not the truth.</li>
+<li><b>Feature selection stability varies.</b> PAM selection run on two
+chronological halves of the data can pick different sparse subsets under
+correlation, so treat individual "kept" group draws carefully. See
+<a href="{{BASE}}/model-insights.html">model insights</a> for exact per-league
+Jaccard stability and walk-forward comparisons.</li>
 <li><b>Probabilities are estimates.</b> A 70% probability means the model
 expects that outcome 7 times in 10, not that it knows which. These numbers
 are not betting advice.</li>
@@ -2429,13 +2644,14 @@ def main() -> int:
             (ldir / "teams" / f"{slug(team)}.html").write_text(
                 build_team(league, ld, team, players_pl, depth[league], updated))
 
+    (docs / "europe.html").write_text(build_europe(datas, updated))
     (docs / "players.html").write_text(build_players(datas, scorers, updated))
     (docs / "track-record.html").write_text(build_track_record(datas, updated))
     (docs / "methodology.html").write_text(build_methodology(datas, updated))
     (docs / "model-insights.html").write_text(
         build_model_insights(datas, updated))
 
-    n_pages = (5 + len(settings.league_order)
+    n_pages = (6 + len(settings.league_order)
                + sum(len(preds[lg]) for lg in settings.league_order)
                + n_team_pages)
     log.info("site_built", pages=n_pages, docs=str(docs))

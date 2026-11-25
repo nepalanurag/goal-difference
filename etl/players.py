@@ -31,21 +31,26 @@ Usage:
 """
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
 import argparse
+import gzip
 import json
 import re
 import sys
 import time
 import urllib.parse
-from datetime import datetime, timezone
+import urllib.request
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import pandas as pd
 import requests
 
 from .api_football import api_get
 from .config import settings
 from .logging_setup import get_logger
+from .storage import read_parquet, write_parquet
 from .team_names import canonicalize
 
 log = get_logger(__name__)
@@ -585,6 +590,277 @@ OFFICIAL_FETCHERS = {
     "ligue1": (fetch_ligue1, "player_rankings_official_ligue1.json"),
 }
 
+ESPN_LEAGUE_SLUGS = {
+    "pl": "eng.1",
+    "laliga": "esp.1",
+    "bundesliga": "ger.1",
+    "seriea": "ita.1",
+    "ligue1": "fra.1",
+}
+_ESPN_POS_MAP = {
+    "G": "GK", "GK": "GK",
+    "D": "DEF", "CD": "DEF", "CD-L": "DEF", "CD-R": "DEF", "LB": "DEF", "RB": "DEF",
+    "LWB": "DEF", "RWB": "DEF", "SW": "DEF",
+    "M": "MID", "CM": "MID", "CM-L": "MID", "CM-R": "MID", "DM": "MID", "AM": "MID",
+    "LM": "MID", "RM": "MID", "CAM": "MID", "CDM": "MID", "LW": "FWD", "RW": "FWD",
+    "F": "FWD", "CF": "FWD", "CF-L": "FWD", "CF-R": "FWD", "ST": "FWD", "A": "FWD",
+}
+
+
+def _espn_json(url: str, timeout: int = 20) -> dict | None:
+    req = urllib.request.Request(
+        url, headers={"User-Agent": UA["User-Agent"], "Accept-Encoding": "gzip"}
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            raw = resp.read()
+            if resp.headers.get("Content-Encoding") == "gzip":
+                raw = gzip.decompress(raw)
+            return json.loads(raw)
+    except Exception as exc:
+        log.warning("espn_players_request_failed", url=url, error=str(exc)[:160])
+        return None
+
+
+def _norm_espn_pos(abbr: str | None, name: str | None = None) -> str:
+    a = (abbr or "").strip().upper()
+    if a in _ESPN_POS_MAP:
+        return _ESPN_POS_MAP[a]
+    n = (name or "").lower()
+    if "goal" in n or "keeper" in n:
+        return "GK"
+    if "defend" in n or "back" in n:
+        return "DEF"
+    if "midfield" in n:
+        return "MID"
+    if "forward" in n or "striker" in n or "wing" in n or "attack" in n:
+        return "FWD"
+    return "?"
+
+
+def fetch_espn_squads(league: str) -> dict:
+    """Fetch active roster & season stats for every club in `league` via ESPN."""
+    slug = ESPN_LEAGUE_SLUGS[league]
+    base = f"https://site.api.espn.com/apis/site/v2/sports/soccer/{slug}"
+    teams_resp = _espn_json(f"{base}/teams")
+    if not teams_resp:
+        raise RuntimeError(f"ESPN teams fetch failed for {league}")
+    team_entries = teams_resp["sports"][0]["leagues"][0]["teams"]
+
+    def _one_team(item: dict) -> list[dict]:
+        tinfo = item.get("team", {})
+        tid = tinfo.get("id")
+        raw_name = tinfo.get("displayName", "")
+        team = canonicalize(raw_name, league, source="espn")
+        roster = _espn_json(f"{base}/teams/{tid}/roster")
+        if not roster:
+            return []
+        rows: list[dict] = []
+        for a in roster.get("athletes", []):
+            cats = (a.get("statistics") or {}).get("splits", {}).get("categories", [])
+            st = {s["name"]: float(s.get("value") or 0) for c in cats for s in c.get("stats", [])}
+            apps = int(st.get("appearances", 0))
+            sub_ins = int(st.get("subIns", 0))
+            starts = max(0, apps - sub_ins)
+            pos_obj = a.get("position") or {}
+            pos = _norm_espn_pos(pos_obj.get("abbreviation"), pos_obj.get("name"))
+            goals = int(st.get("totalGoals", 0))
+            assists = int(st.get("goalAssists", 0))
+            sot = int(st.get("shotsOnTarget", 0))
+            shots = int(st.get("totalShots", 0))
+            est_mins = starts * 82 + sub_ins * 24
+            rows.append({
+                "id": a.get("id"),
+                "name": a.get("displayName") or a.get("fullName") or "",
+                "team": team,
+                "position": pos,
+                "jersey": a.get("jersey"),
+                "age": a.get("age"),
+                "appearances": apps,
+                "starts": starts,
+                "sub_ins": sub_ins,
+                "minutes_est": est_mins,
+                "goals": goals,
+                "assists": assists,
+                "shots": shots,
+                "shots_on_target": sot,
+                "fouls": int(st.get("foulsCommitted", 0)),
+                "yellow_cards": int(st.get("yellowCards", 0)),
+                "red_cards": int(st.get("redCards", 0)),
+                "saves": int(st.get("saves", 0)),
+                "shots_faced": int(st.get("shotsFaced", 0)),
+                "goals_conceded": int(st.get("goalsConceded", 0)),
+            })
+        return rows
+
+    with ThreadPoolExecutor(max_workers=10) as pool:
+        per_team = list(pool.map(_one_team, team_entries))
+    players = [p for sub in per_team for p in sub]
+    players.sort(
+        key=lambda p: (-(p["goals"] + p["assists"]), -p["starts"], -p["shots_on_target"], p["name"])
+    )
+    return {
+        "league": league,
+        "source": f"ESPN {slug} team rosters (unofficial)",
+        "season_label": SEASON_LABEL,
+        "fetched_at": _now_iso(),
+        "players": players,
+    }
+
+
+def run_part_d(leagues: list[str]) -> dict[str, Path | None]:
+    results: dict[str, Path | None] = {}
+    for league in leagues:
+        if league not in ESPN_LEAGUE_SLUGS:
+            continue
+        try:
+            payload = fetch_espn_squads(league)
+            out = settings.data_dir / f"squad_players_{league}.json"
+            _write_json(out, payload)
+            log.info("espn_squads_done", league=league, n=len(payload["players"]))
+            results[league] = out
+        except Exception as exc:
+            log.warning("espn_squads_failed", league=league, error=str(exc)[:200])
+            results[league] = None
+    return results
+
+
+LINEUP_COLS = [
+    "date", "espn_id", "team", "opp", "is_home", "player_id", "player_name",
+    "pos", "starter", "sub_in", "goals", "assists", "shots", "sot",
+    "saves", "shots_faced", "ga_gk", "yc", "rc",
+]
+
+
+def _extract_event_lineups(league: str, eid: str, datestr: str) -> list[dict]:
+    slug = ESPN_LEAGUE_SLUGS[league]
+    sm = _espn_json(f"https://site.api.espn.com/apis/site/v2/sports/soccer/{slug}/summary?event={eid}")
+    if not sm or not sm.get("rosters"):
+        return []
+    rosters = sm.get("rosters", [])
+    if len(rosters) < 2:
+        return []
+    t_names = [
+        canonicalize((r.get("team") or {}).get("displayName", ""), league, source="espn")
+        for r in rosters[:2]
+    ]
+    rows: list[dict] = []
+    for idx, side in enumerate(rosters[:2]):
+        team = t_names[idx]
+        opp = t_names[1 - idx]
+        is_home = side.get("homeAway") == "home"
+        for p in side.get("roster", []):
+            ath = p.get("athlete") or {}
+            pid = str(ath.get("id") or "")
+            pname = ath.get("displayName") or ath.get("fullName") or ""
+            if not pname:
+                continue
+            starter = bool(p.get("starter"))
+            sub_in = bool(p.get("subbedIn"))
+            if not starter and not sub_in:
+                continue
+            st = {s["name"]: float(s.get("value") or 0) for s in p.get("stats", []) if isinstance(s, dict)}
+            pos_obj = p.get("position") or ath.get("position") or {}
+            pos = _norm_espn_pos(pos_obj.get("abbreviation"), pos_obj.get("name"))
+            rows.append({
+                "date": datestr,
+                "espn_id": str(eid),
+                "team": team,
+                "opp": opp,
+                "is_home": is_home,
+                "player_id": pid,
+                "player_name": pname,
+                "pos": pos,
+                "starter": starter,
+                "sub_in": sub_in,
+                "goals": int(st.get("totalGoals", 0)),
+                "assists": int(st.get("goalAssists", 0)),
+                "shots": int(st.get("totalShots", 0)),
+                "sot": int(st.get("shotsOnTarget", 0)),
+                "saves": int(st.get("saves", 0)),
+                "shots_faced": int(st.get("shotsFaced", 0)),
+                "ga_gk": int(st.get("goalsConceded", 0)),
+                "yc": int(st.get("yellowCards", 0)),
+                "rc": int(st.get("redCards", 0)),
+            })
+    return rows
+
+
+def sync_lineups_league(league: str, min_date: str = "2023-08-01") -> Path:
+    """Incrementally fetch finished ESPN match lineups & player boxscores."""
+    from .uefa import _months_between
+
+    slug = ESPN_LEAGUE_SLUGS[league]
+    out = settings.data_dir / f"lineups_{league}.parquet"
+    existing = read_parquet(out) if out.exists() else pd.DataFrame(columns=LINEUP_COLS)
+    have_ids = set(existing["espn_id"].astype(str)) if not existing.empty else set()
+
+    # Incremental lookback: if existing file already covers recent history, scan from
+    # max cached month minus 1 month; otherwise scan full range from min_date.
+    today = date.today().isoformat()
+    if not existing.empty and str(existing["date"].min()) <= "2023-10-01":
+        max_dt = str(existing["date"].max())[:10]
+        y, m, _ = map(int, max_dt.split("-"))
+        scan_start = f"{y - (1 if m == 1 else 0):04d}-{12 if m == 1 else m - 1:02d}-01"
+    else:
+        scan_start = min_date
+
+    months = _months_between(scan_start, today)
+    base = f"https://site.api.espn.com/apis/site/v2/sports/soccer/{slug}"
+
+    def _month_events(ym: str) -> list[tuple[str, str]]:
+        d = _espn_json(f"{base}/scoreboard?dates={ym}&limit=100")
+        ev_list = []
+        if not d:
+            return ev_list
+        for ev in d.get("events", []):
+            comp = (ev.get("competitions") or [{}])[0]
+            if not comp.get("status", {}).get("type", {}).get("completed"):
+                continue
+            eid = str(ev.get("id") or "")
+            dt = (ev.get("date") or "")[:10]
+            if eid and dt and dt >= min_date and eid not in have_ids:
+                ev_list.append((eid, dt))
+        return ev_list
+
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        found = pool.map(_month_events, months)
+    todo: dict[str, str] = {}
+    for sub in found:
+        for eid, dt in sub:
+            todo[eid] = dt
+
+    if not todo:
+        log.info("espn_lineups_uptodate", league=league, matches=len(have_ids))
+        return out
+
+    items = sorted(todo.items(), key=lambda x: x[1])
+    with ThreadPoolExecutor(max_workers=14) as pool:
+        batches = list(pool.map(lambda it: _extract_event_lineups(league, it[0], it[1]), items))
+    new_rows = [r for b in batches for r in b]
+    if new_rows:
+        new_df = pd.DataFrame(new_rows, columns=LINEUP_COLS)
+        combined = pd.concat([existing, new_df], ignore_index=True) if not existing.empty else new_df
+        combined = combined.drop_duplicates(subset=["espn_id", "team", "player_name"]).sort_values(
+            ["date", "espn_id", "team", "starter"], ascending=[True, True, True, False]
+        ).reset_index(drop=True)
+        write_parquet(combined, out)
+        log.info("espn_lineups_updated", league=league, new_matches=len(todo),
+                 new_rows=len(new_rows), total_rows=len(combined))
+    else:
+        log.info("espn_lineups_no_rosters", league=league, tried=len(todo))
+    return out
+
+
+def run_part_e(leagues: list[str], min_date: str = "2023-08-01") -> None:
+    for league in leagues:
+        if league not in ESPN_LEAGUE_SLUGS:
+            continue
+        try:
+            sync_lineups_league(league, min_date=min_date)
+        except Exception as exc:
+            log.warning("espn_lineups_failed", league=league, error=str(exc)[:200])
+
 
 def run_part_c(leagues: list[str]) -> dict[str, Path | None]:
     session = _session()
@@ -616,15 +892,17 @@ def run_part_c(leagues: list[str]) -> dict[str, Path | None]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Player data: FPL form watch (a), 2024/25 topscorers "
-                    "via api-football (b), official league-backend rankings (c).")
-    parser.add_argument("--parts", nargs="*", default=["a", "b", "c"],
-                        choices=["a", "b", "c"],
-                        help="which parts to run (default: a b c)")
+        description="Player data: FPL (a), 2024/25 topscorers (b), "
+                    "official backends (c), ESPN rosters (d), ESPN match lineups (e).")
+    parser.add_argument("--parts", nargs="*", default=["a", "c", "d"],
+                        choices=["a", "b", "c", "d", "e"],
+                        help="which parts to run (default: a c d)")
     parser.add_argument("--leagues", nargs="*", default=settings.league_order,
-                        help="league slugs for parts b and c (default: all)")
+                        help="league slugs for parts b/c/d/e (default: all)")
     parser.add_argument("--refresh-fpl", action="store_true",
                         help="ignore the FPL cache and refetch (part a)")
+    parser.add_argument("--lineups-since", default="2023-08-01",
+                        help="earliest match date for incremental lineups (part e)")
     args = parser.parse_args(argv)
 
     ok = True
@@ -638,6 +916,10 @@ def main(argv: list[str] | None = None) -> int:
             ok = False
     if "c" in args.parts:
         run_part_c(args.leagues)  # per-league warnings inside, never raises
+    if "d" in args.parts:
+        run_part_d(args.leagues)
+    if "e" in args.parts:
+        run_part_e(args.leagues, min_date=args.lineups_since)
     if "b" in args.parts:
         try:
             run_part_b(args.leagues)

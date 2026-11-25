@@ -34,7 +34,7 @@ LAST_N = 5
 
 
 def _directed_record(team: str, meetings: pd.DataFrame) -> dict:
-    """last5 + alltime for one directed pairing, from team's perspective."""
+    """last5 + alltime + venue breakdown for one directed pairing, from team's perspective."""
     recent = meetings.sort_values("date", ascending=False).head(LAST_N)
     last5 = []
     for row in recent.itertuples():
@@ -42,11 +42,13 @@ def _directed_record(team: str, meetings: pd.DataFrame) -> dict:
             venue = "H"
         elif row.away == team:
             venue = "A"
-        else:  # cannot happen for league fixtures; kept for the contract
+        else:
             venue = "N"
+        comp = getattr(row, "competition", "League") or "League"
         last5.append({
             "date": str(row.date),
             "venue": venue,
+            "competition": str(comp),
             "home": row.home,
             "away": row.away,
             "home_goals": int(row.home_goals),
@@ -54,23 +56,63 @@ def _directed_record(team: str, meetings: pd.DataFrame) -> dict:
         })
 
     w = d = l = 0
+    hw = hd = hl = 0
     for row in meetings.itertuples():
         if row.home_goals == row.away_goals:
             d += 1
+            if row.home == team:
+                hd += 1
         elif (row.home == team and row.home_goals > row.away_goals) or \
              (row.away == team and row.away_goals > row.home_goals):
             w += 1
+            if row.home == team:
+                hw += 1
         else:
             l += 1
-    return {"last5": last5, "alltime": {"w": w, "d": d, "l": l}}
+            if row.home == team:
+                hl += 1
+    return {
+        "last5": last5,
+        "alltime": {"w": w, "d": d, "l": l},
+        "at_home": {"w": hw, "d": hd, "l": hl},
+    }
+
+
+def _european_same_league_meetings(teams: set[str], euro_path: Path | None) -> pd.DataFrame:
+    """Finished UCL/UEL meetings between two clubs from the same league."""
+    if not euro_path or not euro_path.exists():
+        return pd.DataFrame(columns=["date", "home", "away", "home_goals", "away_goals", "competition"])
+    rows = []
+    for line in euro_path.read_text().splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            fx = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if fx.get("status") != "finished" or fx.get("home_goals") is None or fx.get("away_goals") is None:
+            continue
+        if fx.get("home") in teams and fx.get("away") in teams:
+            rows.append({
+                "date": str(fx["date"])[:10],
+                "home": fx["home"],
+                "away": fx["away"],
+                "home_goals": int(fx["home_goals"]),
+                "away_goals": int(fx["away_goals"]),
+                "competition": fx.get("competition", "Europe"),
+            })
+    return pd.DataFrame(rows)
 
 
 def build_h2h(league: str,
               fixtures_path: Path | None = None,
-              out_path: Path | None = None) -> dict:
-    """Build the head-to-head dict for one league and write it as JSON."""
+              out_path: Path | None = None,
+              european_path: Path | None = None) -> dict:
+    """Build the head-to-head dict for one league (2015+ domestic + UCL/UEL rivals)."""
     fixtures_path = fixtures_path or settings.data_dir / f"fixtures_{league}.csv"
     out_path = out_path or settings.data_dir / f"h2h_{league}.json"
+    euro_path = european_path or (fixtures_path.parent / "european_fixtures.jsonl")
     if league not in settings.leagues:
         raise ValueError(f"unknown league: {league}")
     if not fixtures_path.exists():
@@ -78,6 +120,15 @@ def build_h2h(league: str,
 
     df = pd.read_csv(fixtures_path, dtype={"date": str})
     finished = df[df["status"] == "finished"].copy()
+    if not finished.empty:
+        finished["competition"] = "League"
+        league_teams = set(df["home"]) | set(df["away"])
+        euro_df = _european_same_league_meetings(league_teams, euro_path)
+        if not euro_df.empty:
+            finished = pd.concat(
+                [finished[["date", "home", "away", "home_goals", "away_goals", "competition"]], euro_df],
+                ignore_index=True,
+            ).drop_duplicates(subset=["date", "home", "away"], keep="first")
     if finished.empty:
         log.warning("h2h_no_finished_fixtures", league=league)
         out_path.parent.mkdir(parents=True, exist_ok=True)

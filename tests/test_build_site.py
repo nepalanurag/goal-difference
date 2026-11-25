@@ -123,3 +123,46 @@ def test_team_news_ignores_departed_status_u():
     names = [p["player"] for p in tn["out"]]
     assert "William Saliba" in names
     assert "Ethan Nwaneri" not in names
+
+
+def test_multi_source_team_news_parsers_and_merge():
+    from etl.team_news import merge_multi_source_news, parse_sportsgambler, parse_transfermarkt
+
+    sg_html = (
+        '<div class="injury-block"><h3 class="injuries-title"><a href="/x">Barcelona</a></h3>'
+        '<div class="inj-row"><span class="inj-type redcard"></span>'
+        '<span class="inj-player">Pedri</span><span class="inj-position h-sm">M</span>'
+        '<span class="inj-game h-sm">10</span><span class="inj-goals h-sm">2</span>'
+        '<span class="inj-assist h-sm">3</span><span class="inj-info">Yellow cards</span>'
+        '<span class="inj-return h-sm">-</span></div></div>'
+    )
+    sg = parse_sportsgambler(sg_html, "laliga")
+    assert len(sg) == 1 and sg[0]["kind"] == "suspended" and sg[0]["team"] == "Barcelona"
+
+    tm_html = (
+        '<tr class="odd"><td><table><tr><td><td class="hauptlink">'
+        '<a title="Lamine Yamal">Lamine Yamal</a></td></tr><tr><td>Right Winger</td></tr></table></td>'
+        '<td class="zentriert no-border-rechts"><a title="FC Barcelona"></a></td>'
+        '<td class="links">Ankle problems</td><td class="zentriert">29/11/2026</td>'
+        '<td class="rechts">€220.00M</td></tr>'
+    )
+    tm = parse_transfermarkt(tm_html, "laliga")
+    assert len(tm) == 1 and tm[0]["market_value_m"] == 220.0 and tm[0]["expected_return"] == "2026-11-29"
+
+    merged = merge_multi_source_news("laliga", None, sg, tm, {})
+    barca = merged["teams"]["Barcelona"]
+    assert len(barca["out"]) == 2
+    assert barca["drag_att"] > 0
+
+
+def test_build_europe_filters_to_top5_ucl_uel(tmp_path, monkeypatch):
+    from etl import build_site
+    monkeypatch.setattr(cfg.settings, "data_dir", tmp_path)
+    (tmp_path / "european_fixtures.jsonl").write_text("\n".join([
+        json.dumps({"fixture_id": "e1", "date": "2026-11-25", "competition": "UCL",
+                    "home": "Arsenal", "away": "FC Porto", "home_goals": None, "away_goals": None, "status": "scheduled"}),
+        json.dumps({"fixture_id": "e2", "date": "2026-11-25", "competition": "UEL",
+                    "home": "Roma", "away": "Lazio", "home_goals": 2, "away_goals": 1, "status": "finished"}),
+    ]) + "\n")
+    html = build_site.build_europe({}, "2026-11-25")
+    assert "Arsenal" in html and "Roma" in html and "Champions League" in html and "Europa League" in html

@@ -36,3 +36,12 @@ def test_pl_2026_csv_short_names():
     assert canonicalize("Coventry", "pl", "csv") == "Coventry City"
     assert canonicalize("Hull", "pl", "csv") == "Hull City"
     assert canonicalize("Málaga", "laliga", "espn") == "Malaga"
+
+
+def test_accent_folding_and_top5_espn_aliases():
+    from etl.team_names import TOP5_TEAMS
+    assert canonicalize("Cádiz", "laliga", "espn") == "Cadiz"
+    assert canonicalize("Real Oviedo", "laliga", "espn") == "Oviedo"
+    assert canonicalize("Saint-Étienne", "ligue1", "espn") == "St Etienne"
+    assert canonicalize("PSG", "ligue1", "espn") == "Paris SG"
+    assert "Arsenal" in TOP5_TEAMS and "AEK Athens" not in TOP5_TEAMS

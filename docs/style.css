@@ -411,10 +411,20 @@ tr:hover td {
   color: #cbd5e1;
   border: 1px solid rgba(148, 163, 184, 0.3);
 }
-.badge.L {
+.badge.L, .badge.out, .badge.suspended {
   background: var(--away-soft);
   color: #fb7185;
   border: 1px solid rgba(244, 63, 94, 0.3);
+}
+.badge.doubtful {
+  background: rgba(245, 158, 11, 0.14);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+.badge.UCL, .badge.UEL {
+  background: rgba(56, 189, 248, 0.14);
+  color: #7dd3fc;
+  border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
 /* Head to Head Record */

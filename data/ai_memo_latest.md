@@ -1,4 +1,4 @@
-# Weekly AI forecast memo — 2026-11-24
+# Weekly AI forecast memo — 2026-11-25
 
 > AI-generated. All numbers below come from the fitted models and
 > real fixture results; nothing here was invented by the AI.
@@ -7,11 +7,11 @@
 
 | league | model version | poisson | ML (chosen) | ensemble | baseline |
 | --- | --- | --- | --- | --- | --- |
-| pl | v2026-11-24 | 1.0080 | 1.0389 (xgb_tiny) | 1.0003 | 1.0804 |
-| laliga | v2026-11-24 | 0.9964 | 1.0294 (xgb_tiny) | 0.9880 | 1.0642 |
-| bundesliga | v2026-11-24 | 1.0205 | 1.0344 (xgb_reg) | 0.9945 | 1.0802 |
-| seriea | v2026-11-24 | 0.9985 | 1.0249 (xgb_tiny) | 0.9842 | 1.0921 |
-| ligue1 | v2026-11-24 | 1.0256 | 1.0435 (xgb_tiny) | 1.0152 | 1.0693 |
+| pl | v2026-11-25 | 0.9950 | 1.0120 (xgb_tiny) | 0.9739 | 1.0674 |
+| laliga | v2026-11-25 | 1.0041 | 1.0238 (xgb_tiny) | 0.9956 | 1.0687 |
+| bundesliga | v2026-11-25 | 1.0149 | 1.0273 (xgb_tiny) | 1.0018 | 1.0733 |
+| seriea | v2026-11-25 | 1.0008 | 1.0081 (xgb_tiny) | 0.9774 | 1.0810 |
+| ligue1 | v2026-11-25 | 1.0147 | 1.0534 (xgb_tiny) | 1.0114 | 1.0745 |
 
 ## 2. Ledger scoring this run
 
@@ -77,11 +77,11 @@
 
 Compares the ledger's overall ensemble log-loss against the walk-forward ensemble log-loss. Flagged when the ledger is worse by more than 0.05.
 
-- pl: ledger 1.0866 vs walk-forward 1.0003 (delta +0.0863, n=60) — DECAY FLAG.
-- laliga: ledger 0.9717 vs walk-forward 0.9880 (delta -0.0162, n=60) — ok.
-- bundesliga: ledger 1.0519 vs walk-forward 0.9945 (delta +0.0575, n=54) — DECAY FLAG.
-- seriea: ledger 0.9071 vs walk-forward 0.9842 (delta -0.0771, n=70) — ok.
-- ligue1: ledger 0.9290 vs walk-forward 1.0152 (delta -0.0863, n=54) — ok.
+- pl: ledger 1.0866 vs walk-forward 0.9739 (delta +0.1127, n=60) — DECAY FLAG.
+- laliga: ledger 0.9717 vs walk-forward 0.9956 (delta -0.0239, n=60) — ok.
+- bundesliga: ledger 1.0519 vs walk-forward 1.0018 (delta +0.0502, n=54) — DECAY FLAG.
+- seriea: ledger 0.9071 vs walk-forward 0.9774 (delta -0.0703, n=70) — ok.
+- ligue1: ledger 0.9290 vs walk-forward 1.0114 (delta -0.0825, n=54) — ok.
 
 One or more leagues are flagged. The weekly memo should investigate before the next refresh: check for distribution shift (new season, promoted teams) or stale features.
 

@@ -31,7 +31,7 @@ import pandas as pd
 from .config import settings
 from .logging_setup import get_logger
 from .storage import (features_lake_path, features_lake_versioned_path,
-                      write_parquet)
+                      read_parquet, write_parquet)
 from .team_names import canonicalize
 
 log = get_logger(__name__)
@@ -52,76 +52,92 @@ CITY_COORDS: dict[str, tuple[float, float]] = {
     "Arsenal": (51.557, -0.106), "Aston Villa": (52.509, -1.885),
     "Bournemouth": (50.735, -1.838), "Brentford": (51.491, -0.293),
     "Brighton": (50.861, -0.083), "Burnley": (53.789, -2.23),
-    "Chelsea": (51.482, -0.191), "Crystal Palace": (51.398, -0.086),
+    "Cardiff": (51.473, -3.203), "Chelsea": (51.482, -0.191),
+    "Coventry City": (52.448, -1.498), "Crystal Palace": (51.398, -0.086),
     "Everton": (53.439, -2.966), "Fulham": (51.475, -0.221),
-    "Coventry City": (52.448, -1.498), "Hull City": (53.746, -0.367),
-    "Ipswich Town": (52.055, 1.161),
-    "Leeds": (53.778, -1.572),
+    "Huddersfield": (53.654, -1.768), "Hull City": (53.746, -0.367),
+    "Ipswich Town": (52.055, 1.161), "Leeds": (53.778, -1.572),
     "Leicester": (52.62, -1.142), "Liverpool": (53.431, -2.966),
     "Luton": (51.885, -0.436), "Man City": (53.483, -2.2),
-    "Man United": (53.463, -2.291), "Newcastle": (54.975, -1.614),
+    "Man United": (53.463, -2.291), "Middlesbrough": (54.578, -1.217),
+    "Newcastle": (54.975, -1.614), "Norwich": (52.622, 1.309),
     "Nott'm Forest": (52.94, -1.137), "Sheffield United": (53.37, -1.471),
-    "Southampton": (50.861, -1.391), "Sunderland": (54.914, -1.388),
-    "Tottenham": (51.604, -0.066), "West Ham": (51.539, 0.016),
+    "Southampton": (50.861, -1.391), "Stoke": (52.988, -2.176),
+    "Sunderland": (54.914, -1.388), "Swansea": (51.642, -3.935),
+    "Tottenham": (51.604, -0.066), "Watford": (51.65, -0.402),
+    "West Brom": (52.509, -1.964), "West Ham": (51.539, 0.016),
     "Wolves": (52.59, -2.13),
     # LaLiga
     "Alaves": (42.847, -2.675), "Almeria": (36.839, -2.461),
     "Ath Bilbao": (43.264, -2.949), "Ath Madrid": (40.437, -3.599),
     "Barcelona": (41.387, 2.123), "Betis": (37.384, -5.971),
     "Cadiz": (36.529, -6.277), "Celta": (42.212, -8.74),
-    "Elche": (38.269, -0.698), "Espanyol": (41.347, 2.075),
-    "Getafe": (40.308, -3.714), "Girona": (41.979, 2.823),
-    "Granada": (37.161, -3.598), "La Coruna": (43.371, -8.422),
-    "Las Palmas": (28.101, -15.455),
-    "Malaga": (36.72, -4.419), "Santander": (43.462, -3.804),
-    "Leganes": (40.328, -3.766), "Levante": (39.475, -0.375),
+    "Eibar": (43.182, -2.476), "Elche": (38.269, -0.698),
+    "Espanyol": (41.347, 2.075), "Getafe": (40.308, -3.714),
+    "Girona": (41.979, 2.823), "Granada": (37.161, -3.598),
+    "Huesca": (42.132, -0.424), "La Coruna": (43.371, -8.422),
+    "Las Palmas": (28.101, -15.455), "Leganes": (40.328, -3.766),
+    "Levante": (39.475, -0.375), "Malaga": (36.72, -4.419),
     "Mallorca": (39.59, 2.63), "Osasuna": (42.797, -1.637),
     "Oviedo": (43.361, -5.859), "Rayo Vallecano": (40.391, -3.658),
     "Real Madrid": (40.453, -3.688), "Real Sociedad": (43.301, -1.974),
-    "Sevilla": (37.384, -5.971), "Valencia": (39.475, -0.375),
+    "Santander": (43.462, -3.804), "Sevilla": (37.384, -5.971),
+    "Sp Gijon": (43.536, -5.637), "Valencia": (39.475, -0.375),
     "Valladolid": (41.643, -4.729), "Villarreal": (39.944, -0.103),
     # Bundesliga
-    "Augsburg": (48.324, 10.886), "Dortmund": (51.493, 7.452),
-    "M'gladbach": (51.174, 6.383), "Bayern Munich": (48.219, 11.625),
-    "Bochum": (51.484, 7.068), "Darmstadt": (49.872, 8.654),
-    "Ein Frankfurt": (50.068, 8.645), "Freiburg": (47.999, 7.893),
-    "Heidenheim": (48.678, 10.154), "Hoffenheim": (49.239, 8.885),
-    "Holstein Kiel": (54.343, 10.123), "FC Koln": (50.933, 6.875),
-    "Hamburg": (53.587, 9.899), "Elversberg": (49.316, 7.142),
-    "Paderborn": (51.719, 8.747), "Schalke 04": (51.554, 7.068),
-    "Fortuna Dusseldorf": (51.261, 6.733),
-    "Leverkusen": (51.038, 6.979), "Mainz": (49.984, 8.224),
-    "RB Leipzig": (51.346, 12.348), "St Pauli": (53.554, 9.917),
-    "Stuttgart": (48.792, 9.232), "Union Berlin": (52.457, 13.568),
-    "Werder Bremen": (53.066, 8.837), "Wolfsburg": (52.428, 10.804),
+    "Augsburg": (48.324, 10.886), "Bayern Munich": (48.219, 11.625),
+    "Bielefeld": (52.032, 8.517), "Bochum": (51.484, 7.068),
+    "Darmstadt": (49.872, 8.654), "Dortmund": (51.493, 7.452),
+    "Ein Frankfurt": (50.068, 8.645), "Elversberg": (49.316, 7.142),
+    "FC Koln": (50.933, 6.875), "Fortuna Dusseldorf": (51.261, 6.733),
+    "Freiburg": (47.999, 7.893), "Greuther Furth": (49.487, 10.999),
+    "Hamburg": (53.587, 9.899), "Hannover": (52.36, 9.731),
+    "Heidenheim": (48.678, 10.154), "Hertha": (52.515, 13.24),
+    "Hoffenheim": (49.239, 8.885), "Holstein Kiel": (54.343, 10.123),
+    "Ingolstadt": (48.746, 11.484), "Leverkusen": (51.038, 6.979),
+    "M'gladbach": (51.174, 6.383), "Mainz": (49.984, 8.224),
+    "Nurnberg": (49.426, 11.125), "Paderborn": (51.719, 8.747),
+    "RB Leipzig": (51.346, 12.348), "Schalke 04": (51.554, 7.068),
+    "St Pauli": (53.554, 9.917), "Stuttgart": (48.792, 9.232),
+    "Union Berlin": (52.457, 13.568), "Werder Bremen": (53.066, 8.837),
+    "Wolfsburg": (52.428, 10.804),
     # Serie A
-    "Atalanta": (45.709, 9.681), "Bologna": (44.492, 11.309),
-    "Cagliari": (39.2, 9.136), "Como": (45.814, 9.077),
-    "Cremonese": (45.142, 10.049), "Empoli": (43.719, 10.947),
-    "Fiorentina": (43.781, 11.283), "Frosinone": (41.634, 13.324),
-    "Genoa": (44.416, 8.952), "Inter": (45.478, 9.124),
-    "Juventus": (45.109, 7.641), "Lazio": (41.934, 12.454),
-    "Lecce": (40.365, 18.201), "Milan": (45.478, 9.124),
-    "Monza": (45.615, 9.209), "Napoli": (40.827, 14.193),
-    "Parma": (44.791, 10.335), "Pisa": (43.727, 10.415),
-    "Roma": (41.934, 12.454), "Salernitana": (40.679, 14.834),
-    "Sassuolo": (44.698, 10.832), "Torino": (45.041, 7.65),
+    "Atalanta": (45.709, 9.681), "Benevento": (41.117, 14.782),
+    "Bologna": (44.492, 11.309), "Brescia": (45.571, 10.237),
+    "Cagliari": (39.2, 9.136), "Carpi": (44.784, 10.885),
+    "Chievo": (45.435, 10.969), "Como": (45.814, 9.077),
+    "Cremonese": (45.142, 10.049), "Crotone": (39.08, 17.127),
+    "Empoli": (43.719, 10.947), "Fiorentina": (43.781, 11.283),
+    "Frosinone": (41.634, 13.324), "Genoa": (44.416, 8.952),
+    "Inter": (45.478, 9.124), "Juventus": (45.109, 7.641),
+    "Lazio": (41.934, 12.454), "Lecce": (40.365, 18.201),
+    "Milan": (45.478, 9.124), "Monza": (45.615, 9.209),
+    "Napoli": (40.827, 14.193), "Palermo": (38.153, 13.342),
+    "Parma": (44.791, 10.335), "Pescara": (42.455, 14.23),
+    "Pisa": (43.727, 10.415), "Roma": (41.934, 12.454),
+    "Salernitana": (40.679, 14.834), "Sampdoria": (44.416, 8.952),
+    "Sassuolo": (44.698, 10.832), "Spal": (44.84, 11.608),
+    "Spezia": (44.101, 9.81), "Torino": (45.041, 7.65),
     "Udinese": (46.075, 13.212), "Venezia": (45.475, 12.372),
     "Verona": (45.435, 10.969),
     # Ligue 1
-    "Angers": (47.461, -0.53), "Auxerre": (47.796, 3.583),
-    "Brest": (48.39, -4.486), "Clermont": (45.781, 3.118),
-    "Le Havre": (49.494, 0.107), "Lens": (50.433, 2.814),
-    "Lille": (50.612, 3.13), "Lorient": (47.748, -3.366),
-    "Lyon": (45.766, 4.981), "Marseille": (43.269, 5.396),
-    "Metz": (49.108, 6.169), "Monaco": (43.728, 7.415),
-    "Montpellier": (43.613, 3.807), "Nantes": (47.256, -1.525),
-    "Nice": (43.703, 7.266), "Paris SG": (48.841, 2.253),
-    "Paris FC": (48.841, 2.379), "Le Mans": (48.007, 0.199),
-    "Troyes": (48.298, 4.079),
+    "Ajaccio": (41.931, 8.777), "Ajaccio GFCO": (41.946, 8.755),
+    "Amiens": (49.894, 2.263), "Angers": (47.461, -0.53),
+    "Auxerre": (47.796, 3.583), "Bastia": (42.651, 9.442),
+    "Bordeaux": (44.897, -0.562), "Brest": (48.39, -4.486),
+    "Caen": (49.179, -0.397), "Clermont": (45.781, 3.118),
+    "Dijon": (47.324, 5.068), "Guingamp": (48.566, -3.164),
+    "Le Havre": (49.494, 0.107), "Le Mans": (48.007, 0.199),
+    "Lens": (50.433, 2.814), "Lille": (50.612, 3.13),
+    "Lorient": (47.748, -3.366), "Lyon": (45.766, 4.981),
+    "Marseille": (43.269, 5.396), "Metz": (49.108, 6.169),
+    "Monaco": (43.728, 7.415), "Montpellier": (43.613, 3.807),
+    "Nancy": (48.695, 6.211), "Nantes": (47.256, -1.525),
+    "Nice": (43.703, 7.266), "Nimes": (43.816, 4.359),
+    "Paris FC": (48.841, 2.379), "Paris SG": (48.841, 2.253),
     "Reims": (49.26, 4.026), "Rennes": (48.107, -1.643),
     "St Etienne": (45.461, 4.39), "Strasbourg": (48.56, 7.755),
-    "Toulouse": (43.583, 1.434),
+    "Toulouse": (43.583, 1.434), "Troyes": (48.298, 4.079),
 }
 
 
@@ -163,16 +179,24 @@ ODDS_COLS = ("B365CH", "B365CD", "B365CA", "B365H", "B365D", "B365A")
 def load_devigged_odds(league: str) -> dict[tuple[str, str, str], tuple[float, float, float]]:
     """(home, away, date) -> de-vigged (p_home, p_draw, p_away)."""
     out: dict[tuple[str, str, str], tuple[float, float, float]] = {}
+    wanted = {"Date", "HomeTeam", "AwayTeam", *ODDS_COLS}
     for path in sorted(settings.raw_dir.glob(f"csv_{league}_20*.csv")):
         try:
-            raw = pd.read_csv(path, usecols=["Date", "HomeTeam", "AwayTeam",
-                                             *ODDS_COLS])
+            raw = pd.read_csv(path, usecols=lambda c: c in wanted)
         except (ValueError, FileNotFoundError):
             continue
-        raw["datestr"] = pd.to_datetime(raw["Date"], dayfirst=True).dt.date.astype(str)
+        if not {"Date", "HomeTeam", "AwayTeam"}.issubset(raw.columns):
+            continue
+        raw = raw.dropna(subset=["Date", "HomeTeam", "AwayTeam"]).copy()
+        for c in ODDS_COLS:
+            if c not in raw.columns:
+                raw[c] = np.nan
+        raw["datestr"] = pd.to_datetime(raw["Date"], dayfirst=True, format="mixed", errors="coerce").dt.date.astype(str)
         raw["home"] = raw["HomeTeam"].map(lambda t: canonicalize(str(t), league, "csv"))
         raw["away"] = raw["AwayTeam"].map(lambda t: canonicalize(str(t), league, "csv"))
         for _, r in raw.iterrows():
+            if r["datestr"] == "NaT":
+                continue
             close = [r["B365CH"], r["B365CD"], r["B365CA"]]
             open_ = [r["B365H"], r["B365D"], r["B365A"]]
             trio = close if all(pd.notna(close)) else open_
@@ -187,15 +211,21 @@ def load_devigged_odds(league: str) -> dict[tuple[str, str, str], tuple[float, f
 
 
 # Model feature columns: everything the GBM / GLM trains on.
-EXTRA_MODEL_COLS = ["h2h_edge", "elo_diff", "effective_elo_diff", "injury_drag_diff",
-                    "odds_p_home", "odds_p_draw", "odds_p_away", "odds_available"]
+EXTRA_MODEL_COLS = [
+    "h2h_edge", "h2h_recent_edge", "h2h_venue_edge", "h2h_meetings",
+    "elo_diff", "effective_elo_diff", "injury_drag_diff", "rest_diff",
+    "odds_p_home", "odds_p_draw", "odds_p_away", "odds_available",
+]
 
-# Neutral fill for columns where a column mean is meaningless.
-NEUTRAL_DEFAULTS = {"odds_p_home": 1.0 / 3.0, "odds_p_draw": 1.0 / 3.0,
-                    "odds_p_away": 1.0 / 3.0,
-                    "h_injury_drag_att": 0.0, "h_injury_drag_def": 0.0,
-                    "a_injury_drag_att": 0.0, "a_injury_drag_def": 0.0,
-                    "injury_drag_diff": 0.0, "effective_elo_diff": 0.0}
+# Neutral fill for columns where a column mean is meaningless or pre-2023 sparse.
+NEUTRAL_DEFAULTS = {
+    "odds_p_home": 1.0 / 3.0, "odds_p_draw": 1.0 / 3.0,
+    "odds_p_away": 1.0 / 3.0,
+    "h_injury_drag_att": 0.0, "h_injury_drag_def": 0.0,
+    "a_injury_drag_att": 0.0, "a_injury_drag_def": 0.0,
+    "injury_drag_diff": 0.0, "effective_elo_diff": 0.0,
+    "h_squad_top3_ga_l5": 4.0, "a_squad_top3_ga_l5": 4.0,
+}
 
 
 def feature_columns(df: pd.DataFrame) -> list[str]:
@@ -288,11 +318,83 @@ def load_european() -> dict[str, list[dict]]:
             gf, ga = int(fx[gf_key]), int(fx[ga_key])
             pts = 3 if gf > ga else (1 if gf == ga else 0)
             per_team.setdefault(team, []).append({
-                "date": fx["date"], "gf": gf, "ga": ga, "pts": pts,
+                "date": str(fx["date"])[:10], "gf": gf, "ga": ga, "pts": pts,
+                "is_away": side == "away",
             })
     for v in per_team.values():
         v.sort(key=lambda x: x["date"])
     return per_team
+
+
+def load_european_calendar() -> dict[str, list[dict]]:
+    """All (finished + scheduled) UCL/UEL dates per team, used in predict rest-days."""
+    path = settings.data_dir / "european_fixtures.jsonl"
+    per_team: dict[str, list[dict]] = {}
+    if not path.exists():
+        return per_team
+    for line in path.read_text().splitlines():
+        try:
+            fx = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        dt = str(fx.get("date") or "")[:10]
+        if not dt:
+            continue
+        for side in ("home", "away"):
+            per_team.setdefault(fx[side], []).append({
+                "date": dt, "is_away": side == "away",
+            })
+    for v in per_team.values():
+        v.sort(key=lambda x: x["date"])
+    return per_team
+
+
+def load_squad_match_history(league: str) -> dict[str, list[dict]]:
+    """Chronological per-match squad/lineup summaries strictly from prior matches."""
+    path = settings.data_dir / f"lineups_{league}.parquet"
+    if not path.exists():
+        return {}
+    df = read_parquet(path)
+    if df.empty:
+        return {}
+    out: dict[str, list[dict]] = {}
+    for (team, datestr, eid), grp in df.groupby(["team", "date", "espn_id"]):
+        player_ga = {
+            str(r.player_name): int(r.goals) + int(r.assists)
+            for r in grp.itertuples()
+        }
+        saves = int(grp["saves"].sum())
+        faced = int(grp["shots_faced"].sum())
+        out.setdefault(str(team), []).append({
+            "date": str(datestr)[:10],
+            "espn_id": str(eid),
+            "player_ga": player_ga,
+            "saves": saves,
+            "shots_faced": faced,
+        })
+    for v in out.values():
+        v.sort(key=lambda x: (x["date"], x["espn_id"]))
+    return out
+
+
+def _squad_features_before(hist: list[dict], datestr: str) -> dict[str, float]:
+    """Lagged last-5 squad form features strictly before datestr."""
+    prior = [m for m in hist if m["date"] < datestr]
+    if not prior:
+        return {}
+    last5 = prior[-FORM_WINDOW:]
+    ga_totals: dict[str, int] = {}
+    saves = faced = 0
+    for m in last5:
+        for p, v in m["player_ga"].items():
+            ga_totals[p] = ga_totals.get(p, 0) + v
+        saves += m["saves"]
+        faced += m["shots_faced"]
+    top3_ga = float(sum(sorted(ga_totals.values(), reverse=True)[:3]))
+    return {
+        "squad_top3_ga_l5": top3_ga,
+        "gk_save_pct_l5": (saves / faced) if faced > 0 else np.nan,
+    }
 
 
 def load_injury_drags(league: str) -> dict[str, dict[str, float]]:
@@ -348,39 +450,74 @@ def latest_team_states(league: str) -> dict[str, dict[str, float]]:
 
 
 def load_h2h_dated(league: str) -> dict[str, list[dict]]:
-    """Directed H2H meetings with dates, for leakage-free cutoff filtering.
-
-    The precomputed h2h_{league}.json "alltime" records aggregate over every
-    finished fixture with no date cutoff, so h2h_edge for a 2023 fixture would
-    incorporate 2024-2026 results (lookahead leakage). This index carries each
-    meeting's date so feature_row() can restrict to meetings strictly before
-    the fixture date.
-    """
+    """Directed H2H meetings (domestic + European rivals) with dates for cutoff filtering."""
     fixtures_path = settings.data_dir / f"fixtures_{league}.csv"
     df = pd.read_csv(fixtures_path, dtype={"date": str, "season": str})
     fin = df[df["status"] == "finished"]
+    league_teams = set(df["home"]) | set(df["away"])
+    seen: set[tuple[str, str, str]] = set()
     idx: dict[str, list[dict]] = {}
-    for _, r in fin.iterrows():
-        hg, ag = int(r["home_goals"]), int(r["away_goals"])
-        for a, b, gf, ga in ((r["home"], r["away"], hg, ag),
-                             (r["away"], r["home"], ag, hg)):
+
+    def _add(datestr: str, home_t: str, away_t: str, hg: int, ag: int) -> None:
+        key_dedup = (datestr[:10], home_t, away_t)
+        if key_dedup in seen:
+            return
+        seen.add(key_dedup)
+        for a, b, gf, ga, at_home in (
+            (home_t, away_t, hg, ag, True),
+            (away_t, home_t, ag, hg, False),
+        ):
             w = 1 if gf > ga else 0
             d = 1 if gf == ga else 0
             idx.setdefault(f"{a} vs {b}", []).append(
-                {"date": r["date"], "w": w, "d": d})
+                {"date": datestr[:10], "w": w, "d": d, "at_home": at_home}
+            )
+
+    for _, r in fin.iterrows():
+        _add(str(r["date"]), r["home"], r["away"], int(r["home_goals"]), int(r["away_goals"]))
+
+    euro_path = fixtures_path.parent / "european_fixtures.jsonl"
+    if euro_path.exists():
+        for line in euro_path.read_text().splitlines():
+            try:
+                fx = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if fx.get("status") != "finished" or fx.get("home_goals") is None or fx.get("away_goals") is None:
+                continue
+            if fx.get("home") in league_teams and fx.get("away") in league_teams:
+                _add(str(fx["date"]), fx["home"], fx["away"],
+                     int(fx["home_goals"]), int(fx["away_goals"]))
+
+    for v in idx.values():
+        v.sort(key=lambda x: x["date"])
     return idx
+
+
+def h2h_metrics_before(h2h_idx: dict[str, list[dict]], home: str, away: str,
+                       datestr: str) -> dict[str, float]:
+    """Multi-horizon leakage-free H2H stats strictly before datestr."""
+    prior = [m for m in h2h_idx.get(f"{home} vs {away}", []) if m["date"] < datestr]
+    if not prior:
+        return {"h2h_edge": 0.5, "h2h_recent_edge": 0.5, "h2h_venue_edge": 0.5, "h2h_meetings": 0.0}
+    tot = len(prior)
+    edge = sum(m["w"] + 0.5 * m["d"] for m in prior) / tot
+    last5 = prior[-5:]
+    recent_edge = sum(m["w"] + 0.5 * m["d"] for m in last5) / len(last5)
+    at_venue = [m for m in prior if m["at_home"]]
+    venue_edge = (sum(m["w"] + 0.5 * m["d"] for m in at_venue) / len(at_venue)) if at_venue else edge
+    return {
+        "h2h_edge": float(edge),
+        "h2h_recent_edge": float(recent_edge),
+        "h2h_venue_edge": float(venue_edge),
+        "h2h_meetings": float(min(tot, 20)),
+    }
 
 
 def h2h_edge_before(h2h_idx: dict[str, list[dict]], home: str, away: str,
                     datestr: str) -> float:
     """H2H edge from meetings strictly before datestr. 0.5 if none."""
-    w = d = tot = 0
-    for m in h2h_idx.get(f"{home} vs {away}", []):
-        if m["date"] < datestr:
-            w += m["w"]
-            d += m["d"]
-            tot += 1
-    return (w + 0.5 * d) / tot if tot else 0.5
+    return h2h_metrics_before(h2h_idx, home, away, datestr)["h2h_edge"]
 
 
 def compute_rest_days(
@@ -435,11 +572,14 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
 
     h2h_idx = load_h2h_dated(league)
     euro = load_european()
+    euro_cal = load_european_calendar() if mode == "predict" else euro
+    squad_hist = load_squad_match_history(league)
     injury_drags = load_injury_drags(league)
     odds_map = load_devigged_odds(league)
 
     histories: dict[str, TeamHistory] = {}
     last_date: dict[str, str] = {}
+    all_dates: dict[str, list[str]] = {}
     elo_ratings: dict[str, float] = {}
     rows: list[dict] = []
 
@@ -475,28 +615,40 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
         for prefix, feats in (("h_", hf), ("a_", af)):
             for k, v in feats.items():
                 row[f"{prefix}{k}"] = v
-        row["h2h_edge"] = h2h_edge_before(h2h_idx, home, away, datestr)
+        for prefix, team, side_lbl in (("h_", home, "home"), ("a_", away, "away")):
+            sq = _squad_features_before(squad_hist.get(team, []), datestr)
+            row[f"{prefix}squad_top3_ga_l5"] = sq.get("squad_top3_ga_l5", np.nan)
+            row[f"ctx_gk_save_{side_lbl}"] = sq.get("gk_save_pct_l5", np.nan)
+        row.update(h2h_metrics_before(h2h_idx, home, away, datestr))
         hc, ac = CITY_COORDS.get(home), CITY_COORDS.get(away)
         row["h_travel_km"] = 0.0
         row["a_travel_km"] = haversine_km(ac, hc) if hc and ac else 0.0
+        dt_cur = date.fromisoformat(datestr)
+        cut_14d = (dt_cur - timedelta(days=14)).isoformat()
+        for prefix, team, side_lbl in (("h_", home, "home"), ("a_", away, "away")):
+            row[f"{prefix}rest_days"] = compute_rest_days(team, datestr, last_date, euro_cal)
+            dom_14 = sum(1 for d in all_dates.get(team, []) if cut_14d <= d < datestr)
+            eur_14 = sum(1 for e in euro_cal.get(team, []) if cut_14d <= e["date"] < datestr)
+            row[f"ctx_games14_{side_lbl}"] = float(dom_14 + eur_14)
+        row["rest_diff"] = float(row["h_rest_days"] - row["a_rest_days"])
         for prefix, team in (("h_", home), ("a_", away)):
-            row[f"{prefix}rest_days"] = compute_rest_days(team, datestr, last_date, euro)
-        for prefix, team in (("h_", home), ("a_", away)):
-            played = [e for e in euro.get(team, []) if str(e.get("date", ""))[:10] < datestr]
-            if played:
-                last = played[-1]
-                gap = (date.fromisoformat(datestr)
-                       - date.fromisoformat(str(last["date"])[:10])).days
+            cal_played = [e for e in euro_cal.get(team, []) if str(e.get("date", ""))[:10] < datestr]
+            if cal_played:
+                last_cal = cal_played[-1]
+                gap = (dt_cur - date.fromisoformat(str(last_cal["date"])[:10])).days
                 row[f"{prefix}euro_days_since"] = gap
                 row[f"{prefix}euro_midweek"] = 1 if gap <= 4 else 0
-                season_euro = [e for e in played
-                                if str(e.get("date", ""))[:10] >= f"{row['season']}-07-01"]
+            else:
+                row[f"{prefix}euro_days_since"] = 999
+                row[f"{prefix}euro_midweek"] = 0
+            played_fin = [e for e in euro.get(team, []) if str(e.get("date", ""))[:10] < datestr]
+            season_euro = [e for e in played_fin
+                           if str(e.get("date", ""))[:10] >= f"{row['season']}-07-01"]
+            if season_euro:
                 row[f"{prefix}euro_ppg"] = (
                     sum(e["pts"] for e in season_euro) / len(season_euro))
                 row[f"{prefix}euro_gd"] = sum(e["gf"] - e["ga"] for e in season_euro)
             else:
-                row[f"{prefix}euro_days_since"] = 999
-                row[f"{prefix}euro_midweek"] = 0
                 row[f"{prefix}euro_ppg"] = 1.0
                 row[f"{prefix}euro_gd"] = 0
 
@@ -557,6 +709,8 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
                 rows.append(feature_row(fx, home, away, datestr))
                 last_date[home] = datestr
                 last_date[away] = datestr
+                all_dates.setdefault(home, []).append(datestr)
+                all_dates.setdefault(away, []).append(datestr)
             continue
         if mode == "train":
             rows.append(feature_row(fx, home, away, datestr))
@@ -570,6 +724,8 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
         elo_ratings[home], elo_ratings[away] = rh, ra
         last_date[home] = datestr
         last_date[away] = datestr
+        all_dates.setdefault(home, []).append(datestr)
+        all_dates.setdefault(away, []).append(datestr)
 
     feats_df = pd.DataFrame(rows)
     # Neutral imputation for teams with no history yet (early rows):
@@ -586,11 +742,16 @@ def build_features(league: str, mode: str = "train") -> tuple[pd.DataFrame, dict
     for col in feature_columns(feats_df):
         if feats_df[col].isna().any():
             default = NEUTRAL_DEFAULTS.get(col)
-            if default is None:
+            if col.startswith(("h_squad_", "a_squad_")) and mode == "train":
+                # Fill from expanding mean forward once lineup history begins; keep prior rows at neutral default (no lookahead bfill).
+                feats_df[col] = feats_df[col].fillna(
+                    feats_df[col].expanding().mean()
+                ).fillna(default if default is not None else 0.0)
+            elif default is None:
                 if mode == "train":
                     feats_df[col] = feats_df[col].fillna(
                         feats_df[col].expanding().mean()
-                    ).bfill().fillna(0.0)
+                    ).fillna(0.0)
                 else:
                     base_k = col[2:] if col.startswith(("h_", "a_")) else col
                     vals = [float(hf[base_k]) for hf in hist_feats

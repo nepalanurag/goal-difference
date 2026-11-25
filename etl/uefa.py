@@ -10,20 +10,20 @@ ESPN name (they simply never match a league team in load_european).
 """
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
 import gzip
 import json
 import urllib.request
 from datetime import date, timedelta
 
 from .logging_setup import get_logger
-from .team_names import canonicalize_espn
+from .team_names import TOP5_TEAMS, canonicalize_espn
 
 log = get_logger(__name__)
 
 ESPN_SLUGS = {
     "UCL": "uefa.champions",
     "UEL": "uefa.europa",
-    "UECL": "uefa.europa.conf",
 }
 
 # Domestic league slugs for real fixture data (replaces schedule reconstruction).
@@ -104,31 +104,38 @@ def _months_between(start_date: str, end_date: str) -> list[str]:
     return months
 
 
-def fetch_espn_uefa(start_date: str, end_date: str) -> list[dict]:
-    """Fetch UEFA fixtures for [start_date, end_date] via batch monthly queries.
+def fetch_espn_uefa(start_date: str, end_date: str, top5_only: bool = True) -> list[dict]:
+    """Fetch UCL and UEL fixtures for [start_date, end_date] via batch monthly queries.
 
-    Dates are YYYY-MM-DD strings. Returns one dict per fixture with keys:
-    fixture_id ("espn-<event id>"), date, competition ("UCL"/"UEL"/"UECL"),
-    home, away (canonical team names), home_goals, away_goals (int or None),
-    status ("finished"/"scheduled"). HTTP failures log a warning and the
-    competition is skipped.
+    When top5_only is True (default), keeps only matches involving at least one
+    team from Europe's top-5 domestic leagues.
     """
     rows: list[dict] = []
     seen: set[str] = set()
     months = _months_between(start_date, end_date)
-    for ym in months:
-        for comp, slug in ESPN_SLUGS.items():
-            data = _get_json(f"{_BASE}/{slug}/scoreboard?dates={ym}&limit=100")
-            if not data:
+    queries = [(ym, comp, slug) for ym in months for comp, slug in ESPN_SLUGS.items()]
+
+    def _fetch_one(q: tuple[str, str, str]) -> tuple[str, dict | None]:
+        ym, comp, slug = q
+        return comp, _get_json(f"{_BASE}/{slug}/scoreboard?dates={ym}&limit=100")
+
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        results = list(pool.map(_fetch_one, queries))
+
+    for comp, data in results:
+        if not data:
+            continue
+        for event in data.get("events", []):
+            row = _parse_event(event, comp)
+            if not (row and row["date"] and start_date <= row["date"] <= end_date):
                 continue
-            for event in data.get("events", []):
-                row = _parse_event(event, comp)
-                if (row and row["date"] and start_date <= row["date"] <= end_date
-                        and row["fixture_id"] not in seen):
-                    seen.add(row["fixture_id"])
-                    rows.append(row)
+            if top5_only and row["home"] not in TOP5_TEAMS and row["away"] not in TOP5_TEAMS:
+                continue
+            if row["fixture_id"] not in seen:
+                seen.add(row["fixture_id"])
+                rows.append(row)
     rows.sort(key=lambda r: r["date"])
-    log.info("espn_uefa_fetched", start=start_date, end=end_date, n=len(rows))
+    log.info("espn_uefa_fetched", start=start_date, end=end_date, top5_only=top5_only, n=len(rows))
     return rows
 
 

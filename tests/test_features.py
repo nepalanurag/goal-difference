@@ -300,8 +300,37 @@ def test_load_devigged_odds_uses_canonical_csv_aliases(tmp_path, monkeypatch):
         "16/08/2024,Ipswich,Chelsea,3.5,3.6,2.0,3.4,3.5,2.1\n"
     )
     (tmp_path / "csv_pl_2024.csv").write_text(csv_content)
+    # Pre-2019 archive CSV without closing B365C columns
+    csv_old = (
+        "Date,HomeTeam,AwayTeam,B365H,B365D,B365A\n"
+        "10/08/2015,Arsenal,Chelsea,2.1,3.4,3.5\n"
+    )
+    (tmp_path / "csv_pl_2015.csv").write_text(csv_old)
     monkeypatch.setattr(cfg.settings, "raw_dir", tmp_path)
     odds = features.load_devigged_odds("pl")
     assert ("Ipswich Town", "Chelsea", "2024-08-16") in odds
+    assert ("Arsenal", "Chelsea", "2015-08-10") in odds
+
+
+def test_h2h_metrics_before_and_squad_features_no_leakage():
+    idx = {
+        "Arsenal vs Chelsea": [
+            {"date": "2020-01-01", "w": 1, "d": 0, "at_home": True},
+            {"date": "2021-01-01", "w": 0, "d": 0, "at_home": False},
+            {"date": "2026-01-01", "w": 0, "d": 1, "at_home": True},
+        ]
+    }
+    m = features.h2h_metrics_before(idx, "Arsenal", "Chelsea", "2025-01-01")
+    assert m["h2h_meetings"] == 2.0
+    assert m["h2h_edge"] == 0.5
+    assert m["h2h_venue_edge"] == 1.0  # won only prior home meeting
+
+    hist = [
+        {"date": "2026-09-01", "espn_id": "1", "player_ga": {"P1": 2, "P2": 1}, "saves": 3, "shots_faced": 4},
+        {"date": "2026-09-10", "espn_id": "2", "player_ga": {"P1": 5}, "saves": 1, "shots_faced": 5},
+    ]
+    sq = features._squad_features_before(hist, "2026-09-10")
+    assert sq["squad_top3_ga_l5"] == 3.0  # must exclude Sep 10 match!
+    assert abs(sq["gk_save_pct_l5"] - 0.75) < 1e-9
 
 

@@ -1,8 +1,1744 @@
 {
  "league": "laliga",
- "source": "LaLiga apim public-service API (unofficial)",
+ "source": "SportsGambler + Transfermarkt",
  "season_label": "2026/27",
- "fetched_at": "2026-11-24T23:58:44.884605+00:00",
- "availability": "no current-season availability data published by the league backend",
- "teams": {}
+ "fetched_at": "2026-11-25T08:46:48.776154+00:00",
+ "notes": "Multi-source player availability combining SportsGambler (injured, suspended, doubtful), Transfermarkt (€M valuation and return dates), and FPL for Premier League.",
+ "teams": {
+  "Alaves": {
+   "out": [
+    {
+     "player": "Mikel Rodriguez",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 3,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Cruciate ligame",
+     "expected_return": "2027-04-04",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 0.7
+    },
+    {
+     "player": "Facundo Garces",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Cruciate ligame",
+     "expected_return": "2027-01-05",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Hugo Novoa",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 4,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Hamstring",
+     "news": "Hamstring",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 0,
+   "drag_att": 0.0258,
+   "drag_def": 0.0139
+  },
+  "Ath Bilbao": {
+   "out": [
+    {
+     "player": "Yuri Berchiche",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 10,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Yellow cards",
+     "news": "Yellow cards",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Gorka Guruzeta",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 5,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Cruciate ligame",
+     "expected_return": "2027-06-19",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 5.0
+    },
+    {
+     "player": "Maroan Sannadi",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 7,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Muscle injury",
+     "news": "Muscle",
+     "expected_return": "2026-12-12",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 3.0
+    },
+    {
+     "player": "Unai Egiluz",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Cruciate ligament tear",
+     "expected_return": "2027-03-06",
+     "market_value_m": 0.4,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    },
+    {
+     "player": "Unai Eguiluz",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee",
+     "news": "Knee",
+     "expected_return": "2027-01-16",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Daniel Vivian",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 3,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Thigh",
+     "news": "Thigh",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 1,
+   "drag_att": 0.0583,
+   "drag_def": 0.093
+  },
+  "Ath Madrid": {
+   "out": [
+    {
+     "player": "Robin Le Normand",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 8,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Yellow cards",
+     "news": "Yellow cards",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Ademola Lookman",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 11,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Knee injury",
+     "news": "Calf",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 40.0
+    },
+    {
+     "player": "Marc Pubill",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 10,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Cristian Romero",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 6,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Thomas Lemar",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 9,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Hamstring",
+     "news": "Hamstring",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 2,
+   "drag_att": 0.0552,
+   "drag_def": 0.1235
+  },
+  "Barcelona": {
+   "out": [
+    {
+     "player": "Rodri",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 10,
+     "goals": 1,
+     "assists": 1,
+     "reason": "Hamstring injury",
+     "news": "Hamstring",
+     "expected_return": "2026-11-29",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 60.0
+    },
+    {
+     "player": "Xavi Espart",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 8,
+     "goals": 1,
+     "assists": 2,
+     "reason": "Injury to the ankle",
+     "news": "Injury to the ankle",
+     "expected_return": "2026-12-12",
+     "market_value_m": 25.0,
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "Transfermarkt"
+     ]
+    },
+    {
+     "player": "Fermin Lopez",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "MID",
+     "matches": 12,
+     "goals": 8,
+     "assists": 5,
+     "reason": "Red card (direct)",
+     "news": "Red card (direct)",
+     "expected_return": "2026-12-02",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Roony Bardghji",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Cruciate ligame",
+     "expected_return": "2027-06-12",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 8.0
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Lamine Yamal",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 13,
+     "goals": 10,
+     "assists": 9,
+     "reason": "Ankle problems",
+     "news": "Ankle",
+     "expected_return": "2026-11-29",
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 220.0
+    },
+    {
+     "player": "Andreas Christensen",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 7,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Muscle",
+     "news": "Muscle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 4,
+   "drag_att": 0.2433,
+   "drag_def": 0.0887
+  },
+  "Betis": {
+   "out": [
+    {
+     "player": "Facundo Bernal",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "MID",
+     "matches": 8,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Red card (direct)",
+     "news": "Red card (direct)",
+     "expected_return": "2026-12-20",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Dani Ceballos",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 8,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Hamstring",
+     "news": "Hamstring",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Giovani Lo Celso",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 3,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Knee",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 0,
+   "drag_att": 0.0772,
+   "drag_def": 0.0
+  },
+  "Celta": {
+   "out": [
+    {
+     "player": "Yoel Lago",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "MID",
+     "matches": 12,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Yellow cards",
+     "news": "Yellow cards",
+     "expected_return": "2026-12-05",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Borja Iglesias",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 3,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Calf",
+     "news": "Calf",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Carl Starfelt",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 3,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Hamstring",
+     "news": "Hamstring",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Miguel Roman",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 7,
+     "goals": 1,
+     "assists": 2,
+     "reason": "Knee",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 1,
+   "drag_att": 0.1176,
+   "drag_def": 0.0129
+  },
+  "Elche": {
+   "out": [
+    {
+     "player": "Adam Boayar",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Muscle",
+     "news": "Muscle",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Marc Aguado",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 6,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Ankle",
+     "news": "Ankle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Ali Houary",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 4,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Ankle",
+     "news": "Ankle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Ruben Sanchez",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 7,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Groin",
+     "news": "Groin",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Yago Santiago",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 1,
+   "drag_att": 0.0297,
+   "drag_def": 0.026
+  },
+  "Espanyol": {
+   "out": [
+    {
+     "player": "Clemens Riedel",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 9,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Yellow cards",
+     "news": "Yellow cards",
+     "expected_return": "2026-12-04",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Kike Garcia",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Muscle injury",
+     "news": "Hamstring",
+     "expected_return": "2027-01-15",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 0.5
+    },
+    {
+     "player": "Pol Lozano",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "MID",
+     "matches": 9,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Yellow cards",
+     "news": "Yellow cards",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Edu Exposito",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 12,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": "2026-11-30",
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Alex Calatrava",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 11,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Knee",
+     "expected_return": "2027-06-30",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 5.0
+    },
+    {
+     "player": "U. Gonzalez de",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 9,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 2,
+   "drag_att": 0.1404,
+   "drag_def": 0.0743
+  },
+  "Getafe": {
+   "out": [
+    {
+     "player": "Djene",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 12,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Red card (direct)",
+     "news": "Red card (direct)",
+     "expected_return": "2026-12-06",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Martin Satriano",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "FWD",
+     "matches": 13,
+     "goals": 3,
+     "assists": 2,
+     "reason": "Yellow cards",
+     "news": "Yellow cards",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Nemanja Gudelj",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "MID",
+     "matches": 10,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Yellow cards",
+     "news": "Yellow cards",
+     "expected_return": "2026-11-30",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Christantus Uche",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee injury",
+     "news": "Knee",
+     "expected_return": "2027-06-12",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 9.0
+    },
+    {
+     "player": "Juanmi",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Muscle",
+     "news": "Muscle",
+     "expected_return": "2026-11-30",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Sebastian Boselli",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 9,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Leg injury",
+     "news": "Lower leg",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 1.5
+    }
+   ],
+   "key_absences": 3,
+   "drag_att": 0.2065,
+   "drag_def": 0.1273
+  },
+  "La Coruna": {
+   "out": [],
+   "doubtful": [
+    {
+     "player": "Bright Ede",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 6,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Hamstring",
+     "news": "Hamstring",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Zakaria Eddahchouri",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 4,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Wrist",
+     "news": "Wrist",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 0,
+   "drag_att": 0.0186,
+   "drag_def": 0.0238
+  },
+  "Levante": {
+   "out": [
+    {
+     "player": "Manu Sánchez",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 11,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Cruciate ligament tear",
+     "expected_return": "2027-05-31",
+     "market_value_m": 6.0,
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "Transfermarkt"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Jeremy Toljan",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 12,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 1,
+   "drag_att": 0.0,
+   "drag_def": 0.1254
+  },
+  "Malaga": {
+   "out": [
+    {
+     "player": "Julen Lobete",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 1,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Knee",
+     "expected_return": "2027-06-30",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 1.2
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Aaron Ochoa",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Meniscus tear",
+     "news": "Other",
+     "expected_return": "2027-01-01",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 0.8
+    },
+    {
+     "player": "Fernando Calero",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 4,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Muscle",
+     "news": "Muscle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Rafita",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 12,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Hamstring",
+     "news": "Hamstring",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 0,
+   "drag_att": 0.0,
+   "drag_def": 0.0641
+  },
+  "Osasuna": {
+   "out": [
+    {
+     "player": "Alejandro Catena",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 12,
+     "goals": 1,
+     "assists": 1,
+     "reason": "2nd yellow (Red)",
+     "news": "2nd yellow (Red)",
+     "expected_return": "2026-12-06",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Iker Munoz",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "MID",
+     "matches": 11,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Yellow cards",
+     "news": "Yellow cards",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Abel Bretones",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 12,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Calf",
+     "news": "Calf",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Rockson Yeboah",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 3,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 3,
+   "drag_att": 0.0859,
+   "drag_def": 0.1136
+  },
+  "Rayo Vallecano": {
+   "out": [
+    {
+     "player": "Unai Lopez",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "MID",
+     "matches": 12,
+     "goals": 1,
+     "assists": 3,
+     "reason": "Yellow cards",
+     "news": "Yellow cards",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Augusto Batalla",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "GK",
+     "matches": 2,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Lower leg fracture",
+     "news": "Lower leg",
+     "expected_return": "2027-01-09",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 6.0
+    },
+    {
+     "player": "Raúl de Tomás",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Fitness",
+     "news": "Fitness",
+     "expected_return": null,
+     "market_value_m": 0.4,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "Transfermarkt"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Luiz Felipe",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Other",
+     "expected_return": "2027-06-30",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 2.0
+    },
+    {
+     "player": "Oscar Valentin",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 9,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 1,
+   "drag_att": 0.1323,
+   "drag_def": 0.0
+  },
+  "Real Madrid": {
+   "out": [
+    {
+     "player": "Rodrygo",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Cruciate ligame",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 45.0
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Endrick",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 5,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Muscle injury",
+     "news": "Groin",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 40.0
+    },
+    {
+     "player": "Raul Asencio",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "fatigue fracture",
+     "news": "Lower leg",
+     "expected_return": "2027-01-01",
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 18.0
+    },
+    {
+     "player": "Ferland Mendy",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Hip",
+     "news": "Hip",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 3,
+   "drag_att": 0.0952,
+   "drag_def": 0.0375
+  },
+  "Real Sociedad": {
+   "out": [
+    {
+     "player": "Alvaro Odriozola",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Cruciate ligame",
+     "expected_return": "2026-11-29",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 0.8
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Ander Barrenetxea",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 11,
+     "goals": 2,
+     "assists": 2,
+     "reason": "Torn thigh muscle",
+     "news": "Hamstring",
+     "expected_return": "2027-04-01",
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 18.0
+    },
+    {
+     "player": "Jon Aramburu",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 11,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Hip",
+     "news": "Hip",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Yangel Herrera",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 9,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Foot",
+     "news": "Foot",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 2,
+   "drag_att": 0.0747,
+   "drag_def": 0.0449
+  },
+  "Santander": {
+   "out": [],
+   "doubtful": [
+    {
+     "player": "Alvaro Mantilla",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 10,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Cruciate ligament tear",
+     "news": "Knee",
+     "expected_return": "2027-06-30",
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 1.2
+    },
+    {
+     "player": "Andres Martin",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 6,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Muscle fiber tear",
+     "news": "Muscle",
+     "expected_return": "2026-11-30",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 8.0
+    },
+    {
+     "player": "Maguette Gueye",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 7,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 1,
+   "drag_att": 0.0446,
+   "drag_def": 0.0382
+  },
+  "Sevilla": {
+   "out": [
+    {
+     "player": "Isaac Romero",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "FWD",
+     "matches": 11,
+     "goals": 3,
+     "assists": 2,
+     "reason": "Red card (direct)",
+     "news": "Red card (direct)",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Jose Angel Carmona",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 5,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Tibia and fibula fracture",
+     "news": "Other",
+     "expected_return": "2027-06-30",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 10.0
+    },
+    {
+     "player": "Miguel Angel Sierra",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 8,
+     "goals": 2,
+     "assists": 0,
+     "reason": "Acromioclavicular joint dislocation",
+     "news": "Other",
+     "expected_return": "2027-01-01",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 7.0
+    },
+    {
+     "player": "Alfon Gonzalez",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 5,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Knee",
+     "expected_return": "2027-06-30",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 3.0
+    },
+    {
+     "player": "Marcao",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Muscle",
+     "news": "Muscle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 0,
+   "drag_att": 0.1645,
+   "drag_def": 0.0188
+  },
+  "Valencia": {
+   "out": [
+    {
+     "player": "Jose Gaya",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 10,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Red card (direct)",
+     "news": "Red card (direct)",
+     "expected_return": "2026-11-29",
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Sergi Canos",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Cruciate ligame",
+     "expected_return": "2027-01-01",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 0.6
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Arnaut Danjuma",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 12,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Thigh",
+     "news": "Thigh",
+     "expected_return": "2026-11-29",
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Diego Lopez",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Cruciate ligament tear",
+     "news": "Knee",
+     "expected_return": "2026-11-29",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 9.0
+    },
+    {
+     "player": "Jesus Vazquez",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 10,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Muscle",
+     "news": "Muscle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 2,
+   "drag_att": 0.0426,
+   "drag_def": 0.1179
+  },
+  "Villarreal": {
+   "out": [
+    {
+     "player": "Pau Navarro",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 7,
+     "goals": 0,
+     "assists": 0,
+     "reason": "2nd yellow (Red)",
+     "news": "2nd yellow (Red)",
+     "expected_return": "2026-12-05",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Nathan Saliba",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 7,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Ankle injury",
+     "news": "Ankle",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 15.0
+    },
+    {
+     "player": "Alassane Diatta",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Hamstring",
+     "news": "Hamstring",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Gerard Moreno",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 10,
+     "goals": 2,
+     "assists": 0,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Ilias Akhomach",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 9,
+     "goals": 0,
+     "assists": 2,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Juan Foyth",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 6,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
+   "key_absences": 0,
+   "drag_att": 0.0949,
+   "drag_def": 0.0896
+  }
+ }
 }

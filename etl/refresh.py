@@ -37,10 +37,10 @@ WALKFORWARD_REFRESH_DAYS = 7
 PIPELINE = [
     (["extract"], "extract"),
     (["validate"], "validate"),
-    (["features"], "features"),
-    (["h2h"], "h2h"),
-    (["players", "--parts", "a", "c"], "players"),
+    (["players", "--parts", "a", "c", "d", "e"], "players"),
     (["team_news"], "team_news"),
+    (["h2h"], "h2h"),
+    (["features"], "features"),
     (["fit"], "fit"),
     (["simulate"], "simulate"),
     (["ai_forecaster"], "ai_forecaster"),  # appends to ledgers + scores + memo

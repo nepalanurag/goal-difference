@@ -95,3 +95,18 @@ def test_main_cli(tmp_path, monkeypatch):
     assert h2h.main(["--leagues", "pl"]) == 0
     assert (tmp_path / "h2h_pl.json").exists()
     assert h2h.main(["--leagues", "nope"]) == 1
+
+
+def test_h2h_merges_european_same_league_meetings(tmp_path):
+    fx = tmp_path / "fixtures_pl.csv"
+    _frame().to_csv(fx, index=False)
+    eu = tmp_path / "european_fixtures.jsonl"
+    eu.write_text(json.dumps({
+        "fixture_id": "espn-ucl-1", "date": "2025-12-25", "competition": "UCL",
+        "home": A, "away": B, "home_goals": 3, "away_goals": 1, "status": "finished",
+    }) + "\n")
+    data = h2h.build_h2h("pl", fixtures_path=fx, out_path=tmp_path / "h2h_pl.json", european_path=eu)
+    rec = data[f"{A} vs {B}"]
+    assert rec["alltime"] == {"w": 3, "d": 3, "l": 1}
+    assert rec["last5"][0]["competition"] == "UCL"
+    assert "at_home" in rec

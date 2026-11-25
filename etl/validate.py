@@ -46,11 +46,17 @@ log = get_logger(__name__)
 
 # Only these seasons are complete; 2025 is CSV-only history-in-progress and
 # 2026 is the live season, so neither gets the finished-count check.
-COMPLETED_SEASONS = ("2023", "2024")
-SEASONS = ("2023", "2024", "2025", "2026")
+COMPLETED_SEASONS = tuple(str(y) for y in range(2015, 2025))
+SEASONS = tuple(str(y) for y in range(2015, 2027))
 STATUSES = ("finished", "scheduled")
 PROVENANCES = ("api_football", "csv_download", "csv_cached", "fpl_api",
                "schedule_reconstructed", "espn")
+
+# Ligue 1 fielded 20 teams (380 matches) before 2023/24 and stopped early at 279 in 2019/20.
+_EXPECTED_FINISH_OVERRIDES: dict[tuple[str, str], int] = {
+    **{("ligue1", str(y)): 380 for y in range(2015, 2023) if y != 2019},
+    ("ligue1", "2019"): 279,
+}
 
 schema = DataFrameSchema(
     {
@@ -74,7 +80,7 @@ schema = DataFrameSchema(
 
 def _check_finished_count(df: pd.DataFrame, league: str):
     n_teams = settings.leagues[league]["n_teams"]
-    expected = n_teams * (n_teams - 1)
+    default_expected = n_teams * (n_teams - 1)
     offenders = pd.Index([])
     details = []
     ok = True
@@ -83,6 +89,7 @@ def _check_finished_count(df: pd.DataFrame, league: str):
         if block.empty:
             details.append(f"{season}: absent, skipped")
             continue
+        expected = _EXPECTED_FINISH_OVERRIDES.get((league, season), default_expected)
         n = int((block["status"] == "finished").sum())
         if n != expected:
             ok = False

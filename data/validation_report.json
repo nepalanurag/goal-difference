@@ -8,7 +8,7 @@
       },
       "finished_count": {
         "ok": true,
-        "detail": "2023: 380 finished, ok; 2024: 380 finished, ok"
+        "detail": "2015: 380 finished, ok; 2016: 380 finished, ok; 2017: 380 finished, ok; 2018: 380 finished, ok; 2019: 380 finished, ok; 2020: 380 finished, ok; 2021: 380 finished, ok; 2022: 380 finished, ok; 2023: 380 finished, ok; 2024: 380 finished, ok"
       },
       "duplicate_ids": {
         "ok": true,
@@ -28,15 +28,15 @@
       },
       "freshness": {
         "ok": true,
-        "detail": "nearest live fixture 1d ago of today, ok"
+        "detail": "nearest live fixture 2d ago of today, ok"
       },
       "row_count_band": {
         "ok": true,
-        "detail": "1520 rows vs reference 1520 (band 1216-1824)"
+        "detail": "4560 rows vs reference 4560 (band 3648-5472)"
       },
       "goal_distribution": {
         "ok": true,
-        "detail": "mean home_goals=1.61, mean away_goals=1.36 (allowed 0.5-3.0)"
+        "detail": "mean home_goals=1.55, mean away_goals=1.27 (allowed 0.5-3.0)"
       }
     },
     "quarantined": 0
@@ -50,7 +50,7 @@
       },
       "finished_count": {
         "ok": true,
-        "detail": "2023: 380 finished, ok; 2024: 380 finished, ok"
+        "detail": "2015: 380 finished, ok; 2016: 380 finished, ok; 2017: 380 finished, ok; 2018: 380 finished, ok; 2019: 380 finished, ok; 2020: 380 finished, ok; 2021: 380 finished, ok; 2022: 380 finished, ok; 2023: 380 finished, ok; 2024: 380 finished, ok"
       },
       "duplicate_ids": {
         "ok": true,
@@ -70,15 +70,15 @@
       },
       "freshness": {
         "ok": true,
-        "detail": "nearest live fixture 1d ago of today, ok"
+        "detail": "nearest live fixture 2d ago of today, ok"
       },
       "row_count_band": {
         "ok": true,
-        "detail": "1520 rows vs reference 1520 (band 1216-1824)"
+        "detail": "4560 rows vs reference 4560 (band 3648-5472)"
       },
       "goal_distribution": {
         "ok": true,
-        "detail": "mean home_goals=1.51, mean away_goals=1.16 (allowed 0.5-3.0)"
+        "detail": "mean home_goals=1.50, mean away_goals=1.14 (allowed 0.5-3.0)"
       }
     },
     "quarantined": 0
@@ -92,7 +92,7 @@
       },
       "finished_count": {
         "ok": true,
-        "detail": "2023: 306 finished, ok; 2024: 306 finished, ok"
+        "detail": "2015: 306 finished, ok; 2016: 306 finished, ok; 2017: 306 finished, ok; 2018: 306 finished, ok; 2019: 306 finished, ok; 2020: 306 finished, ok; 2021: 306 finished, ok; 2022: 306 finished, ok; 2023: 306 finished, ok; 2024: 306 finished, ok"
       },
       "duplicate_ids": {
         "ok": true,
@@ -112,15 +112,15 @@
       },
       "freshness": {
         "ok": true,
-        "detail": "nearest live fixture 2d ago of today, ok"
+        "detail": "nearest live fixture 2d ahead of today, ok"
       },
       "row_count_band": {
         "ok": true,
-        "detail": "1224 rows vs reference 1224 (band 979-1469)"
+        "detail": "3672 rows vs reference 3672 (band 2938-4406)"
       },
       "goal_distribution": {
         "ok": true,
-        "detail": "mean home_goals=1.77, mean away_goals=1.45 (allowed 0.5-3.0)"
+        "detail": "mean home_goals=1.72, mean away_goals=1.36 (allowed 0.5-3.0)"
       }
     },
     "quarantined": 0
@@ -134,49 +134,7 @@
       },
       "finished_count": {
         "ok": true,
-        "detail": "2023: 380 finished, ok; 2024: 380 finished, ok"
-      },
-      "duplicate_ids": {
-        "ok": true,
-        "detail": "0 duplicate fixture_id rows"
-      },
-      "goals_iff_finished": {
-        "ok": true,
-        "detail": "0 rows where goals do not match status"
-      },
-      "teams_in_set": {
-        "ok": true,
-        "detail": "0 rows with a team outside the canonical set"
-      },
-      "dates_non_decreasing": {
-        "ok": true,
-        "detail": "0 rows where the date steps backwards"
-      },
-      "freshness": {
-        "ok": true,
-        "detail": "nearest live fixture 1d ago of today, ok"
-      },
-      "row_count_band": {
-        "ok": true,
-        "detail": "1520 rows vs reference 1520 (band 1216-1824)"
-      },
-      "goal_distribution": {
-        "ok": true,
-        "detail": "mean home_goals=1.38, mean away_goals=1.21 (allowed 0.5-3.0)"
-      }
-    },
-    "quarantined": 0
-  },
-  "ligue1": {
-    "ok": true,
-    "checks": {
-      "schema": {
-        "ok": true,
-        "detail": "pandera schema passed"
-      },
-      "finished_count": {
-        "ok": true,
-        "detail": "2023: 306 finished, ok; 2024: 306 finished, ok"
+        "detail": "2015: 380 finished, ok; 2016: 380 finished, ok; 2017: 380 finished, ok; 2018: 380 finished, ok; 2019: 380 finished, ok; 2020: 380 finished, ok; 2021: 380 finished, ok; 2022: 380 finished, ok; 2023: 380 finished, ok; 2024: 380 finished, ok"
       },
       "duplicate_ids": {
         "ok": true,
@@ -200,11 +158,53 @@
       },
       "row_count_band": {
         "ok": true,
-        "detail": "1224 rows vs reference 1224 (band 979-1469)"
+        "detail": "4560 rows vs reference 4560 (band 3648-5472)"
       },
       "goal_distribution": {
         "ok": true,
-        "detail": "mean home_goals=1.55, mean away_goals=1.29 (allowed 0.5-3.0)"
+        "detail": "mean home_goals=1.49, mean away_goals=1.25 (allowed 0.5-3.0)"
+      }
+    },
+    "quarantined": 0
+  },
+  "ligue1": {
+    "ok": true,
+    "checks": {
+      "schema": {
+        "ok": true,
+        "detail": "pandera schema passed"
+      },
+      "finished_count": {
+        "ok": true,
+        "detail": "2015: 380 finished, ok; 2016: 380 finished, ok; 2017: 380 finished, ok; 2018: 380 finished, ok; 2019: 279 finished, ok; 2020: 380 finished, ok; 2021: 380 finished, ok; 2022: 380 finished, ok; 2023: 306 finished, ok; 2024: 306 finished, ok"
+      },
+      "duplicate_ids": {
+        "ok": true,
+        "detail": "0 duplicate fixture_id rows"
+      },
+      "goals_iff_finished": {
+        "ok": true,
+        "detail": "0 rows where goals do not match status"
+      },
+      "teams_in_set": {
+        "ok": true,
+        "detail": "0 rows with a team outside the canonical set"
+      },
+      "dates_non_decreasing": {
+        "ok": true,
+        "detail": "0 rows where the date steps backwards"
+      },
+      "freshness": {
+        "ok": true,
+        "detail": "nearest live fixture 2d ahead of today, ok"
+      },
+      "row_count_band": {
+        "ok": true,
+        "detail": "4163 rows vs reference 4163 (band 3330-4996)"
+      },
+      "goal_distribution": {
+        "ok": true,
+        "detail": "mean home_goals=1.51, mean away_goals=1.21 (allowed 0.5-3.0)"
       }
     },
     "quarantined": 0

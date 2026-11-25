@@ -1,540 +1,1222 @@
 {
  "league": "pl",
- "source": "FPL API (unofficial)",
+ "source": "FPL API + SportsGambler + Transfermarkt",
  "season_label": "2026/27",
- "fetched_at": "2026-11-24T23:58:44.883628+00:00",
- "notes": "Injury and suspension flags come from FPL status, chance-of-playing and news fields. key_absences counts flagged players who are in their team's top-11 by minutes this season. drag_att and drag_def estimate Value-Over-Replacement attacking and defensive drop-offs.",
+ "fetched_at": "2026-11-25T08:46:47.150700+00:00",
+ "notes": "Multi-source player availability combining SportsGambler (injured, suspended, doubtful), Transfermarkt (€M valuation and return dates), and FPL for Premier League.",
  "teams": {
   "Arsenal": {
    "out": [
     {
      "player": "Bukayo Saka",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Thigh injury - Expected back 20 Dec",
+     "reason": "Thigh injury - Expected back 20 Dec",
      "regular_starter": true,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 596,
+     "goals": 3,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-20",
+     "matches": 7,
+     "market_value_m": 110.0
     },
     {
      "player": "Martín Zubimendi Ibáñez",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
+     "reason": "Hamstring injury - Unknown return date",
+     "regular_starter": true,
+     "position": "MID",
+     "minutes": 100,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-13",
+     "matches": 7,
+     "market_value_m": 65.0
     },
     {
      "player": "Max Dowman",
      "status": "a",
+     "kind": "suspended",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 100,
      "news": "",
+     "reason": "Red card (direct)",
      "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 19,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-29",
+     "matches": 2
     }
    ],
    "doubtful": [
     {
      "player": "David Raya Martín",
      "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": null,
      "chance_next_round": 50,
      "news": "Shoulder injury - 50% chance of playing",
+     "reason": "Shoulder injury - 50% chance of playing",
      "regular_starter": true,
-     "position": "GK"
+     "position": "GK",
+     "minutes": 969,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "matches": 11,
+     "market_value_m": 30.0,
+     "expected_return": "2026-12-04"
     }
    ],
-   "key_absences": 2,
-   "drag_att": 0.0786,
-   "drag_def": 0.0573
+   "key_absences": 3,
+   "drag_att": 0.0857,
+   "drag_def": 0.0618
   },
   "Aston Villa": {
    "out": [
     {
-     "player": "Matty Cash",
-     "status": "d",
-     "chance_this_round": 0,
-     "chance_next_round": 75,
-     "news": "Concussion - 75% chance of playing",
-     "regular_starter": true,
-     "position": "DEF"
-    },
-    {
      "player": "Amadou Onana",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
+     "reason": "Knee injury - Unknown return date",
+     "regular_starter": true,
+     "position": "MID",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-06-01",
+     "market_value_m": 40.0
     },
     {
      "player": "Matteo Ruggeri",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Expected back 2 Jan",
-     "regular_starter": false,
-     "position": "DEF"
+     "reason": "Hamstring injury - Expected back 2 Jan",
+     "regular_starter": true,
+     "position": "DEF",
+     "minutes": 158,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-02",
+     "matches": 4,
+     "market_value_m": 28.0
+    },
+    {
+     "player": "Matty Cash",
+     "status": "d",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 75,
+     "news": "Concussion - 75% chance of playing",
+     "reason": "Concussion - 75% chance of playing",
+     "regular_starter": true,
+     "position": "DEF",
+     "minutes": 656,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-11-28",
+     "matches": 8,
+     "market_value_m": 22.0
     }
    ],
    "doubtful": [],
-   "key_absences": 1,
-   "drag_att": 0.0,
-   "drag_def": 0.083
+   "key_absences": 3,
+   "drag_att": 0.084,
+   "drag_def": 0.1031
   },
   "Bournemouth": {
    "out": [
     {
-     "player": "Veljko Milosavljevic",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Thigh injury - Unknown return date",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
-     "player": "Julián Araujo Zúñiga",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Thigh injury - Unknown return date",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
      "player": "Alex Tóth",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Unknown return date",
+     "reason": "Hamstring injury - Unknown return date",
      "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 17,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-02-06",
+     "matches": 2,
+     "market_value_m": 12.0
     },
     {
      "player": "Juanlu Sánchez",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Ankle injury - Unknown return date",
+     "reason": "Ankle injury - Unknown return date",
      "regular_starter": false,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 18,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "matches": 1,
+     "market_value_m": 10.0
+    },
+    {
+     "player": "Julián Araujo Zúñiga",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Thigh injury - Unknown return date",
+     "reason": "Thigh injury - Unknown return date",
+     "regular_starter": false,
+     "position": "DEF",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-11-29",
+     "market_value_m": 6.0
+    },
+    {
+     "player": "Veljko Milosavljevic",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Thigh injury - Unknown return date",
+     "reason": "Thigh injury - Unknown return date",
+     "regular_starter": false,
+     "position": "DEF",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-29"
     }
    ],
    "doubtful": [],
    "key_absences": 0,
-   "drag_att": 0.0,
+   "drag_att": 0.0011,
    "drag_def": 0.0
   },
   "Brentford": {
    "out": [
     {
-     "player": "Nathan Collins",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Knee injury - Expected back 2 Dec",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
-     "player": "Rico Henry",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Hip injury - Unknown return date",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
-     "player": "Aaron Hickey",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Hamstring injury - Expected back 2 Dec",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
-     "player": "Antoni Milambo",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Knee injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
-     "player": "Josh Dasilva",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Hamstring injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
      "player": "Igor Thiago Nascimento Rodrigues",
      "status": "s",
+     "kind": "suspended",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Suspended until 5 Dec",
+     "reason": "Suspended until 5 Dec",
      "regular_starter": true,
-     "position": "FWD"
+     "position": "FWD",
+     "minutes": 824,
+     "goals": 2,
+     "assists": 3,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-12-05",
+     "matches": 10
     },
     {
      "player": "Kaye Furo",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Unspecified injury - Unknown return date",
+     "reason": "Unspecified injury - Unknown return date",
      "regular_starter": false,
-     "position": "FWD"
+     "position": "FWD",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "Transfermarkt"
+     ],
+     "market_value_m": 8.0,
+     "expected_return": "2026-11-27"
+    },
+    {
+     "player": "Aaron Hickey",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Expected back 2 Dec",
+     "reason": "Hamstring injury - Expected back 2 Dec",
+     "regular_starter": false,
+     "position": "DEF",
+     "minutes": 350,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "matches": 10
+    },
+    {
+     "player": "Antoni Milambo",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "reason": "Knee injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-28"
+    },
+    {
+     "player": "Josh Dasilva",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Unknown return date",
+     "reason": "Hamstring injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Nathan Collins",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Expected back 2 Dec",
+     "reason": "Knee injury - Expected back 2 Dec",
+     "regular_starter": false,
+     "position": "DEF",
+     "minutes": 241,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "matches": 4
+    },
+    {
+     "player": "Rico Henry",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hip injury - Unknown return date",
+     "reason": "Hip injury - Unknown return date",
+     "regular_starter": false,
+     "position": "DEF",
+     "minutes": 2,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-28",
+     "matches": 1
     }
    ],
    "doubtful": [
     {
      "player": "Fábio Freitas Gouveia Carvalho",
      "status": "a",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
+     "reason": "",
      "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 12,
+     "goals": 2,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
     }
    ],
    "key_absences": 1,
    "drag_att": 0.1136,
-   "drag_def": 0.0421
+   "drag_def": 0.0711
   },
   "Brighton": {
    "out": [
     {
-     "player": "João Pedro Loureiro da Costa",
-     "status": "s",
-     "chance_this_round": null,
-     "chance_next_round": 0,
-     "news": "Suspended until 2 Dec",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
-     "player": "Mitoma Kaoru",
-     "status": "i",
+     "player": "Costinha",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "DEF",
+     "matches": 10,
+     "goals": 0,
+     "assists": 0,
+     "reason": "2nd yellow (Red)",
+     "news": "2nd yellow (Red)",
+     "expected_return": "2026-12-02",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Hamstring injury - Expected back 2 Dec",
      "regular_starter": false,
-     "position": "MID"
-    },
-    {
-     "player": "Zadok Yohanna",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Unspecified injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
-     "player": "Stefanos Tzimas",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Knee injury - Unknown return date",
-     "regular_starter": false,
-     "position": "FWD"
+     "sources": [
+      "SportsGambler"
+     ]
     },
     {
      "player": "Evan Ferguson",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Ankle injury - Unknown return date",
+     "reason": "Ankle injury - Unknown return date",
      "regular_starter": false,
-     "position": "FWD"
+     "position": "FWD",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2027-01-16"
+    },
+    {
+     "player": "Femi Azeez",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Thigh",
+     "news": "Thigh",
+     "expected_return": "2026-11-29",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "João Pedro Loureiro da Costa",
+     "status": "s",
+     "kind": "suspended",
+     "bucket": "out",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Suspended until 2 Dec",
+     "reason": "Suspended until 2 Dec",
+     "regular_starter": false,
+     "position": "DEF",
+     "minutes": 442,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
+    },
+    {
+     "player": "Kaoru Mitoma",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Hamstring",
+     "news": "Hamstring",
+     "expected_return": "2026-12-05",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
     },
     {
      "player": "Malick Yalcouyé",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": null,
      "chance_next_round": 0,
      "news": "Unspecified injury - Unknown return date",
+     "reason": "Unspecified injury - Unknown return date",
      "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 322,
+     "goals": 2,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "matches": 10
+    },
+    {
+     "player": "Mitoma Kaoru",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Expected back 2 Dec",
+     "reason": "Hamstring injury - Expected back 2 Dec",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
+    },
+    {
+     "player": "Stefanos Tzimas",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "reason": "Knee injury - Unknown return date",
+     "regular_starter": false,
+     "position": "FWD",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-12-02"
+    },
+    {
+     "player": "Zadok Yohanna",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Unspecified injury - Unknown return date",
+     "reason": "Unspecified injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 12,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "matches": 1
     }
    ],
    "doubtful": [
     {
      "player": "Jaouen Hadjam",
      "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Unspecified injury - 75% chance of playing",
+     "reason": "Unspecified injury - 75% chance of playing",
      "regular_starter": false,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 37,
+     "goals": 1,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-29",
+     "matches": 3
+    },
+    {
+     "player": "Pascal Struijk",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 4,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Thigh",
+     "news": "Thigh",
+     "expected_return": "2026-11-29",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ],
+     "minutes": 154
     }
    ],
    "key_absences": 0,
    "drag_att": 0.0382,
-   "drag_def": 0.0485
+   "drag_def": 0.1403
   },
   "Chelsea": {
    "out": [
     {
-     "player": "Reece James",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Knee injury - Unknown return date",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
-     "player": "Jorrel Hato",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Back injury - Unknown return date",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
-     "player": "Jamie Bynoe-Gittens",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Ankle injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
      "player": "João Pedro Junqueira de Jesus",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Thigh injury - Unknown return date",
+     "reason": "Thigh injury - Unknown return date",
      "regular_starter": true,
-     "position": "FWD"
+     "position": "FWD",
+     "minutes": 521,
+     "goals": 5,
+     "assists": 3,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-05",
+     "matches": 6,
+     "market_value_m": 100.0
+    },
+    {
+     "player": "Reece James",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "reason": "Knee injury - Unknown return date",
+     "regular_starter": true,
+     "position": "DEF",
+     "minutes": 292,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-01-03",
+     "matches": 4,
+     "market_value_m": 60.0
     },
     {
      "player": "Maxence Lacroix",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Unknown return date",
+     "reason": "Hamstring injury - Unknown return date",
      "regular_starter": true,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 634,
+     "goals": 0,
+     "assists": 1,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-12-05",
+     "matches": 8
+    },
+    {
+     "player": "Jamie Bynoe-Gittens",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Ankle injury - Unknown return date",
+     "reason": "Ankle injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-12-05"
+    },
+    {
+     "player": "Jorrel Hato",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Back injury - Unknown return date",
+     "reason": "Back injury - Unknown return date",
+     "regular_starter": false,
+     "position": "DEF",
+     "minutes": 412,
+     "goals": 0,
+     "assists": 3,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-12-05",
+     "matches": 6
+    },
+    {
+     "player": "Mykhaylo Mudryk",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "FWD",
+     "matches": 1,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Ankle",
+     "news": "Ankle",
+     "expected_return": "2026-12-06",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
     }
    ],
    "doubtful": [
     {
      "player": "Moisés Caicedo Corozo",
      "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 100,
      "chance_next_round": 75,
      "news": "Back injury - 75% chance of playing",
+     "reason": "Back injury - 75% chance of playing",
      "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 461,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "matches": 7
     }
    ],
-   "key_absences": 2,
+   "key_absences": 3,
    "drag_att": 0.1253,
    "drag_def": 0.176
   },
   "Coventry City": {
    "out": [
     {
-     "player": "Oliver Dovin",
-     "status": "u",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "not included in squad.",
-     "regular_starter": false,
-     "position": "GK"
-    },
-    {
-     "player": "Luke Woolfenden",
+     "player": "Haji Wright",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Knee injury - Unknown return date",
+     "news": "Lack of match fitness - Unknown return date",
+     "reason": "Lack of match fitness - Unknown return date",
      "regular_starter": false,
-     "position": "DEF"
+     "position": "FWD",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-02",
+     "market_value_m": 16.0
     },
     {
      "player": "Aurèle Amenda",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Calf injury - Unknown return date",
+     "reason": "Calf injury - Unknown return date",
      "regular_starter": false,
-     "position": "DEF"
-    },
-    {
-     "player": "Josh Eccles",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Ankle injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
-     "player": "Haji Wright",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Lack of match fitness - Unknown return date",
-     "regular_starter": false,
-     "position": "FWD"
-    }
-   ],
-   "doubtful": [
-    {
-     "player": "Frank Onyeka",
-     "status": "a",
-     "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
-     "player": "Bobby Thomas",
-     "status": "a",
-     "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": true,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 360,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-19",
+     "matches": 4,
+     "market_value_m": 15.0
     },
     {
      "player": "Ephron Mason-Clark",
      "status": "d",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Knee injury - 75% chance of playing",
+     "reason": "Knee injury - 75% chance of playing",
      "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 326,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-28",
+     "matches": 7
     },
     {
-     "player": "Taiwo Awoniyi",
-     "status": "d",
-     "chance_this_round": 100,
-     "chance_next_round": 75,
-     "news": "Ankle injury - 75% chance of playing",
+     "player": "Josh Eccles",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Ankle injury - Unknown return date",
+     "reason": "Ankle injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-12-19"
+    },
+    {
+     "player": "Luke Woolfenden",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "reason": "Knee injury - Unknown return date",
+     "regular_starter": false,
+     "position": "DEF",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-28"
+    },
+    {
+     "player": "Oliver Dovin",
+     "status": "u",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "not included in squad.",
+     "reason": "not included in squad.",
+     "regular_starter": false,
+     "position": "GK",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
+    }
+   ],
+   "doubtful": [
+    {
+     "player": "Bobby Thomas",
+     "status": "a",
+     "kind": "doubtful",
+     "bucket": "doubtful",
+     "chance_this_round": 75,
+     "chance_next_round": 100,
+     "news": "",
+     "reason": "",
      "regular_starter": true,
-     "position": "FWD"
+     "position": "DEF",
+     "minutes": 766,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
     },
     {
      "player": "Caleb Yirenkyi",
      "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Unspecified injury - 75% chance of playing",
+     "reason": "Unspecified injury - 75% chance of playing",
      "regular_starter": true,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 647,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-28",
+     "matches": 10
+    },
+    {
+     "player": "Taiwo Awoniyi",
+     "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Ankle injury - 75% chance of playing",
+     "reason": "Ankle injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "FWD",
+     "minutes": 487,
+     "goals": 2,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "matches": 9
+    },
+    {
+     "player": "Frank Onyeka",
+     "status": "a",
+     "kind": "doubtful",
+     "bucket": "doubtful",
+     "chance_this_round": 75,
+     "chance_next_round": 100,
+     "news": "",
+     "reason": "",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 398,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
     }
    ],
    "key_absences": 3,
-   "drag_att": 0.0253,
+   "drag_att": 0.0834,
    "drag_def": 0.068
   },
   "Crystal Palace": {
    "out": [
     {
-     "player": "Chadi Riad Dnanou",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Knee injury - Unknown return date",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
-     "player": "Ismaïla Sarr",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Groin injury - Expected back 29 Nov",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
      "player": "Yéremy Pino Santos",
      "status": "s",
+     "kind": "suspended",
+     "bucket": "out",
      "chance_this_round": null,
      "chance_next_round": 0,
      "news": "Suspended until 2 Dec",
+     "reason": "Suspended until 2 Dec",
      "regular_starter": true,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 762,
+     "goals": 2,
+     "assists": 3,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-12-02",
+     "matches": 11
     },
     {
-     "player": "Jean-Philippe Mateta",
-     "status": "s",
+     "player": "Chadi Riad Dnanou",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Suspended until 2 Dec",
+     "news": "Knee injury - Unknown return date",
+     "reason": "Knee injury - Unknown return date",
      "regular_starter": false,
-     "position": "FWD"
+     "position": "DEF",
+     "minutes": 72,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-06-07",
+     "matches": 1,
+     "market_value_m": 15.0
     },
     {
      "player": "Christantus Uche",
      "status": "u",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "has returned to Getafe CF",
+     "reason": "has returned to Getafe CF",
      "regular_starter": false,
-     "position": "FWD"
+     "position": "FWD",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
+    },
+    {
+     "player": "Ismaïla Sarr",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Groin injury - Expected back 29 Nov",
+     "reason": "Groin injury - Expected back 29 Nov",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 15,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-12-13",
+     "matches": 2
+    },
+    {
+     "player": "Jean-Philippe Mateta",
+     "status": "s",
+     "kind": "suspended",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Suspended until 2 Dec",
+     "reason": "Suspended until 2 Dec",
+     "regular_starter": false,
+     "position": "FWD",
+     "minutes": 164,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-12-02",
+     "matches": 4
     },
     {
      "player": "Takehiro Tomiyasu",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Calf injury - Expected back 29 Nov",
+     "reason": "Calf injury - Expected back 29 Nov",
      "regular_starter": false,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 189,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-29",
+     "matches": 4
     }
    ],
    "doubtful": [
     {
-     "player": "Oscar Mingueza",
-     "status": "d",
-     "chance_this_round": null,
-     "chance_next_round": 75,
-     "news": "Thigh injury - 75% chance of playing",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
      "player": "Jørgen Strand Larsen",
      "status": "a",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
+     "reason": "",
      "regular_starter": true,
-     "position": "FWD"
+     "position": "FWD",
+     "minutes": 589,
+     "goals": 2,
+     "assists": 2,
+     "sources": [
+      "FPL"
+     ]
+    },
+    {
+     "player": "Oscar Mingueza",
+     "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Thigh injury - 75% chance of playing",
+     "reason": "Thigh injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "DEF",
+     "minutes": 161,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "matches": 4
     }
    ],
    "key_absences": 2,
-   "drag_att": 0.1702,
-   "drag_def": 0.0
+   "drag_att": 0.182,
+   "drag_def": 0.0402
   },
   "Everton": {
    "out": [
     {
      "player": "James Tarkowski",
      "status": "s",
+     "kind": "suspended",
+     "bucket": "out",
      "chance_this_round": null,
      "chance_next_round": 0,
      "news": "Suspended until 13 Dec",
+     "reason": "Suspended until 13 Dec",
      "regular_starter": true,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 939,
+     "goals": 1,
+     "assists": 1,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-12-13",
+     "matches": 11
     }
    ],
    "doubtful": [],
@@ -547,135 +1229,372 @@
     {
      "player": "Benjamin Lecomte",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Achilles injury - Unknown return date",
+     "reason": "Achilles injury - Unknown return date",
      "regular_starter": false,
-     "position": "GK"
+     "position": "GK",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-06-01",
+     "market_value_m": 0.8
     },
     {
      "player": "Emile Smith Rowe",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hip injury - Expected back 29 Nov",
+     "reason": "Hip injury - Expected back 29 Nov",
      "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 41,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-29",
+     "matches": 4
     }
    ],
    "doubtful": [],
    "key_absences": 0,
-   "drag_att": 0.0,
+   "drag_att": 0.0026,
    "drag_def": 0.0
   },
   "Hull City": {
    "out": [
     {
-     "player": "Tim Iroegbunam",
-     "status": "i",
-     "chance_this_round": 100,
-     "chance_next_round": 0,
-     "news": "Hamstring injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
+     "player": "Mohamed Belloumi",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 0,
+     "goals": 3,
+     "assists": 4,
+     "reason": "Hamstring injury",
+     "news": "Hamstring injury",
+     "expected_return": null,
+     "market_value_m": 18.0,
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "Transfermarkt"
+     ],
+     "minutes": 775
+    },
+    {
+     "player": "Elliot Stroud",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Hamstring injury",
+     "news": "Hamstring injury",
+     "expected_return": null,
+     "market_value_m": 8.0,
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "Transfermarkt"
+     ],
+     "minutes": 565
+    },
+    {
+     "player": "Semi Ajayi",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "DEF",
+     "matches": 0,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Hamstring injury",
+     "news": "Hamstring injury",
+     "expected_return": null,
+     "market_value_m": 1.0,
+     "chance_this_round": 0,
+     "regular_starter": true,
+     "sources": [
+      "Transfermarkt"
+     ],
+     "minutes": 941
     },
     {
      "player": "Charlie Hughes",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Groin injury - Unknown return date",
+     "reason": "Groin injury - Unknown return date",
      "regular_starter": false,
-     "position": "DEF"
-    },
-    {
-     "player": "Eliot Matazo",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Knee injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
-     "player": "Joe Gelhardt",
-     "status": "i",
-     "chance_this_round": 100,
-     "chance_next_round": 0,
-     "news": "Thigh injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
+     "position": "DEF",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-11-29",
+     "market_value_m": 10.0
     },
     {
      "player": "Matt Targett",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Ankle injury - Unknown return date",
+     "reason": "Ankle injury - Unknown return date",
      "regular_starter": false,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 5,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-19",
+     "matches": 1,
+     "market_value_m": 3.0
+    },
+    {
+     "player": "Eliot Matazo",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "reason": "Knee injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-02-20",
+     "market_value_m": 1.5
     },
     {
      "player": "Hidemasa Morita",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Groin injury - Unknown return date",
+     "reason": "Groin injury - Unknown return date",
      "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 106,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-29",
+     "matches": 5
     },
     {
      "player": "Ilyas Ansah",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Back injury - Unknown return date",
+     "reason": "Back injury - Unknown return date",
      "regular_starter": false,
-     "position": "FWD"
+     "position": "FWD",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-12-05"
+    },
+    {
+     "player": "Joe Gelhardt",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Thigh injury - Unknown return date",
+     "reason": "Thigh injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 128,
+     "goals": 1,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "matches": 6
+    },
+    {
+     "player": "Tim Iroegbunam",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Unknown return date",
+     "reason": "Hamstring injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 405,
+     "goals": 1,
+     "assists": 1,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "matches": 9
     }
    ],
    "doubtful": [
     {
      "player": "Darko Gyabi",
      "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Thigh injury - 75% chance of playing",
+     "reason": "Thigh injury - 75% chance of playing",
      "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-29"
     }
    ],
-   "key_absences": 0,
-   "drag_att": 0.059,
-   "drag_def": 0.0
+   "key_absences": 3,
+   "drag_att": 0.2993,
+   "drag_def": 0.1092
   },
   "Ipswich Town": {
-   "out": [],
+   "out": [
+    {
+     "player": "Jack Taylor",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee",
+     "news": "Knee",
+     "expected_return": "2026-11-28",
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
    "doubtful": [
     {
      "player": "Leif Davis",
      "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": null,
      "chance_next_round": 75,
      "news": "Calf injury - 75% chance of playing",
+     "reason": "Calf injury - 75% chance of playing",
      "regular_starter": true,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 982,
+     "goals": 2,
+     "assists": 2,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "matches": 11
+    },
+    {
+     "player": "Sammie Szmodics",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knee",
+     "news": "Knee",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
     }
    ],
    "key_absences": 1,
    "drag_att": 0.0,
-   "drag_def": 0.0596
+   "drag_def": 0.0536
   },
   "Leeds": {
    "out": [
     {
      "player": "Mateo Joseph Fernández-Regatillo",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
+     "reason": "Knee injury - Unknown return date",
      "regular_starter": false,
-     "position": "FWD"
+     "position": "FWD",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-01-30",
+     "market_value_m": 3.5
     }
    ],
    "doubtful": [],
@@ -686,208 +1605,472 @@
   "Liverpool": {
    "out": [
     {
-     "player": "Vitezslav Jaros",
+     "player": "Hugo Ekitiké",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Knee injury - Unknown return date",
-     "regular_starter": false,
-     "position": "GK"
-    },
-    {
-     "player": "Conor Bradley",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Knee injury - Expected back 12 Dec",
-     "regular_starter": false,
-     "position": "DEF"
+     "news": "Achilles injury - Unknown return date",
+     "reason": "Achilles injury - Unknown return date",
+     "regular_starter": true,
+     "position": "FWD",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-01-02",
+     "market_value_m": 80.0
     },
     {
      "player": "Giovanni Leoni",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Expected back 12 Dec",
-     "regular_starter": false,
-     "position": "DEF"
+     "reason": "Knee injury - Expected back 12 Dec",
+     "regular_starter": true,
+     "position": "DEF",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-01-02",
+     "market_value_m": 25.0
     },
     {
-     "player": "Hugo Ekitiké",
+     "player": "Conor Bradley",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Achilles injury - Unknown return date",
+     "news": "Knee injury - Expected back 12 Dec",
+     "reason": "Knee injury - Expected back 12 Dec",
+     "regular_starter": true,
+     "position": "DEF",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-01-02",
+     "market_value_m": 20.0
+    },
+    {
+     "player": "Vitezslav Jaros",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "reason": "Knee injury - Unknown return date",
      "regular_starter": false,
-     "position": "FWD"
+     "position": "GK",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "market_value_m": 5.0
     }
    ],
    "doubtful": [
     {
-     "player": "Jeremie Frimpong",
-     "status": "a",
-     "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
      "player": "Cody Gakpo",
      "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 100,
      "chance_next_round": 75,
      "news": "Calf injury - 75% chance of playing",
+     "reason": "Calf injury - 75% chance of playing",
      "regular_starter": true,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 601,
+     "goals": 1,
+     "assists": 3,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "matches": 8
+    },
+    {
+     "player": "Jeremie Frimpong",
+     "status": "a",
+     "kind": "doubtful",
+     "bucket": "doubtful",
+     "chance_this_round": 75,
+     "chance_next_round": 100,
+     "news": "",
+     "reason": "",
+     "regular_starter": false,
+     "position": "DEF",
+     "minutes": 211,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
     },
     {
      "player": "Ryan Gravenberch",
      "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 75,
      "chance_next_round": 75,
      "news": "Foot injury - 75% chance of playing",
+     "reason": "Foot injury - 75% chance of playing",
      "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 341,
+     "goals": 0,
+     "assists": 1,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-29",
+     "matches": 7
     }
    ],
-   "key_absences": 1,
-   "drag_att": 0.0085,
-   "drag_def": 0.0
+   "key_absences": 4,
+   "drag_att": 0.0925,
+   "drag_def": 0.1875
   },
   "Man City": {
    "out": [
     {
      "player": "Antoine Semenyo",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
+     "reason": "Knee injury - Unknown return date",
      "regular_starter": true,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 553,
+     "goals": 2,
+     "assists": 3,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-19",
+     "matches": 7,
+     "market_value_m": 80.0
+    },
+    {
+     "player": "Mateo Kovacic",
+     "bucket": "out",
+     "kind": "suspended",
+     "position": "MID",
+     "matches": 3,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Red card (direct)",
+     "news": "Red card (direct)",
+     "expected_return": null,
+     "chance_this_round": 0,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ],
+     "minutes": 91
     }
    ],
    "doubtful": [
     {
      "player": "Marc Guéhi",
      "status": "a",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
+     "reason": "Hip injury",
      "regular_starter": true,
-     "position": "DEF"
-    },
-    {
-     "player": "Matheus Nunes",
-     "status": "a",
-     "chance_this_round": 50,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 810,
+     "goals": 1,
+     "assists": 1,
+     "sources": [
+      "FPL",
+      "Transfermarkt"
+     ],
+     "market_value_m": 75.0
     },
     {
      "player": "Abdukodir Khusanov",
      "status": "a",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 50,
      "chance_next_round": 100,
      "news": "",
+     "reason": "",
      "regular_starter": true,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 642,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
+    },
+    {
+     "player": "Matheus Nunes",
+     "status": "a",
+     "kind": "doubtful",
+     "bucket": "doubtful",
+     "chance_this_round": 50,
+     "chance_next_round": 100,
+     "news": "",
+     "reason": "",
+     "regular_starter": false,
+     "position": "DEF",
+     "minutes": 513,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
     }
    ],
    "key_absences": 3,
-   "drag_att": 0.0862,
+   "drag_att": 0.1021,
    "drag_def": 0.0907
   },
   "Man United": {
    "out": [
     {
+     "player": "Benjamin Sesko",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Shin injury - Unknown return date",
+     "reason": "Shin injury - Unknown return date",
+     "regular_starter": true,
+     "position": "FWD",
+     "minutes": 76,
+     "goals": 1,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-01-02",
+     "matches": 4,
+     "market_value_m": 75.0
+    },
+    {
      "player": "Carlos Baleba",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
-     "player": "Luke Shaw",
-     "status": "d",
-     "chance_this_round": 0,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
+     "reason": "Hamstring injury - Unknown return date",
      "regular_starter": true,
-     "position": "DEF"
-    },
-    {
-     "player": "Marcus Rashford",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Hip injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 232,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-02",
+     "matches": 4,
+     "market_value_m": 65.0
     },
     {
      "player": "Manuel Ugarte Ribeiro",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
+     "reason": "Knee injury - Unknown return date",
+     "regular_starter": true,
+     "position": "MID",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-04-03",
+     "market_value_m": 20.0
     },
     {
-     "player": "Benjamin Sesko",
+     "player": "Luke Shaw",
+     "status": "d",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "reason": "Unspecified injury - 75% chance of playing",
+     "regular_starter": true,
+     "position": "DEF",
+     "minutes": 425,
+     "goals": 0,
+     "assists": 1,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-12-02",
+     "matches": 5
+    },
+    {
+     "player": "Marcus Rashford",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Shin injury - Unknown return date",
+     "news": "Hip injury - Unknown return date",
+     "reason": "Hip injury - Unknown return date",
      "regular_starter": false,
-     "position": "FWD"
+     "position": "MID",
+     "minutes": 352,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-12-02",
+     "matches": 6
     }
    ],
    "doubtful": [
     {
-     "player": "Karl Darlow",
-     "status": "d",
-     "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Unspecified injury - 75% chance of playing",
-     "regular_starter": false,
-     "position": "GK"
-    },
-    {
-     "player": "Patrick Dorgu",
-     "status": "a",
-     "chance_this_round": 75,
-     "chance_next_round": 100,
-     "news": "",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
      "player": "Harry Maguire",
      "status": "a",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
+     "reason": "",
      "regular_starter": true,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 923,
+     "goals": 0,
+     "assists": 1,
+     "sources": [
+      "FPL"
+     ]
     },
     {
      "player": "Ayden Heaven",
      "status": "a",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
+     "reason": "",
      "regular_starter": false,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 224,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
+    },
+    {
+     "player": "Jack Fletcher",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Karl Darlow",
+     "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
+     "chance_this_round": 75,
+     "chance_next_round": 75,
+     "news": "Unspecified injury - 75% chance of playing",
+     "reason": "Unspecified injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "GK",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-28"
+    },
+    {
+     "player": "Patrick Dorgu",
+     "status": "a",
+     "kind": "doubtful",
+     "bucket": "doubtful",
+     "chance_this_round": 75,
+     "chance_next_round": 100,
+     "news": "",
+     "reason": "",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 259,
+     "goals": 1,
+     "assists": 2,
+     "sources": [
+      "FPL"
+     ]
     }
    ],
-   "key_absences": 2,
-   "drag_att": 0.0258,
+   "key_absences": 5,
+   "drag_att": 0.1132,
    "drag_def": 0.0801
   },
   "Newcastle": {
@@ -895,225 +2078,576 @@
     {
      "player": "Ewen Jaouen",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Hamstring injury - Unknown return date",
+     "reason": "Hamstring injury - Unknown return date",
+     "regular_starter": true,
+     "position": "GK",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-12",
+     "market_value_m": 18.0
+    },
+    {
+     "player": "Joelinton",
+     "bucket": "out",
+     "kind": "injured",
+     "position": "MID",
+     "matches": 4,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Thigh",
+     "news": "Thigh",
+     "expected_return": "2026-12-06",
+     "chance_this_round": 0,
      "regular_starter": false,
-     "position": "GK"
+     "sources": [
+      "SportsGambler"
+     ]
     },
     {
      "player": "Joelinton Cássio Apolinário de Lira",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Unspecified injury - Unknown return date",
+     "reason": "Unspecified injury - Unknown return date",
      "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 278,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
     }
    ],
    "doubtful": [
     {
      "player": "Lewis Hall",
      "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": null,
      "chance_next_round": 75,
      "news": "Unspecified injury - 75% chance of playing",
+     "reason": "Unspecified injury - 75% chance of playing",
      "regular_starter": true,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 989,
+     "goals": 1,
+     "assists": 1,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "matches": 11
     }
    ],
-   "key_absences": 1,
-   "drag_att": 0.0205,
-   "drag_def": 0.0609
+   "key_absences": 2,
+   "drag_att": 0.0427,
+   "drag_def": 0.1448
   },
   "Nott'm Forest": {
    "out": [
     {
-     "player": "Nicolò Savona",
+     "player": "Nicolás Domínguez",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Knee injury - Unknown return date",
+     "news": "Muscular injury - Expected back 30 Dec",
+     "reason": "Muscular injury - Expected back 30 Dec",
      "regular_starter": false,
-     "position": "DEF"
+     "position": "MID",
+     "minutes": 74,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-01-02",
+     "matches": 2,
+     "market_value_m": 13.0
     },
     {
      "player": "Callum Hudson-Odoi",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Unspecified injury - Unknown return date",
+     "reason": "Unspecified injury - Unknown return date",
      "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 45,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-27",
+     "matches": 4
     },
     {
-     "player": "Nicolás Domínguez",
+     "player": "Nicolò Savona",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
-     "news": "Muscular injury - Expected back 30 Dec",
+     "news": "Knee injury - Unknown return date",
+     "reason": "Knee injury - Unknown return date",
      "regular_starter": false,
-     "position": "MID"
+     "position": "DEF",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-27"
     }
    ],
    "doubtful": [
     {
      "player": "Neco Williams",
      "status": "a",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
+     "reason": "",
      "regular_starter": true,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 964,
+     "goals": 1,
+     "assists": 1,
+     "sources": [
+      "FPL"
+     ]
     },
     {
      "player": "Xaver Schlager",
      "status": "a",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 75,
      "chance_next_round": 100,
      "news": "",
+     "reason": "",
      "regular_starter": true,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 801,
+     "goals": 0,
+     "assists": 1,
+     "sources": [
+      "FPL"
+     ]
     }
    ],
    "key_absences": 2,
-   "drag_att": 0.0194,
+   "drag_att": 0.0272,
    "drag_def": 0.0264
   },
   "Sunderland": {
    "out": [
     {
-     "player": "Daniel Ballard",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Hamstring injury - Unknown return date",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
      "player": "Habib Diarra",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Muscular injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
+     "reason": "Muscular injury - Unknown return date",
+     "regular_starter": true,
+     "position": "MID",
+     "minutes": 70,
+     "goals": 0,
+     "assists": 1,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-06",
+     "matches": 4,
+     "market_value_m": 35.0
+    },
+    {
+     "player": "Daniel Ballard",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Hamstring injury - Unknown return date",
+     "reason": "Hamstring injury - Unknown return date",
+     "regular_starter": true,
+     "position": "DEF",
+     "minutes": 450,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-26",
+     "matches": 5,
+     "market_value_m": 25.0
     },
     {
      "player": "Granit Xhaka",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Calf injury - Unknown return date",
+     "reason": "Calf injury - Unknown return date",
      "regular_starter": true,
-     "position": "MID"
-    },
-    {
-     "player": "Romaine Mundle",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Knee injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 813,
+     "goals": 0,
+     "assists": 1,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-13",
+     "matches": 10,
+     "market_value_m": 8.0
     },
     {
      "player": "Brian Brobbey",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Muscular injury - Unknown return date",
+     "reason": "Muscular injury - Unknown return date",
      "regular_starter": true,
-     "position": "FWD"
+     "position": "FWD",
+     "minutes": 619,
+     "goals": 3,
+     "assists": 1,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-12-02",
+     "matches": 8
+    },
+    {
+     "player": "Romaine Mundle",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Knee injury - Unknown return date",
+     "reason": "Knee injury - Unknown return date",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 1,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-26",
+     "matches": 1,
+     "market_value_m": 5.0
     }
    ],
    "doubtful": [
     {
+     "player": "Juan Riquelme Angulo",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 1,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Knock",
+     "news": "Knock",
+     "expected_return": "2026-11-29",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ],
+     "minutes": 9
+    },
+    {
      "player": "Kevin Danso",
      "status": "n",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 100,
      "chance_next_round": 0,
      "news": "Ineligible to face parent club - Expected back 2 Dec",
+     "reason": "Ineligible to face parent club - Expected back 2 Dec",
      "regular_starter": false,
-     "position": "DEF"
+     "position": "DEF",
+     "minutes": 376,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
+    },
+    {
+     "player": "Simon Adingra",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "FWD",
+     "matches": 0,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Physical discom",
+     "news": "Physical discom",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
     }
    ],
-   "key_absences": 2,
-   "drag_att": 0.2284,
+   "key_absences": 4,
+   "drag_att": 0.2585,
    "drag_def": 0.0542
   },
   "Tottenham": {
    "out": [
     {
-     "player": "Tosin Adarabioyo",
-     "status": "i",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Calf injury - Expected back 29 Nov",
-     "regular_starter": false,
-     "position": "DEF"
-    },
-    {
      "player": "Xavi Simons",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
+     "reason": "Knee injury - Unknown return date",
+     "regular_starter": true,
+     "position": "MID",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-02-20",
+     "market_value_m": 40.0
     },
     {
      "player": "Mathys Tel",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Ankle injury - Expected back 6 Dec",
+     "reason": "Ankle injury - Expected back 6 Dec",
      "regular_starter": true,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 477,
+     "goals": 1,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2026-12-14",
+     "matches": 8,
+     "market_value_m": 22.0
     },
     {
      "player": "Wilson Odobert",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Knee injury - Unknown return date",
-     "regular_starter": false,
-     "position": "MID"
-    },
-    {
-     "player": "Richarlison de Andrade",
-     "status": "u",
-     "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "not included in squad.",
-     "regular_starter": false,
-     "position": "FWD"
+     "reason": "Knee injury - Unknown return date",
+     "regular_starter": true,
+     "position": "MID",
+     "minutes": 0,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler",
+      "Transfermarkt"
+     ],
+     "expected_return": "2027-02-06",
+     "market_value_m": 18.0
     },
     {
      "player": "Mykhailo Mudryk",
      "status": "i",
+     "kind": "injured",
+     "bucket": "out",
      "chance_this_round": 0,
      "chance_next_round": 0,
      "news": "Ankle injury - Unknown return date",
+     "reason": "Ankle injury - Unknown return date",
      "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 16,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "Transfermarkt"
+     ],
+     "market_value_m": 15.0,
+     "expected_return": "2026-11-28"
+    },
+    {
+     "player": "Richarlison de Andrade",
+     "status": "u",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "not included in squad.",
+     "reason": "not included in squad.",
+     "regular_starter": false,
+     "position": "FWD",
+     "minutes": 67,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
+    },
+    {
+     "player": "Tosin Adarabioyo",
+     "status": "i",
+     "kind": "injured",
+     "bucket": "out",
+     "chance_this_round": 0,
+     "chance_next_round": 0,
+     "news": "Calf injury - Expected back 29 Nov",
+     "reason": "Calf injury - Expected back 29 Nov",
+     "regular_starter": false,
+     "position": "DEF",
+     "minutes": 75,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL",
+      "SportsGambler"
+     ],
+     "expected_return": "2026-11-29",
+     "matches": 2
     }
    ],
    "doubtful": [
     {
+     "player": "Sandro Tonali",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 10,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Illness",
+     "news": "Illness",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": true,
+     "sources": [
+      "SportsGambler"
+     ],
+     "minutes": 877
+    },
+    {
+     "player": "Kevin Danso",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 5,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
+     "player": "Savio",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 5,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
      "player": "Sávio Moreira de Oliveira",
      "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
      "chance_this_round": 100,
      "chance_next_round": 75,
      "news": "Hamstring injury - 75% chance of playing",
+     "reason": "Hamstring injury - 75% chance of playing",
      "regular_starter": false,
-     "position": "MID"
+     "position": "MID",
+     "minutes": 355,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
     }
    ],
-   "key_absences": 1,
-   "drag_att": 0.0552,
-   "drag_def": 0.0
+   "key_absences": 4,
+   "drag_att": 0.2424,
+   "drag_def": 0.0237
   }
  }
 }
