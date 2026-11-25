@@ -365,12 +365,19 @@ def load_squad_match_history(league: str) -> dict[str, list[dict]]:
         }
         saves = int(grp["saves"].sum())
         faced = int(grp["shots_faced"].sum())
+        if "ga_gk" in grp.columns:
+            gk_mask = (grp["pos"] == "GK") | (grp["saves"] > 0) if "pos" in grp.columns else (grp["saves"] > 0)
+            # ESPN repeats goals conceded across all starters; use GK rows/max instead of summing all 11.
+            ga_gk = max(int(grp.loc[gk_mask, "ga_gk"].sum()), int(grp["ga_gk"].max()))
+        else:
+            ga_gk = 0
+        faced_eff = faced if faced > 0 else (saves + ga_gk)
         out.setdefault(str(team), []).append({
             "date": str(datestr)[:10],
             "espn_id": str(eid),
             "player_ga": player_ga,
             "saves": saves,
-            "shots_faced": faced,
+            "shots_faced": faced_eff,
         })
     for v in out.values():
         v.sort(key=lambda x: (x["date"], x["espn_id"]))

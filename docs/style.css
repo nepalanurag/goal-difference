@@ -426,6 +426,15 @@ tr:hover td {
   color: #7dd3fc;
   border: 1px solid rgba(56, 189, 248, 0.3);
 }
+.badge.out, .badge.suspended, .badge.doubtful, .badge.UCL, .badge.UEL {
+  width: auto;
+  height: auto;
+  padding: 1px 7px;
+  font-size: 0.70rem;
+  line-height: 1.45;
+  margin: 0 3px;
+  vertical-align: middle;
+}
 
 /* Head to Head Record */
 .h2h-summary {

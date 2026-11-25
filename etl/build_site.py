@@ -518,6 +518,15 @@ tr:hover td {
   color: #7dd3fc;
   border: 1px solid rgba(56, 189, 248, 0.3);
 }
+.badge.out, .badge.suspended, .badge.doubtful, .badge.UCL, .badge.UEL {
+  width: auto;
+  height: auto;
+  padding: 1px 7px;
+  font-size: 0.70rem;
+  line-height: 1.45;
+  margin: 0 3px;
+  vertical-align: middle;
+}
 
 /* Head to Head Record */
 .h2h-summary {
@@ -1358,8 +1367,8 @@ def scorers_section(scorers: pd.DataFrame) -> str:
     return ("""<div id="scorers"><h2>Likely scorers this week</h2>
 <p class="small muted">Anytime-scorer probability = 1 - exp(-X), where X comes from
 the player's shrunk goals-per-90, expected minutes, and the team's model xG for the
-fixture. Inputs shown. Model estimates, not betting advice. Bundesliga excluded:
-its feed publishes no minutes.</p>
+fixture. Covers all 5 leagues (Bundesliga via ESPN squad rosters) and excludes
+confirmed unavailable players from team news. Model estimates, not betting advice.</p>
 <table class="sortable"><tr><th>Player</th><th>Team</th><th>Fixture</th><th class="num">Prob</th>
 <th class="num">Per 90</th><th class="num">xMin</th><th class="num">Team xG</th></tr>"""
             + "".join(trs) + "</table></div>")
@@ -1710,7 +1719,7 @@ def euro_note(league: str, ld: LeagueData, home: str, away: str,
     for team, prefix in ((home, "h_"), (away, "a_")):
         gap = feats.get(prefix + "euro_days_since", 999)
         if gap != 999 and gap <= 4:
-            notes.append(f"{team} played in Europe {int(gap)} days ago &mdash; rotation risk.")
+            notes.append(f"{team} played in Europe {int(gap)} days ago - rotation risk.")
         elif gap != 999 and gap <= 7:
             notes.append(f"{team} played in Europe {int(gap)} days ago.")
     if not notes:
@@ -1932,7 +1941,7 @@ def build_team(league: str, ld: LeagueData, team: str,
         l_ = len(fin_mine) - w - d_
         if mine:
             items = []
-            for m in (up_mine[:3] + list(reversed(fin_mine[-4:]))):
+            for m in (up_mine + list(reversed(fin_mine[-4:]))):
                 opp_e = m["away"] if m["home"] == team else m["home"]
                 ven_e = "vs" if m["home"] == team else "at"
                 comp_e = m.get("competition", "UCL")
@@ -2179,17 +2188,17 @@ def build_europe(datas: dict[str, LeagueData], updated: str) -> str:
             dt = str(f.get("date", ""))[:10]
             gaps = [g for g in (_next_domestic_gap(f["home"], dt), _next_domestic_gap(f["away"], dt)) if g]
             up_rows.append(
-                f"<tr><td class='mono small muted'>{esc(dt)}</td>"
-                f"<td>{_team_link(f['home'])}</td><td>v</td><td>{_team_link(f['away'])}</td>"
+                f"<tr><td class='mono small muted' style='white-space:nowrap'>{esc(dt)}</td>"
+                f"<td>{_team_link(f['home'])} <span class='faint'>v</span> {_team_link(f['away'])}</td>"
                 f"<td class='small muted'>{' &middot; '.join(gaps) or '-'}</td></tr>"
             )
-        up_html = (f"<table class='sortable'><tr><th>Date</th><th>Home</th><th></th><th>Away</th><th>Next league turnaround</th></tr>"
+        up_html = (f"<table class='sortable'><tr><th>Date</th><th>Matchup</th><th>Next league turnaround</th></tr>"
                    f"{''.join(up_rows)}</table>" if up_rows else "<p class='muted'>No upcoming Top-5 fixtures scheduled yet.</p>")
 
         fin_rows = "".join(
-            f"<tr><td class='mono small muted'>{esc(str(f.get('date', ''))[:10])}</td>"
+            f"<tr><td class='mono small muted' style='white-space:nowrap'>{esc(str(f.get('date', ''))[:10])}</td>"
             f"<td>{_team_link(f['home'])}</td>"
-            f"<td class='scoreline'>{int(f['home_goals'])} - {int(f['away_goals'])}</td>"
+            f"<td class='scoreline' style='white-space:nowrap'>{int(f['home_goals'])} - {int(f['away_goals'])}</td>"
             f"<td>{_team_link(f['away'])}</td></tr>"
             for f in finished[:20]
         )

@@ -334,3 +334,20 @@ def test_h2h_metrics_before_and_squad_features_no_leakage():
     assert abs(sq["gk_save_pct_l5"] - 0.75) < 1e-9
 
 
+def test_load_squad_match_history_gk_ga_not_multiplied(tmp_path, monkeypatch):
+    from etl import config as cfg, storage
+    rows = pd.DataFrame([
+        {"team": "Bayern Munich", "date": "2026-11-20", "espn_id": "1",
+         "player_name": "GK", "pos": "GK", "goals": 0, "assists": 0, "saves": 3, "shots_faced": 0, "ga_gk": 1},
+        {"team": "Bayern Munich", "date": "2026-11-20", "espn_id": "1",
+         "player_name": "DEF1", "pos": "DEF", "goals": 0, "assists": 0, "saves": 0, "shots_faced": 0, "ga_gk": 1},
+        {"team": "Bayern Munich", "date": "2026-11-20", "espn_id": "1",
+         "player_name": "FWD1", "pos": "FWD", "goals": 1, "assists": 0, "saves": 0, "shots_faced": 0, "ga_gk": 1},
+    ])
+    storage.write_parquet(rows, tmp_path / "lineups_bundesliga.parquet")
+    monkeypatch.setattr(cfg.settings, "data_dir", tmp_path)
+    out = features.load_squad_match_history("bundesliga")["Bayern Munich"]
+    assert len(out) == 1
+    assert out[0]["saves"] == 3 and out[0]["shots_faced"] == 4
+
+
