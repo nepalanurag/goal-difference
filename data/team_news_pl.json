@@ -2,7 +2,7 @@
  "league": "pl",
  "source": "FPL API + SportsGambler",
  "season_label": "2026/27",
- "fetched_at": "2026-11-27T22:35:32.340449+00:00",
+ "fetched_at": "2026-11-28T21:39:45.971646+00:00",
  "notes": "Multi-source player availability combining SportsGambler (injured, suspended, doubtful), Transfermarkt (€M valuation and return dates), and FPL for Premier League.",
  "teams": {
   "Arsenal": {
@@ -139,29 +139,10 @@
      "matches": 4
     }
    ],
-   "doubtful": [
-    {
-     "player": "Matty Cash",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "DEF",
-     "matches": 8,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Head",
-     "news": "Head",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 50,
-     "regular_starter": true,
-     "sources": [
-      "SportsGambler"
-     ],
-     "minutes": 656
-    }
-   ],
-   "key_absences": 1,
+   "doubtful": [],
+   "key_absences": 0,
    "drag_att": 0.0,
-   "drag_def": 0.0615
+   "drag_def": 0.0182
   },
   "Bournemouth": {
    "out": [
@@ -345,28 +326,25 @@
      "goals": 0,
      "assists": 0,
      "sources": [
-      "FPL",
-      "SportsGambler"
-     ],
-     "expected_return": "2026-11-28"
+      "FPL"
+     ]
     },
     {
      "player": "Josh Dasilva",
-     "status": "i",
+     "status": "a",
      "kind": "injured",
      "bucket": "out",
      "chance_this_round": 0,
-     "chance_next_round": 0,
-     "news": "Lack of match fitness - Expected back 5 Dec",
-     "reason": "Lack of match fitness - Expected back 5 Dec",
+     "chance_next_round": 100,
+     "news": "",
+     "reason": "",
      "regular_starter": false,
      "position": "MID",
      "minutes": 0,
      "goals": 0,
      "assists": 0,
      "sources": [
-      "FPL",
-      "SportsGambler"
+      "FPL"
      ]
     },
     {
@@ -430,10 +408,47 @@
      "matches": 1
     }
    ],
-   "doubtful": [],
+   "doubtful": [
+    {
+     "player": "Callum Wilson",
+     "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
+     "chance_this_round": null,
+     "chance_next_round": 75,
+     "news": "Ankle injury - 75% chance of playing",
+     "reason": "Ankle injury - 75% chance of playing",
+     "regular_starter": false,
+     "position": "FWD",
+     "minutes": 199,
+     "goals": 2,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
+    },
+    {
+     "player": "Yehor Yarmoliuk",
+     "status": "d",
+     "kind": "doubtful",
+     "bucket": "doubtful",
+     "chance_this_round": 100,
+     "chance_next_round": 75,
+     "news": "Knock - 75% chance of playing",
+     "reason": "Knock - 75% chance of playing",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 452,
+     "goals": 1,
+     "assists": 1,
+     "sources": [
+      "FPL"
+     ]
+    }
+   ],
    "key_absences": 1,
-   "drag_att": 0.1136,
-   "drag_def": 0.0711
+   "drag_att": 0.0987,
+   "drag_def": 0.0648
   },
   "Brighton": {
    "out": [
@@ -796,28 +811,10 @@
      "sources": [
       "SportsGambler"
      ]
-    },
-    {
-     "player": "Moises Caicedo",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "MID",
-     "matches": 7,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Other",
-     "news": "Other",
-     "expected_return": null,
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ],
-     "minutes": 551
     }
    ],
    "key_absences": 1,
-   "drag_att": 0.1335,
+   "drag_att": 0.1137,
    "drag_def": 0.1604
   },
   "Coventry City": {
@@ -863,27 +860,6 @@
      ],
      "expected_return": "2026-12-19",
      "matches": 4
-    },
-    {
-     "player": "Ephron Mason-Clark",
-     "status": "d",
-     "kind": "injured",
-     "bucket": "out",
-     "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Knee injury - 75% chance of playing",
-     "reason": "Knee injury - 75% chance of playing",
-     "regular_starter": false,
-     "position": "MID",
-     "minutes": 326,
-     "goals": 0,
-     "assists": 0,
-     "sources": [
-      "FPL",
-      "SportsGambler"
-     ],
-     "expected_return": "2026-11-28",
-     "matches": 7
     },
     {
      "player": "Haji Wright",
@@ -980,16 +956,31 @@
      "goals": 0,
      "assists": 0,
      "sources": [
-      "FPL",
-      "SportsGambler"
-     ],
-     "expected_return": "2026-11-28",
-     "matches": 10
+      "FPL"
+     ]
+    },
+    {
+     "player": "Ephron Mason-Clark",
+     "status": "a",
+     "kind": "doubtful",
+     "bucket": "doubtful",
+     "chance_this_round": 75,
+     "chance_next_round": 100,
+     "news": "",
+     "reason": "",
+     "regular_starter": false,
+     "position": "MID",
+     "minutes": 326,
+     "goals": 0,
+     "assists": 0,
+     "sources": [
+      "FPL"
+     ]
     }
    ],
    "key_absences": 2,
-   "drag_att": 0.1084,
-   "drag_def": 0.0444
+   "drag_att": 0.0865,
+   "drag_def": 0.0412
   },
   "Crystal Palace": {
    "out": [
@@ -1395,50 +1386,32 @@
    "drag_def": 0.0
   },
   "Ipswich Town": {
-   "out": [
-    {
-     "player": "Jack Taylor",
-     "bucket": "out",
-     "kind": "injured",
-     "position": "MID",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Knee",
-     "news": "Knee",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 0,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    }
-   ],
-   "doubtful": [
-    {
-     "player": "Sammie Szmodics",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "MID",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Knee",
-     "news": "Knee",
-     "expected_return": null,
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    }
-   ],
+   "out": [],
+   "doubtful": [],
    "key_absences": 0,
    "drag_att": 0.0,
    "drag_def": 0.0
   },
   "Leeds": {
    "out": [
+    {
+     "player": "Jayden Bogle",
+     "status": "s",
+     "kind": "suspended",
+     "bucket": "out",
+     "chance_this_round": null,
+     "chance_next_round": 0,
+     "news": "Suspended until 5 Dec",
+     "reason": "Suspended until 5 Dec",
+     "regular_starter": true,
+     "position": "DEF",
+     "minutes": 985,
+     "goals": 2,
+     "assists": 1,
+     "sources": [
+      "FPL"
+     ]
+    },
     {
      "player": "Mateo Joseph Fernández-Regatillo",
      "status": "i",
@@ -1461,9 +1434,9 @@
     }
    ],
    "doubtful": [],
-   "key_absences": 0,
+   "key_absences": 1,
    "drag_att": 0.0,
-   "drag_def": 0.0
+   "drag_def": 0.0977
   },
   "Liverpool": {
    "out": [
@@ -1666,6 +1639,24 @@
   "Man United": {
    "out": [
     {
+     "player": "Harry Maguire",
+     "status": "s",
+     "kind": "suspended",
+     "bucket": "out",
+     "chance_this_round": 100,
+     "chance_next_round": 0,
+     "news": "Suspended until 5 Dec",
+     "reason": "Suspended until 5 Dec",
+     "regular_starter": true,
+     "position": "DEF",
+     "minutes": 1013,
+     "goals": 0,
+     "assists": 1,
+     "sources": [
+      "FPL"
+     ]
+    },
+    {
      "player": "Benjamin Sesko",
      "status": "i",
      "kind": "injured",
@@ -1752,24 +1743,21 @@
    "doubtful": [
     {
      "player": "Bruno Borges Fernandes",
-     "status": "d",
+     "status": "a",
      "kind": "doubtful",
      "bucket": "doubtful",
      "chance_this_round": 75,
-     "chance_next_round": 75,
-     "news": "Illness - 75% chance of playing",
-     "reason": "Illness - 75% chance of playing",
+     "chance_next_round": 100,
+     "news": "",
+     "reason": "",
      "regular_starter": true,
      "position": "MID",
-     "minutes": 900,
+     "minutes": 990,
      "goals": 4,
      "assists": 2,
      "sources": [
-      "FPL",
-      "SportsGambler"
-     ],
-     "expected_return": "2026-11-28",
-     "matches": 10
+      "FPL"
+     ]
     },
     {
      "player": "Jack Fletcher",
@@ -1789,9 +1777,9 @@
      ]
     }
    ],
-   "key_absences": 1,
-   "drag_att": 0.1019,
-   "drag_def": 0.0
+   "key_absences": 2,
+   "drag_att": 0.0977,
+   "drag_def": 0.1129
   },
   "Newcastle": {
    "out": [

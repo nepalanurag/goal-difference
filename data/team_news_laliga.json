@@ -2,7 +2,7 @@
  "league": "laliga",
  "source": "SportsGambler",
  "season_label": "2026/27",
- "fetched_at": "2026-11-27T22:35:32.559864+00:00",
+ "fetched_at": "2026-11-28T21:39:46.058113+00:00",
  "notes": "Multi-source player availability combining SportsGambler (injured, suspended, doubtful), Transfermarkt (€M valuation and return dates), and FPL for Premier League.",
  "teams": {
   "Alaves": {
@@ -102,23 +102,6 @@
      ]
     },
     {
-     "player": "Daniel Vivian",
-     "bucket": "out",
-     "kind": "injured",
-     "position": "DEF",
-     "matches": 3,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Muscle",
-     "news": "Muscle",
-     "expected_return": "2026-12-05",
-     "chance_this_round": 0,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
      "player": "Gorka Guruzeta",
      "bucket": "out",
      "kind": "injured",
@@ -170,10 +153,28 @@
      ]
     }
    ],
-   "doubtful": [],
+   "doubtful": [
+    {
+     "player": "Daniel Vivian",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 3,
+     "goals": 0,
+     "assists": 0,
+     "reason": "Muscle",
+     "news": "Muscle",
+     "expected_return": "2026-12-05",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
    "key_absences": 1,
    "drag_att": 0.0583,
-   "drag_def": 0.1052
+   "drag_def": 0.093
   },
   "Ath Madrid": {
    "out": [
@@ -383,23 +384,6 @@
   "Betis": {
    "out": [
     {
-     "player": "Dani Ceballos",
-     "bucket": "out",
-     "kind": "injured",
-     "position": "MID",
-     "matches": 8,
-     "goals": 0,
-     "assists": 1,
-     "reason": "Muscle",
-     "news": "Muscle",
-     "expected_return": "2026-12-05",
-     "chance_this_round": 0,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
      "player": "Facundo Bernal",
      "bucket": "out",
      "kind": "suspended",
@@ -419,6 +403,23 @@
    ],
    "doubtful": [
     {
+     "player": "Dani Ceballos",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 8,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Muscle",
+     "news": "Muscle",
+     "expected_return": "2026-12-05",
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    },
+    {
      "player": "Giovani Lo Celso",
      "bucket": "doubtful",
      "kind": "doubtful",
@@ -437,7 +438,7 @@
     }
    ],
    "key_absences": 0,
-   "drag_att": 0.1027,
+   "drag_att": 0.0772,
    "drag_def": 0.0
   },
   "Celta": {
@@ -552,25 +553,7 @@
    "drag_def": 0.1074
   },
   "Elche": {
-   "out": [
-    {
-     "player": "Adam Boayar",
-     "bucket": "out",
-     "kind": "injured",
-     "position": "FWD",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Muscle",
-     "news": "Muscle",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 0,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    }
-   ],
+   "out": [],
    "doubtful": [
     {
      "player": "Marc Aguado",
@@ -946,10 +929,28 @@
      ]
     }
    ],
-   "doubtful": [],
+   "doubtful": [
+    {
+     "player": "Oriol Rey",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "DEF",
+     "matches": 13,
+     "goals": 0,
+     "assists": 1,
+     "reason": "Other",
+     "news": "Other",
+     "expected_return": null,
+     "chance_this_round": 50,
+     "regular_starter": false,
+     "sources": [
+      "SportsGambler"
+     ]
+    }
+   ],
    "key_absences": 0,
    "drag_att": 0.0,
-   "drag_def": 0.0885
+   "drag_def": 0.1264
   },
   "Malaga": {
    "out": [
@@ -1005,28 +1006,11 @@
      "sources": [
       "SportsGambler"
      ]
-    },
-    {
-     "player": "Fernando Calero",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "DEF",
-     "matches": 4,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Muscle",
-     "news": "Muscle",
-     "expected_return": null,
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
     }
    ],
    "key_absences": 0,
    "drag_att": 0.0,
-   "drag_def": 0.1122
+   "drag_def": 0.0962
   },
   "Osasuna": {
    "out": [
@@ -1112,7 +1096,7 @@
      "bucket": "out",
      "kind": "suspended",
      "position": "MID",
-     "matches": 12,
+     "matches": 13,
      "goals": 1,
      "assists": 3,
      "reason": "Yellow cards",
@@ -1159,27 +1143,9 @@
      ]
     }
    ],
-   "doubtful": [
-    {
-     "player": "Oscar Valentin",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "MID",
-     "matches": 9,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Knee",
-     "news": "Knee",
-     "expected_return": null,
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    }
-   ],
+   "doubtful": [],
    "key_absences": 1,
-   "drag_att": 0.1323,
+   "drag_att": 0.1168,
    "drag_def": 0.0
   },
   "Real Madrid": {
@@ -1217,44 +1183,9 @@
      "sources": [
       "SportsGambler"
      ]
-    },
-    {
-     "player": "Rodrygo",
-     "bucket": "out",
-     "kind": "injured",
-     "position": "FWD",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Cruciate ligame",
-     "news": "Cruciate ligame",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 0,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
     }
    ],
-   "doubtful": [
-    {
-     "player": "Ferland Mendy",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "DEF",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Hip",
-     "news": "Hip",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    }
-   ],
+   "doubtful": [],
    "key_absences": 0,
    "drag_att": 0.0223,
    "drag_def": 0.0
@@ -1392,8 +1323,8 @@
    ],
    "doubtful": [],
    "key_absences": 1,
-   "drag_att": 0.0893,
-   "drag_def": 0.0765
+   "drag_att": 0.0789,
+   "drag_def": 0.07
   },
   "Sevilla": {
    "out": [

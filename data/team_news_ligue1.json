@@ -2,28 +2,11 @@
  "league": "ligue1",
  "source": "SportsGambler",
  "season_label": "2026/27",
- "fetched_at": "2026-11-27T22:35:34.316117+00:00",
+ "fetched_at": "2026-11-28T21:39:46.275470+00:00",
  "notes": "Multi-source player availability combining SportsGambler (injured, suspended, doubtful), Transfermarkt (€M valuation and return dates), and FPL for Premier League.",
  "teams": {
   "Angers": {
    "out": [
-    {
-     "player": "Jordan Lefort",
-     "bucket": "out",
-     "kind": "suspended",
-     "position": "DEF",
-     "matches": 9,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Yellow cards",
-     "news": "Yellow cards",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 0,
-     "regular_starter": true,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
     {
      "player": "Yassin Belkhdim",
      "bucket": "out",
@@ -42,28 +25,10 @@
      ]
     }
    ],
-   "doubtful": [
-    {
-     "player": "Oumar Pona",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "GK",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Other",
-     "news": "Other",
-     "expected_return": null,
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    }
-   ],
-   "key_absences": 2,
+   "doubtful": [],
+   "key_absences": 1,
    "drag_att": 0.0545,
-   "drag_def": 0.0743
+   "drag_def": 0.0
   },
   "Auxerre": {
    "out": [
@@ -163,40 +128,6 @@
    "out": [],
    "doubtful": [
     {
-     "player": "Kamory Doumbia",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "MID",
-     "matches": 10,
-     "goals": 4,
-     "assists": 2,
-     "reason": "Ankle",
-     "news": "Ankle",
-     "expected_return": null,
-     "chance_this_round": 50,
-     "regular_starter": true,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
-     "player": "Kenny Lala",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "DEF",
-     "matches": 11,
-     "goals": 1,
-     "assists": 0,
-     "reason": "Other",
-     "news": "Other",
-     "expected_return": null,
-     "chance_this_round": 50,
-     "regular_starter": true,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
      "player": "Brendan Chardonnet",
      "bucket": "doubtful",
      "kind": "doubtful",
@@ -214,9 +145,9 @@
      ]
     }
    ],
-   "key_absences": 2,
-   "drag_att": 0.0621,
-   "drag_def": 0.0428
+   "key_absences": 0,
+   "drag_att": 0.0,
+   "drag_def": 0.0
   },
   "Le Havre": {
    "out": [
@@ -253,23 +184,6 @@
      "sources": [
       "SportsGambler"
      ]
-    },
-    {
-     "player": "Felix Mambimbi",
-     "bucket": "out",
-     "kind": "injured",
-     "position": "FWD",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Muscle",
-     "news": "Muscle",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 0,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
     }
    ],
    "doubtful": [
@@ -301,23 +215,6 @@
      "reason": "Other",
      "news": "Other",
      "expected_return": null,
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
-     "player": "Lionel Mpasi-Nzau",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "GK",
-     "matches": 3,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Other",
-     "news": "Other",
-     "expected_return": "2026-11-28",
      "chance_this_round": 50,
      "regular_starter": false,
      "sources": [
@@ -361,7 +258,7 @@
    ],
    "key_absences": 3,
    "drag_att": 0.1688,
-   "drag_def": 0.0309
+   "drag_def": 0.014
   },
   "Le Mans": {
    "out": [],
@@ -410,23 +307,6 @@
    ],
    "doubtful": [
     {
-     "player": "Michael Cuisance",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "MID",
-     "matches": 10,
-     "goals": 1,
-     "assists": 0,
-     "reason": "Illness",
-     "news": "Illness",
-     "expected_return": null,
-     "chance_this_round": 50,
-     "regular_starter": true,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
      "player": "Anthony Bermont",
      "bucket": "doubtful",
      "kind": "doubtful",
@@ -461,8 +341,8 @@
      ]
     }
    ],
-   "key_absences": 1,
-   "drag_att": 0.087,
+   "key_absences": 0,
+   "drag_att": 0.0496,
    "drag_def": 0.0
   },
   "Lille": {
@@ -526,43 +406,8 @@
    "drag_def": 0.0488
   },
   "Lorient": {
-   "out": [
-    {
-     "player": "Bandiougou Fadiga",
-     "bucket": "out",
-     "kind": "injured",
-     "position": "MID",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Hamstring",
-     "news": "Hamstring",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 0,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    }
-   ],
+   "out": [],
    "doubtful": [
-    {
-     "player": "Mohamed Bamba",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "FWD",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Physical discom",
-     "news": "Physical discom",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
     {
      "player": "Panos Katseris",
      "bucket": "doubtful",
@@ -919,40 +764,6 @@
      "sources": [
       "SportsGambler"
      ]
-    },
-    {
-     "player": "Moise Bombito",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "DEF",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Lower leg",
-     "news": "Lower leg",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
-     "player": "Salis Abdul Samed",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "MID",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Other",
-     "news": "Other",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
     }
    ],
    "key_absences": 0,
@@ -982,7 +793,7 @@
    "doubtful": [],
    "key_absences": 0,
    "drag_att": 0.0,
-   "drag_def": 0.0641
+   "drag_def": 0.0585
   },
   "Paris SG": {
    "out": [
@@ -1142,23 +953,6 @@
      ]
     },
     {
-     "player": "Deivid Washington",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "FWD",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Other",
-     "news": "Other",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
      "player": "Fabio Balde",
      "bucket": "doubtful",
      "kind": "doubtful",
@@ -1169,40 +963,6 @@
      "reason": "Lower leg",
      "news": "Lower leg",
      "expected_return": null,
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
-     "player": "Hermann Diandaga",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "DEF",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Other",
-     "news": "Other",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
-     "player": "Maxi Oyedele",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "MID",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Other",
-     "news": "Other",
-     "expected_return": "2026-11-28",
      "chance_this_round": 50,
      "regular_starter": false,
      "sources": [
@@ -1258,25 +1018,7 @@
    "drag_def": 0.0482
   },
   "Troyes": {
-   "out": [
-    {
-     "player": "Michel Diaz",
-     "bucket": "out",
-     "kind": "suspended",
-     "position": "DEF",
-     "matches": 10,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Yellow cards",
-     "news": "Yellow cards",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 0,
-     "regular_starter": true,
-     "sources": [
-      "SportsGambler"
-     ]
-    }
-   ],
+   "out": [],
    "doubtful": [
     {
      "player": "Paolo Gozzi",
@@ -1296,9 +1038,9 @@
      ]
     }
    ],
-   "key_absences": 1,
+   "key_absences": 0,
    "drag_att": 0.0,
-   "drag_def": 0.1087
+   "drag_def": 0.0181
   }
  }
 }

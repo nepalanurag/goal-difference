@@ -2,7 +2,7 @@
  "league": "bundesliga",
  "source": "SportsGambler",
  "season_label": "2026/27",
- "fetched_at": "2026-11-27T22:35:32.719112+00:00",
+ "fetched_at": "2026-11-28T21:39:46.099641+00:00",
  "notes": "Multi-source player availability combining SportsGambler (injured, suspended, doubtful), Transfermarkt (€M valuation and return dates), and FPL for Premier League.",
  "teams": {
   "Augsburg": {
@@ -375,23 +375,6 @@
   "Ein Frankfurt": {
    "out": [
     {
-     "player": "Elias Baum",
-     "bucket": "out",
-     "kind": "suspended",
-     "position": "DEF",
-     "matches": 9,
-     "goals": 0,
-     "assists": 1,
-     "reason": "2nd yellow (Red)",
-     "news": "2nd yellow (Red)",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 0,
-     "regular_starter": true,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
      "player": "Fousseny Doumbia",
      "bucket": "out",
      "kind": "suspended",
@@ -411,23 +394,6 @@
    ],
    "doubtful": [
     {
-     "player": "Can Uzun",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "FWD",
-     "matches": 8,
-     "goals": 2,
-     "assists": 1,
-     "reason": "Illness",
-     "news": "Illness",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 50,
-     "regular_starter": true,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
      "player": "Jessic Ngankam",
      "bucket": "doubtful",
      "kind": "doubtful",
@@ -445,9 +411,9 @@
      ]
     }
    ],
-   "key_absences": 2,
-   "drag_att": 0.0446,
-   "drag_def": 0.0806
+   "key_absences": 0,
+   "drag_att": 0.0,
+   "drag_def": 0.0
   },
   "Elversberg": {
    "out": [
@@ -770,23 +736,6 @@
      ]
     },
     {
-     "player": "Shafiq Nandja",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "DEF",
-     "matches": 5,
-     "goals": 1,
-     "assists": 0,
-     "reason": "Other",
-     "news": "Other",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
      "player": "Yussuf Poulsen",
      "bucket": "doubtful",
      "kind": "doubtful",
@@ -806,7 +755,7 @@
    ],
    "key_absences": 3,
    "drag_att": 0.1262,
-   "drag_def": 0.0866
+   "drag_def": 0.0595
   },
   "Hoffenheim": {
    "out": [
@@ -1019,28 +968,10 @@
    ],
    "key_absences": 1,
    "drag_att": 0.0,
-   "drag_def": 0.0588
+   "drag_def": 0.0539
   },
   "Mainz": {
-   "out": [
-    {
-     "player": "Silas Katompa Mvumpa",
-     "bucket": "out",
-     "kind": "injured",
-     "position": "FWD",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Foot",
-     "news": "Foot",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 0,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    }
-   ],
+   "out": [],
    "doubtful": [
     {
      "player": "Dominik Kohr",
@@ -1058,66 +989,15 @@
      "sources": [
       "SportsGambler"
      ]
-    },
-    {
-     "player": "Otto Ruoppi",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "MID",
-     "matches": 3,
-     "goals": 0,
-     "assists": 1,
-     "reason": "Knee",
-     "news": "Knee",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
     }
    ],
    "key_absences": 0,
-   "drag_att": 0.0139,
+   "drag_att": 0.0,
    "drag_def": 0.0
   },
   "Paderborn": {
    "out": [],
    "doubtful": [
-    {
-     "player": "Stefano Marino",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "FWD",
-     "matches": 10,
-     "goals": 2,
-     "assists": 0,
-     "reason": "Ankle",
-     "news": "Ankle",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 50,
-     "regular_starter": true,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
-     "player": "Marcel Hoffmeier",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "DEF",
-     "matches": 0,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Muscle",
-     "news": "Muscle",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
     {
      "player": "N. Awortwie-Grant",
      "bucket": "doubtful",
@@ -1129,40 +1009,6 @@
      "reason": "Knee",
      "news": "Knee",
      "expected_return": null,
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
-     "player": "Oliver Batista Meier",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "FWD",
-     "matches": 3,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Knee",
-     "news": "Knee",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
-     "player": "Sven Michel",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "FWD",
-     "matches": 1,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Knock",
-     "news": "Knock",
-     "expected_return": "2026-11-28",
      "chance_this_round": 50,
      "regular_starter": false,
      "sources": [
@@ -1187,8 +1033,8 @@
      ]
     }
    ],
-   "key_absences": 1,
-   "drag_att": 0.0626,
+   "key_absences": 0,
+   "drag_att": 0.0,
    "drag_def": 0.0
   },
   "RB Leipzig": {
@@ -1424,7 +1270,7 @@
      "assists": 0,
      "reason": "Upper back",
      "news": "Upper back",
-     "expected_return": "2026-11-28",
+     "expected_return": "2027-01-09",
      "chance_this_round": 0,
      "regular_starter": false,
      "sources": [
@@ -1759,7 +1605,7 @@
     }
    ],
    "key_absences": 0,
-   "drag_att": 0.0952,
+   "drag_att": 0.0872,
    "drag_def": 0.0
   }
  }

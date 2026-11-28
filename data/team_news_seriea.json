@@ -2,7 +2,7 @@
  "league": "seriea",
  "source": "SportsGambler",
  "season_label": "2026/27",
- "fetched_at": "2026-11-27T22:35:33.553405+00:00",
+ "fetched_at": "2026-11-28T21:39:46.148647+00:00",
  "notes": "Multi-source player availability combining SportsGambler (injured, suspended, doubtful), Transfermarkt (€M valuation and return dates), and FPL for Premier League.",
  "teams": {
   "Atalanta": {
@@ -67,23 +67,6 @@
   },
   "Bologna": {
    "out": [
-    {
-     "player": "Antonio Raimondo",
-     "bucket": "out",
-     "kind": "injured",
-     "position": "FWD",
-     "matches": 10,
-     "goals": 8,
-     "assists": 0,
-     "reason": "Ankle",
-     "news": "Ankle",
-     "expected_return": "2027-01-02",
-     "chance_this_round": 0,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
     {
      "player": "Emil Holm",
      "bucket": "out",
@@ -190,8 +173,8 @@
     }
    ],
    "key_absences": 1,
-   "drag_att": 0.1564,
-   "drag_def": 0.0817
+   "drag_att": 0.0068,
+   "drag_def": 0.0758
   },
   "Cagliari": {
    "out": [
@@ -509,31 +492,6 @@
    "drag_att": 0.0166,
    "drag_def": 0.1699
   },
-  "Frosinone": {
-   "out": [],
-   "doubtful": [
-    {
-     "player": "Florian Grillitsch",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "MID",
-     "matches": 1,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Thigh",
-     "news": "Thigh",
-     "expected_return": null,
-     "chance_this_round": 50,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
-    }
-   ],
-   "key_absences": 0,
-   "drag_att": 0.0,
-   "drag_def": 0.0
-  },
   "Genoa": {
    "out": [
     {
@@ -614,23 +572,6 @@
   "Inter": {
    "out": [
     {
-     "player": "Alessandro Bastoni",
-     "bucket": "out",
-     "kind": "injured",
-     "position": "DEF",
-     "matches": 11,
-     "goals": 1,
-     "assists": 0,
-     "reason": "Thigh",
-     "news": "Thigh",
-     "expected_return": "2026-12-05",
-     "chance_this_round": 0,
-     "regular_starter": true,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
      "player": "Hakan Calhanoglu",
      "bucket": "out",
      "kind": "injured",
@@ -650,16 +591,16 @@
    ],
    "doubtful": [
     {
-     "player": "Piotr Zielinski",
+     "player": "Alessandro Bastoni",
      "bucket": "doubtful",
      "kind": "doubtful",
-     "position": "MID",
-     "matches": 10,
-     "goals": 2,
-     "assists": 2,
-     "reason": "Foot",
-     "news": "Foot",
-     "expected_return": "2026-11-28",
+     "position": "DEF",
+     "matches": 11,
+     "goals": 1,
+     "assists": 0,
+     "reason": "Thigh",
+     "news": "Thigh",
+     "expected_return": "2026-12-05",
      "chance_this_round": 50,
      "regular_starter": true,
      "sources": [
@@ -684,9 +625,9 @@
      ]
     }
    ],
-   "key_absences": 2,
-   "drag_att": 0.1521,
-   "drag_def": 0.0945
+   "key_absences": 1,
+   "drag_att": 0.11,
+   "drag_def": 0.0473
   },
   "Juventus": {
    "out": [
@@ -889,23 +830,6 @@
    ],
    "doubtful": [
     {
-     "player": "Mattia Zaccagni",
-     "bucket": "doubtful",
-     "kind": "doubtful",
-     "position": "MID",
-     "matches": 10,
-     "goals": 2,
-     "assists": 5,
-     "reason": "Thigh",
-     "news": "Thigh",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 50,
-     "regular_starter": true,
-     "sources": [
-      "SportsGambler"
-     ]
-    },
-    {
      "player": "Adam Marusic",
      "bucket": "doubtful",
      "kind": "doubtful",
@@ -940,8 +864,8 @@
      ]
     }
    ],
-   "key_absences": 3,
-   "drag_att": 0.1521,
+   "key_absences": 2,
+   "drag_att": 0.1008,
    "drag_def": 0.0833
   },
   "Lecce": {
@@ -1244,23 +1168,6 @@
      "sources": [
       "SportsGambler"
      ]
-    },
-    {
-     "player": "Michael Folorunsho",
-     "bucket": "out",
-     "kind": "injured",
-     "position": "MID",
-     "matches": 7,
-     "goals": 0,
-     "assists": 0,
-     "reason": "Calf",
-     "news": "Calf",
-     "expected_return": "2026-12-05",
-     "chance_this_round": 0,
-     "regular_starter": false,
-     "sources": [
-      "SportsGambler"
-     ]
     }
    ],
    "doubtful": [
@@ -1348,31 +1255,31 @@
      "sources": [
       "SportsGambler"
      ]
-    }
-   ],
-   "key_absences": 3,
-   "drag_att": 0.1892,
-   "drag_def": 0.0824
-  },
-  "Parma": {
-   "out": [
+    },
     {
-     "player": "Abdoulaye N'Diaye",
-     "bucket": "out",
-     "kind": "suspended",
-     "position": "DEF",
-     "matches": 3,
+     "player": "Michael Folorunsho",
+     "bucket": "doubtful",
+     "kind": "doubtful",
+     "position": "MID",
+     "matches": 7,
      "goals": 0,
      "assists": 0,
-     "reason": "Red card (direct)",
-     "news": "Red card (direct)",
-     "expected_return": "2026-11-28",
-     "chance_this_round": 0,
+     "reason": "Calf",
+     "news": "Calf",
+     "expected_return": "2026-12-05",
+     "chance_this_round": 50,
      "regular_starter": false,
      "sources": [
       "SportsGambler"
      ]
-    },
+    }
+   ],
+   "key_absences": 3,
+   "drag_att": 0.1704,
+   "drag_def": 0.0824
+  },
+  "Parma": {
+   "out": [
     {
      "player": "David Romero",
      "bucket": "out",
@@ -1412,7 +1319,7 @@
    ],
    "key_absences": 0,
    "drag_att": 0.0955,
-   "drag_def": 0.0253
+   "drag_def": 0.0
   },
   "Roma": {
    "out": [
@@ -1915,7 +1822,7 @@
    ],
    "key_absences": 0,
    "drag_att": 0.0,
-   "drag_def": 0.0408
+   "drag_def": 0.0369
   }
  }
 }
